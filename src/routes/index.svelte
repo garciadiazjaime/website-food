@@ -44,3 +44,9 @@
 </figure>
 
 <p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
+
+<Button on:click={() => alert('Clicked!')}>Just a Button</Button>
+
+<script>
+  import Button from '@smui/button';
+</script>
