@@ -2,7 +2,8 @@
   import Card, { Content, PrimaryAction, Media } from "@smui/card";
   import IconButton, { Icon } from "@smui/icon-button";
 
-  import { onMount } from "svelte";
+	import { onMount } from "svelte";
+	import Phone from '../components/Phones.svelte';
 
   let posts;
 
@@ -63,9 +64,8 @@
   }
 
   onMount(async () => {
-    const data = await getPosts();
+		const data = await getPosts();
     data.map(post => {
-			console.log(String(post.caption));
       post.phones = post.caption.match(
         /\d?\d?[\s-]?(\(?(\d{3})\)?)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}/g
 			);
@@ -106,7 +106,6 @@
   h1,
   figure,
   p {
-    text-align: center;
     margin: 0 auto;
   }
 
@@ -133,39 +132,36 @@
 
 	.wrapper {
 		display: grid;
-		grid-column-gap: 20px;
-  	grid-row-gap: 20px;
-		grid-template-columns: repeat(auto-fit, minmax(360px,1fr));
+		grid-column-gap: 2%;
+		grid-row-gap: 2%;
+		width: 100%;
+		grid-template-columns: 100%;
 	}
 
-  @media (min-width: 480px) {
-    h1 {
-      font-size: 4em;
-    }
-  }
+  @media (min-width: 426px) {
+		.wrapper {
+			grid-template-columns: 50% 50%;
+		}
+	}
 </style>
 
 <svelte:head>
   <title>...</title>
 </svelte:head>
-
-<div class="wrapper">
   {#if posts}
     {#each posts as post}
-      <Card style="width: 360px;">
+      <Card>
         <PrimaryAction on:click={() => doAction('openItemPage')}>
-
           <Media
             style="background-image: url({getImageURL(post)});"
             aspectRatio="16x9" />
           <Content class="mdc-typography--body2">
             {#if post.phones}
-              <p>
+              <div>
                 {#each post.phones as phone}
-                  📞 {phone}
-                  <br />
+									<Phone phoneNumber={phone} />
                 {/each}
-              </p>
+              </div>
             {/if}
 						<p>
             	{post.shortCaption}

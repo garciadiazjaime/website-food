@@ -8,9 +8,14 @@
 	main {
 		position: relative;
 		background-color: white;
-		padding: 2em;
+		padding: .5em;
 		margin: 0 auto;
 		box-sizing: border-box;
+	}
+	@media (min-width: 426px) {
+		main {
+			padding: 20px;
+		}
 	}
 </style>
 
