@@ -14,7 +14,7 @@
   function getPlacesQuery() {
     return `
 				query Post {
-					posts {
+					posts(state:"MAPPED") {
 						_id
 						commentsCount
 						permalink
@@ -29,6 +29,24 @@
 							media_url
 							caption
 						}
+            user {
+              id
+              username
+              fullMame
+              profilePicture
+            }
+            location {
+              id
+              name
+              slug
+              address {
+                _id
+                street
+                zipCode
+                city
+                country
+              }
+            }
 						city
 						source
 						state
@@ -65,7 +83,6 @@
   onMount(async () => {
     const data = await getPosts();
     data.map(post => {
-			console.log(String(post.caption));
       post.phones = post.caption.match(
         /\d?\d?[\s-]?(\(?(\d{3})\)?)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}/g
 			);
