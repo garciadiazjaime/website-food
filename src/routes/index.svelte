@@ -15,7 +15,7 @@
   function getPlacesQuery() {
     return `
 				query Post {
-					posts {
+					posts(state:"MAPPED") {
 						_id
 						commentsCount
 						permalink
@@ -30,6 +30,24 @@
 							media_url
 							caption
 						}
+            user {
+              id
+              username
+              fullName
+              profilePicture
+            }
+            location {
+              id
+              name
+              slug
+              address {
+                _id
+                street
+                zipCode
+                city
+                country
+              }
+            }
 						city
 						source
 						state
