@@ -32,7 +32,7 @@
             user {
               id
               username
-              fullMame
+              fullName
               profilePicture
             }
             location {
