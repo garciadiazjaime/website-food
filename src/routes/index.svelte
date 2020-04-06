@@ -1,16 +1,12 @@
 <script>
   import Card, { Content, PrimaryAction, Media } from "@smui/card";
-  import IconButton, { Icon } from "@smui/icon-button";
+	import IconButton, { Icon } from "@smui/icon-button";
 
 	import { onMount } from "svelte";
 	import Phone from '../components/Phones.svelte';
+	import ExpandButton from '../components/ExpandButton.svelte';
 
   let posts;
-
-  const getPhone = caption =>
-    caption.match(
-      /\d?\d?[\s-]?(\(?(\d{3})\)?)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}/g
-    );
 
   function getPlacesQuery() {
     return `
@@ -69,7 +65,8 @@
       post.phones = post.caption.match(
         /\d?\d?[\s-]?(\(?(\d{3})\)?)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}/g
 			);
-			post.shortCaption = `${post.caption.substring(0, 150)} ...`;
+			post.shortCaption = `${post.caption.substring(0, 50)}`;
+			post.collapsed = true;
     });
 
     posts = data;
@@ -97,38 +94,16 @@
 
   function doAction(action) {
     console.log("You did an action: " + action);
-  }
-
+	}
   export { posts };
 </script>
 
 <style>
-  h1,
-  figure,
-  p {
-    margin: 0 auto;
-  }
-
-  h1 {
-    font-size: 2.8em;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin: 0 0 0.5em 0;
-  }
-
-  figure {
-    margin: 0 0 1em 0;
-  }
-
-  img {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 0 1em 0;
-  }
-
-  p {
-		/* margin: 1em auto; */
-		margin: 0;
+  .caption {
+		margin: 0 auto;
+		font-size: 12px;
+		line-height: 16px;
+		word-break: break-all;
   }
 
 	.grid-container {
@@ -137,12 +112,43 @@
 		grid-row-gap: 20px;
 		width: 100%;
 		grid-template-columns: 1fr;
-		background: pink;
+	}
+	.phone-grid {
+		display: grid;
+		grid-column-gap: 15px;
+		grid-template-columns: 1fr 1fr;
+		padding-bottom: 10px;
+		border-bottom: 1px solid #dedede;
+		margin-bottom: 20px;
 	}
 
   @media (min-width: 426px) {
 		.grid-container {
 			grid-template-columns: 1fr 1fr;
+		}
+		.phone-grid {
+			grid-template-columns: 100%;
+		}
+	}
+
+	@media (min-width: 600px) {
+		.phone-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	@media (min-width: 769px) {
+		.grid-container {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+	@media (min-width: 768px) {
+		.grid-container {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+	@media (min-width: 1024px) {
+		.grid-container {
+			grid-template-columns: 1fr 1fr 1fr 1fr;
 		}
 	}
 
@@ -160,17 +166,22 @@
           <Media
             style="background-image: url({getImageURL(post)});"
             aspectRatio="16x9" />
-          <Content class="mdc-typography--body2">
+          <Content>
             {#if post.phones}
-              <div>
+              <div class="phone-grid">
                 {#each post.phones as phone}
 									<Phone phoneNumber={phone} />
                 {/each}
               </div>
             {/if}
-						
-            	<!-- {post.shortCaption} -->
-							This is a long sentece, I'm trying to figure out why this div is breaking my alignment, hopefully this is long enough.
+							<p class="caption" on:click={() => post.collapsed = !post.collapsed}>
+								{#if post.collapsed}
+									{post.shortCaption}
+									{:else}
+									{post.caption}
+								{/if}
+								<ExpandButton expand={post.collapsed} />
+							</p>
 						
           </Content>
 

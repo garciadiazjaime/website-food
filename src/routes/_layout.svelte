@@ -8,13 +8,13 @@
 	main {
 		position: relative;
 		background-color: white;
-		padding: .5em;
+		padding: 5px;
 		margin: 0 auto;
 		box-sizing: border-box;
 	}
 	@media (min-width: 426px) {
 		main {
-			padding: 20px;
+			padding: 15px;
 		}
 	}
 </style>
