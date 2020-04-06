@@ -15,7 +15,7 @@
   function getPlacesQuery() {
     return `
 				query Post {
-					posts(state:"MAPPED") {
+					posts {
 						_id
 						commentsCount
 						permalink
@@ -30,24 +30,6 @@
 							media_url
 							caption
 						}
-            user {
-              id
-              username
-              fullName
-              profilePicture
-            }
-            location {
-              id
-              name
-              slug
-              address {
-                _id
-                street
-                zipCode
-                city
-                country
-              }
-            }
 						city
 						source
 						state
@@ -145,31 +127,36 @@
   }
 
   p {
-    margin: 1em auto;
+		/* margin: 1em auto; */
+		margin: 0;
   }
 
-	.wrapper {
+	.grid-container {
 		display: grid;
 		grid-column-gap: 2%;
-		grid-row-gap: 2%;
+		grid-row-gap: 20px;
 		width: 100%;
-		grid-template-columns: 100%;
+		grid-template-columns: 1fr;
+		background: pink;
 	}
 
   @media (min-width: 426px) {
-		.wrapper {
-			grid-template-columns: 50% 50%;
+		.grid-container {
+			grid-template-columns: 1fr 1fr;
 		}
 	}
+
 </style>
 
 <svelte:head>
   <title>...</title>
 </svelte:head>
+<div class="grid-container">
   {#if posts}
     {#each posts as post}
       <Card>
         <PrimaryAction on:click={() => doAction('openItemPage')}>
+
           <Media
             style="background-image: url({getImageURL(post)});"
             aspectRatio="16x9" />
@@ -181,9 +168,10 @@
                 {/each}
               </div>
             {/if}
-						<p>
-            	{post.shortCaption}
-						</p>
+						
+            	<!-- {post.shortCaption} -->
+							This is a long sentece, I'm trying to figure out why this div is breaking my alignment, hopefully this is long enough.
+						
           </Content>
 
         </PrimaryAction>
