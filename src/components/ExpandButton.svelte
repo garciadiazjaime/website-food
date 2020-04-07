@@ -20,8 +20,8 @@
 
 <span>
   {#if expand}
-    +
-  {:else}
     -
+  {:else}
+    +
   {/if}
 </span>

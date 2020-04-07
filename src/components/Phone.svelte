@@ -1,6 +1,4 @@
 <script>
-  import Button, {Label} from '@smui/button';
-  import IconButton, {Icon} from '@smui/icon-button';
 	export let phoneNumber;
 </script>
 
