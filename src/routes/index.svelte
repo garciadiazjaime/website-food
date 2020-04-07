@@ -1,20 +1,17 @@
 <script>
   import Card, { Content, PrimaryAction, Media } from "@smui/card";
-  import IconButton, { Icon } from "@smui/icon-button";
+	import IconButton, { Icon } from "@smui/icon-button";
 
-  import { onMount } from "svelte";
+	import { onMount } from "svelte";
+	import Phone from '../components/Phones.svelte';
+	import ExpandButton from '../components/ExpandButton.svelte';
 
   let posts;
-
-  const getPhone = caption =>
-    caption.match(
-      /\d?\d?[\s-]?(\(?(\d{3})\)?)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}/g
-    );
 
   function getPlacesQuery() {
     return `
 				query Post {
-					posts(state:"MAPPED") {
+					posts {
 						_id
 						commentsCount
 						permalink
@@ -29,24 +26,6 @@
 							media_url
 							caption
 						}
-            user {
-              id
-              username
-              fullName
-              profilePicture
-            }
-            location {
-              id
-              name
-              slug
-              address {
-                _id
-                street
-                zipCode
-                city
-                country
-              }
-            }
 						city
 						source
 						state
@@ -78,15 +57,32 @@
     } = await result.json();
 
     return posts;
-  }
+	}
+
+	function cleanPhoneNumber(phone) {
+		let n = phone.replace(/[()\s-]/g,"");
+		let areaCode = '';
+		if(n.length >= 10) {
+		areaCode = `(${n.substr(n.length -10, 3)})`;
+		}
+		const first3 = n.substr(n.length - 7, 3);
+		const last4 = n.substr(n.length - 4, 4);
+		n = `${areaCode}${first3}-${last4}`;
+		return n;
+	}
 
   onMount(async () => {
-    const data = await getPosts();
+		const data = await getPosts();
     data.map(post => {
-      post.phones = post.caption.match(
+			post.phones = [];
+      const phones = post.caption.match(
         /\d?\d?[\s-]?(\(?(\d{3})\)?)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}/g
 			);
-			post.shortCaption = `${post.caption.substring(0, 150)} ...`;
+			if(phones) {
+				phones.map(phone => post.phones.push(cleanPhoneNumber(phone)));
+			}
+			post.shortCaption = `${post.caption.substring(0, 50)}`;
+			post.collapsed = true;
     });
 
     posts = data;
@@ -114,79 +110,66 @@
 
   function doAction(action) {
     console.log("You did an action: " + action);
-  }
-
+	}
   export { posts };
 </script>
 
 <style>
-  h1,
-  figure,
-  p {
-    text-align: center;
-    margin: 0 auto;
+  .caption {
+		margin: 0 auto;
+		font-size: 12px;
+		line-height: 16px;
+		word-break: break-all;
   }
 
-  h1 {
-    font-size: 2.8em;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin: 0 0 0.5em 0;
-  }
-
-  figure {
-    margin: 0 0 1em 0;
-  }
-
-  img {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 0 1em 0;
-  }
-
-  p {
-    margin: 1em auto;
-  }
-
-	.wrapper {
+	.grid-container {
 		display: grid;
 		grid-column-gap: 20px;
-  	grid-row-gap: 20px;
-		grid-template-columns: repeat(auto-fit, minmax(360px,1fr));
+		grid-row-gap: 20px;
+		grid-template-columns: repeat( auto-fit, minmax(247px, 1fr) );
+	}
+	.phone-grid {
+		display: grid;
+		grid-column-gap: 5px;
+		grid-template-columns: repeat( auto-fit, 105px );
+		padding-bottom: 10px;
+		border-bottom: 1px solid #dedede;
+		margin-bottom: 20px;
 	}
 
-  @media (min-width: 480px) {
-    h1 {
-      font-size: 4em;
-    }
-  }
 </style>
 
 <svelte:head>
   <title>...</title>
 </svelte:head>
-
-<div class="wrapper">
+<div class="grid-container">
   {#if posts}
     {#each posts as post}
-      <Card style="width: 360px;">
+      <Card>
         <PrimaryAction on:click={() => doAction('openItemPage')}>
 
           <Media
             style="background-image: url({getImageURL(post)});"
             aspectRatio="16x9" />
-          <Content class="mdc-typography--body2">
+          <Content>
             {#if post.phones}
-              <p>
+              <div class="phone-grid">
                 {#each post.phones as phone}
-                  📞 {phone}
-                  <br />
+									<Phone phoneNumber={phone} />
                 {/each}
-              </p>
+              </div>
             {/if}
-						<p>
-            	{post.shortCaption}
-						</p>
+							<p class="caption" on:click={() => post.collapsed = !post.collapsed}>
+								{#if post.collapsed}
+									{post.shortCaption}
+									{:else}
+									{post.caption}
+								{/if}
+								{#if post.caption.length > 50}
+									<ExpandButton expand={post.collapsed} />
+								{/if}
+							</p>
+						
           </Content>
 
         </PrimaryAction>

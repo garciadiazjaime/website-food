@@ -7,10 +7,15 @@
 <style>
 	main {
 		position: relative;
-		background-color: white;
-		padding: 2em;
+		background-color: #f8f8f8;
+		padding: 5px;
 		margin: 0 auto;
 		box-sizing: border-box;
+	}
+	@media (min-width: 426px) {
+		main {
+			padding: 15px;
+		}
 	}
 </style>
 
