@@ -6,43 +6,57 @@
 	import Phone from '../components/Phones.svelte';
 	import ExpandButton from '../components/ExpandButton.svelte';
 
-  let posts;
+  let brands;
 
   function getPlacesQuery() {
     return `
-				query Post {
-					posts {
-						_id
+			{
+				users {
+					_id
+					id
+					username
+					fullName
+					profilePicture
+					post {
 						commentsCount
 						permalink
 						mediaType
 						mediaUrl
 						caption
-						id
 						likeCount
 						children {
-							id
 							media_type
 							media_url
 							caption
 						}
-						city
-						source
-						state
-						createdAt
-						updatedAt
+					}
+					location {
+						name
+						slug
+						address {
+							_id
+							street
+							zipCode
+							city
+							country
+						}
+						latitude
+						longitude
 					}
 				}
-			`;
+			}
+		`;
   }
 
-  async function getPosts() {
+  async function getBrands() {
     const payload = {
       query: getPlacesQuery()
     };
 
+
+		const apiUrl = 'http://api.mintitmedia.com'
     const result = await fetch(
-      `http://api.mintitmedia.com/instagram/graphiql`,
+      `${apiUrl}/instagram/graphiql`,
       {
         method: "POST",
         headers: {
@@ -53,10 +67,10 @@
     );
 
     const {
-      data: { posts }
-    } = await result.json();
+      data: { users }
+		} = await result.json();
 
-    return posts;
+    return users;
 	}
 
 	function cleanPhoneNumber(phone) {
@@ -72,20 +86,24 @@
 	}
 
   onMount(async () => {
-		const data = await getPosts();
-    data.map(post => {
-			post.phones = [];
-      const phones = post.caption.match(
+		const data = await getBrands();
+    data.map(item => {
+			if (!item.post) {
+				return
+			}
+
+			item.phones = [];
+      const phones = item.post.caption.match(
         /\d?\d?[\s-]?(\(?(\d{3})\)?)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}/g
 			);
 			if(phones) {
-				phones.map(phone => post.phones.push(cleanPhoneNumber(phone)));
+				phones.map(phone => item.phones.push(cleanPhoneNumber(phone)));
 			}
-			post.shortCaption = `${post.caption.substring(0, 50)}`;
-			post.collapsed = true;
+			item.post.shortCaption = `${item.post.caption.substring(0, 50)}`;
+			item.collapsed = true;
     });
 
-    posts = data;
+    brands = data;
   });
 
   function getType(type) {
@@ -96,13 +114,17 @@
     return "Image";
   }
 
-  function getImageURL(post) {
-    if (post.mediaType === "IMAGE") {
-      return post.mediaUrl;
+  function getImageURL(item) {
+		if (!item.post) {
+			return
+		}
+
+    if (item.post.mediaType === "IMAGE") {
+      return item.post.mediaUrl;
     }
 
-    if (Array.isArray(post.children) && post.children.length) {
-      return post.children[0].media_url;
+    if (Array.isArray(item.post.children) && item.post.children.length) {
+      return item.post.children[0].media_url;
     }
 
     return "/default.png";
@@ -111,7 +133,7 @@
   function doAction(action) {
     console.log("You did an action: " + action);
 	}
-  export { posts };
+  export { brands };
 </script>
 
 <style>
@@ -143,37 +165,39 @@
   <title>...</title>
 </svelte:head>
 <div class="grid-container">
-  {#if posts}
-    {#each posts as post}
-      <Card>
-        <PrimaryAction on:click={() => doAction('openItemPage')}>
+  {#if brands}
+    {#each brands as item}
+			{#if item.post}
+				<Card>
+					<PrimaryAction on:click={() => doAction('openItemPage')}>
 
-          <Media
-            style="background-image: url({getImageURL(post)});"
-            aspectRatio="16x9" />
-          <Content>
-            {#if post.phones}
-              <div class="phone-grid">
-                {#each post.phones as phone}
-									<Phone phoneNumber={phone} />
-                {/each}
-              </div>
-            {/if}
-							<p class="caption" on:click={() => post.collapsed = !post.collapsed}>
-								{#if post.collapsed}
-									{post.shortCaption}
-									{:else}
-									{post.caption}
-								{/if}
-								{#if post.caption.length > 50}
-									<ExpandButton expand={post.collapsed} />
-								{/if}
-							</p>
-						
-          </Content>
+						<Media
+							style="background-image: url({getImageURL(item)});"
+							aspectRatio="16x9" />
+						<Content>
+							{#if item.phones}
+								<div class="phone-grid">
+									{#each item.phones as phone}
+										<Phone phoneNumber={phone} />
+									{/each}
+								</div>
+							{/if}
+								<p class="caption" on:click={() => item.collapsed = !item.collapsed}>
+									{#if item.collapsed}
+										{item.post.shortCaption}
+										{:else}
+										{item.post.caption}
+									{/if}
+									{#if item.post.caption.length > 50}
+										<ExpandButton expand={item.collapsed} />
+									{/if}
+								</p>
+							
+						</Content>
 
-        </PrimaryAction>
-      </Card>
+					</PrimaryAction>
+				</Card>
+			{/if}
     {/each}
   {/if}
 </div>
