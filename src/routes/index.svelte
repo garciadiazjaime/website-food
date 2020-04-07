@@ -57,14 +57,30 @@
     } = await result.json();
 
     return posts;
-  }
+	}
+
+	function cleanPhoneNumber(phone) {
+		let n = phone.replace(/[()\s-]/g,"");
+		let areaCode = '';
+		if(n.length >= 10) {
+		areaCode = `(${n.substr(n.length -10, 3)})`;
+		}
+		const first3 = n.substr(n.length - 7, 3);
+		const last4 = n.substr(n.length - 4, 4);
+		n = `${areaCode}${first3}-${last4}`;
+		return n;
+	}
 
   onMount(async () => {
 		const data = await getPosts();
     data.map(post => {
-      post.phones = post.caption.match(
+			post.phones = [];
+      const phones = post.caption.match(
         /\d?\d?[\s-]?(\(?(\d{3})\)?)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}/g
 			);
+			if(phones) {
+				phones.map(phone => post.phones.push(cleanPhoneNumber(phone)));
+			}
 			post.shortCaption = `${post.caption.substring(0, 50)}`;
 			post.collapsed = true;
     });
@@ -180,7 +196,9 @@
 									{:else}
 									{post.caption}
 								{/if}
-								<ExpandButton expand={post.collapsed} />
+								{#if post.caption.length > 50}
+									<ExpandButton expand={post.collapsed} />
+								{/if}
 							</p>
 						
           </Content>
