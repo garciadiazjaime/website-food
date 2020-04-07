@@ -21,7 +21,9 @@ function extendBrandInformation(brands) {
     }
 
     const phones = brand.post.caption.match(phoneRegex);
-    brand.phones = phones.map(getPhoneNumber);
+    if (Array.isArray(phones) && phones.length) {
+      brand.phones = phones.map(getPhoneNumber);
+    }
 
     brand.post.shortCaption = `${brand.post.caption.substring(0, 50)}`;
   });
