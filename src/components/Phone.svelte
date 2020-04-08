@@ -13,9 +13,10 @@
     line-height: 1;
     font-weight: 600;
     border-radius: 11px;
-    color: white;
-    background-color: rgba(255,62,0, .8);
+    color: rgb(255,62,0);;
+    background-color: white;
     margin-bottom: 10px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, .3);
   }
   a:hover {
     background-color: rgb(255,62,0);

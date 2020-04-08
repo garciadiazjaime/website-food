@@ -4,15 +4,18 @@
 	import { onMount } from "svelte";
 	import Phone from '../components/Phone.svelte';
 	import ExpandButton from '../components/ExpandButton.svelte';
+	import Caption from '../components/Caption.svelte';
+	import Location from '../components/Location.svelte';
 	import { getBrands } from '../utils/mintAPIUtil'
-	import { extendBrandInformation } from '../utils/brandUtil'
+	import { extendBrandInformation } from '../utils/brandUtil';
 
-  let brands;
+	let brands;
+	const shortCaptionLength = 144;
 
   onMount(async () => {
 		const data = await getBrands();
     
-		brands = extendBrandInformation(data)
+		brands = extendBrandInformation(data, shortCaptionLength);
   });
 
   function getImageURL(item) {
@@ -37,26 +40,26 @@
 </script>
 
 <style>
-  .caption {
-		margin: 0 auto;
-		font-size: 12px;
-		line-height: 16px;
-		word-break: break-all;
-  }
-
 	.grid-container {
 		display: grid;
 		grid-column-gap: 20px;
 		grid-row-gap: 20px;
 		grid-template-columns: repeat( auto-fit, minmax(247px, 1fr) );
 	}
+	.location-container {
+		position: absolute;
+		top: 15px;
+		left: 15px;
+	}
 	.phone-grid {
 		display: grid;
+		margin: -38px 15px 0;
+		z-index:10;
 		grid-column-gap: 5px;
 		grid-template-columns: repeat( auto-fit, 105px );
-		padding-bottom: 10px;
-		border-bottom: 1px solid #dedede;
-		margin-bottom: 20px;
+	}
+	.pos-rel {
+		position: relative;
 	}
 </style>
 
@@ -68,34 +71,33 @@
   {#if brands}
     {#each brands as item}
 			{#if item.post}
-				<Card>
-					<PrimaryAction on:click={() => doAction('openItemPage')}>
-
+				<div class="pos-rel">
+					<Card>
 						<Media
 							style="background-image: url({getImageURL(item)});"
 							aspectRatio="16x9" />
+							<div class="location-container">
+								<Location 
+									title={
+										item.location 
+										? item.location.name 
+										: item.fullName 
+										? item.fullName 
+										: item.username} 
+									address={item.location ? item.location.address.street: ''} />
+							</div>
+						{#if item.phones}
+							<div class="phone-grid">
+								{#each item.phones as phone}
+									<Phone phoneNumber={phone} />
+								{/each}
+							</div>
+						{/if}
 						<Content>
-							{#if item.phones}
-								<div class="phone-grid">
-									{#each item.phones as phone}
-										<Phone phoneNumber={phone} />
-									{/each}
-								</div>
-							{/if}
-							<p class="caption" on:click={() => item.isCaptionOpen = !item.isCaptionOpen}>
-								{#if item.isCaptionOpen}
-									{item.post.caption}
-								{:else}
-									{item.post.shortCaption}
-								{/if}
-								{#if item.post.caption.length > 50}
-									<ExpandButton expand={item.isCaptionOpen} />
-								{/if}
-							</p>
+							<Caption shortCaption={item.post.shortCaption} caption={item.post.caption} />
 						</Content>
-
-					</PrimaryAction>
-				</Card>
+					</Card>
+				</div>
 			{/if}
     {/each}
   {/if}
