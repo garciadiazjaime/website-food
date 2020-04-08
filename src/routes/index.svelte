@@ -4,6 +4,7 @@
 	import { onMount } from "svelte";
 	import Phone from '../components/Phone.svelte';
 	import ExpandButton from '../components/ExpandButton.svelte';
+	import Caption from '../components/Caption.svelte';
 	import Location from '../components/Location.svelte';
 	import { getBrands } from '../utils/mintAPIUtil'
 	import { extendBrandInformation } from '../utils/brandUtil';
@@ -39,13 +40,6 @@
 </script>
 
 <style>
-  .caption {
-		margin: 0 auto;
-		font-size: 16px;
-		line-height: 1.2;
-		word-break: break-all;
-  }
-
 	.grid-container {
 		display: grid;
 		grid-column-gap: 20px;
@@ -64,6 +58,9 @@
 		grid-column-gap: 5px;
 		grid-template-columns: repeat( auto-fit, 105px );
 	}
+	.pos-rel {
+		position: relative;
+	}
 </style>
 
 <svelte:head>
@@ -74,17 +71,20 @@
   {#if brands}
     {#each brands as item}
 			{#if item.post}
-				<div style="position: relative;">
+				<div class="pos-rel">
 					<Card>
 						<Media
 							style="background-image: url({getImageURL(item)});"
 							aspectRatio="16x9" />
 							<div class="location-container">
-								{#if item.location}
-									<Location title={item.location.name} address={item.location.address.street} />
-								{:else}
-									<Location title={item.fullName ? item.fullName : item.username} />
-								{/if}
+								<Location 
+									title={
+										item.location 
+										? item.location.name 
+										: item.fullName 
+										? item.fullName 
+										: item.username} 
+									address={item.location ? item.location.address.street: ''} />
 							</div>
 						{#if item.phones}
 							<div class="phone-grid">
@@ -94,20 +94,7 @@
 							</div>
 						{/if}
 						<Content>
-							{#if item.post.shortCaption}
-								<p class="caption" on:click={() => item.isCaptionOpen = !item.isCaptionOpen}>
-									{#if !item.isCaptionOpen}
-										{item.post.shortCaption}...
-										{:else}
-											{item.post.caption}
-									{/if}
-									<ExpandButton expand={item.isCaptionOpen} />
-								</p>
-								{:else}
-									<p class="caption">
-										{item.post.caption}
-									</p>
-							{/if}
+							<Caption shortCaption={item.post.shortCaption} caption={item.post.caption} />
 						</Content>
 					</Card>
 				</div>
