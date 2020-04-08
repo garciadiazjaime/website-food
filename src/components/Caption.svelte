@@ -1,8 +1,9 @@
 <script>
 	import ExpandButton from '../components/ExpandButton.svelte';
-  export let shortCaption = '';
+
   export let caption = '';
-  let isCaptionOpen = false;
+  let isOpen = false;
+  const shortCaption = caption.substring(0, 144)
 </script>
 
 <style>
@@ -15,16 +16,16 @@
 </style>
 
 {#if shortCaption}
-  <p class="caption" on:click={() => isCaptionOpen = !isCaptionOpen}>
-    {#if !isCaptionOpen}
+  <p class="caption" on:click={() => isOpen = !isOpen}>
+    {#if !isOpen}
       {shortCaption}...
-      {:else}
-        {caption}
-    {/if}
-    <ExpandButton expand={isCaptionOpen} />
-  </p>
-  {:else}
-    <p class="caption">
+    {:else}
       {caption}
-    </p>
+    {/if}
+    <ExpandButton expand={isOpen} />
+  </p>
+{:else}
+  <p class="caption">
+    {caption}
+  </p>
 {/if}

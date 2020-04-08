@@ -1,7 +1,7 @@
 <script>
   import Card, { Content, PrimaryAction, Media } from "@smui/card";
-
 	import { onMount } from "svelte";
+
 	import Phone from '../components/Phone.svelte';
 	import ExpandButton from '../components/ExpandButton.svelte';
 	import Caption from '../components/Caption.svelte';
@@ -10,12 +10,11 @@
 	import { extendBrandInformation } from '../utils/brandUtil';
 
 	let brands;
-	const shortCaptionLength = 144;
 
   onMount(async () => {
 		const data = await getBrands();
     
-		brands = extendBrandInformation(data, shortCaptionLength);
+		brands = extendBrandInformation(data);
   });
 
   function getImageURL(item) {
@@ -77,14 +76,7 @@
 							style="background-image: url({getImageURL(item)});"
 							aspectRatio="16x9" />
 							<div class="location-container">
-								<Location 
-									title={
-										item.location 
-										? item.location.name 
-										: item.fullName 
-										? item.fullName 
-										: item.username} 
-									address={item.location ? item.location.address.street: ''} />
+								<Location item={item} />
 							</div>
 						{#if item.phones}
 							<div class="phone-grid">
@@ -94,7 +86,7 @@
 							</div>
 						{/if}
 						<Content>
-							<Caption shortCaption={item.post.shortCaption} caption={item.post.caption} />
+							<Caption caption={item.post.caption} />
 						</Content>
 					</Card>
 				</div>

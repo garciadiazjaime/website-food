@@ -1,6 +1,14 @@
 <script>
-  export let title;
-  export let address;
+  export let item;
+  const address = item.location && item.location.address ? item.location.address.street : ''
+
+  function getTitle() {
+    if (item.location) {
+      return item.location.name
+    }
+
+    return item.fullName || item.username
+  }
 </script>
 
 <style>
@@ -23,8 +31,7 @@
 </style>
 
 <div>
-  <div class="title">{title}</div>
-  {#if address}
-    <div class="address">{address}</div>
-  {/if}
+  <div class="title">{getTitle()}</div>
+
+  <div class="address">{address}</div>
 </div>

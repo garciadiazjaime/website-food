@@ -14,7 +14,7 @@ function getPhoneNumber(phone) {
   return `${areaCode}${first3}-${last4}`
 }
 
-function extendBrandInformation(brands, shortCaptionLength) {
+function extendBrandInformation(brands) {
   brands.forEach(brand => {
     if (!brand.post) {
       return
@@ -23,9 +23,6 @@ function extendBrandInformation(brands, shortCaptionLength) {
     const phones = brand.post.caption.match(phoneRegex);
     if (Array.isArray(phones) && phones.length) {
       brand.phones = phones.map(getPhoneNumber);
-    }
-    if(brand.post.caption.length > shortCaptionLength) {
-      brand.post.shortCaption = `${brand.post.caption.substring(0, shortCaptionLength)}`;
     }
   });
 
