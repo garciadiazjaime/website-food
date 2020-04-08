@@ -4,15 +4,17 @@
 	import { onMount } from "svelte";
 	import Phone from '../components/Phone.svelte';
 	import ExpandButton from '../components/ExpandButton.svelte';
+	import Location from '../components/Location.svelte';
 	import { getBrands } from '../utils/mintAPIUtil'
-	import { extendBrandInformation } from '../utils/brandUtil'
+	import { extendBrandInformation } from '../utils/brandUtil';
 
-  let brands;
+	let brands;
+	const shortCaptionLength = 144;
 
   onMount(async () => {
 		const data = await getBrands();
     
-		brands = extendBrandInformation(data)
+		brands = extendBrandInformation(data, shortCaptionLength);
   });
 
   function getImageURL(item) {
@@ -39,8 +41,8 @@
 <style>
   .caption {
 		margin: 0 auto;
-		font-size: 12px;
-		line-height: 16px;
+		font-size: 16px;
+		line-height: 1.2;
 		word-break: break-all;
   }
 
@@ -50,13 +52,17 @@
 		grid-row-gap: 20px;
 		grid-template-columns: repeat( auto-fit, minmax(247px, 1fr) );
 	}
+	.location-container {
+		position: absolute;
+		top: 15px;
+		left: 15px;
+	}
 	.phone-grid {
 		display: grid;
+		margin: -38px 15px 0;
+		z-index:10;
 		grid-column-gap: 5px;
 		grid-template-columns: repeat( auto-fit, 105px );
-		padding-bottom: 10px;
-		border-bottom: 1px solid #dedede;
-		margin-bottom: 20px;
 	}
 </style>
 
@@ -68,34 +74,43 @@
   {#if brands}
     {#each brands as item}
 			{#if item.post}
-				<Card>
-					<PrimaryAction on:click={() => doAction('openItemPage')}>
-
+				<div style="position: relative;">
+					<Card>
 						<Media
 							style="background-image: url({getImageURL(item)});"
 							aspectRatio="16x9" />
-						<Content>
-							{#if item.phones}
-								<div class="phone-grid">
-									{#each item.phones as phone}
-										<Phone phoneNumber={phone} />
-									{/each}
-								</div>
-							{/if}
-							<p class="caption" on:click={() => item.isCaptionOpen = !item.isCaptionOpen}>
-								{#if item.isCaptionOpen}
-									{item.post.caption}
+							<div class="location-container">
+								{#if item.location}
+									<Location title={item.location.name} address={item.location.address.street} />
 								{:else}
-									{item.post.shortCaption}
+									<Location title={item.fullName ? item.fullName : item.username} />
 								{/if}
-								{#if item.post.caption.length > 50}
+							</div>
+						{#if item.phones}
+							<div class="phone-grid">
+								{#each item.phones as phone}
+									<Phone phoneNumber={phone} />
+								{/each}
+							</div>
+						{/if}
+						<Content>
+							{#if item.post.shortCaption}
+								<p class="caption" on:click={() => item.isCaptionOpen = !item.isCaptionOpen}>
+									{#if !item.isCaptionOpen}
+										{item.post.shortCaption}...
+										{:else}
+											{item.post.caption}
+									{/if}
 									<ExpandButton expand={item.isCaptionOpen} />
-								{/if}
-							</p>
+								</p>
+								{:else}
+									<p class="caption">
+										{item.post.caption}
+									</p>
+							{/if}
 						</Content>
-
-					</PrimaryAction>
-				</Card>
+					</Card>
+				</div>
 			{/if}
     {/each}
   {/if}
