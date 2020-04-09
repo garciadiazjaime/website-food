@@ -16,7 +16,7 @@
     color: rgb(255,62,0);;
     background-color: white;
     margin-bottom: 10px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, .3);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, .2);
   }
   a:hover {
     background-color: rgb(255,62,0);

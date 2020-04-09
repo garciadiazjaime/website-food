@@ -1,25 +1,32 @@
 <script>
   import Card, { Content, PrimaryAction, Media } from "@smui/card";
 	import { onMount } from "svelte";
-
 	import Phone from '../components/Phone.svelte';
 	import ExpandButton from '../components/ExpandButton.svelte';
+	import LazyLoad from '../components/LazyLoad.svelte';
 	import Caption from '../components/Caption.svelte';
 	import Location from '../components/Location.svelte';
+	import Options from '../components/Options.svelte';
 	import { getBrands } from '../utils/mintAPIUtil'
 	import { extendBrandInformation } from '../utils/brandUtil';
 
 	let brands;
+	const initialImagesToLoad = 0;
+	let lazyCounter = 0;
 
   onMount(async () => {
 		const data = await getBrands();
     
 		brands = extendBrandInformation(data);
-  });
+	});
+
+	function lazyCounting() {
+		lazyCounter ++;
+	}
 
   function getImageURL(item) {
 		if (!item.post) {
-			return
+			return 
 		}
 
     if (item.post.mediaType === "IMAGE") {
@@ -68,22 +75,23 @@
 
 <div class="grid-container">
   {#if brands}
-    {#each brands as item}
+    {#each brands as item, i}
 			{#if item.post}
-				<div class="pos-rel">
+				<div class="pos-rel" use:lazyCounting >
 					<Card>
-						<Media
-							style="background-image: url({getImageURL(item)});"
-							aspectRatio="16x9" />
-							<div class="location-container">
-								<Location item={item} />
-							</div>
+						<LazyLoad lazy={lazyCounter <= initialImagesToLoad} item="background-image: url('{getImageURL(item)}');" />
+						<div class="location-container">
+							<Location item={item} />
+						</div>
 						{#if item.phones}
 							<div class="phone-grid">
 								{#each item.phones as phone}
 									<Phone phoneNumber={phone} />
 								{/each}
 							</div>
+						{/if}
+						{#if item.options.length}
+							<Options options={item.options} />
 						{/if}
 						<Content>
 							<Caption caption={item.post.caption} />
