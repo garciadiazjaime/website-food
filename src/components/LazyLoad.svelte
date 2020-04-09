@@ -1,27 +1,30 @@
 <script>
   import { Media } from "@smui/card";
-  export let item;
-  export let lazy = false;
+  export let dataSrc;
+  export let lazy;
 
-  let src = item;
+  let src = dataSrc;
   let observer = null;
+
+  function onIntersect(entries) {
+    if (!src && entries[0].isIntersecting) {
+      src = dataSrc;
+    }
+  }
 
   if (lazy) {
     src = "";
     observer = new IntersectionObserver(onIntersect, {rootMargin: '200px'});
   }
 
-  function onIntersect(entries) {
-    if (!src && entries[0].isIntersecting) {
-      src = item;
-    }
-  }
-
   function lazyLoad(node) {
-    observer && observer.observe(node);
-    return {
-      destroy() {
-        observer && observer.unobserve(node)
+    if (observer) {
+      observer.observe(node);
+
+      return {
+        destroy() {
+          observer.unobserve(node)
+        }
       }
     }
   }
@@ -34,7 +37,5 @@
 </style>
 
 <div use:lazyLoad>
-  <Media
-    style={src}
-    aspectRatio="16x9" />
+  <Media style="background-image: url('{src}');" aspectRatio="16x9" />
 </div>

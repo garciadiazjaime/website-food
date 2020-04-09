@@ -12,17 +12,12 @@
 
 	let brands;
 	const initialImagesToLoad = 0;
-	let lazyCounter = 0;
 
   onMount(async () => {
 		const data = await getBrands();
     
 		brands = extendBrandInformation(data);
 	});
-
-	function lazyCounting() {
-		lazyCounter ++;
-	}
 
   function getImageURL(item) {
 		if (!item.post) {
@@ -75,14 +70,15 @@
 
 <div class="grid-container">
   {#if brands}
-    {#each brands as item, i}
+    {#each brands as item, index}
 			{#if item.post}
-				<div class="pos-rel" use:lazyCounting >
+				<div class="pos-rel">
 					<Card>
-						<LazyLoad lazy={lazyCounter <= initialImagesToLoad} item="background-image: url('{getImageURL(item)}');" />
+						<LazyLoad lazy={index > initialImagesToLoad} dataSrc={getImageURL(item)} />
 						<div class="location-container">
 							<Location item={item} />
 						</div>
+
 						{#if item.phones}
 							<div class="phone-grid">
 								{#each item.phones as phone}
@@ -90,9 +86,9 @@
 								{/each}
 							</div>
 						{/if}
-						{#if item.options.length}
-							<Options options={item.options} />
-						{/if}
+						
+						<Options options={item.options} />
+
 						<Content>
 							<Caption caption={item.post.caption} />
 						</Content>

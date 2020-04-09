@@ -39,10 +39,12 @@
   }
 </style>
 
-<div class="container">
-  <div class="content">
-    {#each options as option}
-      <span>{option}</span>
-    {/each}
+{#if options && options.length}
+  <div class="container">
+    <div class="content">
+      {#each options as option}
+        <span>{option}</span>
+      {/each}
+    </div>
   </div>
-</div>
+{/if}

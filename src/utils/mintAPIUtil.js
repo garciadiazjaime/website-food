@@ -20,6 +20,7 @@ function getPlacesQuery() {
             media_url
             caption
           }
+          options
         }
         location {
           name
