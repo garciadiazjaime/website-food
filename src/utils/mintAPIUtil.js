@@ -7,6 +7,7 @@ function getPlacesQuery() {
         username
         fullName
         profilePicture
+        options
         post {
           commentsCount
           permalink
