@@ -1,9 +1,10 @@
 <script>
   export let item;
   const address = item.location && item.location.address ? item.location.address.street : ''
+  const blackListLocations = ['Tijuana, Baja California', 'Tijuana Centro, Tijuana']
 
   function getTitle() {
-    if (item.location) {
+    if (item.location && !blackListLocations.includes(item.location.name)) {
       return item.location.name
     }
 
