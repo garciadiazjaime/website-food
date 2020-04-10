@@ -55,14 +55,14 @@
 
 <div class="grid-container">
   {#if brands}
-    {#each brands as item, index}
-			{#if item.post}
+    {#each brands as brand, index}
+			{#if brand.post}
 				<Card>
 					<Content>
-						<LazyLoad lazy={index > initialImagesToLoad} dataSrc={getImageURL(item)} />
-						<Location item={item} />
-						<Options options={item.options} />
-						<Phones phones={item.phones} />
+						<LazyLoad lazy={index > initialImagesToLoad} dataSrc={getImageURL(brand)} />
+						<Location item={brand} />
+						<Options options={brand.options} />
+						<Phones phones={brand.phones} />
 					</Content>
 				</Card>
 			{/if}
