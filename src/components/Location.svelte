@@ -14,25 +14,24 @@
 
 <style>
 	div {
-    color: white;
     display: block;
     z-index: 10;
-    line-height: 1.2;
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, .5);
+    line-height: 1;
+    margin: 8px 0 5px;
   }
   .title {
     font-size: 16px;
     font-weight: 600;
   }
 
-  .address {
+  /* .address {
     font-size: 12px;
-  }
+  } */
 
 </style>
 
 <div>
   <div class="title">{getTitle()}</div>
 
-  <div class="address">{address}</div>
+  <!-- <div class="address">{address}</div> -->
 </div>

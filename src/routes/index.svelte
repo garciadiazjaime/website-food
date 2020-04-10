@@ -1,7 +1,7 @@
 <script>
   import Card, { Content, PrimaryAction, Media } from "@smui/card";
 	import { onMount } from "svelte";
-	import Phone from '../components/Phone.svelte';
+	import Phones from '../components/Phones.svelte';
 	import ExpandButton from '../components/ExpandButton.svelte';
 	import LazyLoad from '../components/LazyLoad.svelte';
 	import Caption from '../components/Caption.svelte';
@@ -11,6 +11,7 @@
 	import { extendBrandInformation } from '../utils/brandUtil';
 
 	let brands;
+	let verOferta = false;
 	const initialImagesToLoad = 0;
 
   onMount(async () => {
@@ -47,21 +48,6 @@
 		grid-row-gap: 20px;
 		grid-template-columns: repeat( auto-fit, minmax(247px, 1fr) );
 	}
-	.location-container {
-		position: absolute;
-		top: 15px;
-		left: 15px;
-	}
-	.phone-grid {
-		display: grid;
-		margin: -38px 15px 0;
-		z-index:10;
-		grid-column-gap: 5px;
-		grid-template-columns: repeat( auto-fit, 105px );
-	}
-	.pos-rel {
-		position: relative;
-	}
 </style>
 
 <svelte:head>
@@ -72,28 +58,18 @@
   {#if brands}
     {#each brands as item, index}
 			{#if item.post}
-				<div class="pos-rel">
-					<Card>
-						<LazyLoad lazy={index > initialImagesToLoad} dataSrc={getImageURL(item)} />
-						<div class="location-container">
+				<Card>
+					<Content>
+					{#if verOferta}
+						<Caption caption={item.post.caption} />
+						{:else}
+							<LazyLoad lazy={index > initialImagesToLoad} dataSrc={getImageURL(item)} placeholder="loading.gif" />
 							<Location item={item} />
-						</div>
-
-						{#if item.phones}
-							<div class="phone-grid">
-								{#each item.phones as phone}
-									<Phone phoneNumber={phone} />
-								{/each}
-							</div>
-						{/if}
-						
-						<Options options={item.options} />
-
-						<Content>
-							<Caption caption={item.post.caption} />
-						</Content>
-					</Card>
-				</div>
+							<Options options={item.options} />
+							<Phones phones={item.phones} />
+					{/if}
+					</Content>
+				</Card>
 			{/if}
     {/each}
   {/if}
