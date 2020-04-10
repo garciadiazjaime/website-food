@@ -7,6 +7,7 @@
 	import Caption from '../components/Caption.svelte';
 	import Location from '../components/Location.svelte';
 	import Options from '../components/Options.svelte';
+	import Tabs from '../components/Tabs.svelte';
 	import { getBrands } from '../utils/mintAPIUtil'
 	import { extendBrandInformation } from '../utils/brandUtil';
 
@@ -62,6 +63,7 @@
 						<LazyLoad lazy={index > initialImagesToLoad} dataSrc={getImageURL(item)} />
 						<Location item={item} />
 						<Options options={item.options} />
+						<Tabs />
 						<Phones phones={item.phones} />
 					</Content>
 				</Card>
