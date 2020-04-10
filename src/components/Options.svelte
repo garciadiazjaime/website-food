@@ -4,38 +4,38 @@
 
 <style>
 	.container {
-    background: #bfbfbf;
-    padding: 0 15px;
+    background: white;
     position: relative;
   }
-  .container:before, div:after {
+ .container:after {
     content: "";
     position: absolute;
-    width: 40px;
+    width: 24px;
     height: 100%;
     top:0;
     z-index: 10;
-  }
-  .container:before {
-    background: linear-gradient(90deg, rgba(191,191,191,1) 25%, rgba(191,191,191,0) 100%);
-    left: 0
-  }
-  .container:after {
-    background: linear-gradient(90deg, rgba(191,191,191,0) 0%, rgba(191,191,191,1) 75%);
-    right: 0
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 75%);
+    right: 0;
   }
   .content {
     overflow-x: scroll;
     white-space: nowrap;
     width: auto;
     position: relative;
+    padding-bottom: 8px;
   }
   span {
     display: inline-block;
-    padding: 10px 10px 10px 0;
+    padding: 3px 8px;
+    margin-right: 6px;
+    color: #525252;
+    background-color: #efefef;
+    font-size: 12px;
+    line-height: 1;
+    border-radius: 1px;
   }
   span:last-child {
-    padding-right: 0;
+    margin-right: 0;
   }
 </style>
 
