@@ -1,6 +1,7 @@
 <script>
-  import Card, { Content, PrimaryAction, Media } from "@smui/card";
+  import Card, { Content, Media } from "@smui/card";
 	import { onMount } from "svelte";
+	import { fade } from 'svelte/transition';
 	import Phones from '../components/Phones.svelte';
 	import ExpandButton from '../components/ExpandButton.svelte';
 	import LazyLoad from '../components/LazyLoad.svelte';
@@ -12,11 +13,20 @@
 	import { extendBrandInformation } from '../utils/brandUtil';
 
 	let brands;
-	const initialImagesToLoad = 0;
+	const initialImagesToLoad = 2;
+
+	// List of tab items with labels and values.
+  let tabItems = [
+    { label: "Tab 1", value: 1 },
+    { label: "Tab 2", value: 2 },
+    { label: "Tab 3", value: 3 }
+  ];
+
+  // Current active tab
+  let currentTab;
 
   onMount(async () => {
 		const data = await getBrands();
-    
 		brands = extendBrandInformation(data);
 	});
 
@@ -35,10 +45,6 @@
 
     return "/default.png";
   }
-
-  function doAction(action) {
-    console.log("You did an action: " + action);
-	}
 </script>
 
 <style>
@@ -48,6 +54,22 @@
 		grid-row-gap: 20px;
 		grid-template-columns: repeat( auto-fit, minmax(247px, 1fr) );
 	}
+	.caption {
+		position: absolute;
+		background-color: white;
+		width: calc(100% - 32px);
+		height: calc(100% - 32px);
+		left: 16px;
+		top: 16px;
+		padding: 20px 0 0 0;
+		box-sizing: border-box;
+	}
+	.caption-button {
+		position: absolute;
+		top: 0;
+		right: 0;
+		
+	}
 </style>
 
 <svelte:head>
@@ -56,15 +78,27 @@
 
 <div class="grid-container">
   {#if brands}
-    {#each brands as item, index}
-			{#if item.post}
+    {#each brands as brand, index}
+			{#if brand.post}
 				<Card>
 					<Content>
-						<LazyLoad lazy={index > initialImagesToLoad} dataSrc={getImageURL(item)} />
-						<Location item={item} />
-						<Options options={item.options} />
-						<Tabs />
-						<Phones phones={item.phones} />
+						<LazyLoad lazy={index > initialImagesToLoad} dataSrc={getImageURL(brand)} />
+						<Location item={brand} />
+						<Options options={brand.options} />
+						<Tabs bind:activeTabValue={currentTab} items={tabItems} />
+						{#if 1 === currentTab}
+							<Phones phones={brand.phones} />
+						{/if}
+
+						{#if 2 === currentTab}
+							<div>{brand.location.address.street}</div>
+						{/if}
+						{#if 3 === currentTab}
+							<div class="caption" transition:fade="{{ duration: 200 }}">
+								{brand.post.caption}
+								<button class="caption-button" on:click={() => (currentTab = 1)}>X</button>
+							</div>
+						{/if}
 					</Content>
 				</Card>
 			{/if}

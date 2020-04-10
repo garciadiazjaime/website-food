@@ -1,13 +1,17 @@
+const stubBrands = require('../../stubs/getBrands')
+
 function getPlacesQuery() {
   return `
     {
-      users {
+      brands {
         _id
         id
         username
         fullName
         profilePicture
         options
+        phones
+        rank
         post {
           commentsCount
           permalink
@@ -20,7 +24,6 @@ function getPlacesQuery() {
             media_url
             caption
           }
-          options
         }
         location {
           name
@@ -40,10 +43,14 @@ function getPlacesQuery() {
   `;
 }
 
-async function getBrands() {
+async function getBrands(env = '') {
   const payload = {
     query: getPlacesQuery()
   };
+
+  if (!env) {
+    return stubBrands.data.brands;
+  }
 
 
   const apiUrl = 'http://api.mintitmedia.com'
@@ -59,10 +66,10 @@ async function getBrands() {
   );
 
   const {
-    data: { users }
+    data: { brands }
   } = await result.json();
 
-  return users;
+  return brands;
 }
 
 exports.getBrands = getBrands

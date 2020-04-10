@@ -1,48 +1,55 @@
 <script>
-  import Tab, {Icon, Label} from '@smui/tab';
-  import TabBar from '@smui/tab-bar';
-  let active = 'Home';
-  let iconTabs = [
-    {
-      icon: 'access_time',
-      label: 'Recents'
-    },
-    {
-      icon: 'near_me',
-      label: 'Nearby'
-    },
-    {
-      icon: 'favorite',
-      label: 'Favorites'
+  import { onMount } from 'svelte';
+  
+  export let items;
+  export let activeTabValue;
+
+  onMount(() => {
+    //Set default active tab
+    if(Array.isArray(items) && items.length && items[0].value){
+      activeTabValue = items[0].value;
     }
-  ];
-  let keyedTabs = [
-    {
-      k: 1,
-      icon: 'code',
-      label: 'Code'
-    },
-    {
-      k: 2,
-      icon: 'code',
-      label: 'Code'
-    },
-    {
-      k: 3,
-      icon: 'code',
-      label: 'Code'
-    },
-    {
-      k: 4,
-      icon: 'code',
-      label: 'Code'
-    }
-  ];
-  let keyedTabsActive = keyedTabs[2];
+  });
+
+  const handleClick = tabValue => (activeTabValue = tabValue);
 </script>
-<TabBar tabs={['Phones', 'Address', 'Offer']} let:tab bind:active>
-  <!-- Notice that the `tab` property is required! -->
-  <Tab {tab}>
-    <Label>{tab}</Label>
-  </Tab>
-</TabBar>
+
+<style>
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  span {
+    border: 1px solid transparent;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    display: block;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+
+  span:hover {
+    border-color: #e9ecef #e9ecef #dee2e6;
+  }
+
+  li.active > span {
+    color: #495057;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+  }
+</style>
+
+<ul>
+  {#if Array.isArray(items)}
+    {#each items as item}
+      <li class={activeTabValue === item.value ? 'active' : ''}>
+        <span on:click={handleClick(item.value)}>{item.label}</span>
+      </li>
+    {/each}
+  {/if}
+</ul>
