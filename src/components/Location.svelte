@@ -1,6 +1,5 @@
 <script>
   export let item;
-  const address = item.location && item.location.address ? item.location.address.street : ''
   const blackListLocations = ['Tijuana, Baja California', 'Tijuana Centro, Tijuana']
 
   function getTitle() {
@@ -23,15 +22,8 @@
     font-size: 16px;
     font-weight: 600;
   }
-
-  /* .address {
-    font-size: 12px;
-  } */
-
 </style>
 
 <div>
   <div class="title">{getTitle()}</div>
-
-  <!-- <div class="address">{address}</div> -->
 </div>

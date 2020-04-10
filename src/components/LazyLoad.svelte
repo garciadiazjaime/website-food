@@ -2,11 +2,11 @@
   import { Media } from '@smui/card';
   export let dataSrc;
   export let lazy;
-  export let placeholder;
+  const placeholder = 'loading.gif';
 
   let src = dataSrc;
   let observer = null;
-  let className='';
+  let className = '';
 
   function onIntersect(entries) {
     if (src === placeholder && entries[0].isIntersecting) {
@@ -14,10 +14,10 @@
       img.src = dataSrc;
       img.onload = () => {
         className = 'hide'
-        setTimeout( function () {
+        setTimeout(() => {
           className = 'show'
           src = img.src;
-        }, 500);
+        }, 300);
       };
     }
   }
@@ -46,10 +46,10 @@
   }
   .hide {
     opacity: 0;
-    transition: opacity 0.5s ease-in;
+    transition: opacity 0.3s ease-in;
   }
   .show {
-    transition: opacity 0.5s ease-in;
+    transition: opacity 0.3s ease-in;
     opacity: 1;
   }
 </style>

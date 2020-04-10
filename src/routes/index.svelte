@@ -11,7 +11,6 @@
 	import { extendBrandInformation } from '../utils/brandUtil';
 
 	let brands;
-	let verOferta = false;
 	const initialImagesToLoad = 0;
 
   onMount(async () => {
@@ -60,14 +59,10 @@
 			{#if item.post}
 				<Card>
 					<Content>
-					{#if verOferta}
-						<Caption caption={item.post.caption} />
-						{:else}
-							<LazyLoad lazy={index > initialImagesToLoad} dataSrc={getImageURL(item)} placeholder="loading.gif" />
-							<Location item={item} />
-							<Options options={item.options} />
-							<Phones phones={item.phones} />
-					{/if}
+						<LazyLoad lazy={index > initialImagesToLoad} dataSrc={getImageURL(item)} />
+						<Location item={item} />
+						<Options options={item.options} />
+						<Phones phones={item.phones} />
 					</Content>
 				</Card>
 			{/if}
