@@ -3,7 +3,7 @@ const stubBrands = require('../../stubs/getBrands')
 function getPlacesQuery() {
   return `
     {
-      brands {
+      brands(state:"MAPPED") {
         _id
         id
         username
