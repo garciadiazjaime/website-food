@@ -14,9 +14,7 @@
 	const initialImagesToLoad = 0;
 
   onMount(async () => {
-		const data = await getBrands();
-    
-		brands = extendBrandInformation(data);
+		brands = await getBrands();
 	});
 
   function getImageURL(item) {
@@ -56,16 +54,14 @@
 <div class="grid-container">
   {#if brands}
     {#each brands as brand, index}
-			{#if brand.post}
-				<Card>
-					<Content>
-						<LazyLoad lazy={index > initialImagesToLoad} dataSrc={getImageURL(brand)} />
-						<Location item={brand} />
-						<Options options={brand.options} />
-						<Phones phones={brand.phones} />
-					</Content>
-				</Card>
-			{/if}
+			<Card data-id={brand._id}>
+				<Content>
+					<LazyLoad lazy={index > initialImagesToLoad} dataSrc={getImageURL(brand)} />
+					<Location item={brand} />
+					<Options options={brand.options} />
+					<Phones phones={brand.phones} />
+				</Content>
+			</Card>
     {/each}
   {/if}
 </div>

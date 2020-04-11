@@ -43,7 +43,7 @@ function getPlacesQuery() {
   `;
 }
 
-async function getBrands(env = '') {
+async function getBrands(env = 'production') {
   const payload = {
     query: getPlacesQuery()
   };
@@ -51,7 +51,6 @@ async function getBrands(env = '') {
   if (!env) {
     return stubBrands.data.brands;
   }
-
 
   const apiUrl = 'http://api.mintitmedia.com'
   const result = await fetch(
