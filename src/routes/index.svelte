@@ -19,8 +19,7 @@
   let currentTab;
 
   onMount(async () => {
-		const data = await getBrands();
-		brands = extendBrandInformation(data);
+		brands = await getBrands();
 	});
 
 </script>
@@ -77,9 +76,7 @@
 <div class="grid-container">
   {#if brands}
     {#each brands as brand, index}
-			{#if brand.post}
-				<Card brand={brand} lazy={index > initialImagesToLoad} />
-			{/if}
+			<Card brand={brand} lazy={index > initialImagesToLoad} />
     {/each}
   {/if}
 </div>
