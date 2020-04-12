@@ -5,12 +5,12 @@ function getPhoneNumber(phone) {
   let areaCode = '';
 
   if(digits.length >= 10) {
-    areaCode = `(${digits.substr(0, 3)}) `;
+    areaCode = `(${digits.substr(0, 3)})`;
   }
 
   const first3 = digits.substr(-7, 3);
   const last4 = digits.substr(-4);
-
+  
   return `${areaCode}${first3}-${last4}`
 }
 
@@ -29,4 +29,5 @@ function extendBrandInformation(brands) {
   return brands
 }
 
-exports.extendBrandInformation = extendBrandInformation
+exports.extendBrandInformation = extendBrandInformation;
+exports.getPhoneNumber = getPhoneNumber;

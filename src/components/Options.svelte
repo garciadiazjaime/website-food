@@ -6,6 +6,7 @@
 	.container {
     background: white;
     position: relative;
+    margin-bottom: 8px;
   }
  .container:after {
     content: "";
@@ -26,13 +27,13 @@
   }
   span {
     display: inline-block;
-    padding: 3px 8px;
-    margin-right: 6px;
+    padding: 3px 10px 4px;
+    margin-right: 8px;
     color: #525252;
     background-color: #efefef;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 1;
-    border-radius: 1px;
+    border-radius: 4px;
   }
   span:last-child {
     margin-right: 0;
