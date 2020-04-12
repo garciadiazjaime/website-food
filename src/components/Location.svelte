@@ -12,18 +12,13 @@
 </script>
 
 <style>
-	div {
-    display: block;
-    z-index: 10;
-    line-height: 1;
-    margin: 8px 0 5px;
-  }
   .title {
-    font-size: 16px;
+    line-height: 1.2;
+    margin: 8px 0 14px;
+    font-size: 22px;
     font-weight: 600;
   }
 </style>
 
-<div>
-  <div class="title">{getTitle()}</div>
-</div>
+<div class="title">{getTitle()}</div>
+

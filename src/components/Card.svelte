@@ -31,7 +31,8 @@
 <style>
   .card-content {
 		position: relative;
-		padding: 16px;
+    padding: 16px;
+    transition: height .3s;
 	}
 </style>
 
