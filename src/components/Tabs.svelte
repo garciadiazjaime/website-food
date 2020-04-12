@@ -2,22 +2,22 @@
   import { onMount } from 'svelte';
   import Tab, { Icon, Label } from '@smui/tab';
   import TabBar from '@smui/tab-bar';
+
   export let items;
-  export let activeTabValue = '';
+  export let activeTab = '';
 
   onMount(() => {
-    //Set default active tab
     if(Array.isArray(items) && items.length){
-      activeTabValue = items[0];
+      activeTab = items[0];  // default tab
     }
   });
 
-  const handleClick = tabValue => activeTabValue = tabValue;
-
+  function handleClick(tabValue) {
+    activeTab = tabValue
+  }
 </script>
 
-<TabBar tabs={items} let:tab bind:activeTabValue>
-  <!-- Notice that the `tab` property is required! -->
+<TabBar tabs={items} let:tab bind:activeTab>
   <Tab {tab} on:click={() => handleClick(tab)}>
   <Label>
     <Icon class="material-icons">{tab}</Icon>
