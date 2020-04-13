@@ -1,24 +1,38 @@
 <script>
-  export let item;
-  const blackListLocations = ['Tijuana, Baja California', 'Tijuana Centro, Tijuana']
+  import { onMount } from 'svelte';
+  export let brand = {};
+  let location;
 
-  function getTitle() {
-    if (item.location && !blackListLocations.includes(item.location.name)) {
-      return item.location.name
+  onMount(() => {
+    if(brand.location && brand.location.address && brand.location.address.street) {
+      location = brand.location.address.street;
     }
+  });
 
-    return item.fullName || item.username
-  }
+
 </script>
 
 <style>
-  .title {
-    line-height: 1.2;
-    margin: 8px 0 14px;
-    font-size: 22px;
-    font-weight: 600;
+  .grid-container {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: 20px 1fr;
+    align-items: top;
+    margin-top: 18px;
+    color: #727272;
+    font-size: 14px;
+  }
+  img {
+    width: 18px;
+    height: 18px;
+    display: inline-block; 
   }
 </style>
 
-<div class="title">{getTitle()}</div>
+{#if location}
+  <div class="grid-container">
+    <img src="/icons/location.svg" aria-hidden alt="" />
+    {location}
+  </div>
+{/if}
 

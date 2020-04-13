@@ -6,7 +6,7 @@
 	.container {
     background: white;
     position: relative;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
   }
  .container:after {
     content: "";
