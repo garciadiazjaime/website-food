@@ -1,10 +1,12 @@
 <script>
-  import Phones from '../components/Phones.svelte';
   import { fade } from 'svelte/transition';
-  export let brand = {};
-  let currentTab = 'phone';
-  let tabPanels = ['phone', 'location_on', 'local_offer'];
+
+  import Phones from '../components/Phones.svelte';
   import Tabs from '../components/Tabs.svelte';
+  
+  export let brand = {};
+  let activeTab = 'phone';
+  const panelNames = ['phone', 'location_on', 'local_offer'];
 </script>
 
 <style>
@@ -45,30 +47,30 @@
     font-weight: 600;
   }
 </style>
-<div class="panel">
-  {#if tabPanels[0] === currentTab}
-    {#if brand.phones}
-      <Phones phones={brand.phones} />
-      {:else}
-        <p class="address-box"> 
-          Agrega un teléfono desde Instagram, has click <a href="/tutorial#agregar-telefonos">aquí</a> para saber cómo.
-        </p>
-    {/if}
-  {/if}
 
-  {#if tabPanels[1] === currentTab}
+<div class="panel">
+  {#if panelNames[0] === activeTab}
+    {#if brand.phones.length}
+      <Phones phones={brand.phones} />
+    {:else}
+      <p class="address-box"> 
+        Agrega un teléfono desde Instagram, has click <a href="/tutorial#agregar-telefonos">aquí</a> para saber cómo.
+      </p>
+    {/if}
+
+  {:else if panelNames[1] === activeTab}
     {#if brand.loacation && brand.location.address && brand.location.address.street}
       {brand.location.address.street}
-      {:else}
-        <p class="address-box"> 
-          Agrega una dirección desde Instagram, has click <a href="/tutorial#agregar-direccion">aquí</a> para saber cómo.
-        </p>
+    {:else}
+      <p class="address-box"> 
+        Agrega una dirección desde Instagram, has click <a href="/tutorial#agregar-direccion">aquí</a> para saber cómo.
+      </p>
     {/if}
-  {/if}
-  {#if tabPanels[2] === currentTab}
+
+  {:else}
     <div class="ig-container">
       <div class="ig-post">{brand.post.caption}</div>
     </div>
   {/if}
 </div>
-<Tabs bind:activeTabValue={currentTab} items={tabPanels} />
+<Tabs bind:activeTab={activeTab} items={panelNames} />

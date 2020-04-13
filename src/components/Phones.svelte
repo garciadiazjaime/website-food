@@ -31,6 +31,7 @@
     color: #fff;
   }
 </style>
+
 {#if phones}
   <div class="phone-grid">
     {#each phones as phone, index}
