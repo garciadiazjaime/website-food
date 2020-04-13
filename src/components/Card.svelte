@@ -35,7 +35,7 @@
 <Card data-id={brand._id}>
   <div class="card-content">
     <LazyLoad lazy={lazy} dataSrc={getImageURL(brand)} />
-    <Location item={brand} />
+    <Location brand={brand} />
     <Options options={brand.options} />
     <TabPanels brand={brand} />
   </div>

@@ -8,11 +8,9 @@
 	let brands;
 	const initialImagesToLoad = 2;
 
-
   onMount(async () => {
 		brands = await getBrands();
 	});
-
 </script>
 
 <style>
