@@ -30,16 +30,29 @@
 		position: relative;
     padding: 16px;
     transition: height .3s;
-	}
+  }
+  .info-button {
+    margin-top: -42px;
+    text-align: right;
+    padding-right: 10px;
+    margin-bottom: 5px;
+  }
+  .padbot10 {
+    padding-bottom: 10px;
+  }
 </style>
 
 <Card data-id={brand._id}>
   <div class="card-content">
     <LazyLoad lazy={lazy} dataSrc={getImageURL(brand)} />
+    <div class="info-button">
+      <FlipCard brand={brand} />
+    </div>
     <Title item={brand} />
+    <div class="padbot10">
+      <Phones phones={brand.phones} />
+      <Location brand={brand} />
+    </div>
     <Options options={brand.options} />
-    <Phones phones={brand.phones} />
-    <Location brand={brand} />
-    <FlipCard brand={brand} />
   </div>
 </Card>

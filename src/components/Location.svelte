@@ -18,9 +18,9 @@
     grid-column-gap: 10px;
     grid-template-columns: 20px 1fr;
     align-items: top;
-    margin-top: 18px;
     color: #727272;
     font-size: 14px;
+    margin-bottom: 14px;
   }
   img {
     width: 18px;

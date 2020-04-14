@@ -1,10 +1,14 @@
 <script>
-  import { fade } from 'svelte/transition';
+  import { scale } from 'svelte/transition';
+    import ExpandButton from '../components/ExpandButton.svelte';
   export let brand = {};
-  let visible = true;
+  let visible = false;
 </script>
 
 <style>
+  button {
+    padding: 0;
+  }
   .ig-container {
     border-radius: 4px;
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
@@ -24,32 +28,55 @@
     background: white;
     height: 100%;
     box-sizing: border-box;
+    overflow: scroll;
   }
-  .ig-post:before {
-    content: "Instagram reciente";
-    color: #bfbfbf;
-    position: relative;
+  .title {
+    color: #285AEB;
     text-align: center;
-    display: block;
     padding-bottom: 15px;
     font-size: 14px;
-    width: 100%;
+    font-weight: 600;
   }
-  .close-panel {
+  .title img {
+    margin-bottom: -8px;
+  }
+  .close {
     position: absolute;
-    top: 10px;
     right: 10px;
-    z-index: 11;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    opacity: 0.3;
+  }
+  .close:hover {
+    opacity: 1;
+  }
+  .close:before, .close:after {
+    position: absolute;
+    left: 5px;
+    content: ' ';
+    height: 20px;
+    width: 2px;
+    background-color: #333;
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
   }
 </style>
 {#if brand.post && brand.post.caption}
   <button on:click={() => (visible = true)}>
-    <img src="/icons/offer.svg" alt="Show offer from instagram"/>
+    <ExpandButton  />
   </button>
   {#if visible}
-    <div class="ig-container" transition:fade="{{duration: 200}}">
-      <button class="close-panel" on:click={() => (visible = false)}><img src="/icons/close.svg" alt="Close offer" ></button>
-      <div class="ig-post">{brand.post.caption}</div>
+    <div class="ig-container" transition:scale="{{duration: 200, start: .85}}">
+      <div class="ig-post">
+        <button class="close" on:click={() => (visible = false)} />
+        <h2 class="title"><img src="/icons/offer.svg" alt="Desde Instagram"/> Desde Instagram</h2>
+        {brand.post.caption}
+      </div>
     </div>
   {/if}
 {/if}
