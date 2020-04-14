@@ -6,7 +6,6 @@
 	.container {
     background: white;
     position: relative;
-    margin-bottom: 8px;
   }
  .container:after {
     content: "";
@@ -23,7 +22,6 @@
     white-space: nowrap;
     width: auto;
     position: relative;
-    padding-bottom: 8px;
   }
   span {
     display: inline-block;

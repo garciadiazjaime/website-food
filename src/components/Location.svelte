@@ -1,16 +1,38 @@
 <script>
-  export let brand;
-  import { getTitle } from '../utils/brandUtil'
+  import { onMount } from 'svelte';
+  export let brand = {};
+  let location;
+
+  onMount(() => {
+    if(brand.location && brand.location.address && brand.location.address.street) {
+      location = brand.location.address.street;
+    }
+  });
+
+
 </script>
 
 <style>
-  .title {
-    line-height: 1.2;
-    margin: 8px 0 14px;
-    font-size: 22px;
-    font-weight: 600;
+  .grid-container {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-template-columns: 20px 1fr;
+    align-items: top;
+    color: #727272;
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+  img {
+    width: 18px;
+    height: 18px;
+    display: inline-block; 
   }
 </style>
 
-<div class="title">{getTitle(brand)}</div>
+{#if location}
+  <div class="grid-container">
+    <img src="/icons/location.svg" aria-hidden alt="" />
+    {location}
+  </div>
+{/if}
 

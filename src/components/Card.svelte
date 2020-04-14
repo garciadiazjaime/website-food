@@ -1,11 +1,12 @@
 <script>
   import Card from "@smui/card";
-
 	import LazyLoad from '../components/LazyLoad.svelte';
 	import Caption from '../components/Caption.svelte';
-	import Location from '../components/Location.svelte';
+  import Location from '../components/Location.svelte';
+  import Title from '../components/Title.svelte';
 	import Options from '../components/Options.svelte';
-  import TabPanels from '../components/TabPanels.svelte';
+  import Phones from '../components/Phones.svelte';
+  import FlipCard from '../components/FlipCard.svelte';
 
   export let brand;
   export let lazy;
@@ -29,14 +30,29 @@
 		position: relative;
     padding: 16px;
     transition: height .3s;
-	}
+  }
+  .info-button {
+    margin-top: -42px;
+    text-align: right;
+    padding-right: 10px;
+    margin-bottom: 5px;
+  }
+  .padbot10 {
+    padding-bottom: 10px;
+  }
 </style>
 
 <Card data-id={brand._id}>
   <div class="card-content">
     <LazyLoad lazy={lazy} dataSrc={getImageURL(brand)} />
-    <Location brand={brand} />
+    <div class="info-button">
+      <FlipCard brand={brand} />
+    </div>
+    <Title brand={brand} />
+    <div class="padbot10">
+      <Phones phones={brand.phones} />
+      <Location brand={brand} />
+    </div>
     <Options options={brand.options} />
-    <TabPanels brand={brand} />
   </div>
 </Card>
