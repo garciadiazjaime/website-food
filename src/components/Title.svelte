@@ -1,14 +1,7 @@
 <script>
-  export let item;
-  const blackListLocations = ['Tijuana, Baja California', 'Tijuana Centro, Tijuana']
-
-  function getTitle() {
-    if (item.location && !blackListLocations.includes(item.location.name)) {
-      return item.location.name
-    }
-
-    return item.fullName || item.username
-  }
+	import { getTitle } from '../utils/brandUtil'
+  export let brand;
+  const blackListLocations = ['Tijuana, Baja California', 'Tijuana Centro, Tijuana'];
 </script>
 
 <style>
@@ -21,8 +14,9 @@
     text-align: center;
     border-radius: 0 0 4px 4px;
     background-color: #efefef;
+
   }
 </style>
 
-<div class="title">{getTitle()}</div>
+<div class="title">{getTitle(brand)}</div>
 

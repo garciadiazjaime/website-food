@@ -48,7 +48,7 @@
     <div class="info-button">
       <FlipCard brand={brand} />
     </div>
-    <Title item={brand} />
+    <Title brand={brand} />
     <div class="padbot10">
       <Phones phones={brand.phones} />
       <Location brand={brand} />
