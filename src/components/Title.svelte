@@ -14,7 +14,9 @@
     text-align: center;
     border-radius: 0 0 4px 4px;
     background-color: #efefef;
-
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 </style>
 
