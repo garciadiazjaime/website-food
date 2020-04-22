@@ -46,12 +46,32 @@
 		padding: 1em 0.5em;
 		display: block;
 	}
+	.logo {
+		background: url('frescomer_icon_lg.png');
+		display: inline-block;
+		background-size: cover;
+		width: 40px;
+		height: 40px;
+		margin: 5px 0;
+	}
+	@media (min-width: 426px) {
+		.logo {
+			background-image: url('frescomer_logo.png');
+			height:45px;
+			margin: 4px 0 0;
+			width: 136px;
+		}
+		.logo:after {
+
+		}
+	}
 </style>
 
 <nav>
 	<ul>
-		<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>home</a></li>
-		<li><a aria-current='{segment === "about" ? "page" : undefined}' href='/about'>about</a></li>
-		<li><a aria-current='{segment === "map" ? "page" : undefined}' href='/map'>map</a></li>
+		<li><div class="logo"></div></li>
+		<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>directorio</a></li>
+		<li><a aria-current='{segment === "about" ? "page" : undefined}' href='/about'>proyecto</a></li>
+		<li><a aria-current='{segment === "map" ? "page" : undefined}' href='/map'>mapa</a></li>
 	</ul>
 </nav>

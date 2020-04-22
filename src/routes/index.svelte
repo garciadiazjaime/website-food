@@ -23,7 +23,7 @@
 </style>
 
 <svelte:head>
-  <title>...</title>
+  <title>Frescomer | What's coooking in Tj</title>
 </svelte:head>
 
 <div class="grid-container">
