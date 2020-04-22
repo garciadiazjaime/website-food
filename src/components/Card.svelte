@@ -30,6 +30,9 @@
 		position: relative;
     padding: 16px;
     transition: height .3s;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
   }
   .info-button {
     margin-top: -42px;
