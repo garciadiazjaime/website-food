@@ -28,7 +28,12 @@
     background: white;
     height: 100%;
     box-sizing: border-box;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    text-align: left;
+  }
+  .ig-post:after {
+    bottom: 0;
   }
   .title {
     color: #285AEB;
@@ -42,22 +47,26 @@
   }
   .close {
     position: absolute;
-    right: 10px;
-    top: 0;
+    right: 5px;
+    top: 10px;
     width: 20px;
     height: 20px;
     opacity: 0.3;
+    border-radius: 0;
+    background: none;
+    border: none;
   }
   .close:hover {
     opacity: 1;
   }
   .close:before, .close:after {
     position: absolute;
-    left: 5px;
+    left: 0;
     content: ' ';
     height: 20px;
     width: 2px;
     background-color: #333;
+    top: 0;
   }
   .close:before {
     transform: rotate(45deg);
