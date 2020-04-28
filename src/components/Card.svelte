@@ -8,18 +8,18 @@
   import Phones from '../components/Phones.svelte';
   import FlipCard from '../components/FlipCard.svelte';
 
-  export let brand;
+  export let post;
   export let lazy;
 
   let currentTab;
 
-  function getImageURL(item) {
-    if (item.post.mediaType === "IMAGE") {
-      return item.post.mediaUrl;
+  function getImageURL(post) {
+    if (post.mediaType === "IMAGE") {
+      return post.mediaUrl;
     }
 
-    if (Array.isArray(item.post.children) && item.post.children.length) {
-      return item.post.children[0].media_url;
+    if (Array.isArray(post.children) && post.children.length) {
+      return post.children[0].media_url;
     }
 
     return "/default.png";
@@ -45,17 +45,17 @@
   }
 </style>
 
-<Card data-id={brand._id}>
+<Card data-id={post._id}>
   <div class="card-content">
-    <LazyLoad lazy={lazy} dataSrc={getImageURL(brand)} />
+    <LazyLoad lazy={lazy} dataSrc={getImageURL(post)} />
     <div class="info-button">
-      <FlipCard brand={brand} />
+      <FlipCard post={post} />
     </div>
-    <Title brand={brand} />
+    <Title post={post} />
     <div class="padbot10">
-      <Phones phones={brand.phones} />
-      <Location brand={brand} />
+      <Phones post={post} />
+      <Location post={post} />
     </div>
-    <Options options={brand.options} />
+    <Options post={post} />
   </div>
 </Card>

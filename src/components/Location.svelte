@@ -1,15 +1,10 @@
 <script>
-  import { onMount } from 'svelte';
-  export let brand = {};
+  export let post = {};
   let location;
 
-  onMount(() => {
-    if(brand.location && brand.location.address && brand.location.address.street) {
-      location = brand.location.address.street;
-    }
-  });
-
-
+  if(post.location && post.location.address && post.location.address.street) {
+    location = post.location.address.street;
+  }
 </script>
 
 <style>

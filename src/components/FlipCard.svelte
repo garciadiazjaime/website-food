@@ -1,7 +1,7 @@
 <script>
   import { scale } from 'svelte/transition';
     import ExpandButton from '../components/ExpandButton.svelte';
-  export let brand = {};
+  export let post = {};
   let visible = false;
 </script>
 
@@ -75,7 +75,7 @@
     transform: rotate(-45deg);
   }
 </style>
-{#if brand.post && brand.post.caption}
+{#if post && post.caption}
   <button on:click={() => (visible = true)}>
     <ExpandButton  />
   </button>
@@ -84,7 +84,7 @@
       <div class="ig-post">
         <button class="close" on:click={() => (visible = false)} />
         <h2 class="title"><img src="/icons/offer.svg" alt="Desde Instagram"/> Desde Instagram</h2>
-        {brand.post.caption}
+        {post.caption}
       </div>
     </div>
   {/if}

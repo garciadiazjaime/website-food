@@ -3,13 +3,13 @@
 	import { fade } from 'svelte/transition';
 
 	import Card from '../components/Card.svelte';
-	import { getBrands } from '../utils/mintAPIUtil'
+	import { getPosts } from '../utils/mintAPIUtil'
 
-	let brands;
+	let posts;
 	const initialImagesToLoad = 2;
 
   onMount(async () => {
-		brands = await getBrands();
+		posts = await getPosts();
 	});
 </script>
 
@@ -27,9 +27,9 @@
 </svelte:head>
 
 <div class="grid-container">
-  {#if brands}
-    {#each brands as brand, index}
-			<Card brand={brand} lazy={index > initialImagesToLoad} />
+  {#if posts}
+    {#each posts as post, index}
+			<Card post={post} lazy={index > initialImagesToLoad} />
     {/each}
   {/if}
 </div>

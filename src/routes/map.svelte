@@ -3,13 +3,13 @@
 
 	import Map from '../components/Map.svelte';
 	import MapMarker from '../components/MapMarker.svelte';
-	import { getBrands } from '../utils/mintAPIUtil'
-	import { getTitle } from '../utils/brandUtil'
+	import { getPosts } from '../utils/mintAPIUtil'
+	import { getTitle } from '../utils/postUtil'
 
-	let brands;
+	let posts;
 
   onMount(async () => {
-		brands = await getBrands();
+		posts = await getPosts();
 	});
 </script>
 
@@ -21,11 +21,11 @@
 </style>
 
 <section>
-	{#if brands}
+	{#if posts}
 		<Map lat={32.49674} lon={-117.0178467} zoom={11}>
-			{#each brands as brand }
-				{#if brand.location}
-					<MapMarker lat={brand.location.latitude} lon={brand.location.longitude} label={getTitle(brand)} id={brand.id} />
+			{#each posts as post }
+				{#if post.location}
+					<MapMarker lat={post.location.latitude} lon={post.location.longitude} label={getTitle(post)} id={post.id} />
 				{/if}
 			{/each}
 		</Map>

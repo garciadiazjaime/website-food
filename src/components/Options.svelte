@@ -1,5 +1,5 @@
 <script>
-	export let options;
+	export let post;
 </script>
 
 <style>
@@ -39,10 +39,10 @@
   }
 </style>
 
-{#if options && options.length}
+{#if post && post.meta && post.meta.options && post.meta.options.length}
   <div class="container">
     <div class="content">
-      {#each options as option}
+      {#each post.meta.options as option}
         <span>{option}</span>
       {/each}
     </div>

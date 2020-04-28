@@ -1,14 +1,14 @@
 <script>
   import { onMount } from 'svelte';
-  import { getPhoneNumber } from '../utils/brandUtil';
-  export let phones;
+  import { getPhoneNumber } from '../utils/postUtil';
+  export let post;
   import { Icon } from "@smui/button";
 
   let phone;
 
   onMount(() => {
-    if(Array.isArray(phones) && phones.length){
-      phone = phones[0];  // default tab
+    if(post.meta && Array.isArray(post.meta.phones) && post.meta.phones.length){
+      phone = post.meta.phones[0];  // default tab
     }
   });
 
