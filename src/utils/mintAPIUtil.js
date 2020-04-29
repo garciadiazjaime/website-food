@@ -1,6 +1,6 @@
 const stubPosts = require('../../stubs/getPosts')
 
-function getPlacesQuery() {
+function getPostsQuery() {
   return `
     {
       posts(first: 100, state:"MAPPED") {
@@ -38,6 +38,8 @@ function getPlacesQuery() {
           phones
           rank
         }
+        updatedAt
+        createdAt
       }
     }
   `;
@@ -45,7 +47,7 @@ function getPlacesQuery() {
 
 async function getPosts(env = 'production') {
   const payload = {
-    query: getPlacesQuery()
+    query: getPostsQuery()
   };
 
   if (!env) {
