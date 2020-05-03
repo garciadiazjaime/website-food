@@ -9,6 +9,10 @@ function getTitle(post) {
   return user && user.fullName 
 }
 
+function getWhatsAppNumber(caption) {
+  return caption;
+}
+
 function getPhoneNumber(phone) {
   const areaCode = phone.length >= 10 ? `(${phone.substr(0, 3)})` : '';
   const first3 = phone.substr(-7, 3);

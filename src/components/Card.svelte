@@ -7,6 +7,7 @@
 	import Options from '../components/Options.svelte';
   import Phones from '../components/Phones.svelte';
   import FlipCard from '../components/FlipCard.svelte';
+  import Whatsapp from '../components/Whatsapp.svelte';
 
   export let post;
   export let lazy;
@@ -54,6 +55,7 @@
     <Title post={post} />
     <div class="padbot10">
       <Phones post={post} />
+      <Whatsapp post={post} />
       <Location post={post} />
     </div>
     <Options post={post} />
