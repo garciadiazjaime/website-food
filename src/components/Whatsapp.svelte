@@ -2,8 +2,8 @@
   export let post = [];
   export let text = '';
   let whatsapp =''; 
-  const caption = post.caption.toUpperCase();
-  const re = /(WHATSAPP|WHATS\sAPP)/;
+  const caption = post.caption;
+  const re = /(WHATSAPP|WHATS\sAPP)/i;
 
   if (re.test(caption)) {
     const matches = re.exec(caption);
@@ -13,20 +13,21 @@
     if(numberArray) {
       whatsapp = numberArray[0];
       whatsapp = '52' + whatsapp.replace(/-/g, '');
-      console.log(whatsapp);
     }
   }
 </script>
 <style>
   .icon {
     position: absolute;
-    width: 50px;
-    height: 50px;
-    top: 12px;
-    right: 14px;
+    width: 100%;
+    height: 100%;
   }
   .whatsapp-btn {
-
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    width: 50px;
+    height: 50px;
   }
   @media (min-width: 768px) {
     .whatsapp-btn {

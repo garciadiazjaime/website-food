@@ -49,13 +49,13 @@
 <Card data-id={post._id}>
   <div class="card-content">
     <LazyLoad lazy={lazy} dataSrc={getImageURL(post)} />
+    <Whatsapp post={post} />
     <div class="info-button">
       <FlipCard post={post} />
     </div>
     <Title post={post} />
     <div class="padbot10">
       <Phones post={post} />
-      <Whatsapp post={post} />
       <Location post={post} />
     </div>
     <Options post={post} />
