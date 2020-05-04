@@ -1,20 +1,8 @@
 <script>
+	import { getWhatsapp } from '../utils/postUtil'
   export let post = [];
   export let text = '';
-  let whatsapp =''; 
-  const caption = post.caption;
-  const re = /(WHATSAPP|WHATS\sAPP)/i;
-
-  if (re.test(caption)) {
-    const matches = re.exec(caption);
-    const substr = caption.slice(matches.index);
-    const onlyNumbers = substr.replace(/\D/g, '-').replace(/--/g, '-');
-    const numberArray = onlyNumbers.match(/(\d{1,2}-)?(\d{3}-)?\d{3}-\d{4,7}|(\d{3}-)\d{2}-\d{2}|\d{7,10}/g);
-    if(numberArray) {
-      whatsapp = numberArray[0];
-      whatsapp = '52' + whatsapp.replace(/-/g, '');
-    }
-  }
+  let whatsapp = getWhatsapp(post.caption);
 </script>
 <style>
   .icon {
@@ -36,7 +24,7 @@
   }
 </style>
 {#if whatsapp}
-  <a class="whatsapp-btn" href={`https://wa.me/${whatsapp}${text ? `text=${text}` : '' }`} title="Send whatsapp message" target="_blank">
-    <img class="icon" src="/whatsapp.svg" alt="Send Whatsapp message" aria-hidden />
+  <a class="whatsapp-btn" href={`https://wa.me/${whatsapp}${text ? `text=${text}` : '' }`} title="Enviar mensaje por Whatsapp" target="_blank">
+    <img class="icon" src="/whatsapp.svg" alt="Enviar mensaje por Whatsapp" aria-hidden />
   </a>
 {/if}
