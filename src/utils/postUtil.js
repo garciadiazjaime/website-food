@@ -19,6 +19,7 @@ function getPhoneNumber(phone) {
 
 export function getWhatsapp(caption) {
   const re = /(WHATSAPP|WHATS\sAPP)/i;
+  let whatsapp ='';
 
   if (re.test(caption)) {
     const matches = re.exec(caption);
@@ -26,10 +27,10 @@ export function getWhatsapp(caption) {
     const onlyNumbers = substr.replace(/\D/g, '-').replace(/--/g, '-');
     const numberArray = onlyNumbers.match(/(\d{1,2}-)?(\d{3}-)?\d{3}-\d{4,7}|(\d{3}-)\d{2}-\d{2}|\d{7,10}/g);
     if(numberArray) {
-      return '52' + numberArray[0].replace(/-/g, '');
+      whatsapp = '52' + numberArray[0].replace(/-/g, '');
     }
   } 
-  return;
+  return whatsapp;
 }
 
 export {
