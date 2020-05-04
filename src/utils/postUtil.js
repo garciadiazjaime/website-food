@@ -21,21 +21,15 @@ export function getWhatsapp(caption) {
   const re = /(WHATSAPP|WHATS\sAPP)/i;
 
   if (re.test(caption)) {
-    let whatsapp = '';
     const matches = re.exec(caption);
     const substr = caption.slice(matches.index);
     const onlyNumbers = substr.replace(/\D/g, '-').replace(/--/g, '-');
     const numberArray = onlyNumbers.match(/(\d{1,2}-)?(\d{3}-)?\d{3}-\d{4,7}|(\d{3}-)\d{2}-\d{2}|\d{7,10}/g);
     if(numberArray) {
-      whatsapp = numberArray[0];
-      whatsapp = '52' + whatsapp.replace(/-/g, '');
-      return whatsapp;
-    } else {
-      return
+      return '52' + numberArray[0].replace(/-/g, '');
     }
-  } else {
-    return
-  }
+  } 
+  return;
 }
 
 export {
