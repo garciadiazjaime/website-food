@@ -7,6 +7,7 @@
 	import Options from '../components/Options.svelte';
   import Phones from '../components/Phones.svelte';
   import FlipCard from '../components/FlipCard.svelte';
+  import Whatsapp from '../components/Whatsapp.svelte';
 
   export let post;
   export let lazy;
@@ -48,6 +49,7 @@
 <Card data-id={post._id}>
   <div class="card-content">
     <LazyLoad lazy={lazy} dataSrc={getImageURL(post)} />
+    <Whatsapp post={post} />
     <div class="info-button">
       <FlipCard post={post} />
     </div>

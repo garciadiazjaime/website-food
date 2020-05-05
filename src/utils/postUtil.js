@@ -17,6 +17,22 @@ function getPhoneNumber(phone) {
   return `${areaCode}${first3}-${last4}`
 }
 
+export function getWhatsapp(caption) {
+  const re = /(WHATSAPP|WHATS\sAPP)/i;
+  let whatsapp ='';
+
+  if (re.test(caption)) {
+    const matches = re.exec(caption);
+    const substr = caption.slice(matches.index);
+    const onlyNumbers = substr.replace(/\D/g, '-').replace(/--/g, '-');
+    const numberArray = onlyNumbers.match(/(\d{1,2}-)?(\d{3}-)?\d{3}-\d{4,7}|(\d{3}-)\d{2}-\d{2}|\d{7,10}/g);
+    if(numberArray) {
+      whatsapp = '52' + numberArray[0].replace(/-/g, '');
+    }
+  } 
+  return whatsapp;
+}
+
 export {
   getTitle,
   getPhoneNumber,
