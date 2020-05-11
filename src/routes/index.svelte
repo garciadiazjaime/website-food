@@ -3,6 +3,7 @@
 	import { fade } from 'svelte/transition';
 
 	import Card from '../components/Card.svelte';
+	import LocationCta from '../components/LocationCta.svelte';
 	import { getPosts } from '../utils/mintAPIUtil'
 
 	let posts;
@@ -25,7 +26,7 @@
 <svelte:head>
   <title>Frescomer | What's coooking in Tj</title>
 </svelte:head>
-
+<LocationCta lat={32.49674} lon={-117.0178467} zoom={11} />
 <div class="grid-container">
   {#if posts}
     {#each posts as post, index}
