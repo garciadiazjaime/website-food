@@ -1,59 +1,13 @@
 <script>
-  import { onMount, setContext } from 'svelte';
-  import MapMarker from '../components/MapMarker.svelte';
-  
-	if (process.browser) {
-		setContext(window.key, {
-				getMap: () => map
-		});
-  }
+  import UserLocationMap from './UserLocationMap.svelte';
   
   export let lat;
 	export let lon;
 	export let zoom;
   
-  let coords = '';
-  let container;
-  let map;
-  let showMap = true;
-  onMount(() => {
-    coords = document.cookie ? document.cookie.replace(/(?:(?:^|.*;\s*)location\s*\=\s*([^;]*).*$)|^.*$/, "$1") : '';
-
-    map = new mapboxgl.Map({
-      container,
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [lon, lat],
-      zoom
-		});
-		
-		map.on('click', (e) => setMarker(getClickPoint(e)));
-
-		return () => {
-			map.remove();
-		};
-  });
-
-  const updateLocation = () => {
-    document.cookie = 'location=true; max-age=60*60*24*; path=/';
-    showMap = true;
-    return;
-  }
-
-  const getClickPoint = (e) => {
-    console.log(e.lngLat).lng;
-    const clickPoint =  {
-			lngLat: JSON.stringify(e.lngLat.wrap()),
-			point: JSON.stringify(e.point)
-    }
-    console.log(clickPoint);
-    return clickPoint;
-  }
-  
-  const setMarker = (clickPoint) => {
-    const marker = new mapboxgl.Marker()
-    .setLngLat(clickPoint.lngLat.lon, clickPoint.lngLat.lat)
-    .addTo(map);
-  }
+  const coords = document.cookie ? document.cookie.replace(/(?:(?:^|.*;\s*)location\s*\=\s*([^;]*).*$)|^.*$/, "$1") : '';
+  let showMap = false;
+  const closeMap = () => showMap = false;
 </script>
 
 <style>
@@ -89,18 +43,13 @@
 		width: 100%;
 		height: 600px;
 	}
-  .map-container {
-    width: 100%;
-    height: 100%;
-  }
 </style>
 
-<button class="locationCta"aria-label="Escoge tu locación en un mapa" on:click={() => updateLocation()}>
+<button class="locationCta"aria-label="Escoge tu locación en un mapa" on:click={() => (showMap = true)}>
   Cerca de {coords ? 'tí' : 'Zona Centro'} 
 </button>
 {#if showMap}
   <section>
-    <div class="map-container"bind:this={container}>
-    </div>
+    <UserLocationMap lat={lat} lon={lon} zoom={zoom} closeMap={() => closeMap()} />
   </section>
 {/if}
