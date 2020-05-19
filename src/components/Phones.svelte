@@ -1,17 +1,19 @@
 <script>
   import { onMount } from 'svelte';
   import { getPhoneNumber } from '../utils/postUtil';
-  export let post;
-  import { Icon } from "@smui/button";
 
+  export let post;
   let phone;
+
+  function handleClick(event) {
+    ga('send', 'event', 'phone', 'click', post.user.username, post.id);
+  }
 
   onMount(() => {
     if(post.meta && Array.isArray(post.meta.phones) && post.meta.phones.length){
       phone = post.meta.phones[0];  // default tab
     }
   });
-
 </script>
 
 <style>
@@ -47,7 +49,7 @@
 {#if phone}
   <div class="grid-container">
     <img src="/icons/phone.svg" aria-hidden alt="" />
-    <a class="cta" href={`tel:${phone}`} title={`Call number ${phone}`}}>{getPhoneNumber(phone)}</a>
+    <a class="cta" href={`tel:${phone}`} on:click={handleClick} title={`Call number ${phone}`}}>{getPhoneNumber(phone)}</a>
   </div>
 {/if}
 

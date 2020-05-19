@@ -1,8 +1,13 @@
 <script>
   import { scale } from 'svelte/transition';
-    import ExpandButton from '../components/ExpandButton.svelte';
+  import ExpandButton from '../components/ExpandButton.svelte';
   export let post = {};
   let visible = false;
+
+  function handleClick(event) {
+    visible = true
+    ga('send', 'event', 'flip-card', 'click', post.user.username, post.id);
+  }
 </script>
 
 <style>
@@ -76,7 +81,7 @@
   }
 </style>
 {#if post && post.caption}
-  <button on:click={() => (visible = true)}>
+  <button on:click={handleClick}>
     <ExpandButton  />
   </button>
   {#if visible}
