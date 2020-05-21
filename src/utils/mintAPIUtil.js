@@ -22,16 +22,15 @@ function getPostsQuery() {
         location {
           name
           slug
-          latitude
-          longitude
+          location {
+            coordinates
+          }
           address {
             street
             zipCode
             city
             country
           }
-          latitude
-          longitude
         }
         meta {
           options
