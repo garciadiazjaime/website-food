@@ -1,7 +1,6 @@
 <script>
 	import { getTitle } from '../utils/postUtil'
   export let post;
-  const blackListLocations = ['Tijuana, Baja California', 'Tijuana Centro, Tijuana'];
 </script>
 
 <style>

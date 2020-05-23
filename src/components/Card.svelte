@@ -20,7 +20,10 @@
     }
 
     if (Array.isArray(post.children) && post.children.length) {
-      return post.children[0].media_url;
+      const media = post.children.find(item => item.media_type === 'IMAGE')
+      if (media && media.media_url) {
+        return media.media_url;
+      }
     }
 
     return "/default.png";
