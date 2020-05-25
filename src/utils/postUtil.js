@@ -1,4 +1,4 @@
-const blackListLocations = ['Tijuana, Baja California', 'Tijuana Centro, Tijuana']
+const blackListLocations = ['Tijuana, Baja California']
 
 function getTitle(post) {
   const { location, user } = post
@@ -6,7 +6,7 @@ function getTitle(post) {
     return location.name
   }
 
-  return user && user.fullName 
+  return user && (user.fullName || user.username)
 }
 
 function getPhoneNumber(phone) {

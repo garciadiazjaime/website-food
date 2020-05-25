@@ -53,9 +53,8 @@ async function getPosts(env = 'production') {
     return stubPosts.data.brands;
   }
 
-  const apiUrl = 'http://api.mintitmedia.com'
   const result = await fetch(
-    `${apiUrl}/instagram/graphiql`,
+    `apiUrl/instagram/graphiql`,
     {
       method: "POST",
       headers: {
