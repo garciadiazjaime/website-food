@@ -10,6 +10,13 @@
 	export let zoom;
   
   const coords = document.cookie ? document.cookie.replace(/(?:(?:^|.*;\s*)location\s*\=\s*([^;]*).*$)|^.*$/, "$1") : '';
+  // TODO if coords ? reverse Geocode coords
+  // let location = '';
+  // onMount(async()=>{
+  //    const response = await fetch("https://api.mapbox.com/geocoding/v5/mapbox.places/-73.989,40.733.json?access_token=YOUR_MAPBOX_ACCESS_TOKEN")
+  //     const todo = await response.json();
+  //     myTodo = todo
+  // });
 </script>
 
 <style>
@@ -47,9 +54,9 @@
     position: relative;
 	}
 </style>
-
+<img src="/icons/location.svg" aria-hidden alt="" /> Zona centro
 <button class="locationCta" aria-label="Escoge tu locación en un mapa" on:click={() => locationDialog.open()}>
-  Cerca de {coords ? 'tí' : 'Zona Centro'} 
+  Cambiar
 </button>
 
 <Dialog bind:this={locationDialog} aria-labelledby="simple-title" aria-describedby="simple-content">
