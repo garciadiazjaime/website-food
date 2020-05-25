@@ -1,7 +1,5 @@
 <script>
   import { onMount, setContext } from 'svelte';
-
-  export let closeMap;
   export let lat;
 	export let lon;
 	export let zoom;
@@ -32,18 +30,18 @@
       setMarker(JSON.parse(coords), map);
     }
     
-		map.on('click', (e) => marker ? moveMarker(getClickPoint(e), marker) : setMarker(getClickPoint(e), map));
+		map.on('click', (e) => marker ? moveMarker(getClickPoint(e), marker) : setMarker(getClickPoint(e), map, true));
 
 		return () => {
 			map.remove();
 		};
   });
 
-  const setMarker = (clickPoint, map) => {
+  const setMarker = (clickPoint, map, confirm = false) => {
     marker = new mapboxgl.Marker()
     .setLngLat(clickPoint)
     .addTo(map);
-    showConfirm = true;
+    showConfirm = confirm;
   }
 
   const moveMarker = (clickPoint, marker) => {
@@ -65,17 +63,11 @@
 </script>
 <style>
   .container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
     width: 100%;
-    height: 100%;
-  }
-  .showConfirm {
-    position: relative;
   }
 </style>
 <div class="container" bind:this={container}>
-  {#if showConfirm}
-    <button class="showConfirm" on:click={() => closeMap()}>Confirmar zona</button>
-    {:else}
-      <div>Selecciona un punto en la zona que deseas explorar</div>
-  {/if}
 </div>
