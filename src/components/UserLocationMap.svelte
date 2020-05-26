@@ -11,6 +11,7 @@
   let marker;
 
   if (process.browser) {
+    console.log(window.key);
 		setContext(window.key, {
 				getMap: () => map
 		});
@@ -67,6 +68,7 @@
     top: 0;
     bottom: 0;
     width: 100%;
+    height: 400px;
   }
 </style>
 <div class="container" bind:this={container}>
