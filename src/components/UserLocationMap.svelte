@@ -11,10 +11,9 @@
   let marker;
 
   if (process.browser) {
-    console.log(window.key);
-		setContext(window.key, {
-				getMap: () => map
-		});
+    setContext(window.key, {
+      getMap: () => map
+    });
   }
 
    onMount(() => {
