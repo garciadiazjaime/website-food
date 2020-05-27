@@ -10,9 +10,13 @@
   export let lat;
 	export let lng;
   export let zoom;
-  let location = '';
+  let location
+  let coords
+
+  if (process.browser) {
+    coords = getStoredCoords();
+  }
   
-  const coords = getStoredCoords();
   onMount(async () => {
     if(coords) {
       const response = await getLocationName(coords.lng, coords.lat);

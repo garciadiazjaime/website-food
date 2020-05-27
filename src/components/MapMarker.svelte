@@ -4,7 +4,6 @@
 	export let lat;
 	export let lon;
 	export let label;
-	export let id;
 
 	onMount(() => {
 		const { getMap } = getContext(window.key);
@@ -18,8 +17,6 @@
 				.setLngLat([lon, lat])
 				.setPopup(popup)
 				.addTo(map);
-		} else {
-			console.log({label, id})
 		}
 	});
 </script>

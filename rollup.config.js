@@ -11,7 +11,6 @@ import postcss from 'rollup-plugin-postcss';
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
-const apiUrl = 'http://api.mintitmedia.com'
 
 const onwarn = (warning, onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning);
 const dedupe = importee => importee === 'svelte' || importee.startsWith('svelte/');
@@ -40,7 +39,7 @@ export default {
 				'process.mapboxToken': JSON.stringify("pk.eyJ1IjoibWludGl0bWVkaWEiLCJhIjoiY2s4ejFhcXNyMDIwMTNobXgzY3Z4NWJqdSJ9.MI6aZp0ww_JhSp1EgO8jrQ"),
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode),
-				'apiUrl': apiUrl
+				'process.env.API_URL': process.env.API_URL
 			}),
 			svelte({
         dev,
