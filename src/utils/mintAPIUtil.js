@@ -54,7 +54,7 @@ async function getPosts(env = 'production') {
   }
 
   const result = await fetch(
-    `http://api.mintitmedia.com/instagram/graphiql`,
+    `apiUrl/instagram/graphiql`,
     {
       method: "POST",
       headers: {

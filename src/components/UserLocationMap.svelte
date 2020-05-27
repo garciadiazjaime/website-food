@@ -1,7 +1,7 @@
 <script>
   import { onMount, setContext } from 'svelte';
   export let lat;
-	export let lon;
+	export let lng;
 	export let zoom;
 
   let coords = '';
@@ -17,12 +17,12 @@
   }
 
    onMount(() => {
-    coords = document.cookie ? document.cookie.replace(/(?:(?:^|.*;\s*)location\s*\=\s*([^;]*).*$)|^.*$/, "$1") : '';
-    
+    // coords = document.cookie ? document.cookie.replace(/(?:(?:^|.*;\s*)location\s*\=\s*([^;]*).*$)|^.*$/, "$1") : '';
+    coords = window.localStorage.getItem('location');
     map = new mapboxgl.Map({
       container,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [lon, lat],
+      center: [lng, lat],
       zoom
     });
 
@@ -37,27 +37,27 @@
 		};
   });
 
-  const setMarker = (clickPoint, map, confirm = false) => {
+  function setMarker(clickPoint, map, confirm = false) {
     marker = new mapboxgl.Marker()
     .setLngLat(clickPoint)
     .addTo(map);
     showConfirm = confirm;
   }
 
-  const moveMarker = (clickPoint, marker) => {
+  function moveMarker(clickPoint, marker) {
     marker.setLngLat(clickPoint);
     showConfirm = true;
   }
 
-  const getClickPoint = (e) => {
+  function getClickPoint(e) {
     setLocationCookie(e.lngLat);
     return e.lngLat;
   }
 
-  const setLocationCookie = (lngLat) => {
+  function setLocationCookie (lngLat) {
     var d = new Date();
     d.setTime(d.getTime() + 60*60*24*1000);
-    document.cookie = `location=${JSON.stringify(lngLat)}; max-age=${d.toGMTString()}; path=/`;
+    window.localStorage.setItem('location', `${JSON.stringify(lngLat)}`);
     return;
   }
 </script>

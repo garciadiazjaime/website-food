@@ -4,10 +4,14 @@
 
 	import Card from '../components/Card.svelte';
 	import LocationCta from '../components/LocationCta.svelte';
-	import { getPosts } from '../utils/mintAPIUtil'
+	import { getPosts } from '../utils/mintAPIUtil';
 
 	let posts;
 	const initialImagesToLoad = 2;
+	const zonaCentro = {
+		lat: 32.49674,
+		lng: -117.0178467,
+	}
 
   onMount(async () => {
 		posts = await getPosts();
@@ -26,7 +30,7 @@
 <svelte:head>
   <title>Frescomer | What's coooking in Tj</title>
 </svelte:head>
-<LocationCta lat={32.49674} lon={-117.0178467} zoom={11} />
+<LocationCta lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={11} />
 <div class="grid-container">
   {#if posts}
     {#each posts as post, index}
