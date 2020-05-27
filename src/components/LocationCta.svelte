@@ -40,6 +40,7 @@
     grid-template-columns: 24px 1fr 70px;
     align-items: center;
   }
+
   p {
     white-space: nowrap;
     overflow: hidden;
@@ -48,6 +49,7 @@
     margin: 0;
     color: #656565;
   }
+
   .locationCta {
     background: #79da44;
     border-radius: 3px;
@@ -62,9 +64,10 @@
     position: relative;
     font-size: 14px;
   }
+
   section {
 		width: 100%;
-		height: 400px;
+		height: 300px;
     position: relative;
 	}
 </style>
@@ -78,11 +81,11 @@
 </button>
 </div>
 
-<Dialog bind:this={locationDialog} aria-labelledby="simple-title" aria-describedby="simple-content">
+<Dialog bind:this={locationDialog} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog">
       <Title id="simple-title">Escoge tu ubicación</Title>
       <Content id="simple-content" aria-label="Mapa">
         <section>
-          <UserLocationMap lat={lat} lng={lng} zoom={zoom} />
+          <UserLocationMap lat={lat} lng={lng} zoom={zoom} markerCoords={coords} />
         </section>
       </Content>
       <Actions>

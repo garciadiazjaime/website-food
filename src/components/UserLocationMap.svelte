@@ -2,12 +2,11 @@
   import { onMount, setContext } from 'svelte';
   export let lat;
 	export let lng;
-	export let zoom;
+  export let zoom;
+  export let markerCoords;
 
-  let coords = '';
   let container = {};
   let map;
-  let showConfirm = false;
   let marker;
 
   if (process.browser) {
@@ -16,9 +15,7 @@
     });
   }
 
-   onMount(() => {
-    // coords = document.cookie ? document.cookie.replace(/(?:(?:^|.*;\s*)location\s*\=\s*([^;]*).*$)|^.*$/, "$1") : '';
-    coords = window.localStorage.getItem('location');
+  onMount(() => {
     map = new mapboxgl.Map({
       container,
       style: 'mapbox://styles/mapbox/streets-v11',
@@ -26,37 +23,28 @@
       zoom
     });
 
-    if(coords) {
-      setMarker(JSON.parse(coords), map);
+    if(markerCoords) {
+      setMarker(markerCoords);
     }
     
-		map.on('click', (e) => marker ? moveMarker(getClickPoint(e), marker) : setMarker(getClickPoint(e), map, true));
+    map.on('click', (e) => setMarker(e.lngLat));
 
-		return () => {
-			map.remove();
-		};
+    return () => {
+      map.remove();
+    };
   });
 
-  function setMarker(clickPoint, map, confirm = false) {
-    marker = new mapboxgl.Marker()
-    .setLngLat(clickPoint)
-    .addTo(map);
-    showConfirm = confirm;
+  function setMarker(lngLat) { 
+    if (!marker) {
+      marker = new mapboxgl.Marker()
+      .setLngLat(lngLat)
+      .addTo(map);
+    }
+    setLocationLocalStorage(lngLat);
+    marker.setLngLat(lngLat);
   }
 
-  function moveMarker(clickPoint, marker) {
-    marker.setLngLat(clickPoint);
-    showConfirm = true;
-  }
-
-  function getClickPoint(e) {
-    setLocationCookie(e.lngLat);
-    return e.lngLat;
-  }
-
-  function setLocationCookie (lngLat) {
-    var d = new Date();
-    d.setTime(d.getTime() + 60*60*24*1000);
+  function setLocationLocalStorage (lngLat) {
     window.localStorage.setItem('location', `${JSON.stringify(lngLat)}`);
     return;
   }
@@ -67,7 +55,7 @@
     top: 0;
     bottom: 0;
     width: 100%;
-    height: 400px;
+    height: 300px;
   }
 </style>
 <div class="container" bind:this={container}>
