@@ -23,7 +23,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 10;
+    z-index: 6;
     box-sizing: border-box;
   }
   .ig-post {

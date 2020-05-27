@@ -1,0 +1,93 @@
+<script>
+  import UserLocationMap from './UserLocationMap.svelte';
+  import { getLocationName } from '../utils/mapboxAPIUtil';
+  import { onMount } from 'svelte';
+  import Dialog, {Title, Content, Actions, InitialFocus} from '@smui/dialog';
+  import Button, {Label} from '@smui/button';
+
+  let locationDialog;
+  
+  export let lat;
+	export let lng;
+  export let zoom;
+  let location = '';
+  
+  const coords = getStoredCoords();
+  onMount(async () => {
+    if(coords) {
+      const response = await getLocationName(coords.lng, coords.lat);
+      location = response.features[0].text;
+    } else {
+      location = 'Zona Centro';
+    }
+  });
+
+  function getStoredCoords() {
+    return JSON.parse(window.localStorage.getItem('location'));
+  }
+</script>
+
+<style>
+  .grid-container {
+    background-color: #eaeaea;
+    box-shadow: inset 0 1px 1px 0 rgba(100,100,100,.14);
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 0;
+    grid-template-columns: 24px 1fr 70px;
+    align-items: center;
+  }
+  p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    margin: 0;
+    color: #656565;
+  }
+  .locationCta {
+    background: #79da44;
+    border-radius: 3px;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    color: white;
+    text-align: center;
+    display:block;
+    width: 100%;
+    margin: 0;
+    padding: 5px 0;
+    border: none;
+    position: relative;
+    font-size: 14px;
+  }
+  section {
+		width: 100%;
+		height: 400px;
+    position: relative;
+	}
+</style>
+<div class="grid-container">
+  <img src="/icons/location.svg" aria-hidden alt="" /> 
+  <p>
+   Cerca de {location}
+  </p>
+  <button class="locationCta" aria-label="Escoge tu locación en un mapa" on:click={locationDialog.open()}>
+    Ajustar
+</button>
+</div>
+
+<Dialog bind:this={locationDialog} aria-labelledby="simple-title" aria-describedby="simple-content">
+      <Title id="simple-title">Escoge tu ubicación</Title>
+      <Content id="simple-content" aria-label="Mapa">
+        <section>
+          <UserLocationMap lat={lat} lng={lng} zoom={zoom} />
+        </section>
+      </Content>
+      <Actions>
+        <Button action="accept">
+          <Label>Aceptar</Label>
+        </Button>
+      </Actions>
+    </Dialog>
