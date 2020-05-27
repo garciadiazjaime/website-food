@@ -3,21 +3,16 @@
   import Dialog, { Title, Content, Actions, InitialFocus } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
 
-  import UserLocationMap from './UserLocationMap.svelte';
-  import { getLocationName } from '../utils/mapboxAPIUtil';
+  import { getLocationName, zonaCentro } from '../utils/mapboxAPIUtil';
+  import Map from './Map.svelte';
 
-  const zonaCentro = {
-		lat: 32.49674,
-    lng: -117.0178467,
-    zoom: 11,
-    title: 'Zona Centro'
-	}
+  
   let locationDialog
   let locationTitle = '...'
   let coordinates
   
   onMount(async () => {
-    coordinates = JSON.parse(window.localStorage.getItem('location'))
+    coordinates = JSON.parse(window.localStorage.getItem('@location'))
     locationTitle = coordinates ? await getLocationName(coordinates.lng, coordinates.lat) : zonaCentro.title;
   });
 </script>
@@ -80,7 +75,7 @@
   <Title id="simple-title">Escoge tu ubicación</Title>
   <Content id="simple-content" aria-label="Mapa">
     <section>
-      <UserLocationMap lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={zonaCentro.zoom} markerCoords={coordinates} />
+      <Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={zonaCentro.zoom} enablePinMarker={true}></Map>
     </section>
   </Content>
   <Actions>

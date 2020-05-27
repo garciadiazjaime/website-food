@@ -5,6 +5,7 @@
 	import MapMarker from '../components/MapMarker.svelte';
 	import { getPosts } from '../utils/mintAPIUtil'
 	import { getTitle } from '../utils/postUtil'
+	import { zonaCentro } from '../utils/mapboxAPIUtil';
 
 	let posts;
 
@@ -22,7 +23,7 @@
 
 <section>
 	{#if posts}
-		<Map lat={32.49674} lon={-117.0178467} zoom={11}>
+		<Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={11}>
 			{#each posts as post }
 				{#if post.location && post.location.location && post.location.location.coordinates }
 					<MapMarker lat={post.location.location.coordinates[1]} lon={post.location.location.coordinates[0]} label={getTitle(post)} />

@@ -1,5 +1,12 @@
 const decimals = 2;
 
+const zonaCentro = {
+  lat: 32.5286807,
+  lng: -117.0477024,
+  zoom: 11,
+  title: 'Zona Centro'
+}
+
 async function getLocationName(lng, lat) {
   if (!lng || !lat) {
     return null
@@ -16,5 +23,6 @@ async function getLocationName(lng, lat) {
 }
 
 export {
-  getLocationName
+  getLocationName,
+  zonaCentro
 }
