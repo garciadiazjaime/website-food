@@ -12,18 +12,18 @@
   });
   
   function getDate(value) {
-    const date = new Date(parseInt(value)).toJSON()
+    const date = new Date(parseInt(value))
 
-    return `${date.substr(5,11)}`
+    return date.toLocaleString('en-US', { timeZone: 'America/Los_Angeles', day: '2-digit', hour: '2-digit', hour12: false });
   }
 
   function getCoordinates(post) {
     const { location } = post
-    if (!location.latitude || !location.longitude) {
+    if (!location || !location.location || !location.location.coordinates || !Array.isArray(location.location.coordinates)) {
       return ''
     }
 
-    return `${location.latitude}, ${location.longitude}`
+    return `${location.location.coordinates[1]}, ${location.location.coordinates[0]}`
   }
 
   function getStatsByDay(data) {
@@ -35,6 +35,7 @@
 
       if (!accu[day]) {
         accu[day] = {
+          posts: 0,
           users: 0,
           address: 0,
           coordinates: 0,
@@ -42,6 +43,8 @@
           phones: 0
         }
       }
+
+      accu[day].posts += 1
 
       const user = post.user.username
       if (!users[user]) {
@@ -54,7 +57,7 @@
         accu[day].address += 1
       }
 
-      if (location && location.latitude && location.longitude) {
+      if (getCoordinates(post)) {
         accu[day].coordinates += 1
       }
 
@@ -96,6 +99,7 @@
     <table>
       <tr>
         <th>Day</th>
+        <th># Posts</th>
         <th># Users</th>
         <th># Address</th>
         <th># Coordinates</th>
@@ -105,6 +109,7 @@
       {#each Object.keys(statsByDay) as day}
         <tr>
           <td>{day}</td>
+          <td>{statsByDay[day].posts}</td>
           <td>{statsByDay[day].users}</td>
           <td>{statsByDay[day].address}</td>
           <td>{statsByDay[day].coordinates}</td>
@@ -126,7 +131,6 @@
         <th>Phones</th>
         <th>Rank</th>
         <th>Created</th>
-        <th>Updated</th>
       </tr>
       {#each posts as post, index}
         <tr data-id={post._id}>
@@ -138,7 +142,6 @@
           <td>{post.meta.phones}</td>
           <td>{post.meta.rank}</td>
           <td>{getDate(post.createdAt)}</td>
-          <td>{post.updatedAt === post.createdAt ? 0 : 1}</td>
         </tr>
       {/each}
     </table>

@@ -3,7 +3,7 @@
 
 	if (process.browser) {
 		setContext(window.key, {
-				getMap: () => map
+			getMap: () => map
 		});
 	}
 
