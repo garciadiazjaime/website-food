@@ -54,7 +54,7 @@ async function getPosts(env = 'production') {
   }
 
   const result = await fetch(
-    `process.env.API_URL/instagram/graphiql`,
+    `process.API_URL/instagram/graphiql`,
     {
       method: "POST",
       headers: {
