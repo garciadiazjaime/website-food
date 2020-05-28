@@ -3,14 +3,14 @@
 
 	import Map from '../components/Map.svelte';
 	import MapMarker from '../components/MapMarker.svelte';
-	import { getPosts } from '../utils/mintAPIUtil'
+	import { getLocations } from '../utils/mintAPIUtil'
 	import { getTitle } from '../utils/postUtil'
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
 
-	let posts;
+	let locations;
 
   onMount(async () => {
-		posts = await getPosts();
+		locations = await getLocations();
 	});
 </script>
 
@@ -22,11 +22,11 @@
 </style>
 
 <section>
-	{#if posts}
+	{#if locations}
 		<Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={11}>
-			{#each posts as post }
-				{#if post.location && post.location.location && post.location.location.coordinates }
-					<MapMarker lat={post.location.location.coordinates[1]} lon={post.location.location.coordinates[0]} label={getTitle(post)} />
+			{#each locations as location }
+				{#if location.location && location.location.coordinates }
+					<MapMarker lat={location.location.coordinates[1]} lon={location.location.coordinates[0]} label={location.name || location.slug} />
 				{/if}
 			{/each}
 		</Map>
