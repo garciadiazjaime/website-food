@@ -8,6 +8,10 @@
 
 	let posts;
 	const initialImagesToLoad = 2;
+	let hasAPI
+	if (process.browser) {
+		hasAPI = "IntersectionObserver" in window; 
+	}
 
   onMount(async () => {
 		await refreshPosts()
@@ -40,7 +44,7 @@
 <div class="grid-container">
   {#if posts}
     {#each posts as post, index}
-			<Card post={post} lazy={index > initialImagesToLoad} />
+			<Card post={post} lazy={hasAPI && index > initialImagesToLoad} />
     {/each}
   {/if}
 </div>

@@ -1,30 +1,47 @@
 <script>
+  import { onMount } from "svelte";
   import { Media } from '@smui/card';
   export let dataSrc;
   export let lazy;
-  const placeholder = 'loading.gif';
 
+  const placeholder = 'loading.gif';
   let src = dataSrc;
   let observer = null;
   let className = '';
+  let mounted = false
+
+  const img = new Image();
+  img.onload = () => {
+    className = 'hide'
+    setTimeout(() => {
+      className = 'show'
+      src = img.src;
+    }, 300);
+  };
+
+  onMount(async () => {
+		mounted = true
+	});
+
+  function refreshImage() {
+    if (mounted) {
+      img.src = dataSrc;
+    }
+  }
 
   function onIntersect(entries) {
     if (src === placeholder && entries[0].isIntersecting) {
-      const img = new Image();
-      img.src = dataSrc;
-      img.onload = () => {
-        className = 'hide'
-        setTimeout(() => {
-          className = 'show'
-          src = img.src;
-        }, 300);
-      };
+      refreshImage()
     }
   }
 
   if (lazy) {
     src = placeholder;
     observer = new IntersectionObserver(onIntersect, {rootMargin: '200px'});
+  }
+
+  $: {
+    dataSrc; refreshImage()
   }
 
   function lazyLoad(node) {
