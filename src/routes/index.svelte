@@ -10,8 +10,18 @@
 	const initialImagesToLoad = 2;
 
   onMount(async () => {
-		posts = await getPosts();
+		await refreshPosts()
 	});
+
+	async function refreshPosts() {
+		const coordinates = JSON.parse(window.localStorage.getItem('@location'))
+		const lngLat = coordinates ? [coordinates.lng, coordinates.lat] : null
+		posts = await getPosts(lngLat);
+	}
+
+	async function coordinatesChangeHandler() {
+		await refreshPosts()
+	}
 </script>
 
 <style>
@@ -26,7 +36,7 @@
 <svelte:head>
   <title>Frescomer | What's coooking in Tj</title>
 </svelte:head>
-<LocationCta />
+<LocationCta on:coordinatesChange={refreshPosts} />
 <div class="grid-container">
   {#if posts}
     {#each posts as post, index}

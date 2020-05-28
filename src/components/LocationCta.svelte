@@ -1,12 +1,12 @@
 <script>
-  import { onMount } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   import Dialog, { Title, Content, Actions, InitialFocus } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
 
   import { getLocationName, zonaCentro } from '../utils/mapboxAPIUtil';
   import Map from './Map.svelte';
 
-  
+  const dispatch = createEventDispatcher();
   let locationDialog
   let locationTitle = '...'
   let coordinates
@@ -15,6 +15,11 @@
     coordinates = JSON.parse(window.localStorage.getItem('@location'))
     locationTitle = coordinates ? await getLocationName(coordinates.lng, coordinates.lat) : zonaCentro.title;
   });
+
+  function handleClick(event) {
+    ga('send', 'event', 'location', 'submit', !!coordinates);
+    dispatch('coordinatesChange');
+  }
 </script>
 
 <style>
@@ -79,7 +84,7 @@
     </section>
   </Content>
   <Actions>
-    <Button action="accept">
+    <Button action="accept" on:click={handleClick}>
       <Label>Aceptar</Label>
     </Button>
   </Actions>

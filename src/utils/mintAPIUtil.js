@@ -1,9 +1,7 @@
-const stubPosts = require('../../stubs/getPosts')
-
-function getPostsQuery() {
+function getPostsQuery(lngLat) {
   return `
     {
-      posts(first: 100, state:"MAPPED") {
+      posts(first: 100, state:"MAPPED", coordinates: ${JSON.stringify(lngLat)}) {
         _id
         id
         permalink
@@ -44,14 +42,10 @@ function getPostsQuery() {
   `;
 }
 
-async function getPosts(env = 'production') {
+async function getPosts(lngLat) {
   const payload = {
-    query: getPostsQuery()
+    query: getPostsQuery(lngLat)
   };
-
-  if (!env) {
-    return stubPosts.data.brands;
-  }
 
   const result = await fetch(
     `process.API_URL/instagram/graphiql`,
@@ -71,4 +65,6 @@ async function getPosts(env = 'production') {
   return posts;
 }
 
-exports.getPosts = getPosts
+export {
+  getPosts
+} 
