@@ -17,13 +17,13 @@
 <style>
 	section {
 		width: 100%;
-		height: 600px;
+		height: 100%;
 	}
 </style>
 
 <section>
 	{#if locations}
-		<Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={11}>
+		<Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={zonaCentro.zoom}>
 			{#each locations as location }
 				{#if location.location && location.location.coordinates }
 					<MapMarker lat={location.location.coordinates[1]} lon={location.location.coordinates[0]} label={location.name || location.slug} />

@@ -1,7 +1,7 @@
-function getPostsQuery(lngLat) {
+function getPostsQuery(lngLat, first = 100) {
   return `
     {
-      posts(first: 100, state:"MAPPED", coordinates: ${JSON.stringify(lngLat) || null}) {
+      posts(first: ${first}, coordinates: ${JSON.stringify(lngLat) || null}) {
         _id
         id
         permalink
@@ -71,9 +71,9 @@ async function requestHelper(payload) {
   return await result.json()
 }
 
-async function getPosts(lngLat) {
+async function getPosts(lngLat, first) {
   const payload = {
-    query: getPostsQuery(lngLat)
+    query: getPostsQuery(lngLat, first)
   };
 
   const {
