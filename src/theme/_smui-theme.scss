@@ -24,9 +24,13 @@
       display: none;
     }
   }
+  .mdc-dialog__content  {
+    position: relative;
+  }
   
   footer {
     padding: 0;
+    border: none;
   }
   .mdc-button:not(:disabled) {
     color: #ff5926;
