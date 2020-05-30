@@ -5,6 +5,7 @@
 
   import { getLocationName, zonaCentro } from '../utils/mapboxAPIUtil';
   import Map from './Map.svelte';
+  import '../theme/_smui-theme.scss';
 
   const dispatch = createEventDispatcher();
   let locationDialog
@@ -61,9 +62,9 @@
   }
 
   section {
-		width: 100%;
-		height: 300px;
     position: relative;
+    width: 100%;
+    height: 100%;
 	}
 </style>
 <div class="grid-container">
@@ -76,7 +77,7 @@
   </button>
 </div>
 
-<Dialog bind:this={locationDialog} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog">
+<Dialog bind:this={locationDialog} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog ctaMap">
   <Title id="simple-title">Escoge tu ubicación</Title>
   <Content id="simple-content" aria-label="Mapa">
     <section>

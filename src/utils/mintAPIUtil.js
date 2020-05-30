@@ -30,6 +30,9 @@ function getPostsQuery(lngLat) {
             country
           }
         }
+        dist {
+          calculated
+        }
         meta {
           options
           phones
@@ -46,7 +49,7 @@ async function getPosts(lngLat) {
   const payload = {
     query: getPostsQuery(lngLat)
   };
-
+  
   const result = await fetch(
     `process.API_URL/instagram/graphiql`,
     {

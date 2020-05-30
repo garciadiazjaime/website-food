@@ -15,6 +15,7 @@
 	let container;
 	let map;
 	let marker;
+	
 
 	onMount(() => {
 		map = new mapboxgl.Map({
@@ -57,7 +58,7 @@
 <style>
 	div {
 		width: 100%;
-		height: 100%;
+    height: 100%;
 	}
 </style>
 
