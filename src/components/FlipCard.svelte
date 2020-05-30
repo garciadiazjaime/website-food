@@ -13,6 +13,8 @@
 <style>
   button {
     padding: 0;
+    background: none;
+    border: none;
   }
   .ig-container {
     border-radius: 4px;

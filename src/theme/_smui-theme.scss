@@ -1,38 +1,10 @@
-.mdc-dialog {
-  display: block;
-  pointer-events: none;
-  * {
-    pointer-events: none;
+.frescomer-theme {
+  $mdc-theme-primary: #ff5926;
+
+  @import "@material/theme/variables";
+  @each $style in map-keys($mdc-theme-property-values) {
+    --mdc-theme-#{$style}: #{map-get($mdc-theme-property-values, $style)};
   }
-  &.mdc-dialog--open, &.mdc-dialog--open * {
-    pointer-events: auto;
-  }
-}
-.ctaMap {
-  .mdc-dialog__content  {
-    padding: 0 8px;
-  }
-  .mdc-dialog__surface {
-    width: calc(100vw - 32px);
-    height: calc(100vh - 32px);
-  }
-  .mdc-dialog__title {
-    border-bottom: none;
-    text-align: center;
-    padding-top: 10px;
-    &:before {
-      display: none;
-    }
-  }
-  .mdc-dialog__content  {
-    position: relative;
-  }
-  
-  footer {
-    padding: 0;
-    border: none;
-  }
-  .mdc-button:not(:disabled) {
-    color: #ff5926;
-  }
+
+  @import "@smui/button/style";
 }

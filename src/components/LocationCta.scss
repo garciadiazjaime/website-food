@@ -1,0 +1,36 @@
+.mdc-dialog {
+  display: block;
+  pointer-events: none;
+  * {
+    pointer-events: none;
+  }
+  &.mdc-dialog--open, &.mdc-dialog--open * {
+    pointer-events: auto;
+  }
+}
+.ctaMap {
+  .mdc-dialog__content  {
+    padding: 0 8px;
+  }
+  .mdc-dialog__surface {
+    width: calc(100vw - 32px);
+    height: calc(100vh - 32px);
+  }
+  .mdc-dialog__title {
+    border-bottom: none;
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    &:before {
+      display: none;
+    }
+  }
+  .mdc-dialog__content  {
+    position: relative;
+  }
+  
+  footer {
+    padding: 0 8px;
+    border: none;
+  }
+}

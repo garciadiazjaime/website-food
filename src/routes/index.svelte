@@ -32,7 +32,7 @@
 	.grid-container {
 		display: grid;
 		grid-column-gap: 20px;
-		grid-row-gap: 20px;
+		grid-row-gap: 10px;
 		grid-template-columns: repeat( auto-fit, minmax(247px, 1fr) );
 	}
 </style>
