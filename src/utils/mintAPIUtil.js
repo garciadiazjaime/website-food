@@ -1,7 +1,7 @@
-function getPostsQuery(lngLat) {
+function getPostsQuery(lngLat, first = 100) {
   return `
     {
-      posts(first: 100, state:"MAPPED", coordinates: ${JSON.stringify(lngLat)}) {
+      posts(first: ${first}, coordinates: ${JSON.stringify(lngLat) || null}) {
         _id
         id
         permalink
@@ -45,11 +45,21 @@ function getPostsQuery(lngLat) {
   `;
 }
 
-async function getPosts(lngLat) {
-  const payload = {
-    query: getPostsQuery(lngLat)
-  };
-  
+function getLocationQuery() {
+  return `
+    {
+      locations(first: 200) {
+        name
+        slug
+        location {
+          coordinates
+        }
+      }
+    }
+  `;
+}
+
+async function requestHelper(payload) {
   const result = await fetch(
     `process.API_URL/instagram/graphiql`,
     {
@@ -61,13 +71,34 @@ async function getPosts(lngLat) {
     }
   );
 
+  return await result.json()
+}
+
+async function getPosts(lngLat, first) {
+  const payload = {
+    query: getPostsQuery(lngLat, first)
+  };
+
   const {
     data: { posts }
-  } = await result.json();
+  } = await requestHelper(payload)
 
   return posts;
 }
 
+async function getLocations() {
+  const payload = {
+    query: getLocationQuery()
+  };
+
+  const { 
+    data: { locations }
+  } = await requestHelper(payload)
+
+  return locations;
+}
+
 export {
-  getPosts
+  getPosts,
+  getLocations
 } 

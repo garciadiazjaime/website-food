@@ -7,7 +7,7 @@
   let statsByDay
 
   onMount(async () => {
-    posts = await getPosts();
+    posts = await getPosts(null, 500);
     statsByDay = getStatsByDay(posts)
   });
   
@@ -43,7 +43,7 @@
           phones: 0
         }
       }
-
+      accu[day].date = date.toLocaleString('en-US', { timeZone: 'America/Los_Angeles', weekday: 'short', day: '2-digit' });
       accu[day].posts += 1
 
       const user = post.user.username
@@ -108,7 +108,7 @@
       </tr>
       {#each Object.keys(statsByDay) as day}
         <tr>
-          <td>{day}</td>
+          <td>{statsByDay[day].date}</td>
           <td>{statsByDay[day].posts}</td>
           <td>{statsByDay[day].users}</td>
           <td>{statsByDay[day].address}</td>
