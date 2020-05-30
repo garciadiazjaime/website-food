@@ -15,7 +15,6 @@
 	let container;
 	let map;
 	let marker;
-	
 
 	onMount(() => {
 		map = new mapboxgl.Map({
