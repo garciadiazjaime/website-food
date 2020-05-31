@@ -3,8 +3,6 @@
   $: location = getLocation(post)
   $: dist = getDist(post)
 
-  
-  
   function getLocation() {
     if (!post.location || !post.location.address || !post.location.address.street) {
       return ''
@@ -13,7 +11,7 @@
     return post.location.address.street
   }
 
-  function getDist(post) {
+  function getDist() {
     if (!post.dist || !post.dist.calculated) {
       return ''
     }

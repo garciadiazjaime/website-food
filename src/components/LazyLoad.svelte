@@ -19,11 +19,11 @@
     }, 300);
   };
 
-  onMount(async () => {
+  onMount(() => {
 		mounted = true
-	});
+  });
 
-  function refreshImage() {
+  function getImgSrc() {
     if (mounted) {
       img.src = dataSrc;
     }
@@ -31,7 +31,7 @@
 
   function onIntersect(entries) {
     if (src === placeholder && entries[0].isIntersecting) {
-      refreshImage()
+      img.src = dataSrc;
     }
   }
 
@@ -40,10 +40,7 @@
     observer = new IntersectionObserver(onIntersect, {rootMargin: '200px'});
   }
 
-  $: {
-    dataSrc; refreshImage()
-  }
-
+  $: imgSrc = getImgSrc(dataSrc)
   function lazyLoad(node) {
     if (observer) {
       observer.observe(node);
