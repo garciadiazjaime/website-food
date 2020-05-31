@@ -1,0 +1,10 @@
+.frescomer-theme {
+  $mdc-theme-primary: #ff5926;
+
+  @import "@material/theme/variables";
+  @each $style in map-keys($mdc-theme-property-values) {
+    --mdc-theme-#{$style}: #{map-get($mdc-theme-property-values, $style)};
+  }
+
+  @import "@smui/button/style";
+}

@@ -54,15 +54,12 @@
 		height: 40px;
 		margin: 5px 0;
 	}
-	@media (min-width: 426px) {
+	@media (min-width: 450px) {
 		.logo {
 			background-image: url('frescomer_logo.png');
 			height:45px;
 			margin: 4px 0 0;
 			width: 136px;
-		}
-		.logo:after {
-
 		}
 	}
 </style>

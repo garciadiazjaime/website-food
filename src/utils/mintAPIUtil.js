@@ -30,6 +30,9 @@ function getPostsQuery(lngLat, first = 100) {
             country
           }
         }
+        dist {
+          calculated
+        }
         meta {
           options
           phones

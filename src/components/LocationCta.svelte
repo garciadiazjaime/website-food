@@ -5,7 +5,8 @@
 
   import { getLocationName, zonaCentro } from '../utils/mapboxAPIUtil';
   import Map from './Map.svelte';
-
+  import '../theme/_smui-theme.scss';
+import './LocationCta.scss';
   const dispatch = createEventDispatcher();
   let locationDialog
   let locationTitle = '...'
@@ -59,12 +60,10 @@
     position: relative;
     font-size: 14px;
   }
+  .locationCta:focus {
+    outline: none;
+  }
 
-  section {
-		width: 100%;
-		height: 300px;
-    position: relative;
-	}
 </style>
 <div class="grid-container">
   <img src="/icons/location.svg" aria-hidden alt="" /> 
@@ -76,12 +75,10 @@
   </button>
 </div>
 
-<Dialog bind:this={locationDialog} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog">
+<Dialog bind:this={locationDialog} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog cta-map frescomer-theme">
   <Title id="simple-title">Escoge tu ubicación</Title>
   <Content id="simple-content" aria-label="Mapa">
-    <section>
-      <Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={zonaCentro.zoom} enablePinMarker={true}></Map>
-    </section>
+    <Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={zonaCentro.zoom} enablePinMarker={true}></Map>
   </Content>
   <Actions>
     <Button action="accept" on:click={handleClick}>

@@ -32,14 +32,14 @@
 <style>
   .card-content {
 		position: relative;
-    padding: 16px;
+    padding: 8px;
     transition: height .3s;
     height: 100%;
     display: flex;
     flex-flow: column nowrap;
   }
   .info-button {
-    margin-top: -42px;
+    margin-top: -43px;
     text-align: right;
     padding-right: 10px;
     margin-bottom: 5px;
@@ -49,7 +49,7 @@
   }
 </style>
 
-<Card data-id={post._id}>
+<Card data-id={post._id} class="Card">
   <div class="card-content">
     <LazyLoad lazy={lazy} dataSrc={getImageURL(post)} />
     <Whatsapp post={post} />
