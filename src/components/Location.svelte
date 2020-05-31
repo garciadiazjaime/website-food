@@ -1,15 +1,25 @@
 <script>
   export let post = {};
-  let location;
-  let dist;
+  $: location = getLocation(post)
+  $: dist = getDist(post)
 
-  if(post.location && post.location.address && post.location.address.street) {
-    location = post.location.address.street;
+  
+  
+  function getLocation() {
+    if (!post.location || !post.location.address || !post.location.address.street) {
+      return ''
+    }
+
+    return post.location.address.street
   }
 
-  if(post.dist && post.dist.calculated) {
-    const rawDist = post.dist.calculated/1000;
-    dist = `${rawDist.toFixed(1)}km`;
+  function getDist(post) {
+    if (!post.dist || !post.dist.calculated) {
+      return ''
+    }
+
+    const rawDist = post.dist.calculated / 1000;
+    return `${rawDist.toFixed(1)}km`;
   }
 </script>
 
@@ -30,10 +40,9 @@
   }
 </style>
 
-{#if location}
+{#if location || dist}
   <div class="grid-container">
     <img src="/icons/location.svg" aria-hidden alt="" />
-    {dist} | {location}
+    {dist} { dist && location && '|'} {location}
   </div>
 {/if}
-
