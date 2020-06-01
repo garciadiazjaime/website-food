@@ -1,4 +1,4 @@
-function getPostsQuery(lngLat, first = 100) {
+function getPostsQuery(lngLat, first = 20) {
   return `
     {
       posts(first: ${first}, coordinates: ${JSON.stringify(lngLat) || null}) {

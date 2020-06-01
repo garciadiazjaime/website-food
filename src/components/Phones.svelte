@@ -9,11 +9,15 @@
     ga('send', 'event', 'phone', 'click', post.user.username, post.id);
   }
 
-  onMount(() => {
+  function getPhone() {
     if(post.meta && Array.isArray(post.meta.phones) && post.meta.phones.length){
-      phone = post.meta.phones[0];  // default tab
+      return post.meta.phones[0];  // default tab
     }
-  });
+
+    return ''
+  }
+
+  $: phone = getPhone(post)
 </script>
 
 <style>
