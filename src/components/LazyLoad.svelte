@@ -9,6 +9,7 @@
   let observer = null;
   let className = '';
   let mounted = false
+  let element = null
 
   const img = new Image();
   img.onload = () => {
@@ -16,16 +17,29 @@
     setTimeout(() => {
       className = 'show'
       src = img.src;
-    }, 300);
+    }, 200);
   };
 
   onMount(() => {
-		mounted = true
+    mounted = true
   });
 
-  function getImgSrc() {
+  function isInViewport (elem) {
+    var bounding = elem.getBoundingClientRect();
+
+    return (
+        bounding.top >= 0 &&
+        bounding.top <= (window.innerHeight || document.documentElement.clientHeight)
+    );
+  }
+
+  function refreshImage() {
     if (mounted) {
-      img.src = dataSrc;
+      if (lazy && !isInViewport(element)) {
+        src = placeholder
+      } else {
+        img.src = dataSrc;
+      }
     }
   }
 
@@ -40,8 +54,11 @@
     observer = new IntersectionObserver(onIntersect, {rootMargin: '200px'});
   }
 
-  $: imgSrc = getImgSrc(dataSrc)
+  $: imageWatcher = refreshImage(dataSrc)
+
   function lazyLoad(node) {
+    element = node
+
     if (observer) {
       observer.observe(node);
 
