@@ -1,7 +1,6 @@
 <script>
   import Card from "@smui/card";
 	import LazyLoad from '../components/LazyLoad.svelte';
-	import Caption from '../components/Caption.svelte';
   import Location from '../components/Location.svelte';
   import Title from '../components/Title.svelte';
 	import Options from '../components/Options.svelte';
