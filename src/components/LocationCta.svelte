@@ -1,5 +1,5 @@
 <script>
-  import { createEventDispatcher, onMount } from 'svelte';
+  import { createEventDispatcher, onMount, tick } from 'svelte';
   import Dialog, { Title, Content, Actions, InitialFocus } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
 
@@ -13,13 +13,17 @@ import './LocationCta.scss';
   let coordinates
   
   onMount(async () => {
-    coordinates = JSON.parse(window.localStorage.getItem('@location'))
-    locationTitle = coordinates ? await getLocationName(coordinates.lng, coordinates.lat) : zonaCentro.title;
+    setLocationDialog();
   });
 
   function handleClick(event) {
     ga('send', 'event', 'location', 'submit', !!coordinates);
     dispatch('coordinatesChange');
+    setLocationDialog();
+  }
+  async function setLocationDialog() {
+    coordinates = JSON.parse(window.localStorage.getItem('@location'))
+    locationTitle = coordinates ? await getLocationName(coordinates.lng, coordinates.lat) : zonaCentro.title;
   }
 </script>
 
