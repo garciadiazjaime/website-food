@@ -1,5 +1,5 @@
 <script>
-  import { createEventDispatcher, onMount, tick } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   import Dialog, { Title, Content, Actions, InitialFocus } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
 
