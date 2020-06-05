@@ -48,7 +48,7 @@
   }
 </style>
 
-<Card data-id={post._id} class="Card">
+<Card data-id={post.id} class="Card">
   <div class="card-content">
     <LazyLoad lazy={lazy} dataSrc={getImageURL(post)} />
     <Whatsapp post={post} />
