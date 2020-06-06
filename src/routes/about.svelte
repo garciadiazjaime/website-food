@@ -29,7 +29,7 @@
 <ol>
 	<li>Incluye el #frescomer para activar la cuenta de tu negocio en nuestra plataforma</li>
 	<li>Incluye locación, teléfono y whatsapp en el contenido de tu post.</li>
-	<li>Incluye palabras de nuestra <a>lista</a>.</li>
+	<li>Incluye palabras de nuestra lista.</li>
 </ol>
 <p>Y no olvides, mientras más completa tengamos tu información, mejor ranking van a tener tus posts en nuestras listas de resultados</p>
 
