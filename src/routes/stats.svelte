@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-
+  import SectionMessage from '../components/SectionMessage.svelte';
 	import { getPosts } from '../utils/mintAPIUtil'
 
   let posts;
@@ -196,7 +196,10 @@
 		}
 	}
 </style>
-
+<SectionMessage>
+	<h2>Sección en construcción</h2>
+  <p>Aquí podemos incluir un parrafito con respecto al objetivo de esta sección pero no se me ha ocurrido nada</p>
+</SectionMessage>
 <div class="container">
   <div bind:this={el} class="chart"></div>
 

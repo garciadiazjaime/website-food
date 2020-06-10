@@ -69,12 +69,12 @@ import './LocationCta.scss';
   }
 
 </style>
-<div class="grid-container">
+<div class="grid-container" on:click={locationDialog.open()}>
   <img src="/icons/location.svg" aria-hidden alt="" /> 
   <p>
    Cerca de {locationTitle}
   </p>
-  <button class="locationCta" aria-label="Escoge tu locación en un mapa" on:click={locationDialog.open()}>
+  <button class="locationCta" aria-label="Escoge tu locación en un mapa">
     Ajustar
   </button>
 </div>

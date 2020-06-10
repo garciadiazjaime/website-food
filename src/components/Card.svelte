@@ -38,10 +38,10 @@
     flex-flow: column nowrap;
   }
   .info-button {
-    margin-top: -43px;
+    margin-top: -39px;
     text-align: right;
     padding-right: 10px;
-    margin-bottom: 5px;
+    margin-bottom: -2px;
   }
   .padbot10 {
     padding-bottom: 10px;
