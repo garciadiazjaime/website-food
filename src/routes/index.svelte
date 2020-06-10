@@ -5,6 +5,7 @@
 	import Card from '../components/Card.svelte';
 	import LocationCta from '../components/LocationCta.svelte';
 	import { getPosts } from '../utils/mintAPIUtil';
+	  import { zonaCentro } from '../utils/mapboxAPIUtil';
 
 	let posts;
 	const initialImagesToLoad = 2;
@@ -19,7 +20,7 @@
 
 	async function refreshPosts() {
 		const coordinates = JSON.parse(window.localStorage.getItem('@location'))
-		const lngLat = coordinates ? [coordinates.lng, coordinates.lat] : null
+		const lngLat = coordinates ? [coordinates.lng, coordinates.lat] : [zonaCentro.lng, zonaCentro.lat];
 		posts = await getPosts(lngLat);
 	}
 
