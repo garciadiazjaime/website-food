@@ -7,7 +7,6 @@
   let el;
 
   function updateChart(data) {
-    console.log(data)
     if (!Array.isArray(data) || !data.length) {
       return null
     }
@@ -59,7 +58,7 @@
   .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 12px 0;
+    padding: 12px 0 0;
   }
 
   .chart :global(div) {
@@ -73,7 +72,6 @@
 
   .props {
     display: flex;
-    padding: 12px 0;
   }
 
   .props > * {
