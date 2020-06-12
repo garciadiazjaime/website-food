@@ -3,7 +3,6 @@
   
   import Line from '../components/graphs/line.svelte'
   import Bars from '../components/graphs/bars.svelte'
-  import UnderConstruction from '../components/UnderConstruction.svelte';
 	import { getPosts } from '../utils/mintAPIUtil'
 
   let posts = [];
@@ -143,8 +142,6 @@
     margin: 40px 0;
   }
 </style>
-
-<UnderConstruction />
 
 <div class="container">
   <h2>Posts vs Usuarios <small>(que postearon)</small> de los últimos 7 días.</h2>
