@@ -6,7 +6,7 @@
 	import { getLocations } from '../utils/mintAPIUtil'
 	import { getTitle } from '../utils/postUtil'
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
-	import SectionMessage from '../components/SectionMessage.svelte';
+	import UnderConstruction from '../components/UnderConstruction.svelte';
 
 	let locations;
 
@@ -22,10 +22,10 @@
 	}
 </style>
 
-<SectionMessage>
+<UnderConstruction>
 	<h2>Sección en construcción</h2>
 	<p>Aquí podemos incluir un parrafito con respecto al objetivo de esta sección pero no se me ha ocurrido nada</p>
-</SectionMessage>
+</UnderConstruction>
 <section>
 	{#if locations}
 		<Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={zonaCentro.zoom}>

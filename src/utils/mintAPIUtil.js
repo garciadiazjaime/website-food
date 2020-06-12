@@ -1,7 +1,7 @@
-function getPostsQuery(lngLat, first = 100) {
+function getPostsQuery(lngLat, first = 100, since = '') {
   return `
     {
-      posts(first: ${first}, coordinates: ${JSON.stringify(lngLat) || null}) {
+      posts(first: ${first}, coordinates: ${JSON.stringify(lngLat) || null}, since: "${since}") {
         _id
         id
         permalink
@@ -74,9 +74,9 @@ async function requestHelper(payload) {
   return await result.json()
 }
 
-async function getPosts(lngLat, first) {
+async function getPosts({ lngLat, first, since }) {
   const payload = {
-    query: getPostsQuery(lngLat, first)
+    query: getPostsQuery(lngLat, first, since)
   };
 
   const {

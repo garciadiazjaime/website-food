@@ -61,9 +61,6 @@
 			margin: 4px 0 0;
 			width: 136px;
 		}
-		.under-construction {
-			color: #3e84d7;
-		}
 	}
 </style>
 
@@ -72,7 +69,7 @@
 		<li><div class="logo"></div></li>
 		<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>directorio</a></li>
 		<li><a aria-current='{segment === "about" ? "page" : undefined}' href='/about'>proyecto</a></li>
-		<li><a class="under-construction" aria-current='{segment === "map" ? "page" : undefined}' href='/map'>mapa</a></li>
-		<li><a class="under-construction" aria-current='{segment === "stats" ? "page" : undefined}' href='/stats'>datos</a></li>
+		<li><a aria-current='{segment === "map" ? "page" : undefined}' href='/map'>mapa</a></li>
+		<li><a aria-current='{segment === "stats" ? "page" : undefined}' href='/stats'>datos</a></li>
 	</ul>
 </nav>
