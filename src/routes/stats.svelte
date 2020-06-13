@@ -3,7 +3,8 @@
   
   import Line from '../components/graphs/line.svelte'
   import Bars from '../components/graphs/bars.svelte'
-	import { getPosts } from '../utils/mintAPIUtil'
+  import { getPosts } from '../utils/mintAPIUtil'
+  import { getStatsByDay, getHashtags } from '../utils/stats'
 
   let posts = [];
   let el;
@@ -18,6 +19,7 @@
   }]
 
   $: stats = getStatsByDay(posts)
+  $: hashtags = getHashtags(posts)
 
   onMount(async () => {
     const date = new Date();
@@ -32,85 +34,7 @@
     return date.toLocaleString('en-US', { timeZone: 'America/Los_Angeles', day: '2-digit', month: '2-digit' });
   }
 
-  function getStatsByDay(posts) {
-    if (!Array.isArray(posts) || !posts.length) {
-      return []
-    }
-
-    const users = {}
-
-    const data = posts.reduce((accu, post) => {
-      const date = new Date(parseInt(post.createdAt))
-      const day = date.getDate()
-
-      if (!accu.byDay[day]) {
-        accu.byDay[day] = {
-          date: new Date(date.toDateString()),
-          posts: 0,
-          users: 0,
-        }
-      }
-      accu.byDay[day].posts += 1
-      accu.summary.posts.value += 1
-
-      const user = post.user.username
-      if (!users[user]) {
-        users[user] = true
-        accu.byDay[day].users += 1
-      }
-
-      const { location } = post
-      if (location && location.address && location.address.street) {
-        accu.summary.address.value += 1
-      }
-
-      const { options, phones } = post.meta
-      if (Array.isArray(options) && options.length ) {
-        accu.summary.options.value += 1
-      }
-
-      if (Array.isArray(phones) && phones.length ) {
-        accu.summary.phones.value += 1
-      }
-
-      return accu
-    }, {
-      byDay: {},
-      summary: {
-        posts: {
-          value: 0,
-          label: 'Posts'
-        },
-        address: {
-          value: 0,
-          label: 'Dirección'
-        },
-        options: {
-          value: 0,
-          label: 'Opciones'
-        },
-        phones: {
-          value: 0,
-          label: 'Teléfono'
-        },
-      }
-    })
-
-    const byDay = []
-    for(let day in data.byDay) {
-      byDay.push({...data.byDay[day]})
-    }
-    byDay.sort((a, b) => a.date - b.date)
-
-    const summary = Object.keys(data.summary)
-        .map(key => data.summary[key])
-        .sort((a, b) => b.value - a.value)
-
-    return {
-      byDay,
-      summary
-    }
-  }
+  
 </script>
 
 <style>
@@ -144,20 +68,20 @@
 </style>
 
 <div class="container">
-  <h2>Posts vs Usuarios <small>(que postearon)</small> de los últimos 7 días.</h2>
-
+  <h2>Relación Posts - Usuarios <small>(que postearon)</small> de los últimos 7 días.</h2>
   <Line data={stats.byDay} props={lineProps} />
 
   <hr />
-
-  <h2>Posts vs Propiedades <small>(encontradas)</small> de los últimos 7 días.</h2>
-
+  <h2>Relación Posts - Propiedades <small>(del post)</small> de los últimos 7 días.</h2>
   <Bars data={stats.summary} />
+
+  <hr />
+  <h2>Hashtags más usados en los últimos 7 días</h2>
+  <Bars data={hashtags} />
 
   <span>Nota: <b>Posts</b> siempre será la columan más alta. Las demás columnas muestran en cuántos post se encuentró dicha propiedad.</span>
 
   <hr />
-
   <h2>Listado de Posts de los últimos 7 días, ordenados por puntos.</h2>
   <div class="table">
     {#if posts}

@@ -17,17 +17,23 @@
 
     var svg = d3.select(el)
       .append("svg")
-        .attr("viewBox", `0 0 ${width + 50} ${height + 40}`)
+        .attr("viewBox", `0 0 ${width + 50} ${height + 130}`)
       .append("g")
         .attr("transform", "translate(30, 10)")
 
     var xScale = d3.scaleBand()
       .range([ 0, width])
+      .padding(0.1)
       .domain(data.map(d => d.label))
 
     svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(xScale))
+      .selectAll("text")
+      .style("text-anchor", "end")
+      .attr("dx", "-.8em")
+      .attr("dy", "-.55em")
+      .attr("transform", "rotate(-90)" );
 
     var yScale = d3.scaleLinear()
       .range([ height, 0 ])
@@ -41,10 +47,10 @@
       .enter()
       .append('rect')
       .attr("fill", (d, i) => i === 0 ? colors[0] : colors[1])
-      .attr('x', (d) => xScale(d.label) + 20)
+      .attr('x', (d) => xScale(d.label))
       .attr('y', (d) => yScale(d.value))
       .attr('height', (d) => height - yScale(d.value))
-      .attr('width', xScale.bandwidth() - 40)
+      .attr('width', xScale.bandwidth())
 
   }
 </script>
