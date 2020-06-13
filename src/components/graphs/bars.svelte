@@ -7,7 +7,6 @@
   let el;
 
   function updateChart(data) {
-    console.log(data)
     if (!Array.isArray(data) || !data.length) {
       return null
     }

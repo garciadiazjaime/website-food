@@ -99,7 +99,7 @@
         {#each posts as post, index}
           <tr data-id={post._id}>
             <td>{index + 1}</td>
-            <td>{post.user.fullName}</td>
+            <td>{post.user.fullName || post.user.username}</td>
             <td>{@html post.location && post.location.address && post.location.address.street && '&#x2713;' || ''}</td>
             <td>{@html post.meta.options && post.meta.options.length && '&#x2713;' || ''}</td>
             <td>{@html post.meta.phones && post.meta.phones.length && '&#x2713;' || ''}</td>
