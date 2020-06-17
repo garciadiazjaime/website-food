@@ -5,7 +5,7 @@
 	import Card from '../components/Card.svelte';
 	import LocationCta from '../components/LocationCta.svelte';
 	import { getPosts } from '../utils/mintAPIUtil';
-	  import { zonaCentro } from '../utils/mapboxAPIUtil';
+	import { zonaCentro } from '../utils/mapboxAPIUtil';
 
 	let posts;
 	const initialImagesToLoad = 2;
