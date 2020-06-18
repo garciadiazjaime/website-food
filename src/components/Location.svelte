@@ -7,8 +7,8 @@
     if (!post.location || !post.location.address || !post.location.address.street) {
       return ''
     }
-
-    return post.location.address.street
+    let value = post.location.address.street;
+    return value.length > 45 ? value.substr(0, 45) + '...' : value;
   }
 
   function getDist() {
@@ -22,25 +22,19 @@
 </script>
 
 <style>
-  .grid-container {
-    display: grid;
-    grid-column-gap: 10px;
-    grid-template-columns: 20px 1fr;
-    align-items: top;
-    color: #727272;
-    font-size: 14px;
+  div {
+    font-size: 16px;
     margin-bottom: 14px;
+    color: #a2a2a2;
   }
-  img {
-    width: 18px;
-    height: 18px;
-    display: inline-block; 
+  span {
+    color: #727272;
+    display: inline-block;
   }
 </style>
 
 {#if location || dist}
-  <div class="grid-container">
-    <img src="/icons/location.svg" aria-hidden alt="" />
-    {dist} { dist && location && '|'} {location}
+  <div>
+    <span>{dist} { dist && location && '|'}</span> {location}
   </div>
 {/if}
