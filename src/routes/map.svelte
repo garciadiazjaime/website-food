@@ -29,7 +29,7 @@
 		<Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={zonaCentro.zoom}>
 			{#each locations as location }
 				{#if location.location && location.location.coordinates }
-					<MapMarker lat={location.location.coordinates[1]} lon={location.location.coordinates[0]} label={location.name || location.slug} />
+					<MapMarker location={location} />
 				{/if}
 			{/each}
 		</Map>

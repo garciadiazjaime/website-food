@@ -23,6 +23,11 @@
 		ga('send', 'pageview');
 	</script>
 	<script async src='https://www.google-analytics.com/analytics.js'></script>
+	<script>
+		function clickHandlerPopup(locationId, locationSlug) {
+			ga('send', 'event', 'popup', 'click', locationSlug);
+		}
+	</script>
 
 
 	<!-- Sapper generates a <style> tag containing critical CSS

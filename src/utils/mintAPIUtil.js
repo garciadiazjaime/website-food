@@ -45,10 +45,11 @@ function getPostsQuery(lngLat, first = 100, since = '', to = '') {
   `;
 }
 
-function getLocationQuery() {
+function getLocationQuery(first = 500) {
   return `
     {
-      locations(first: 200) {
+      locations(first: ${first}) {
+        id
         name
         slug
         location {
@@ -86,9 +87,9 @@ async function getPosts({ lngLat, first, since, to }) {
   return posts;
 }
 
-async function getLocations() {
+async function getLocations(first) {
   const payload = {
-    query: getLocationQuery()
+    query: getLocationQuery(first)
   };
 
   const { 
