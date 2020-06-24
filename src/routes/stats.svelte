@@ -4,7 +4,7 @@
   import Line from '../components/graphs/line.svelte'
   import Bars from '../components/graphs/bars.svelte'
   import { getPosts } from '../utils/mintAPIUtil'
-  import { getStatsByDay, getHashtags } from '../utils/stats'
+  import { getStatsByDay, getHashtags, getOptions } from '../utils/stats'
 
   let posts = [];
   let el;
@@ -20,12 +20,18 @@
 
   $: stats = getStatsByDay(posts)
   $: hashtags = getHashtags(posts)
+  $: options = getOptions(posts)
 
   onMount(async () => {
-    const date = new Date();
-    date.setDate(date.getDate() - 7);
+    const since = new Date();
+    since.setDate(since.getDate() - 7);
+    since.setHours(0,0,0,0)
 
-    posts = await getPosts({ first: 500, since: date.toJSON() });
+    const to = new Date();
+    to.setDate(to.getDate() - 1);
+    to.setHours(23,59,59,999)
+
+    posts = await getPosts({ first: 1000, since: since.toJSON(), to: to.toJSON() });
   });
   
   function getDate(value) {
@@ -76,10 +82,14 @@
   <Bars data={stats.summary} />
 
   <hr />
-  <h2>Hashtags más usados en los últimos 7 días</h2>
+  <h2>Top 10 de Hashtags de los últimos 7 días</h2>
   <Bars data={hashtags} />
 
   <span>Nota: <b>Posts</b> siempre será la columan más alta. Las demás columnas muestran en cuántos post se encuentró dicha propiedad.</span>
+
+  <hr />
+  <h2>Opciones más usadas en los últimos 7 días <small>(*con más de 10 apariciones)</small></h2>
+  <Bars data={options} />
 
   <hr />
   <h2>Listado de Posts de los últimos 7 días, ordenados por puntos.</h2>
@@ -91,8 +101,8 @@
           <th>#</th>
           <th>Usuarios</th>
           <th>Dirección</th>
-          <th>Opciones</th>
           <th>Teléfonos</th>
+          <th>Opciones</th>
           <th>Puntos</th>
           <th>Fecha</th>
         </tr>
@@ -101,8 +111,8 @@
             <td>{index + 1}</td>
             <td>{post.user.fullName || post.user.username}</td>
             <td>{@html post.location && post.location.address && post.location.address.street && '&#x2713;' || ''}</td>
-            <td>{@html post.meta.options && post.meta.options.length && '&#x2713;' || ''}</td>
             <td>{@html post.meta.phones && post.meta.phones.length && '&#x2713;' || ''}</td>
+            <td>{@html post.meta.options && post.meta.options.length && '&#x2713;' || ''}</td>
             <td>{post.meta.rank}</td>
             <td>{getDate(post.createdAt)}</td>
           </tr>

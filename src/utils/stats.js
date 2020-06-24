@@ -119,7 +119,28 @@ function getHashtags(posts) {
   return results.sort((a, b) => b.value - a.value).slice(0, 10)
 }
 
+function getOptions(posts) {
+  const options = {}
+  posts.forEach(post => {
+    post.meta.options.forEach((item) => {
+      if (!options[item]) {
+        options[item] = 0
+      }
+
+      options[item] += 1
+    })
+  })
+
+  const response = Object.keys(options).map(option => ({
+    label: option,
+    value: options[option]
+  })).sort((a, b) => b.value - a.value).filter(item => item.value > 10)
+
+  return response
+}
+
 export {
   getStatsByDay,
-  getHashtags
+  getHashtags,
+  getOptions
 }

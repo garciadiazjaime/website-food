@@ -1,7 +1,7 @@
-function getPostsQuery(lngLat, first = 100, since = '') {
+function getPostsQuery(lngLat, first = 100, since = '', to = '') {
   return `
     {
-      posts(first: ${first}, coordinates: ${JSON.stringify(lngLat) || null}, since: "${since}") {
+      posts(first: ${first}, coordinates: ${JSON.stringify(lngLat) || null}, since: "${since}", to: "${to}") {
         _id
         id
         permalink
@@ -45,10 +45,11 @@ function getPostsQuery(lngLat, first = 100, since = '') {
   `;
 }
 
-function getLocationQuery() {
+function getLocationQuery(first = 500) {
   return `
     {
-      locations(first: 200) {
+      locations(first: ${first}) {
+        id
         name
         slug
         location {
@@ -74,9 +75,9 @@ async function requestHelper(payload) {
   return await result.json()
 }
 
-async function getPosts({ lngLat, first, since }) {
+async function getPosts({ lngLat, first, since, to }) {
   const payload = {
-    query: getPostsQuery(lngLat, first, since)
+    query: getPostsQuery(lngLat, first, since, to)
   };
 
   const {
@@ -86,9 +87,9 @@ async function getPosts({ lngLat, first, since }) {
   return posts;
 }
 
-async function getLocations() {
+async function getLocations(first) {
   const payload = {
-    query: getLocationQuery()
+    query: getLocationQuery(first)
   };
 
   const { 
