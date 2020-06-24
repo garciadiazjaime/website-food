@@ -1,7 +1,7 @@
 .mdc-dialog {
   display: block;
   z-index: -1;
-  &.mdc-dialog--open{
+  &.mdc-dialog--open {
     z-index: 7;
   }
 }

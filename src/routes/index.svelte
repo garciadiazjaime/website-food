@@ -2,9 +2,11 @@
 	import { onMount } from "svelte";
 	import { fade } from 'svelte/transition';
 	import Card from '../components/Card.svelte';
+	import LocationDialog from '../components/LocationDialog.svelte';
 	import LocationCta from '../components/LocationCta.svelte';
 	import { getPosts } from '../utils/mintAPIUtil';
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
+	import { userLocation } from '../components/stores';
 
 	let posts;
 	let locationDialog;
@@ -53,10 +55,12 @@
 <svelte:head>
   <title>Frescomer | What's coooking in Tj</title>
 </svelte:head>
-<LocationCta on:coordinatesChange={refreshPosts} bind:this={locationDialog}>
+<LocationDialog on:coordinatesChange={refreshPosts} bind:this={locationDialog}>
 	<h1>Apoyemos la economía hiperlocal!</h1>
-</LocationCta>
-<button on:click={locationDialog.openDialog}>Update location</button>
+</LocationDialog>
+<div on:click={locationDialog.openDialog}>
+	<LocationCta location={$userLocation} />
+</div>
 <div class="grid-container">
   {#if posts}
     {#each posts as post, index}
