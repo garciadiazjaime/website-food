@@ -1,11 +1,8 @@
 .mdc-dialog {
   display: block;
-  pointer-events: none;
-  * {
-    pointer-events: none;
-  }
-  &.mdc-dialog--open, &.mdc-dialog--open * {
-    pointer-events: auto;
+  z-index: -1;
+  &.mdc-dialog--open {
+    z-index: 7;
   }
 }
 .cta-map {

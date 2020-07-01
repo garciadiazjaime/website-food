@@ -1,33 +1,18 @@
 <script>
-  import { createEventDispatcher, onMount } from 'svelte';
-  import Dialog, { Title, Content, Actions, InitialFocus } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
-
+  import { onMount } from 'svelte';
+  import { userLocation } from '../utils/stores.js'
   import { getLocationName, zonaCentro } from '../utils/mapboxAPIUtil';
-  import Map from './Map.svelte';
+  import { setUserLocation } from '../utils/location'
   import '../theme/_smui-theme.scss';
-import './LocationCta.scss';
-  const dispatch = createEventDispatcher();
-  let locationDialog
-  let locationTitle = '...'
-  let coordinates
-  
-  onMount(async () => {
-    setLocationDialog();
-  });
 
-  function handleClick(event) {
-    ga('send', 'event', 'location', 'submit', !!coordinates);
-    dispatch('coordinatesChange');
-    setLocationDialog();
-  }
-  async function setLocationDialog() {
-    coordinates = JSON.parse(window.localStorage.getItem('@location'))
-    locationTitle = coordinates ? await getLocationName(coordinates.lng, coordinates.lat) : zonaCentro.title;
-  }
+  onMount(setUserLocation);
 </script>
-
 <style>
+  .banner {
+    background: linear-gradient(90deg, rgba(193,249,98,1) 0%, rgba(252,144,69,1) 100%);
+    padding: 30px 20px;
+  }
   .grid-container {
     background-color: #eaeaea;
     box-shadow: inset 0 1px 1px 0 rgba(100,100,100,.14);
@@ -69,24 +54,15 @@ import './LocationCta.scss';
   }
 
 </style>
-<div class="grid-container" on:click={locationDialog.open()}>
-  <img src="/icons/location.svg" aria-hidden alt="" /> 
-  <p>
-   Cerca de {locationTitle}
-  </p>
-  <button class="locationCta" aria-label="Escoge tu locación en un mapa">
-    Ajustar
-  </button>
+<div class='banner'>
+<slot></slot>
+  <div class="grid-container">
+    <img src="/icons/location.svg" aria-hidden alt="" /> 
+    <p>
+      Cerca de {$userLocation}
+    </p>
+    <button class="locationCta" aria-label="Escoge tu ubicación en un mapa">
+      Cambiar
+    </button>
+  </div>
 </div>
-
-<Dialog bind:this={locationDialog} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog cta-map frescomer-theme">
-  <Title id="simple-title">Escoge tu ubicación</Title>
-  <Content id="simple-content" aria-label="Mapa">
-    <Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={zonaCentro.zoom} enablePinMarker={true}></Map>
-  </Content>
-  <Actions>
-    <Button action="accept" on:click={handleClick}>
-      <Label>Aceptar</Label>
-    </Button>
-  </Actions>
-</Dialog>

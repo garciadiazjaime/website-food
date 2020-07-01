@@ -5,21 +5,18 @@
 
 <style>
   .title {
-    line-height: 1.2;
-    margin: 0 0 24px;
+    line-height: 1;
     font-size: 22px;
     font-weight: 600;
-    padding: 8px 12px;
-    text-align: center;
-    border-radius: 0 0 4px 4px;
-    background-color: #efefef;
+    margin: 12px 0 6px;
+    text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
   }
   @media (min-width: 450px) {
 		.title {
-			font-size: 18px;
+			font-size: 20px;
 		}
 	}
 </style>

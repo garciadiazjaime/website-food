@@ -36,6 +36,7 @@
     height: 100%;
     display: flex;
     flex-flow: column nowrap;
+    align-content: space-between;
   }
   .info-button {
     margin-top: -39px;
@@ -43,8 +44,8 @@
     padding-right: 10px;
     margin-bottom: -2px;
   }
-  .padbot10 {
-    padding-bottom: 10px;
+  .last-item {
+    margin-top: auto;
   }
 </style>
 
@@ -56,10 +57,10 @@
       <FlipCard post={post} />
     </div>
     <Title post={post} />
-    <div class="padbot10">
-      <Phones post={post} />
-      <Location post={post} />
-    </div>
     <Options post={post} />
+    <Location post={post} />
+    <div class="last-item">
+      <Phones post={post} />
+    </div>
   </div>
 </Card>

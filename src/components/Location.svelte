@@ -8,7 +8,9 @@
       return ''
     }
 
-    return post.location.address.street
+    const { street } = post.location.address;
+
+    return street.length > 45 ? street.substr(0, 45) + '...' : street;
   }
 
   function getDist() {
@@ -22,25 +24,18 @@
 </script>
 
 <style>
-  .grid-container {
-    display: grid;
-    grid-column-gap: 10px;
-    grid-template-columns: 20px 1fr;
-    align-items: top;
-    color: #727272;
-    font-size: 14px;
-    margin-bottom: 14px;
+  div {
+    font-size: 16px;
+    margin: 2px 0 14px;
+    color: #a2a2a2;
   }
-  img {
-    width: 18px;
-    height: 18px;
-    display: inline-block; 
+  span {
+    color: #727272;
   }
 </style>
 
 {#if location || dist}
-  <div class="grid-container">
-    <img src="/icons/location.svg" aria-hidden alt="" />
-    {dist} { dist && location && '|'} {location}
+  <div>
+    <span>{dist} { dist && location && '|'}</span> {location}
   </div>
 {/if}
