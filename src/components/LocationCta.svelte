@@ -16,10 +16,6 @@
   }
 </script>
 <style>
-  .banner {
-    background: linear-gradient(90deg, rgba(193,249,98,1) 0%, rgba(252,144,69,1) 100%);
-    padding: 30px 20px;
-  }
   .grid-container {
     background-color: #eaeaea;
     box-shadow: inset 0 1px 1px 0 rgba(100,100,100,.14);
