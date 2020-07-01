@@ -1,19 +1,12 @@
 <script>
   import Button, { Label } from '@smui/button';
   import { onMount } from 'svelte';
-  import { userLocation } from '../components/stores.js'
+  import { userLocation } from '../utils/stores.js'
   import { getLocationName, zonaCentro } from '../utils/mapboxAPIUtil';
+  import { setUserLocation } from '../utils/location'
   import '../theme/_smui-theme.scss';
-  let coordinates;
-  onMount(async () => {
-    setLocationTitle();
-  });
 
-  
-  async function setLocationTitle() {
-    coordinates = JSON.parse(window.localStorage.getItem('@location'));
-    userLocation.set(coordinates ? await getLocationName(coordinates.lng, coordinates.lat) : zonaCentro.title);
-  }
+  onMount(setUserLocation);
 </script>
 <style>
   .banner {
@@ -66,10 +59,10 @@
   <div class="grid-container">
     <img src="/icons/location.svg" aria-hidden alt="" /> 
     <p>
-    Cerca de {$userLocation}
+      Cerca de {$userLocation}
     </p>
-    <button class="locationCta" aria-label="Escoge tu locación en un mapa">
-      Ajustar
+    <button class="locationCta" aria-label="Escoge tu ubicación en un mapa">
+      Cambiar
     </button>
   </div>
 </div>

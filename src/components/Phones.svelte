@@ -38,13 +38,9 @@
   a.cta:hover {
     color: #fff;
   }
-  img {
-    width: 18px;
-    height: 18px;
-  }
 </style>
 
 {#if phone}
-  <a class="cta" href={`tel:${phone}`} on:click={handleClick} title={`Call number ${phone}`}}>{getPhoneNumber(phone)}</a>
+  <a class="cta" href={`tel:${phone}`} on:click={handleClick} title={`Marcar ${phone}`}}>{getPhoneNumber(phone)}</a>
 {/if}
 
