@@ -8,7 +8,7 @@
     line-height: 1;
     font-size: 22px;
     font-weight: 600;
-    margin: 12px 0 0;
+    margin: 12px 0 6px;
     text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;

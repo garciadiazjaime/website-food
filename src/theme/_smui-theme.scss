@@ -1,5 +1,8 @@
-.frescomer-theme {
-  $mdc-theme-primary: #ff5926;
+.fmt-theme {
+  background: black;
+  $mdc-theme-primary: #81ece4;
+  $mdc-theme-secondary: #fed94d;
+  $mdc-theme-background: #162645;
 
   @import "@material/theme/variables";
   @each $style in map-keys($mdc-theme-property-values) {
@@ -8,11 +11,10 @@
 
   @import "@smui/button/style";
 }
-
 // Feed me Tj theme
-$feedmetj-theme-primary: #30a0a9;
-$feedmetj-theme-secondary: #eeb110;
-$feedmetj-theme-tertiary: #1a4399;
-$feedmetj-theme-light: #ebeeec;
-$feedmetj-theme-dark: #162645;
+$theme-primary: #1a48c1;
+$theme-secondary: #fed94d;
+$theme-tertiary: #81ece4;
+$theme-light: #ebeeec;
+$theme-dark: #162645;
 

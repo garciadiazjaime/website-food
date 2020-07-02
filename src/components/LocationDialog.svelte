@@ -2,28 +2,26 @@
   import { createEventDispatcher, onMount } from 'svelte';
   import Dialog, { Title, Content, Actions, InitialFocus } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
-  import { userLocation } from '../components/stores';
-  import { getLocationName, zonaCentro } from '../utils/mapboxAPIUtil';
   import Map from './Map.svelte';
-  import '../theme/_smui-theme.scss';
+
   import './LocationDialog.scss';
+  import '../theme/_smui-theme.scss';
+  import { zonaCentro } from '../utils/mapboxAPIUtil';
+  import { setUserLocation } from '../utils/location'
 
   const dispatch = createEventDispatcher();
   let locationDialog;
-  let coordinates;
 
-  function handleClick(event) {
-    ga('send', 'event', 'location', 'submit', !!coordinates);
+  async function handleClick() {
+    ga('send', 'event', 'location', 'submit');
+    
+    await setUserLocation();
+
     dispatch('coordinatesChange');
-    setUserLocation();
   }
 
   export function openDialog() {
     locationDialog.open();
-  }
-  async function setUserLocation() {
-    coordinates = JSON.parse(window.localStorage.getItem('@location'))
-    userLocation.set(coordinates ? await getLocationName(coordinates.lng, coordinates.lat) : zonaCentro.title);
   }
 </script>
 

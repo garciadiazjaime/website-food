@@ -1,18 +1,20 @@
 <script>
 	import { onMount } from "svelte";
 	import { fade } from 'svelte/transition';
+
 	import Card from '../components/Card.svelte';
 	import LocationDialog from '../components/LocationDialog.svelte';
 	import StickyBanner from '../components/StickyBanner.svelte';
 	import LocationCta from '../components/LocationCta.svelte';
+	import { userLocation } from '../utils/stores';
 	import { getPosts } from '../utils/mintAPIUtil';
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
-	import { userLocation } from '../components/stores';
 
 	let posts;
 	let locationDialog;
-	const initialImagesToLoad = 2;
 	let hasAPI
+	const initialImagesToLoad = 2;
+
 	if (process.browser) {
 		hasAPI = "IntersectionObserver" in window; 
 	}
@@ -24,11 +26,8 @@
 	async function refreshPosts() {
 		const coordinates = JSON.parse(window.localStorage.getItem('@location'))
 		const lngLat = coordinates ? [coordinates.lng, coordinates.lat] : [zonaCentro.lng, zonaCentro.lat];
-		posts = await getPosts({ lngLat });
-	}
 
-	async function coordinatesChangeHandler() {
-		await refreshPosts()
+		posts = await getPosts({ lngLat });
 	}
 </script>
 
@@ -36,14 +35,9 @@
 	.grid-container {
 		display: grid;
 		grid-column-gap: 20px;
-		grid-row-gap: 15px;
+		grid-row-gap: 12px;
 		grid-template-columns: repeat( auto-fit, minmax(247px, 1fr) );
 		margin: 10px;
-	}
-
-	h1 {
-		color: white;
-		font-size: 30px;
 	}
 
 	@media (min-width: 426px) {
@@ -57,8 +51,12 @@
   <title>Feed Me TJ</title>
 </svelte:head>
 <StickyBanner on:click={locationDialog.openDialog}>
-	<h1>Come rico en tu barrio!</h1>
-	<LocationCta location={$userLocation} />
+	<h1>Feed Me Tj!</h1>
+	<h2>Descubre lo que tu ciudad ofrece</h2>
+	<LocationDialog on:coordinatesChange={refreshPosts} bind:this={locationDialog} />
+	<div on:click={locationDialog.openDialog}>
+		<LocationCta location={$userLocation} />
+	</div>
 </StickyBanner>
 <LocationDialog on:coordinatesChange={refreshPosts} bind:this={locationDialog} />
 <div class="grid-container">

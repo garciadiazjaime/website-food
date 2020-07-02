@@ -1,7 +1,6 @@
 <script>
   import '../theme/_smui-theme.scss';
   import './StickyBanner.scss';
-  export let offset;
   let stickyBanner;
   let y;
 

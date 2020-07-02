@@ -7,8 +7,10 @@
     if (!post.location || !post.location.address || !post.location.address.street) {
       return ''
     }
-    let value = post.location.address.street;
-    return value.length > 45 ? value.substr(0, 45) + '...' : value;
+
+    const { street } = post.location.address;
+
+    return street.length > 45 ? street.substr(0, 45) + '...' : street;
   }
 
   function getDist() {
@@ -24,12 +26,11 @@
 <style>
   div {
     font-size: 16px;
-    margin-bottom: 14px;
+    margin: 2px 0 14px;
     color: #a2a2a2;
   }
   span {
     color: #727272;
-    display: inline-block;
   }
 </style>
 
