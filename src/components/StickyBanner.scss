@@ -1,5 +1,12 @@
 @import "../theme/_smui-theme.scss";
 .sticky-banner {
-  background: $theme-tertiary;
+  background-color: $theme-tertiary;
+  background-image: url("banner_bkg.svg");
+  background-size: auto 100%;
+  background-position: top right;
+  background-repeat: no-repeat;
   padding: 30px 20px;
+  .content {
+    margin-right: 200px;
+  }
 }

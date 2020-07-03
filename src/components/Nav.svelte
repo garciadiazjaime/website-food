@@ -5,7 +5,7 @@
 
 <nav>
 	<ul>
-		<li><img class="logo" src="feedmetj_logo.svg" alt="Feed me Tj" width="100"/></li>
+		<li><img class="logo" src="fmt_icon.svg" alt="Feed me Tj" height="40"/></li>
 		<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>directorio</a></li>
 		<li><a aria-current='{segment === "about" ? "page" : undefined}' href='/about'>proyecto</a></li>
 		<li><a aria-current='{segment === "map" ? "page" : undefined}' href='/map'>mapa</a></li>

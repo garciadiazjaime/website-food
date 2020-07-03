@@ -39,6 +39,10 @@
 		grid-template-columns: repeat( auto-fit, minmax(247px, 1fr) );
 		margin: 10px;
 	}
+	img {
+		width: 200px;
+		display: block;
+	}
 
 	@media (min-width: 426px) {
 		.grid-container {
@@ -51,8 +55,11 @@
   <title>Feed Me TJ</title>
 </svelte:head>
 <StickyBanner on:click={locationDialog.openDialog}>
-	<h1>Feed Me Tj!</h1>
-	<h2>Descubre lo que tu ciudad ofrece</h2>
+	<img src="feedmetj_logo.svg" alt="Feed me Tj"/>
+	<h2>
+		La comida más rica del mundo se hace en Tijuana<br>
+		Encuéntrala con nosotros!
+	</h2>
 	<LocationDialog on:coordinatesChange={refreshPosts} bind:this={locationDialog} />
 	<div on:click={locationDialog.openDialog}>
 		<LocationCta location={$userLocation} />

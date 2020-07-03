@@ -9,5 +9,7 @@
 </style>
 <svelte:window bind:scrollY={y}/>
 <div class="sticky-banner" bind:this={stickyBanner}>
-  <slot></slot>
+  <div class="content">
+    <slot></slot>
+  </div>
 </div>
