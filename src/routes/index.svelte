@@ -42,6 +42,11 @@
 	img {
 		width: 200px;
 		display: block;
+		margin: 0 auto 20px;
+	}
+
+	h2 {
+		margin-bottom: 20px;
 	}
 
 	@media (min-width: 426px) {

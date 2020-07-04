@@ -4,6 +4,7 @@ nav {
   padding: 0 1em;
   background: $theme-dark;
   color: $theme-light;
+  border-bottom: solid 3px $theme-primary;
   ul {
     margin: 0;
     padding: 0;
@@ -21,14 +22,15 @@ nav {
   [aria-current] {
     position: relative;
     display: inline-block;
+    color: $theme-secondary;
     &:after {
       position: absolute;
       content: '';
       width: calc(100% - 1em);
-      height: 2px;
+      height: 3px;
       background-color: $theme-secondary;
       display: block;
-      bottom: -1px;
+      bottom: -3px;
     }
   }
   a {
@@ -37,7 +39,7 @@ nav {
     display: block;
   }
   .logo {
-    margin: 5px 0;
+    margin: 5px 10px;
   }
 }
 
