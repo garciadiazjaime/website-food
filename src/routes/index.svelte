@@ -63,7 +63,7 @@
 	<img src="feedmetj_logo.svg" alt="Feed me Tj"/>
 	<h2>
 		La comida más rica del mundo se hace en Tijuana<br>
-		Encuéntrala con nosotros!
+		Encuéntrala aquí!
 	</h2>
 	<LocationDialog on:coordinatesChange={refreshPosts} bind:this={locationDialog} />
 	<div on:click={locationDialog.openDialog}>
