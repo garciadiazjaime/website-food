@@ -1,3 +1,4 @@
+@import "../theme/_smui-theme.scss";
 .mdc-dialog {
   display: block;
   z-index: -1;
@@ -31,4 +32,8 @@
     padding: 0 8px;
     border: none;
   }
+}
+.location-dialog-theme {
+  $mdc-theme-primary: $theme-primary;
+  @import "@smui/button/style";
 }
