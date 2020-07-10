@@ -1,0 +1,21 @@
+@import "../theme/_smui-theme.scss";
+.sticky-banner {
+  background-color: $theme-tertiary;
+  background-image: url("banner_bkg_mobile.svg");
+  background-size: auto 100%;
+  background-position: top right;
+  background-repeat: no-repeat;
+  padding: 30px 20px;
+
+  @media (min-width: 600px) {
+    background-image: url("banner_bkg.svg");
+  }
+
+  .content {
+    text-align: center;
+    
+    @media (min-width: 600px) {
+      margin-right: 200px;
+    }
+  }
+}

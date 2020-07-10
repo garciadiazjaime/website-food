@@ -4,6 +4,7 @@
 
 	import Card from '../components/Card.svelte';
 	import LocationDialog from '../components/LocationDialog.svelte';
+	import StickyBanner from '../components/StickyBanner.svelte';
 	import LocationCta from '../components/LocationCta.svelte';
 	import { userLocation } from '../utils/stores';
 	import { getPosts } from '../utils/mintAPIUtil';
@@ -38,6 +39,22 @@
 		grid-template-columns: repeat( auto-fit, minmax(247px, 1fr) );
 		margin: 10px;
 	}
+	img {
+		width: 150px;
+		display: block;
+		margin: 0 auto 20px;
+	}
+
+	@media (min-width: 450px) {
+      img {
+				width: 200px;
+			}
+	}
+
+	h2 {
+		margin-bottom: 20px;
+		color: #162645;
+	}
 
 	@media (min-width: 426px) {
 		.grid-container {
@@ -47,14 +64,19 @@
 </style>
 
 <svelte:head>
-  <title>Frescomer | What's coooking in Tj</title>
+  <title>Feed Me TJ</title>
 </svelte:head>
-
+<StickyBanner on:click={locationDialog.openDialog}>
+	<img src="feedmetj_logo.svg" alt="Feed me Tj"/>
+	<h2>
+		La comida más rica del mundo se hace en Tijuana<br>
+		Encuéntrala aquí!
+	</h2>
+	<div on:click={locationDialog.openDialog}>
+		<LocationCta location={$userLocation} />
+	</div>
+</StickyBanner>
 <LocationDialog on:coordinatesChange={refreshPosts} bind:this={locationDialog} />
-
-<div on:click={locationDialog.openDialog}>
-	<LocationCta location={$userLocation} />
-</div>
 <div class="grid-container">
   {#if posts}
     {#each posts as post, index}
@@ -62,4 +84,5 @@
     {/each}
   {/if}
 </div>
+<LocationDialog on:coordinatesChange={refreshPosts} bind:this={locationDialog} />
 

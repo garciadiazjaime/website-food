@@ -74,6 +74,7 @@
   div {
     display: flex;
     flex-direction: column;
+    background-color: black;
   }
   .hide {
     opacity: 0;
