@@ -40,13 +40,20 @@
 		margin: 10px;
 	}
 	img {
-		width: 200px;
+		width: 150px;
 		display: block;
 		margin: 0 auto 20px;
 	}
 
+	@media (min-width: 450px) {
+      img {
+				width: 200px;
+			}
+	}
+
 	h2 {
 		margin-bottom: 20px;
+		color: #162645;
 	}
 
 	@media (min-width: 426px) {
@@ -65,7 +72,6 @@
 		La comida más rica del mundo se hace en Tijuana<br>
 		Encuéntrala aquí!
 	</h2>
-	<LocationDialog on:coordinatesChange={refreshPosts} bind:this={locationDialog} />
 	<div on:click={locationDialog.openDialog}>
 		<LocationCta location={$userLocation} />
 	</div>
@@ -78,4 +84,5 @@
     {/each}
   {/if}
 </div>
+<LocationDialog on:coordinatesChange={refreshPosts} bind:this={locationDialog} />
 

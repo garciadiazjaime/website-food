@@ -1,8 +1,4 @@
 .fmt-theme {
-  background: black;
-  $mdc-theme-primary: #81ece4;
-  $mdc-theme-secondary: #fed94d;
-  $mdc-theme-background: #162645;
 
   @import "@material/theme/variables";
   @each $style in map-keys($mdc-theme-property-values) {
