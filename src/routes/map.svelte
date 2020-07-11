@@ -1,6 +1,8 @@
 <script>
 	import { onMount } from "svelte";
+	import { Content } from '@smui/dialog';
 
+	import '../components/LocationDialog.scss';
 	import Map from '../components/Map.svelte';
 	import MapMarker from '../components/MapMarker.svelte';
 	import { getLocations } from '../utils/mintAPIUtil'
@@ -24,14 +26,16 @@
 
 <UnderConstruction />
 
-<section>
+<section class="cta-map">
 	{#if locations}
-		<Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={zonaCentro.zoom}>
-			{#each locations as location }
-				{#if location.location && location.location.coordinates }
-					<MapMarker location={location} />
-				{/if}
-			{/each}
-		</Map>
+		<Content>
+			<Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={zonaCentro.zoom}>
+				{#each locations as location }
+					{#if location.location && location.location.coordinates }
+						<MapMarker location={location} />
+					{/if}
+				{/each}
+			</Map>
+		</Content>
 	{/if}
 </section>

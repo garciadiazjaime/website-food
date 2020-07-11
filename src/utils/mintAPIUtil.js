@@ -62,7 +62,7 @@ function getLocationQuery(first = 500) {
 
 async function requestHelper(payload) {
   const result = await fetch(
-    `process.API_URL/instagram/graphiql`,
+    `process.API_URL/graphiql`,
     {
       method: "POST",
       headers: {
