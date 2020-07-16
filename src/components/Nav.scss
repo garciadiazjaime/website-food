@@ -22,20 +22,13 @@ nav {
     position: relative;
     display: inline-block;
     color: $theme-primary;
-    &:after {
-      position: absolute;
-      content: '';
-      width: calc(100% - 1em);
-      height: 4px;
-      background-color: $theme-primary;
-      display: block;
-      bottom: 0;
-    }
+    border-bottom-color: $theme-primary;
   }
   a {
     text-decoration: none;
     padding: 1em 0.5em;
     display: block;
+    border: solid 2px transparent;
   }
   .logo {
     margin: 5px 5px 0 0;

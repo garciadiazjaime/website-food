@@ -15,7 +15,7 @@
     <p>
       Cerca de {$userLocation}
     </p>
-    <button aria-label="Escoge tu ubicación en un mapa">
+    <button aria-label="Escoge tu ubicación en el mapa">
       Cambiar
     </button>
   </div>
