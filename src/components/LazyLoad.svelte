@@ -20,6 +20,14 @@
     }, 200);
   };
 
+  img.onerror = () => {
+    className = 'hide'
+    setTimeout(() => {
+      className = 'show'
+      src = 'error_img.svg';
+    }, 200);
+  }
+
   onMount(() => {
     mounted = true
   });

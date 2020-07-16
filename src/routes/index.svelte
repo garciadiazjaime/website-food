@@ -20,7 +20,7 @@
 	}
 
   onMount(async () => {
-		await refreshPosts()
+		await refreshPosts();
 	});
 
 	async function refreshPosts() {
@@ -53,7 +53,7 @@
 
 	h2 {
 		margin-bottom: 20px;
-		color: #162645;
+		color: #313d69;
 	}
 
 	@media (min-width: 426px) {
