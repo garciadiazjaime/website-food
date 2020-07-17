@@ -14,7 +14,7 @@
   let currentTab;
 
   function getImageURL(post) {
-    if (post.mediaType === "IMAGE") {
+    if (post.mediaUrl) {
       return post.mediaUrl;
     }
 
