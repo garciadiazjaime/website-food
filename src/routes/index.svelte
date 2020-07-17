@@ -21,6 +21,7 @@
 
   onMount(async () => {
 		await refreshPosts();
+		window._BUILD_VERSION = 'BUILD_VERSION'
 	});
 
 	async function refreshPosts() {
