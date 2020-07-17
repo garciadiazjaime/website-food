@@ -28,7 +28,7 @@
 		const coordinates = JSON.parse(window.localStorage.getItem('@location'))
 		const lngLat = coordinates ? [coordinates.lng, coordinates.lat] : [zonaCentro.lng, zonaCentro.lat];
 
-		posts = await getPosts({ lngLat });
+		posts = await getPosts({ lngLat, state: 'MAPPED' });
 	}
 </script>
 
