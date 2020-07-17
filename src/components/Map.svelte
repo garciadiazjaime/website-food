@@ -10,7 +10,8 @@
 	export let lat;
 	export let lng;
 	export let zoom;
-	export let enablePinMarker = false
+	export let enablePinMarker = false;
+	export let enableDragMarker = false
 
 	let container;
 	let map;
@@ -27,12 +28,18 @@
 		if (enablePinMarker) {
 			map.on('click', setMarker);
 
-			const userCoordinates = JSON.parse(window.localStorage.getItem('@location'))
+			const userCoordinates = JSON.parse(window.localStorage.getItem('@location'));
 			if (userCoordinates) {
 				setMarker({
 					lngLat: userCoordinates
 				})
 			}
+		}
+
+		if (enableDragMarker) {
+			map.on('dragend', () => {
+				window.localStorage.setItem('@location', JSON.stringify(map.getCenter()));
+			});
 		}
 
 		return () => {
