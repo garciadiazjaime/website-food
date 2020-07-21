@@ -1,44 +1,58 @@
+<script>
+	import './about.scss';
+</script>
 <svelte:head>
-	<title>Frescomer | La mesa está servida</title>
+	<title>Feed Me Tj</title>
 </svelte:head>
-<h1>Frescomer | La mesa está servida</h1>
+<div class="about-page">
+	<div class="title">
+		<h1>Feed Me Tj</h1>
+	</div>
+	<div class="content-block primary">
+		<h2>¿Qué es Feed Me Tj?</h2>
+		<p>FMT es un directorio que hace muy fácil publicar y ver ofertas para comer cerca de tu ubicación.</p>
+		<p>Nuestro contenido viene de Instagram a través de hashtags que estamos observando. Si agregas <span class="fancy">#feedmetj</span> a tu post, aparecerá en FMT.</p>
+		<p>Nuestro objetivo es ofrecer un canal de promoción efectivo donde sea posible emprender sin necesidad de gastar ni tiempo ni dinero adicional.</p>
 
-<h2>¿Qué es Frescomer?</h2>
-<p>Frescomer es el contenido de Instagram restaurantes, reorganizado para facilitar poner comida en tu mesa.</p>
-<p>Al comensal le ofrecemos una manera muy rápida de encontrar opciones de comida en su área y ordenar directamente al negocio</p>
-<p>Al restaurantero le ofrecemos ofertarse en un directorio basado en locación desde la comodidad de su propia cuenta de Instagram.</p>
 
+		<h2>¿Cómo funciona FMT?</h2>
+		<ol>
+			<li>Observamos posts con hashtags relacionados con ofertas para comer</li>
+			<li>Identificamos información de contacto y de ubicación</li>
+			<li>Las ofertas se publican en nuestra página en un formato que facilita encontrar y ordenar de lugares que están cerca del usuario.</li>
+		</ol>
 
-<h2>¿Cómo funciona Frescomer?</h2>
-<p>
-	Instagram no es el primer lugar que uno piensa para buscar opciones para comer. 
-	Sin embargo, la información necesaria está ahí: menús, ofertas, dirección y teléfonos. 
-</p>
-<p>Nosotros rescatamos toda esta información y creamos una plataforma para presentarla en una forma optimizada para generar ventas.</p>
+		<h2>¿Por qué usar FMT?</h2>
+		<ul>
+			<li>Porque ya estás haciendo el esfuerzo e inversión de generar contenido.</li>
+			<li>Porque el esfuerzo para incluir tu contenido en Frescomer es mínimo. Solon agrega <span class="fancy">#feedmetj</span> en tu post y ya esás adentro.</li>
+			<li>Porque Frescomer pone ese contenido enfrente de quienes lo están buscando específicamente.</li>
+		</ul>
+	</div>
+	<div class="content-block secondary">
+		<h2>¿Cómo administrar tu perfil?</h2>
 
-<h2>¿Por qué usar Frescomer?</h2>
-<ul>
-	<li>Porque ya estás haciendo el esfuerzo e inversión de generar contenido.</li>
-	<li>Porque el esfuerzo para incluir tu contenido en Frescomer es mínimo. No tienes que hacer cuenta, ni pagar nada. Sólo tienes que incluir #frescomer en tu post y asegurarte de que la información que rescatamos esté disponible.</li>
-	<li>Porque Frescomer pone ese contenido enfrente de quienes lo están buscando específicamente.</li>
-</ul>
+		<p>Tu perfil es tu cuenta de Instagram, no necesitas crear una cuenta nueva.</p>
+		<ol>
+			<li>Incluye <span class="fancy">#feedmetj</span> para activar la cuenta de tu negocio en nuestra plataforma</li>
+			<li>Incluye ubicación, teléfono y whatsapp en el contenido de tu post.</li>
+		</ol>
+		<p>Y no olvides, mientras más completa tengamos tu información, mejor ranking van a tener tus posts en nuestras listas de resultados</p>
+	</div>
+	<div class="content-block secondary">
+		<h2>¿Qué ganamos nosotros de todo esto?</h2>
+		<p>
+			Este proyecto comenzó con la intención de facilitar que nuestra comunidad se adapte a la "nueva realidad".
+			Creemos que desaparecer las barreras técnicas y económicas para incorporarse a la economía digital, 
+			va a fomentar la supervivencia y creación de nuevos negocios. 
+			Nosotros seguiremos desarrollando features en la plataforma hasta que podamos decirle al restaurantero:
+			Tienes esto gratis, pero si inviertes tanto, se te va a regresar más. Más sencillo decirlo que hacerlo, pero el primer paso está claro y es publicar esta página.
+		</p>
 
-<h2>¿Cómo administrar tu perfil?</h2>
-
-<p>Tu perfil es tu cuenta de Instagram, no necesitas crear una cuenta nueva.</p>
-<ol>
-	<li>Incluye el #frescomer para activar la cuenta de tu negocio en nuestra plataforma</li>
-	<li>Incluye locación, teléfono y whatsapp en el contenido de tu post.</li>
-	<li>Incluye palabras de nuestra lista.</li>
-</ol>
-<p>Y no olvides, mientras más completa tengamos tu información, mejor ranking van a tener tus posts en nuestras listas de resultados</p>
-
-<h2>¿Qué gana Frescomer de todo esto?</h2>
-<p>
-	Este proyecto comenzó con la intención de contribuir a la recuperación económica.
-	Creemos que desaparecer las barreras técnicas y económicas para incorporarse a la economía digital, 
-	va a fomentar la supervivencia y creación de nuevos negocios. 
-	Sacando adelante el proyecto, nuestra metodología queda respaldada con datos. 
-	Este respaldo nos abre las puertas a ofertar nuestra metodología como solución a problemas de organizaciones que tienen dinero para invertir en soluciones.
-	Si esto suena muy abstracto, es porque así tenemos la cabeza. 
-</p>
+		<h2>¿Cuál es el siguiente paso para la plataforma?</h2>
+		<p>
+			Queremos escuchar de tí productor, consumidor y promotor. Si tienes ideas, comentarios, quejas queremos saberlas para mejorar.
+			Escríbenos a <a class="fancy" href="mailto:info@feedmetj.com">info@feedmetj.com</a>
+	</p>
+	</div>
+</div>
