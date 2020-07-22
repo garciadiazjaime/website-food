@@ -11,7 +11,7 @@
 	<div class="content-block secondary">
 		<h2>¿Qué es Feed Me Tj?</h2>
 		<p>FMT es un directorio que hace muy fácil publicar y ver ofertas para comer cerca de tu ubicación.</p>
-		<p>Nuestro contenido viene de Instagram a través de hashtags que estamos observando. Si agregas <span class="fancy">#feedmetj</span> a tu post, aparecerá en FMT.</p>
+		<p>Nuestro contenido viene de Instagram a través de varios hashtags que estamos observando.</p>
 		<p>Nuestro objetivo es ofrecer un canal de promoción efectivo donde sea posible emprender sin necesidad de gastar ni tiempo ni dinero adicional.</p>
 
 		<h2>¿Cómo funciona FMT?</h2>
@@ -32,8 +32,9 @@
 		<h2>¿Cómo administrar tu perfil?</h2>
 		<p>Tu perfil es tu cuenta de Instagram, no necesitas crear una cuenta nueva.</p>
 		<ol>
-			<li>Incluye <span class="fancy">#feedmetj</span> para activar la cuenta de tu negocio en nuestra plataforma</li>
-			<li>Incluye ubicación, teléfono y whatsapp en el contenido de tu post.</li>
+			<li>Si en tus posts utilizas hashtags relacionados con la gastronomía en Tijuana es posible que ya seas parte de nuestro directorio.</li>
+			<li>Incluye ubicación, teléfono y whatsapp en el contenido de tu post para que aparezcan primero en nuestros resultados y nuestros usuarios puedan contactarte fácilmente.</li>
+			<li>Incluye <span class="fancy">#feedmetj</span> y tus posts tendrán prioridad.</li>
 		</ol>
 		<p>Y no olvides, mientras más completa tengamos tu información, mejor ranking van a tener tus posts en nuestros resultados</p>
 	</div>
