@@ -24,6 +24,10 @@
       line-height: 1;
     }
   }
+  .fancy {
+    font-weight: bold;
+    color: $theme-primary;
+  }
 
   .content-block {
     padding: 20px;
