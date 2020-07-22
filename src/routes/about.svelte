@@ -18,13 +18,13 @@
 		<ol>
 			<li>Observamos posts con hashtags relacionados con ofertas para comer</li>
 			<li>Identificamos información de contacto y de ubicación</li>
-			<li>Las ofertas se publican en nuestra página en un formato que facilita encontrar y ordenar de lugares que están cerca del usuario.</li>
+			<li>Las ofertas se publican en nuestra página en un formato que facilita encontrar y ordenar lugares que están cerca del usuario.</li>
 		</ol>
 
 		<h2>¿Por qué usar FMT?</h2>
 		<ul>
 			<li>Porque ya estás haciendo el esfuerzo e inversión de generar contenido.</li>
-			<li>Porque el esfuerzo para incluir tu contenido en Frescomer es mínimo. Solon agrega <span class="fancy">#feedmetj</span> en tu post y ya esás adentro.</li>
+			<li>Porque el esfuerzo para incluir tu contenido en Frescomer es mínimo. Solo agrega <span class="fancy">#feedmetj</span> en tu post y ya estás adentro.</li>
 			<li>Porque Frescomer pone ese contenido enfrente de quienes lo están buscando específicamente.</li>
 		</ul>
 	</div>
@@ -35,7 +35,7 @@
 			<li>Incluye <span class="fancy">#feedmetj</span> para activar la cuenta de tu negocio en nuestra plataforma</li>
 			<li>Incluye ubicación, teléfono y whatsapp en el contenido de tu post.</li>
 		</ol>
-		<p>Y no olvides, mientras más completa tengamos tu información, mejor ranking van a tener tus posts en nuestras listas de resultados</p>
+		<p>Y no olvides, mientras más completa tengamos tu información, mejor ranking van a tener tus posts en nuestros resultados</p>
 	</div>
 	<div class="content-block secondary">
 		<h2>¿Por qué estamos haciendo esto?</h2>
