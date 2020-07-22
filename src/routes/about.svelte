@@ -24,7 +24,7 @@
 		<h2>¿Por qué usar FMT?</h2>
 		<ul>
 			<li>Porque ya estás haciendo el esfuerzo e inversión de generar contenido.</li>
-			<li>Porque el esfuerzo para incluir tu contenido en Frescomer es mínimo. Solo agrega <span class="fancy">#feedmetj</span> en tu post y ya estás adentro.</li>
+			<li>Porque el esfuerzo para incluir tu contenido en Frescomer es mínimo.</li>
 			<li>Porque Frescomer pone ese contenido enfrente de quienes lo están buscando específicamente.</li>
 		</ul>
 	</div>
