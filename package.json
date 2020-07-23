@@ -10,8 +10,8 @@
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "test": "run-p --race dev cy:run",
-    "google:clean": "gsutil -m rm -r gs://food.mintitmedia.com/*",
-    "google:upload": "gsutil -m cp -r ./__sapper__/export/* gs://food.mintitmedia.com",
+    "google:clean": "gsutil -m rm -r gs://www.feedmetj.com/*",
+    "google:upload": "gsutil -m cp -r ./__sapper__/export/* gs://www.feedmetj.com",
     "deploy": "npm run google:clean && npm run google:upload"
   },
   "dependencies": {
