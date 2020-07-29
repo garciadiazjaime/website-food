@@ -1,0 +1,59 @@
+@import "../theme/_smui-theme.scss";
+
+.profile {
+  &.mdc-dialog {
+    .mdc-dialog__surface {
+      width: 100vw;
+      height: 100vh;
+      max-width: 100vw;
+      max-height: 100vh;
+      border-radius: 0;
+      overflow-y: scroll;
+      overflow-x: hidden;
+    }
+    .mdc-dialog__container {
+      transform: scale(1);
+      transform: translate(0, 80%);
+      opacity: 1;
+    }
+    &.mdc-dialog--open {
+      .mdc-dialog__container {
+        transform: translate(0, 0);
+      }
+    }
+  }
+  .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 10px;
+    opacity: 0.3;
+    border-radius: 0;
+    background: none;
+    border: none;
+    
+    &:hover {
+      opacity: 1;
+    }
+    &:focus {
+      box-shadow: none;
+      outline: none;
+    }
+    &:before, &:after {
+      position: absolute;
+      left: 10px;
+      content: ' ';
+      height: 20px;
+      width: 2px;
+      background-color: #333;
+      top: 0;
+    }
+    &:before {
+      transform: rotate(45deg);
+    }
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+  
+}

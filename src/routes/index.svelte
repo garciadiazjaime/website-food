@@ -1,17 +1,18 @@
 <script>
 	import { onMount } from "svelte";
 	import { fade } from 'svelte/transition';
-
 	import Card from '../components/Card.svelte';
 	import LocationDialog from '../components/LocationDialog.svelte';
 	import StickyBanner from '../components/StickyBanner.svelte';
 	import LocationCta from '../components/LocationCta.svelte';
+	import Profile from '../components/Profile.svelte';
 	import { userLocation } from '../utils/stores';
 	import { getPosts } from '../utils/mintAPIUtil';
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
 
 	let posts;
 	let locationDialog;
+	let profileDialog;
 	let hasAPI
 	const initialImagesToLoad = 2;
 
@@ -29,6 +30,7 @@
 		const lngLat = coordinates ? [coordinates.lng, coordinates.lat] : [zonaCentro.lng, zonaCentro.lat];
 
 		posts = await getPosts({ lngLat, state: 'MAPPED' });
+		console.log(posts);
 	}
 </script>
 
@@ -76,8 +78,8 @@
 	<div on:click={locationDialog.openDialog}>
 		<LocationCta location={$userLocation} />
 	</div>
+	<button on:click={profileDialog.openDialog}>Open Profile</button>
 </StickyBanner>
-<LocationDialog on:coordinatesChange={refreshPosts} bind:this={locationDialog} />
 <div class="grid-container">
   {#if posts}
     {#each posts as post, index}
@@ -86,4 +88,5 @@
   {/if}
 </div>
 <LocationDialog on:coordinatesChange={refreshPosts} bind:this={locationDialog} />
+<Profile bind:this={profileDialog} />
 
