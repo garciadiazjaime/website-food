@@ -18,8 +18,14 @@ async function getLocationName(lng, lat) {
   if(!Array.isArray(features) || !features.length) {
     return null
   }
+  let location;
+  features.map(feature => {
+    if(feature.place_type[0] === 'address') {
+      location = feature.text;
+    }
+  })
 
-  return features[0].text;
+  return location;
 }
 
 export {
