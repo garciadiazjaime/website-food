@@ -90,8 +90,8 @@
   <title>Feed Me TJ</title>
 	<meta property="og:title" content="Feed Me Tj">
 	<meta property="og:description" content="La comida más rica del mundo se hace en Tijuana, encuéntrala aquí">
-	<meta property="og:image" content="http://euro-travel-example.com/thumbnail.jpg">
-	<meta property="og:url" content="http://www.feedmetj.com/error_img.svg">
+	<meta property="og:image" content="http://www.feedmetj.com/error_img.svg">
+	<meta property="og:url" content="http://www.feedmetj.com/">
 </svelte:head>
 <StickyBanner on:click={locationDialog.openDialog}>
 	<img src="feedmetj_logo.svg" alt="Feed me Tj"/>
