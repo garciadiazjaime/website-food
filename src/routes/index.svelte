@@ -21,7 +21,6 @@
 
   onMount(async () => {
 		await refreshPosts();
-		window._BUILD_VERSION = 'BUILD_VERSION'
 	});
 
 	async function refreshPosts() {
@@ -52,7 +51,7 @@
 			}
 	}
 
-	h2 {
+	h1 {
 		margin-bottom: 20px;
 		color: #313d69;
 	}
@@ -65,14 +64,14 @@
 </style>
 
 <svelte:head>
-  <title>Feed Me TJ</title>
+  <title>Feed Me TJ | ¿Qué comer en Tijuana?</title>
 </svelte:head>
 <StickyBanner on:click={locationDialog.openDialog}>
 	<img src="feedmetj_logo.svg" alt="Feed me Tj"/>
-	<h2>
+	<h1>
 		La comida más rica del mundo se hace en Tijuana<br>
 		Encuéntrala aquí!
-	</h2>
+	</h1>
 	<div on:click={locationDialog.openDialog}>
 		<LocationCta location={$userLocation} />
 	</div>
