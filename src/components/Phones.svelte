@@ -7,7 +7,7 @@
   let phone;
 
   function handleClick(event) {
-    ga('send', 'event', 'phone', 'click', post.user.username, post.id);
+    ga('send', 'event', 'card', 'phone', post.user.username);
   }
 
   function getPhone() {

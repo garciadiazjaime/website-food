@@ -5,7 +5,7 @@
   let whatsapp = getWhatsapp(post.caption);
   
   function handleClick(event) {
-    ga('send', 'event', 'whatsapp', 'click', post.user.username, post.id);
+    ga('send', 'event', 'card', 'whatsapp', post.user.username);
   }
 </script>
 <style>

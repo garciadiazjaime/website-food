@@ -27,6 +27,10 @@
 
     return "/default.png";
   }
+
+  function handleClick() {
+    ga('send', 'event', 'card', 'click', post.user.username);
+  }
 </script>
 <style>
   .card-content {
@@ -49,7 +53,7 @@
   }
 </style>
 
-<Card data-id={post.id} class="Card">
+<Card data-id={post.id} class="Card" on:click={handleClick}>
   <div class="card-content">
     <LazyLoad lazy={lazy} dataSrc={getImageURL(post)} />
     <Whatsapp post={post} />
