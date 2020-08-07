@@ -24,7 +24,6 @@ async function getLocationName(lng, lat) {
       location = feature.text;
     }
   });
-  console.log(features[0].text);
   if (!location) {
     location = features[0].text;
   }
