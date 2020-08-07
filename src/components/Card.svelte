@@ -72,7 +72,7 @@
     <Options post={post} />
     <Location post={post} />
     <div class="last-item">
-      <Phones phone={getPhone(post)} username={post.user.username} id={post.id} />
+      <Phones phone={getPhone(post)} username={post.user.username} />
     </div>
   </div>
 </Card>

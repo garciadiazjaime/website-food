@@ -93,7 +93,7 @@
   <title>Feed Me TJ | ¿Qué comer en Tijuana?</title>
 	<meta property="og:title" content="Feed Me Tj">
 	<meta property="og:description" content="En FeedMeTj.com es muy fácil y gratis publicar y encontrar ofertas gastronómicas cerca de tu ubicación.">
-	<meta property="og:image" content="http://www.feedmetj.com/sharing?banner.jpg">
+	<meta property="og:image" content="http://www.feedmetj.com/sharing_banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
 </svelte:head>
 <StickyBanner on:click={locationDialog.openDialog}>

@@ -5,10 +5,9 @@
 
   export let phone;
   export let username;
-  export let id;
 
   function handleClick(event) {
-    ga('send', 'event', 'phone', 'click', username, id);
+    ga('send', 'event', 'card', 'phone', username);
   }
 
 </script>
