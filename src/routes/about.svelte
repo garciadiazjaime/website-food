@@ -2,7 +2,7 @@
 	import './about.scss';
 </script>
 <svelte:head>
-	<title>Feed Me Tj</title>
+	<title>¿Qué es Feed Me Tj?</title>
 </svelte:head>
 <div class="about-page">
 	<div class="title">
@@ -10,22 +10,22 @@
 	</div>
 	<div class="content-block secondary">
 		<h2>¿Qué es Feed Me Tj?</h2>
-		<p>FMT es un directorio que hace muy fácil publicar y ver ofertas para comer cerca de tu ubicación.</p>
+		<p>FMTJ es un directorio que hace muy fácil publicar y ver ofertas para comer cerca de tu ubicación.</p>
 		<p>Nuestro contenido viene de Instagram a través de varios hashtags que estamos observando.</p>
 		<p>Nuestro objetivo es ofrecer un canal de promoción efectivo donde sea posible emprender sin necesidad de gastar ni tiempo ni dinero adicional.</p>
 
-		<h2>¿Cómo funciona FMT?</h2>
+		<h2>¿Cómo funciona FMTJ?</h2>
 		<ol>
 			<li>Observamos posts con hashtags relacionados con ofertas para comer</li>
 			<li>Identificamos información de contacto y de ubicación</li>
 			<li>Las ofertas se publican en nuestra página en un formato que facilita encontrar y ordenar lugares que están cerca del usuario.</li>
 		</ol>
 
-		<h2>¿Por qué usar FMT?</h2>
+		<h2>¿Por qué usar FMTJ?</h2>
 		<ul>
 			<li>Porque ya estás haciendo el esfuerzo e inversión de generar contenido.</li>
-			<li>Porque el esfuerzo para incluir tu contenido en Frescomer es mínimo.</li>
-			<li>Porque Frescomer pone ese contenido enfrente de quienes lo están buscando específicamente.</li>
+			<li>Porque el esfuerzo para incluir tu contenido en FMTJ es mínimo.</li>
+			<li>Porque FMTJ pone ese contenido enfrente de quienes lo están buscando.</li>
 		</ul>
 	</div>
 	<div class="content-block tertiary">
@@ -36,12 +36,12 @@
 			<li>Incluye ubicación, teléfono y whatsapp en el contenido de tu post para que aparezcan primero en nuestros resultados y nuestros usuarios puedan contactarte fácilmente.</li>
 			<li>Incluye <span class="fancy">#feedmetj</span> y tus posts tendrán prioridad.</li>
 		</ol>
-		<p>Y no olvides, mientras más completa tengamos tu información, mejor ranking van a tener tus posts en nuestros resultados</p>
+		<p>Y no olvides, mientras más completa tengamos tu información, mejor ranking van a tener tus posts en nuestros resultados.</p>
 	</div>
 	<div class="content-block secondary">
 		<h2>¿Por qué estamos haciendo esto?</h2>
 		<p>
-			Este proyecto comenzó con la intención de facilitar que nuestra comunidad se adapte a la "nueva realidad".
+			Este proyecto comenzó con la intención de facilitar que nuestra comunidad se adapte a la <i>nueva realidad</i>.
 			Pensamos que desaparecer las barreras técnicas y económicas para incorporarse a la economía digital, 
 			va a fomentar la supervivencia y creación de nuevos negocios.
 		</p>

@@ -45,6 +45,23 @@ function getPostsQuery(lngLat, first = 100, since = '', to = '', state = '') {
   `;
 }
 
+function getProfilesQuery(lngLat, first = 100, state = '') {
+  return `
+    {
+      profile(first: ${first}, coordinates: ${JSON.stringify(lngLat) || null}, state: "${state}") {
+        username
+        title
+        phones
+        keywords
+        posts {
+          mediaUrl
+          caption
+        }
+      }
+    }
+  `
+}
+
 function getLocationQuery(first = 500) {
   return `
     {
@@ -99,7 +116,20 @@ async function getLocations(first) {
   return locations;
 }
 
+async function getProfiles({ lngLat, first, state }) {
+  const payload = {
+    query: getProfilesQuery(lngLat, first, state)
+  };
+
+  const {
+    data: { profile }
+  } = await requestHelper(payload)
+
+  return profile;
+}
+
 export {
   getPosts,
-  getLocations
+  getLocations,
+  getProfiles
 } 

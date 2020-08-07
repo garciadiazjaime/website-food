@@ -23,8 +23,11 @@ async function getLocationName(lng, lat) {
     if(feature.place_type[0] === 'address') {
       location = feature.text;
     }
-  })
-
+  });
+  console.log(features[0].text);
+  if (!location) {
+    location = features[0].text;
+  }
   return location;
 }
 

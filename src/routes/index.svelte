@@ -7,10 +7,11 @@
 	import LocationCta from '../components/LocationCta.svelte';
 	import Profile from '../components/Profile.svelte';
 	import { userLocation } from '../utils/stores';
-	import { getPosts } from '../utils/mintAPIUtil';
+	import { getPosts, getProfiles } from '../utils/mintAPIUtil';
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
 
 	let posts;
+	let profiles
 	let locationDialog;
 	let profileDialog;
 	let hasAPI
@@ -43,14 +44,18 @@
 
   onMount(async () => {
 		await refreshPosts();
-		window._BUILD_VERSION = 'BUILD_VERSION'
 	});
 
 	async function refreshPosts() {
 		const coordinates = JSON.parse(window.localStorage.getItem('@location'))
 		const lngLat = coordinates ? [coordinates.lng, coordinates.lat] : [zonaCentro.lng, zonaCentro.lat];
 
-		posts = await getPosts({ lngLat, state: 'MAPPED' });
+		[ posts, profiles ] = await Promise.all([
+			getPosts({ lngLat, state: 'MAPPED' }),
+			getProfiles({ lngLat, state: 'MAPPED' })
+		])
+
+		console.log(profiles)
 	}
 </script>
 
@@ -74,7 +79,7 @@
 			}
 	}
 
-	h2 {
+	h1 {
 		margin-bottom: 20px;
 		color: #313d69;
 	}
@@ -87,18 +92,18 @@
 </style>
 
 <svelte:head>
-  <title>Feed Me TJ</title>
+  <title>Feed Me TJ | ¿Qué comer en Tijuana?</title>
 	<meta property="og:title" content="Feed Me Tj">
-	<meta property="og:description" content="La comida más rica del mundo se hace en Tijuana, encuéntrala aquí">
-	<meta property="og:image" content="http://www.feedmetj.com/error_img.svg">
+	<meta property="og:description" content="En FeedMeTj.com es muy fácil y gratis publicar y encontrar ofertas gastronómicas cerca de tu ubicación.">
+	<meta property="og:image" content="http://www.feedmetj.com/sharing?banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
 </svelte:head>
 <StickyBanner on:click={locationDialog.openDialog}>
 	<img src="feedmetj_logo.svg" alt="Feed me Tj"/>
-	<h2>
+	<h1>
 		La comida más rica del mundo se hace en Tijuana<br>
 		Encuéntrala aquí!
-	</h2>
+	</h1>
 	<div on:click={locationDialog.openDialog}>
 		<LocationCta location={$userLocation} />
 	</div>

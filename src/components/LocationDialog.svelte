@@ -13,15 +13,17 @@
   let locationDialog;
 
   async function handleClick() {
-    ga('send', 'event', 'location', 'submit');
-    
     await setUserLocation();
 
     dispatch('coordinatesChange');
+
+    ga('send', 'event', 'location', 'submit');
   }
 
   export function openDialog() {
     locationDialog.open();
+
+    ga('send', 'event', 'location', 'change');
   }
 </script>
 

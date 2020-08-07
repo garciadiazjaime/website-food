@@ -6,7 +6,8 @@
 
   function handleClick(event) {
     visible = true
-    ga('send', 'event', 'flip-card', 'click', post.user.username, post.id);
+
+    ga('send', 'event', 'card', 'flip', post.user.username);
   }
 </script>
 
