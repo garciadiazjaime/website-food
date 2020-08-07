@@ -7,10 +7,11 @@
 	import StickyBanner from '../components/StickyBanner.svelte';
 	import LocationCta from '../components/LocationCta.svelte';
 	import { userLocation } from '../utils/stores';
-	import { getPosts } from '../utils/mintAPIUtil';
+	import { getPosts, getProfiles } from '../utils/mintAPIUtil';
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
 
 	let posts;
+	let profiles
 	let locationDialog;
 	let hasAPI
 	const initialImagesToLoad = 2;
@@ -27,7 +28,12 @@
 		const coordinates = JSON.parse(window.localStorage.getItem('@location'))
 		const lngLat = coordinates ? [coordinates.lng, coordinates.lat] : [zonaCentro.lng, zonaCentro.lat];
 
-		posts = await getPosts({ lngLat, state: 'MAPPED' });
+		[ posts, profiles ] = await Promise.all([
+			getPosts({ lngLat, state: 'MAPPED' }),
+			getProfiles({ lngLat, state: 'MAPPED' })
+		])
+
+		console.log(profiles)
 	}
 </script>
 
