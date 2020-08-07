@@ -53,9 +53,7 @@
 		[ posts, profiles ] = await Promise.all([
 			getPosts({ lngLat, state: 'MAPPED' }),
 			getProfiles({ lngLat, state: 'MAPPED' })
-		])
-
-		console.log(profiles)
+		]);
 	}
 </script>
 
