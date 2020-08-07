@@ -27,7 +27,7 @@
   }
 </script>
 
-<Dialog bind:this={locationDialog} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog cta-map frescomer-theme location-dialog-theme">
+<Dialog bind:this={locationDialog} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog cta-map location-dialog-theme">
   <Title id="simple-title">Escoge tu ubicación</Title>
   <Content id="simple-content" aria-label="Mapa">
     <Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={zonaCentro.zoom} enableDragMarker={true}></Map>

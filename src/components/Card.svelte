@@ -13,6 +13,14 @@
 
   let currentTab;
 
+  function getPhone() {
+    if(post.meta && Array.isArray(post.meta.phones) && post.meta.phones.length){
+      return post.meta.phones[0];  // default tab
+    }
+
+    return ''
+  }
+
   function getImageURL(post) {
     if (post.mediaUrl) {
       return post.mediaUrl;
@@ -64,7 +72,7 @@
     <Options post={post} />
     <Location post={post} />
     <div class="last-item">
-      <Phones post={post} />
+      <Phones phone={getPhone(post)} username={post.user.username} />
     </div>
   </div>
 </Card>

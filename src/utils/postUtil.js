@@ -9,7 +9,7 @@ function getTitle(post) {
   return user && (user.fullName || user.username)
 }
 
-function getPhoneNumber(phone) {
+function formatPhoneNumber(phone) {
   const areaCode = phone.length >= 10 ? `(${phone.substr(0, 3)})` : '';
   const first3 = phone.substr(-7, 3);
   const last4 = phone.substr(-4);
@@ -35,5 +35,5 @@ export function getWhatsapp(caption) {
 
 export {
   getTitle,
-  getPhoneNumber,
+  formatPhoneNumber,
 }
