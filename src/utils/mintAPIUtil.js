@@ -53,6 +53,8 @@ function getProfilesQuery(lngLat, first = 100, state = '') {
         title
         phones
         keywords
+        address
+        dist
         posts {
           mediaUrl
           caption
