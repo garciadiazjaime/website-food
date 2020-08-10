@@ -49,7 +49,6 @@
   }
 
   function getKeywords(profile) {
-    console.log(profile.id);
     if(profile.keywords && Array.isArray(profile.keywords) && profile.keywords.length) {
       return profile.keywords;
     }
