@@ -53,6 +53,7 @@ function getProfilesQuery(lngLat, first = 100, state = '') {
         username
         title
         mediaUrl
+        caption
         phones
         keywords
         address
