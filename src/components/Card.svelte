@@ -7,7 +7,7 @@
   import FlipCard from '../components/FlipCard.svelte';
   import Title from '../components/Title.svelte';
   import Whatsapp from '../components/Whatsapp.svelte';
-  import { getWhatsapp, getTitle } from '../utils/postUtil';
+  import { getWhatsapp } from '../utils/postUtil';
 
   export let profile;
   export let lazy;
@@ -41,7 +41,15 @@
       return profile.posts[0].caption;
     }
   }
+
+  function getTitle(profile) {
+    if(profile.title) {
+      return profile.title;
+    }
+  }
+
   function getKeywords(profile) {
+    console.log(profile.id);
     if(profile.keywords && Array.isArray(profile.keywords) && profile.keywords.length) {
       return profile.keywords;
     }
@@ -72,14 +80,14 @@
   }
 </style>
 
-<Card data-id={profile.username} class="Card" on:click={handleClick}>
+<Card data-id={profile.id} class="Card" on:click={handleClick}>
   <div class="card-content">
     <LazyLoad lazy={lazy} dataSrc={getImageURL(profile)} />
-    <Whatsapp whatsapp={getWhatsapp("whatsapp: 66430303030")} />
+    <Whatsapp whatsapp={getWhatsapp(getCaption(profile))} />
     <div class="info-button">
       <FlipCard caption={getCaption(profile)} />
     </div>
-    <Title title={profile.username} />
+    <Title title={getTitle(profile)} />
     {#if getKeywords(profile)}
       <Keywords keywords={getKeywords(profile)} />
     {/if}
