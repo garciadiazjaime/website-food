@@ -1,5 +1,5 @@
 <script>
-	export let post;
+	export let keywords;
 </script>
 
 <style>
@@ -36,12 +36,11 @@
   }
 </style>
 
-{#if post && post.meta && post.meta.options && post.meta.options.length}
-  <div class="container">
-    <div class="content">
-      {#each post.meta.options as option}
-        <span>{option}</span>
-      {/each}
-    </div>
+
+<div class="container">
+  <div class="content">
+    {#each keywords as keyword}
+      <span>{keyword}</span>
+    {/each}
   </div>
-{/if}
+</div>

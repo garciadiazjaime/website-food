@@ -1,7 +1,7 @@
 <script>
   import { scale } from 'svelte/transition';
   import ExpandButton from '../components/ExpandButton.svelte';
-  export let post = {};
+  export let caption;
   let visible = false;
 
   function handleClick(event) {
@@ -83,17 +83,16 @@
     transform: rotate(-45deg);
   }
 </style>
-{#if post && post.caption}
-  <button on:click={handleClick}>
-    <ExpandButton  />
-  </button>
-  {#if visible}
-    <div class="ig-container" transition:scale="{{duration: 200, start: .85}}">
-      <div class="ig-post">
-        <button class="close" on:click={() => (visible = false)} />
-        <h2 class="title"><img src="/icons/offer.svg" alt="Desde Instagram"/> Desde Instagram</h2>
-        {post.caption}
-      </div>
+
+<button on:click={handleClick}>
+  <ExpandButton  />
+</button>
+{#if visible}
+  <div class="ig-container" transition:scale="{{duration: 200, start: .85}}">
+    <div class="ig-post">
+      <button class="close" on:click={() => (visible = false)} />
+      <h2 class="title"><img src="/icons/offer.svg" alt="Desde Instagram"/> Desde Instagram</h2>
+      {caption}
     </div>
-  {/if}
+  </div>
 {/if}

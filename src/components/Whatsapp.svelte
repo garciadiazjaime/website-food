@@ -1,8 +1,6 @@
 <script>
-	import { getWhatsapp } from '../utils/postUtil'
-  export let post = {};
+  export let whatsapp;
   export let text = '';
-  let whatsapp = getWhatsapp(post.caption);
   
   function handleClick(event) {
     ga('send', 'event', 'card', 'whatsapp', post.user.username);
