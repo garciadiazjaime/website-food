@@ -49,6 +49,7 @@ function getProfilesQuery(lngLat, first = 100, state = '') {
   return `
     {
       profile(first: ${first}, coordinates: ${JSON.stringify(lngLat) || null}, state: "${state}") {
+        id
         username
         title
         phones
