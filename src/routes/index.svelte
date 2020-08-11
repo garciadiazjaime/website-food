@@ -26,9 +26,10 @@
 	});
 
 	function getProfileContent(id) {
+		console.log(profiles);
 		const profile = profiles.find(profile => profile.id == id);
-		console.log(profile)
-		return { title: Math.random() };
+		console.log(profile);
+		return profile;
 	}
 
 	async function refreshProfiles() {

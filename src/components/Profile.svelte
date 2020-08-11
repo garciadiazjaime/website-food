@@ -5,7 +5,7 @@
   let profileDialog;
   export let profile;
 
-  const { title } = profile;
+  const { title } = profile ? profile : {title: ''};
 
   export function openDialog() {
     profileDialog.open();
