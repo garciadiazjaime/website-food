@@ -52,7 +52,7 @@
     <Whatsapp whatsapp={getWhatsapp(profile.caption)} />
     <div class="info-button">
       <FlipCard>
-        <p>This component is going away but let's keep it in the library</p>
+        <p>This component is going away soon</p>
       </FlipCard>
     </div>
     <Title title={profile.title} />
