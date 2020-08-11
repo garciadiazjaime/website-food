@@ -14,48 +14,15 @@
 
   let currentTab;
 
-  function getPhone(profile) {
-    if(profile && Array.isArray(profile.phones) && profile.phones.length) {
-      return profile.phones[0];  // default tab
-    }
-    return '';
-  };
-
-  function getUsername(profile) {
-    if(profile && Array.isArray(profile.username)) {
-      return profile.username;  // default tab
-    }
-    return '';
-  }
-
   function getImageURL(profile) {
     if (profile.posts && Array.isArray(profile.posts) && profile.posts[0].mediaUrl) {
-
       return profile.posts[0].mediaUrl;
     }
     return "/default.png";
   }
-  
-  function getCaption(profile) {
-    if (profile.posts && Array.isArray(profile.posts) && profile.posts[0].caption) {
-      return profile.posts[0].caption;
-    }
-  }
-
-  function getTitle(profile) {
-    if(profile.title) {
-      return profile.title;
-    }
-  }
-
-  function getKeywords(profile) {
-    if(profile.keywords && Array.isArray(profile.keywords) && profile.keywords.length) {
-      return profile.keywords;
-    }
-  }
 
   function handleClick() {
-    ga('send', 'event', 'card', 'click', getUsername(profile));
+    ga('send', 'event', 'card', 'click', profile.username);
   }
 </script>
 <style>
@@ -82,17 +49,19 @@
 <Card data-id={profile.id} class="Card" on:click={handleClick}>
   <div class="card-content">
     <LazyLoad lazy={lazy} dataSrc={getImageURL(profile)} />
-    <Whatsapp whatsapp={getWhatsapp(getCaption(profile))} />
+    <Whatsapp whatsapp={getWhatsapp(profile.caption)} />
     <div class="info-button">
-      <FlipCard caption={getCaption(profile)} />
+      <FlipCard>
+        <p>This component is going away but let's keep it in the library</p>
+      </FlipCard>
     </div>
-    <Title title={getTitle(profile)} />
-    {#if getKeywords(profile)}
-      <Keywords keywords={getKeywords(profile)} />
+    <Title title={profile.title} />
+    {#if profile.keywords}
+      <Keywords keywords={profile.keywords} />
     {/if}
     <Location address={profile.address} dist={profile.dist}/>
     <div class="last-item">
-      <Phones phone={getPhone(profile)} username={getUsername(profile)}/>
+      <Phones phone={profile.phones[0]} username={profile.username}/>
     </div> 
   </div> 
 </Card>

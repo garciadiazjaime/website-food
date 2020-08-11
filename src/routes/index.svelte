@@ -108,11 +108,6 @@
 	<button on:click={profileDialog.openDialog}>Open Profile</button>
 </StickyBanner>
 <div class="grid-container">
-  <!-- {#if posts}
-    {#each posts as post, index}
-			<Card post={post} lazy={hasAPI && index > initialImagesToLoad} />
-    {/each}
-  {/if} -->
   {#if profiles}
     {#each profiles as profile, index}
 			<Card profile={profile} lazy={hasAPI && index > initialImagesToLoad} />
