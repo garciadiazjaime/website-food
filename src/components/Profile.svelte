@@ -3,9 +3,9 @@
   import Button, { Label } from '@smui/button';
   import './Profile.scss';
   let profileDialog;
-  export let data;
+  export let profile;
 
-  const { title, phone } = data;
+  const { title } = profile;
 
   export function openDialog() {
     profileDialog.open();
@@ -16,6 +16,6 @@
   <Title id="simple-title">{title}</Title>
   <button class="close"on:click={() => profileDialog.close()} />
   <Content id="simple-content" aria-label="Mapa">
-     {phone}
+     Content
   </Content>
 </Dialog>

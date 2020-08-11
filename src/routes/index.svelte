@@ -6,15 +6,15 @@
 	import StickyBanner from '../components/StickyBanner.svelte';
 	import LocationCta from '../components/LocationCta.svelte';
 	import Profile from '../components/Profile.svelte';
-	import { userLocation } from '../utils/stores';
+	import { userLocation, profileId } from '../utils/stores';
 	import { getPosts, getProfiles } from '../utils/mintAPIUtil';
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
 
 	let posts;
-	let profiles
+	let profiles;
 	let locationDialog;
 	let profileDialog;
-	let hasAPI
+	let hasAPI;
 	const initialImagesToLoad = 2;
 	const profileContent = {
 		title: 'Billares Don Luis',
@@ -45,6 +45,12 @@
   onMount(async () => {
 		await refreshPosts();
 	});
+
+	function getProfileContent(id) {
+		const profile = profiles.find(profile => profile.id == id);
+		console.log(profile)
+		return { title: Math.random() };
+	}
 
 	async function refreshPosts() {
 		const coordinates = JSON.parse(window.localStorage.getItem('@location'))
@@ -105,15 +111,15 @@
 	<div on:click={locationDialog.openDialog}>
 		<LocationCta location={$userLocation} />
 	</div>
-	<button on:click={profileDialog.openDialog}>Open Profile</button>
+	<p>{$profileId}</p>
 </StickyBanner>
 <div class="grid-container">
   {#if profiles}
     {#each profiles as profile, index}
-			<Card profile={profile} lazy={hasAPI && index > initialImagesToLoad} />
+			<Card profile={profile} lazy={hasAPI && index > initialImagesToLoad} openProfile={profileDialog.openDialog} />
     {/each}
   {/if}
 </div>
 <LocationDialog on:coordinatesChange={refreshPosts} bind:this={locationDialog} />
-<Profile bind:this={profileDialog} data={profileContent}/>
+<Profile bind:this={profileDialog} profile={() => getProfileContent($profileId)} />
 
