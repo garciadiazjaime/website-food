@@ -1,6 +1,5 @@
 <script>
-	import { getTitle } from '../utils/postUtil'
-  export let post;
+  export let title;
 </script>
 
 <style>
@@ -22,5 +21,5 @@
 	}
 </style>
 
-<div class="title">{getTitle(post)}</div>
+<div class="title">{title}</div>
 

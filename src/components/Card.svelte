@@ -2,42 +2,20 @@
   import Card from "@smui/card";
 	import LazyLoad from '../components/LazyLoad.svelte';
   import Location from '../components/Location.svelte';
-  import Title from '../components/Title.svelte';
-	import Options from '../components/Options.svelte';
+	import Keywords from '../components/Keywords.svelte';
   import Phones from '../components/Phones.svelte';
   import FlipCard from '../components/FlipCard.svelte';
+  import Title from '../components/Title.svelte';
   import Whatsapp from '../components/Whatsapp.svelte';
+  import { getWhatsapp } from '../utils/postUtil';
 
-  export let post;
+  export let profile;
   export let lazy;
 
   let currentTab;
 
-  function getPhone() {
-    if(post.meta && Array.isArray(post.meta.phones) && post.meta.phones.length){
-      return post.meta.phones[0];  // default tab
-    }
-
-    return ''
-  }
-
-  function getImageURL(post) {
-    if (post.mediaUrl) {
-      return post.mediaUrl;
-    }
-
-    if (Array.isArray(post.children) && post.children.length) {
-      const media = post.children.find(item => item.media_type === 'IMAGE')
-      if (media && media.media_url) {
-        return media.media_url;
-      }
-    }
-
-    return "/default.png";
-  }
-
   function handleClick() {
-    ga('send', 'event', 'card', 'click', post.user.username);
+    ga('send', 'event', 'card', 'click', profile.username);
   }
 </script>
 <style>
@@ -61,18 +39,20 @@
   }
 </style>
 
-<Card data-id={post.id} class="Card" on:click={handleClick}>
+<Card data-id={profile.id} class="Card" on:click={handleClick}>
   <div class="card-content">
-    <LazyLoad lazy={lazy} dataSrc={getImageURL(post)} />
-    <Whatsapp post={post} />
+    <LazyLoad lazy={lazy} dataSrc={profile.posts[0].mediaUrl ? profile.posts[0].mediaUrl : "/default.png"} />
+    <Whatsapp whatsapp={getWhatsapp(profile.caption)} />
     <div class="info-button">
-      <FlipCard post={post} />
+      <FlipCard>
+        <p>This component is going away soon</p>
+      </FlipCard>
     </div>
-    <Title post={post} />
-    <Options post={post} />
-    <Location post={post} />
+    <Title title={profile.title} />
+    <Keywords keywords={profile.keywords} />
+    <Location address={profile.address} dist={profile.dist}/>
     <div class="last-item">
-      <Phones phone={getPhone(post)} username={post.user.username} />
-    </div>
-  </div>
+      <Phones phone={profile.phones[0]} username={profile.username}/>
+    </div> 
+  </div> 
 </Card>

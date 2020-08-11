@@ -1,7 +1,6 @@
 <script>
   import { scale } from 'svelte/transition';
   import ExpandButton from '../components/ExpandButton.svelte';
-  export let post = {};
   let visible = false;
 
   function handleClick(event) {
@@ -17,10 +16,9 @@
     background: none;
     border: none;
   }
-  .ig-container {
+  .container {
     border-radius: 4px;
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
-    padding: 1px;
+    background: #fff;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -29,7 +27,7 @@
     z-index: 6;
     box-sizing: border-box;
   }
-  .ig-post {
+  .content {
     border-radius: 3px;
     position: relative;
     padding: 10px 15px 15px;
@@ -40,18 +38,8 @@
     overflow-x: hidden;
     text-align: left;
   }
-  .ig-post:after {
+  .content:after {
     bottom: 0;
-  }
-  .title {
-    color: #285AEB;
-    text-align: center;
-    padding-bottom: 15px;
-    font-size: 14px;
-    font-weight: 600;
-  }
-  .title img {
-    margin-bottom: -8px;
   }
   .close {
     position: absolute;
@@ -83,17 +71,15 @@
     transform: rotate(-45deg);
   }
 </style>
-{#if post && post.caption}
-  <button on:click={handleClick}>
-    <ExpandButton  />
-  </button>
-  {#if visible}
-    <div class="ig-container" transition:scale="{{duration: 200, start: .85}}">
-      <div class="ig-post">
-        <button class="close" on:click={() => (visible = false)} />
-        <h2 class="title"><img src="/icons/offer.svg" alt="Desde Instagram"/> Desde Instagram</h2>
-        {post.caption}
-      </div>
+
+<button on:click={handleClick}>
+  <ExpandButton  />
+</button>
+{#if visible}
+  <div class="container" transition:scale="{{duration: 200, start: .85}}">
+    <div class="content">
+      <button class="close" on:click={() => (visible = false)} />
+      <slot></slot>
     </div>
-  {/if}
+  </div>
 {/if}
