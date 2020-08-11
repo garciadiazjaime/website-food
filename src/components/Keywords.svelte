@@ -36,11 +36,12 @@
   }
 </style>
 
-
-<div class="container">
-  <div class="content">
-    {#each keywords as keyword}
-      <span>{keyword}</span>
-    {/each}
+{#if keywords}
+  <div class="container">
+    <div class="content">
+      {#each keywords as keyword}
+        <span>{keyword}</span>
+      {/each}
+    </div>
   </div>
-</div>
+{/if}

@@ -14,13 +14,6 @@
 
   let currentTab;
 
-  function getImageURL(profile) {
-    if (profile.posts && Array.isArray(profile.posts) && profile.posts[0].mediaUrl) {
-      return profile.posts[0].mediaUrl;
-    }
-    return "/default.png";
-  }
-
   function handleClick() {
     ga('send', 'event', 'card', 'click', profile.username);
   }
@@ -48,7 +41,7 @@
 
 <Card data-id={profile.id} class="Card" on:click={handleClick}>
   <div class="card-content">
-    <LazyLoad lazy={lazy} dataSrc={getImageURL(profile)} />
+    <LazyLoad lazy={lazy} dataSrc={profile.posts[0].mediaUrl ? profile.posts[0].mediaUrl : "/default.png"} />
     <Whatsapp whatsapp={getWhatsapp(profile.caption)} />
     <div class="info-button">
       <FlipCard>
@@ -56,9 +49,7 @@
       </FlipCard>
     </div>
     <Title title={profile.title} />
-    {#if profile.keywords}
-      <Keywords keywords={profile.keywords} />
-    {/if}
+    <Keywords keywords={profile.keywords} />
     <Location address={profile.address} dist={profile.dist}/>
     <div class="last-item">
       <Phones phone={profile.phones[0]} username={profile.username}/>
