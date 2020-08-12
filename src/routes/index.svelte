@@ -6,7 +6,7 @@
 	import StickyBanner from '../components/StickyBanner.svelte';
 	import LocationCta from '../components/LocationCta.svelte';
 	import Profile from '../components/Profile.svelte';
-	import { userLocation, profiles } from '../utils/stores';
+	import { userLocation } from '../utils/stores';
 	import { getProfiles } from '../utils/mintAPIUtil';
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
 
@@ -14,6 +14,7 @@
 	let profileDialog;
 	let currentProfile;
 	let hasAPI;
+	let profiles;
 	const initialImagesToLoad = 2;
 	
 
@@ -29,9 +30,7 @@
 		const coordinates = JSON.parse(window.localStorage.getItem('@location'))
 		const lngLat = coordinates ? [coordinates.lng, coordinates.lat] : [zonaCentro.lng, zonaCentro.lat];
 
-		[ $profiles ] = await Promise.all([
-			getProfiles({ lngLat, state: 'MAPPED' })
-		]);
+		profiles = await getProfiles({ lngLat, state: 'MAPPED' });
 	}
 </script>
 
@@ -85,8 +84,8 @@
 	</div>
 </StickyBanner>
 <div class="grid-container">
-  {#if $profiles}
-    {#each $profiles as profile, index}
+  {#if profiles}
+    {#each profiles as profile, index}
 			<Card profile={profile} lazy={hasAPI && index > initialImagesToLoad} openProfile={profileDialog.openDialog} />
     {/each}
   {/if}

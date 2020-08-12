@@ -9,10 +9,11 @@
   import './Profile.scss';
   let profileDialog;
   let profile;
-  let posts = [];
+  let posts;
   
   export function openDialog(currentProfile) {
     profile = currentProfile;
+    posts = profile.posts;
     profileDialog.open();
   }
 </script>
@@ -22,14 +23,12 @@
     <Title id="simple-title">
       <Name title={profile.title} />
       <Location address={profile.address} dist={profile.dist}/>
-      {profile.dist}<br />
-      {profile.address}<br />
-      {profile.phones}
+      <Phones phone={profile.phones[0]} username={profile.username}/>
     </Title>
-    <button class="close"on:click={() => profileDialog.close()} />
+    <button class="close" on:click={profileDialog.close} />
     <Content id="simple-content" aria-label="Mapa">
-      <img src={profile.mediaUrl} alt={profile.title} width="100" />
       {#each profile.posts as post}
+        <img src={post.mediaUrl} alt={profile.title} width="100" />
         {post.caption} <br />
       {/each}
     </Content>

@@ -14,7 +14,7 @@
 
   let currentTab;
 
-  function handleClick(id) {
+  function handleClick() {
     ga('send', 'event', 'card', 'click', profile.username);
     openProfile(profile);
   }
@@ -34,7 +34,7 @@
   }
 </style>
 
-<Card data-id={profile.id} class="Card" on:click={() =>handleClick(profile.id)}>
+<Card data-id={profile.id} class="Card" on:click={handleClick}>
   <div class="card-content">
     <LazyLoad lazy={lazy} dataSrc={profile.posts[0].mediaUrl ? profile.posts[0].mediaUrl : "/default.png"} />
     <Whatsapp whatsapp={getWhatsapp(profile.caption)} />
