@@ -11,7 +11,7 @@
   let profile;
   let posts;
   
-  export function openDialog(currentProfile) {
+  export function openProfile(currentProfile) {
     profile = currentProfile;
     posts = profile.posts;
     profileDialog.open();

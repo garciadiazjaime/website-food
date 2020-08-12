@@ -86,7 +86,7 @@
 <div class="grid-container">
   {#if profiles}
     {#each profiles as profile, index}
-			<Card profile={profile} lazy={hasAPI && index > initialImagesToLoad} openProfile={profileRef.openDialog} />
+			<Card profile={profile} lazy={hasAPI && index > initialImagesToLoad} openProfile={profileRef.openProfile} />
     {/each}
   {/if}
 </div>
