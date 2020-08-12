@@ -6,15 +6,15 @@
 	import StickyBanner from '../components/StickyBanner.svelte';
 	import LocationCta from '../components/LocationCta.svelte';
 	import Profile from '../components/Profile.svelte';
-	import { userLocation, profileId, profiles } from '../utils/stores';
+	import { userLocation, profiles } from '../utils/stores';
 	import { getProfiles } from '../utils/mintAPIUtil';
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
 
 	let locationDialog;
 	let profileDialog;
+	let currentProfile;
 	let hasAPI;
 	const initialImagesToLoad = 2;
-	let profile;
 	
 
 	if (process.browser) {
@@ -83,7 +83,6 @@
 	<div on:click={locationDialog.openDialog}>
 		<LocationCta location={$userLocation} />
 	</div>
-	<p>{$profileId}</p>
 </StickyBanner>
 <div class="grid-container">
   {#if $profiles}

@@ -1,13 +1,12 @@
 <script>
   import Card from "@smui/card";
-	import LazyLoad from '../components/LazyLoad.svelte';
-  import Location from '../components/Location.svelte';
-	import Keywords from '../components/Keywords.svelte';
-  import Phones from '../components/Phones.svelte';
-  import Title from '../components/Title.svelte';
-  import Whatsapp from '../components/Whatsapp.svelte';
+	import LazyLoad from './LazyLoad.svelte';
+  import Location from './Location.svelte';
+	import Keywords from './Keywords.svelte';
+  import Phones from './Phones.svelte';
+  import Title from './Title.svelte';
+  import Whatsapp from './Whatsapp.svelte';
   import { getWhatsapp } from '../utils/postUtil';
-  import { profileId } from '../utils/stores';
 
   export let profile;
   export let lazy;
@@ -17,8 +16,7 @@
 
   function handleClick(id) {
     ga('send', 'event', 'card', 'click', profile.username);
-    profileId.set(id);
-    openProfile();
+    openProfile(profile);
   }
 </script>
 <style>
@@ -30,9 +28,6 @@
     display: flex;
     flex-flow: column nowrap;
     align-content: space-between;
-  }
-  .info-button {
-    color: pink;
   }
   .last-item {
     margin-top: auto;
