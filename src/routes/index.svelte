@@ -7,53 +7,30 @@
 	import LocationCta from '../components/LocationCta.svelte';
 	import Profile from '../components/Profile.svelte';
 	import { userLocation } from '../utils/stores';
-	import { getPosts, getProfiles } from '../utils/mintAPIUtil';
+	import { getProfiles } from '../utils/mintAPIUtil';
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
 
-	let posts;
-	let profiles
 	let locationDialog;
-	let profileDialog;
-	let hasAPI
+	let profileRef;
+	let currentProfile;
+	let hasAPI;
+	let profiles;
 	const initialImagesToLoad = 2;
-	const profileContent = {
-		title: 'Billares Don Luis',
-		address: 'Calle lava #69',
-		phone: '(664)422-2222',
-		whatsapp: true,
-		keywords: ['tacos', 'desayunos', 'café'],
-		posts: [
-			{
-				img: 'https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/s1080x1080/115824287_684950312057641_8933160063914805807_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=101&_nc_ohc=3HgxQwdLkjUAX-PDlMG&oh=3fd01126ba051779e6c4c4a694dd3088&oe=5F41E597',
-				txt: 'Hora de la comida',
-			},
-			{
-				img: 'https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/s1080x1080/115824287_684950312057641_8933160063914805807_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=101&_nc_ohc=3HgxQwdLkjUAX-PDlMG&oh=3fd01126ba051779e6c4c4a694dd3088&oe=5F41E597',
-				txt: 'Hora de la comida',
-			},
-			{
-				img: 'https://scontent-lga3-1.cdninstagram.com/v/t51.2885-15/e35/s1080x1080/115824287_684950312057641_8933160063914805807_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_cat=101&_nc_ohc=3HgxQwdLkjUAX-PDlMG&oh=3fd01126ba051779e6c4c4a694dd3088&oe=5F41E597',
-				txt: 'Hora de la comida',
-			},
-		]
-	}
+	
 
 	if (process.browser) {
 		hasAPI = "IntersectionObserver" in window; 
 	}
 
   onMount(async () => {
-		await refreshPosts();
+		await refreshProfiles();
 	});
 
-	async function refreshPosts() {
+	async function refreshProfiles() {
 		const coordinates = JSON.parse(window.localStorage.getItem('@location'))
 		const lngLat = coordinates ? [coordinates.lng, coordinates.lat] : [zonaCentro.lng, zonaCentro.lat];
 
-		[ posts, profiles ] = await Promise.all([
-			getPosts({ lngLat, state: 'MAPPED' }),
-			getProfiles({ lngLat, state: 'MAPPED' })
-		]);
+		profiles = await getProfiles({ lngLat, state: 'MAPPED' });
 	}
 </script>
 
@@ -105,15 +82,14 @@
 	<div on:click={locationDialog.openDialog}>
 		<LocationCta location={$userLocation} />
 	</div>
-	<button on:click={profileDialog.openDialog}>Open Profile</button>
 </StickyBanner>
 <div class="grid-container">
   {#if profiles}
     {#each profiles as profile, index}
-			<Card profile={profile} lazy={hasAPI && index > initialImagesToLoad} />
+			<Card profile={profile} lazy={hasAPI && index > initialImagesToLoad} openProfile={profileRef.openProfile} />
     {/each}
   {/if}
 </div>
-<LocationDialog on:coordinatesChange={refreshPosts} bind:this={locationDialog} />
-<Profile bind:this={profileDialog} data={profileContent}/>
+<LocationDialog on:coordinatesChange={refreshProfiles} bind:this={locationDialog} />
+<Profile bind:this={profileRef} />
 
