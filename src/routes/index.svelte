@@ -11,7 +11,7 @@
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
 
 	let locationDialog;
-	let profileDialog;
+	let profileRef;
 	let currentProfile;
 	let hasAPI;
 	let profiles;
@@ -86,10 +86,10 @@
 <div class="grid-container">
   {#if profiles}
     {#each profiles as profile, index}
-			<Card profile={profile} lazy={hasAPI && index > initialImagesToLoad} openProfile={profileDialog.openDialog} />
+			<Card profile={profile} lazy={hasAPI && index > initialImagesToLoad} openProfile={profileRef.openDialog} />
     {/each}
   {/if}
 </div>
 <LocationDialog on:coordinatesChange={refreshProfiles} bind:this={locationDialog} />
-<Profile bind:this={profileDialog} />
+<Profile bind:this={profileRef} />
 
