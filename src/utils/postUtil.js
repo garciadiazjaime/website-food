@@ -33,6 +33,11 @@ export function getWhatsapp(caption) {
   return whatsapp;
 }
 
+export function removeHashtags(caption) {
+  const cleanCaption = caption.replace(/\#\w\w+\s?/g, ''); 
+  return cleanCaption;
+}
+
 export {
   getTitle,
   formatPhoneNumber,
