@@ -16,6 +16,9 @@
 
   function handleClick() {
     ga('send', 'event', 'card', 'click', profile.username);
+
+    history.pushState(null, profile.username, `#${profile.username}`);
+
     openProfile(profile);
   }
 </script>

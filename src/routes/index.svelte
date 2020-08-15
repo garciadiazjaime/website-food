@@ -16,7 +16,7 @@
 	let hasAPI;
 	let profiles;
 	const initialImagesToLoad = 2;
-	
+	const userRegex = /#(.+)/
 
 	if (process.browser) {
 		hasAPI = "IntersectionObserver" in window; 
@@ -24,6 +24,16 @@
 
   onMount(async () => {
 		await refreshProfiles();
+
+	
+		if (window.location.href.includes('#')) {
+			const [, username] = userRegex.exec(window.location.href)
+
+			const profile = profiles.find(item => item.username === username)
+			if (profile) {
+				profileRef.openProfile(profile)
+			}
+		}
 	});
 
 	async function refreshProfiles() {
