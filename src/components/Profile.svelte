@@ -10,6 +10,10 @@
   let dialogRef;
   let profile;
   let posts;
+
+  function closeHandler() {
+    history.pushState(null, null, window.location.origin);
+  }
   
   export function openProfile(currentProfile) {
     profile = currentProfile;
@@ -18,7 +22,7 @@
   }
 </script>
 
-<Dialog bind:this={dialogRef} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog profile">
+<Dialog bind:this={dialogRef} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog profile" on:MDCDialog:closed={closeHandler}>
   {#if profile}
     <Title id="simple-title">
       <Name title={profile.title} />

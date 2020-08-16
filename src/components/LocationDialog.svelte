@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher, onMount } from 'svelte';
-  import Dialog, { Title, Content, Actions, InitialFocus } from '@smui/dialog';
+  import Dialog, { Title, Content, Actions } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
   import Map from './Map.svelte';
 
@@ -10,7 +10,7 @@
   import { setUserLocation } from '../utils/location'
 
   const dispatch = createEventDispatcher();
-  let locationDialog;
+  let dialogRef;
 
   async function handleClick() {
     await setUserLocation();
@@ -21,13 +21,13 @@
   }
 
   export function openDialog() {
-    locationDialog.open();
+    dialogRef.open();
 
     ga('send', 'event', 'location', 'change');
   }
 </script>
 
-<Dialog bind:this={locationDialog} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog cta-map location-dialog-theme">
+<Dialog bind:this={dialogRef} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog cta-map location-dialog-theme">
   <Title id="simple-title">Escoge tu ubicación</Title>
   <Content id="simple-content" aria-label="Mapa">
     <Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={zonaCentro.zoom} enableDragMarker={true}></Map>

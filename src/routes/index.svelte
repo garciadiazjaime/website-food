@@ -10,7 +10,7 @@
 	import { getProfiles } from '../utils/mintAPIUtil';
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
 
-	let locationDialog;
+	let dialogRef;
 	let profileRef;
 	let currentProfile;
 	let hasAPI;
@@ -24,7 +24,7 @@
 
 	function getUserName() {
 		if (window.location.href.includes('#')) {
-			return userRegex.exec(window.location.href)[1]
+			return window.location.hash.replace('#', '')
 		}
 
 		return ''
@@ -88,13 +88,13 @@
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
 </svelte:head>
-<StickyBanner on:click={locationDialog.openDialog}>
+<StickyBanner on:click={dialogRef.openDialog}>
 	<img src="feedmetj_logo.svg" alt="Feed me Tj"/>
 	<h1>
 		La comida más rica del mundo se hace en Tijuana<br>
 		Encuéntrala aquí!
 	</h1>
-	<div on:click={locationDialog.openDialog}>
+	<div on:click={dialogRef.openDialog}>
 		<LocationCta location={$userLocation} />
 	</div>
 </StickyBanner>
@@ -105,6 +105,6 @@
     {/each}
   {/if}
 </div>
-<LocationDialog on:coordinatesChange={refreshProfiles} bind:this={locationDialog} />
+<LocationDialog bind:this={dialogRef} on:coordinatesChange={refreshProfiles}  />
 <Profile bind:this={profileRef} />
 

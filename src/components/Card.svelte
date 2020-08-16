@@ -37,7 +37,7 @@
   }
 </style>
 
-<Card data-id={profile.id} class="Card" on:click={handleClick}>
+<Card class="Card" on:click={handleClick} data-id={profile.id} data-rank={profile.rank} data-dist={profile.dist}}>
   <div class="card-content">
     <LazyLoad lazy={lazy} dataSrc={profile.posts[0].mediaUrl ? profile.posts[0].mediaUrl : "/default.png"} />
     <Whatsapp whatsapp={getWhatsapp(profile.caption)} />
