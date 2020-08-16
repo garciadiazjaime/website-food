@@ -22,25 +22,30 @@
 		hasAPI = "IntersectionObserver" in window; 
 	}
 
+	function getUserName() {
+		if (window.location.href.includes('#')) {
+			return userRegex.exec(window.location.href)[1]
+		}
+
+		return ''
+	}
+
   onMount(async () => {
 		await refreshProfiles();
-
-	
-		if (window.location.href.includes('#')) {
-			const [, username] = userRegex.exec(window.location.href)
-
-			const profile = profiles.find(item => item.username === username)
-			if (profile) {
-				profileRef.openProfile(profile)
-			}
-		}
 	});
 
 	async function refreshProfiles() {
+		const username = getUserName()
+
 		const coordinates = JSON.parse(window.localStorage.getItem('@location'))
 		const lngLat = coordinates ? [coordinates.lng, coordinates.lat] : [zonaCentro.lng, zonaCentro.lat];
 
-		profiles = await getProfiles({ lngLat, state: 'MAPPED' });
+		profiles = await getProfiles({ lngLat, state: 'MAPPED', username });
+
+		const profile = profiles.find(item => item.username === username)
+		if (profile) {
+			profileRef.openProfile(profile)
+		}
 	}
 </script>
 
