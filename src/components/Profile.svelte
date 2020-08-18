@@ -21,7 +21,7 @@
   }
 </script>
 <style>
-  .grid-container {
+  .grid-header {
     background: white;
 		display: grid;
 		grid-column-gap: 20px;
@@ -33,8 +33,13 @@
     background-color: #f8f8f8;
     box-shadow: inset 0 4px 9px -7px rgba(0,0,0,0.2);
   }
+  .grid-posts {
+    display: grid;
+		grid-column-gap: 20px;
+		grid-row-gap: 0;
+		grid-template-columns: repeat( auto-fit, minmax(247px, 1fr) );
+  }
   .post {
-    margin: 25px 0 0;
     padding-bottom: 15px;
     border-bottom: solid 1px #f0f0f0;
   }
@@ -45,7 +50,7 @@
     margin-top: 20px;
   }
   @media (min-width: 426px) {
-		.grid-container {
+		.grid-header {
 			padding: 15px;
 		}
 	}
@@ -53,7 +58,7 @@
 
 <Dialog bind:this={dialogRef} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog profile">
   {#if profile}
-    <div class='grid-container'>
+    <div class='grid-header'>
       <Name title={profile.title} />
       <Keywords keywords={profile.keywords} />
       <Location address={profile.address} dist={profile.dist}/>
@@ -62,16 +67,18 @@
     <button class="close" on:click={dialogRef.close} />
     <div class="content">
       <Content id="simple-content" aria-label="Mapa">
-        {#each profile.posts as post}
-          {#if post.mediaUrl}
-            <div class="post">
-              <LazyLoad dataSrc={post.mediaUrl} />
-              <div class="caption">
-                {removeHashtags(post.caption)}
+        <div class="grid-posts">
+          {#each profile.posts as post}
+            {#if post.mediaUrl}
+              <div class="post">
+                <LazyLoad dataSrc={post.mediaUrl} />
+                <div class="caption">
+                  {removeHashtags(post.caption)}
+                </div>
               </div>
-            </div>
-            {/if}
-        {/each}
+              {/if}
+          {/each}
+        </div>
       </Content>
     </div>
   {/if}
