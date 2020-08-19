@@ -45,10 +45,10 @@ function getPostsQuery(lngLat, first = 100, since = '', to = '', state = '') {
   `;
 }
 
-function getProfilesQuery(lngLat, first = 100, state = '') {
+function getProfilesQuery({ lngLat, first = 100, state = '', username = '' }) {
   return `
     {
-      profile(first: ${first}, coordinates: ${JSON.stringify(lngLat) || null}, state: "${state}") {
+      profile(first: ${first}, coordinates: ${JSON.stringify(lngLat) || null}, state: "${state}", username: "${username}") {
         id
         username
         title
@@ -58,6 +58,7 @@ function getProfilesQuery(lngLat, first = 100, state = '') {
         keywords
         address
         dist
+        rank
         posts {
           mediaUrl
           caption
@@ -121,9 +122,9 @@ async function getLocations(first) {
   return locations;
 }
 
-async function getProfiles({ lngLat, first, state }) {
+async function getProfiles({ lngLat, first, state, username }) {
   const payload = {
-    query: getProfilesQuery(lngLat, first, state)
+    query: getProfilesQuery({ lngLat, first, state, username })
   };
 
   const {

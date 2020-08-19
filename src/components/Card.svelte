@@ -16,6 +16,9 @@
 
   function handleClick() {
     ga('send', 'event', 'card', 'click', profile.username);
+
+    history.pushState(null, profile.username, `#${profile.username}`);
+
     openProfile(profile);
   }
 </script>
@@ -34,7 +37,7 @@
   }
 </style>
 
-<Card data-id={profile.id} class="Card">
+<Card class="Card" data-id={profile.id} data-rank={profile.rank} data-dist={profile.dist}}>
   <div class="card-content">
     <div on:click={handleClick}>
       <LazyLoad lazy={lazy} dataSrc={profile.posts[0].mediaUrl ? profile.posts[0].mediaUrl : "/default.png"} />

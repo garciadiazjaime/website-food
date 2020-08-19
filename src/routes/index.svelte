@@ -10,16 +10,24 @@
 	import { getProfiles } from '../utils/mintAPIUtil';
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
 
-	let locationDialog;
+	let dialogRef;
 	let profileRef;
 	let currentProfile;
 	let hasAPI;
 	let profiles;
 	const initialImagesToLoad = 2;
-	
+	const userRegex = /#(.+)/
 
 	if (process.browser) {
 		hasAPI = "IntersectionObserver" in window; 
+	}
+
+	function getUserName() {
+		if (window.location.href.includes('#')) {
+			return window.location.hash.replace('#', '')
+		}
+
+		return ''
 	}
 
   onMount(async () => {
@@ -27,10 +35,17 @@
 	});
 
 	async function refreshProfiles() {
+		const username = getUserName()
+
 		const coordinates = JSON.parse(window.localStorage.getItem('@location'))
 		const lngLat = coordinates ? [coordinates.lng, coordinates.lat] : [zonaCentro.lng, zonaCentro.lat];
 
-		profiles = await getProfiles({ lngLat, state: 'MAPPED' });
+		profiles = await getProfiles({ lngLat, state: 'MAPPED', username });
+
+		const profile = profiles.find(item => item.username === username)
+		if (profile) {
+			profileRef.openProfile(profile)
+		}
 	}
 </script>
 
@@ -73,13 +88,13 @@
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
 </svelte:head>
-<StickyBanner on:click={locationDialog.openDialog}>
+<StickyBanner on:click={dialogRef.openDialog}>
 	<img src="feedmetj_logo.svg" alt="Feed me Tj"/>
 	<h1>
 		La comida más rica del mundo se hace en Tijuana<br>
 		Encuéntrala aquí!
 	</h1>
-	<div on:click={locationDialog.openDialog}>
+	<div on:click={dialogRef.openDialog}>
 		<LocationCta location={$userLocation} />
 	</div>
 </StickyBanner>
@@ -90,6 +105,6 @@
     {/each}
   {/if}
 </div>
-<LocationDialog on:coordinatesChange={refreshProfiles} bind:this={locationDialog} />
+<LocationDialog bind:this={dialogRef} on:coordinatesChange={refreshProfiles}  />
 <Profile bind:this={profileRef} />
 
