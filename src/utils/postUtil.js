@@ -10,11 +10,11 @@ function getTitle(post) {
 }
 
 function formatPhoneNumber(phone) {
-  const areaCode = phone.length >= 10 ? `(${phone.substr(0, 3)})` : '';
+  let areaCode = phone.length >= 10 ? `${phone.substr(phone.length -10, 3)}` : '664';
   const first3 = phone.substr(-7, 3);
   const last4 = phone.substr(-4);
   
-  return `${areaCode}${first3}-${last4}`
+  return `(${areaCode})${first3}-${last4}`;
 }
 
 export function getWhatsapp(caption) {
@@ -31,6 +31,11 @@ export function getWhatsapp(caption) {
     }
   } 
   return whatsapp;
+}
+
+export function removeHashtags(caption) {
+  const cleanCaption = caption.replace(/\#\w\w+\s?/g, ''); 
+  return cleanCaption;
 }
 
 export {

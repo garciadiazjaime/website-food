@@ -14,7 +14,7 @@
       overflow-y: scroll;
       overflow-x: hidden;
       @media (min-width: 769px) {
-        height: 50vh;
+        height: 60vh;
         overflow-x: scroll;
         overflow-y: hidden;
       }
@@ -24,14 +24,14 @@
       transform: translate(0, 50%);
       opacity: 1;
       @media (min-width: 769px) {
-        transform: translate(0, 80%);
+        transform: translate(0, 70%);
       }
     }
     &.mdc-dialog--open {
       .mdc-dialog__surface {
         transform: translate(0, 0);
         @media (min-width: 769px) {
-          transform: translate(0, 50%);
+          transform: translate(0, 40%);
         }
       }
     }

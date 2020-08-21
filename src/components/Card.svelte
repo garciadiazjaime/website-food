@@ -37,11 +37,13 @@
   }
 </style>
 
-<Card class="Card" on:click={handleClick} data-id={profile.id} data-rank={profile.rank} data-dist={profile.dist}}>
+<Card class="Card" data-id={profile.id} data-rank={profile.rank} data-dist={profile.dist}}>
   <div class="card-content">
-    <LazyLoad lazy={lazy} dataSrc={profile.posts[0].mediaUrl ? profile.posts[0].mediaUrl : "/default.png"} />
-    <Whatsapp whatsapp={getWhatsapp(profile.caption)} />
-    <Title title={profile.title} />
+    <div on:click={handleClick}>
+      <LazyLoad lazy={lazy} dataSrc={profile.posts[0].mediaUrl ? profile.posts[0].mediaUrl : "/default.png"} />
+      <Whatsapp whatsapp={getWhatsapp(profile.caption)} />
+      <Title title={profile.title} />
+    </div>
     <Keywords keywords={profile.keywords} />
     <Location address={profile.address} dist={profile.dist}/>
     <div class="last-item">
