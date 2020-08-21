@@ -83,6 +83,23 @@ function getLocationQuery(first = 500) {
   `;
 }
 
+function instagramPostImageMutation(mediaUrl) {
+  if (!mediaUrl) {
+    return null;
+  }
+
+  const payload = {
+    query: `mutation MutationInstagramPostImage($mediaUrl: String!) {
+      updateInstagramPostImage(mediaUrl: $mediaUrl)
+    }`,
+    variables: {
+      mediaUrl,
+    },
+  };
+
+  requestHelper(payload);
+}
+
 async function requestHelper(payload) {
   const result = await fetch(
     `process.API_URL/graphiql`,
@@ -137,5 +154,6 @@ async function getProfiles({ lngLat, first, state, username }) {
 export {
   getPosts,
   getLocations,
-  getProfiles
+  getProfiles,
+  instagramPostImageMutation
 } 

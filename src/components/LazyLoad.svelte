@@ -1,6 +1,8 @@
 <script>
   import { onMount } from "svelte";
   import { Media } from '@smui/card';
+  import { instagramPostImageMutation } from '../utils/mintAPIUtil'
+
   export let dataSrc;
   export let lazy;
 
@@ -26,6 +28,8 @@
       className = 'show'
       src = 'error_img.svg';
     }, 200);
+
+    instagramPostImageMutation(dataSrc)
   }
 
   onMount(() => {
