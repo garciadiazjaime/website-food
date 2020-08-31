@@ -5,6 +5,15 @@
 
   export let dataSrc;
   export let lazy;
+  export let posts
+
+  function getValidImage(index) {
+    if (index < posts.length) {
+      img.src = posts[index].mediaUrl;
+    }
+
+    imageIndex += 1
+  }
 
   const placeholder = 'loading.gif';
   let src = dataSrc;
@@ -12,6 +21,7 @@
   let className = '';
   let mounted = false
   let element = null
+  let imageIndex = 1
 
   const img = new Image();
   img.onload = () => {
@@ -28,6 +38,8 @@
       className = 'show'
       src = 'error_img.svg';
     }, 200);
+
+    getValidImage(imageIndex)
 
     instagramPostImageMutation(dataSrc)
   }

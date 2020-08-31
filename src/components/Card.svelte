@@ -12,6 +12,13 @@
   export let lazy;
   export let openProfile;
 
+  let dataSrc = 'error_img.svg'
+
+  const item = profile.posts.find(item => item.mediaUrl)
+  if (item) {
+    dataSrc = item.mediaUrl
+  }
+
   let currentTab;
 
   function handleClick() {
@@ -40,7 +47,7 @@
 <Card class="Card" data-id={profile.id} data-rank={profile.rank} data-dist={profile.dist}}>
   <div class="card-content">
     <div on:click={handleClick}>
-      <LazyLoad lazy={lazy} dataSrc={profile.posts[0].mediaUrl ? profile.posts[0].mediaUrl : "/default.png"} />
+      <LazyLoad lazy={lazy} dataSrc={dataSrc} posts={profile.posts}  />
       <Whatsapp whatsapp={getWhatsapp(profile.caption)} />
       <Title title={profile.title} />
     </div>

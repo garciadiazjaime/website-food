@@ -83,7 +83,7 @@ function getLocationQuery(first = 500) {
   `;
 }
 
-function instagramPostImageMutation(mediaUrl) {
+async function instagramPostImageMutation(mediaUrl) {
   if (!mediaUrl) {
     return null;
   }
@@ -97,7 +97,7 @@ function instagramPostImageMutation(mediaUrl) {
     },
   };
 
-  requestHelper(payload);
+  await requestHelper(payload);
 }
 
 async function requestHelper(payload) {
