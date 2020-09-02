@@ -3,8 +3,6 @@
   import { tick } from 'svelte';
   import Dialog, { Content } from '@smui/dialog';
   import Button, { Label } from '@smui/button';
-  import Location from './Location.svelte';
-  import Keywords from './Keywords.svelte';
   import Phones from './Phones.svelte';
   import Title from './Title.svelte';
   import LazyLoad from './LazyLoad.svelte';
@@ -26,22 +24,16 @@
 </script>
 <style>
   .header {
-    height: 23vh;
-  }
-  .grid-header {
+    height: 105px;
     background: white;
-		display: grid;
-		grid-column-gap: 20px;
-		grid-row-gap: 0;
-		grid-template-columns: 1fr;
-    margin: 0 10px 10px 10px;
-    grid-auto-flow: row;
+    padding: 0 40px 0 10px;
   }
+
   .content {
     background-color: #f8f8f8;
     box-shadow: inset 0 4px 9px -7px rgba(0,0,0,0.2);
     overflow-y: scroll;
-    height: 77vh;
+    height: calc(100vh - 105px);
   }
   .grid-posts {
     display: grid;
@@ -59,33 +51,40 @@
   .caption {
     margin-top: 20px;
   }
-  @media (min-width: 426px) {
-    .grid-header {
-      grid-template-columns: repeat( auto-fit, minmax(247px, 1fr));
-    }
+
+  @media (min-width: 600px) {
     .header {
-      height: 17vh;
+      height: 63px;
     }
-    .content {
-      height: 83vh;
+    .content{
+      height: 90vh;
+      height: calc(100vh - 63px);
     }
-		.grid-header {
-      margin-right: 60px;
+    .header-element {
+      display: inline-block;
+      width: 50%;
     }
-    .phone-container {
-      margin-top: 12px;
+    .grid-posts {
+      grid-template-columns: repeat( auto-fit, minmax(1fr, 247px) );
     }
-	}
+  }
+  @media (min-width: 769px) {
+    .header-element {
+      width: 40%;
+    }
+    .header-element:first-child {
+      width: 60%;
+    }
+  }
 </style>
 
 <Dialog bind:this={dialogRef} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog profile" on:MDCDialog:closed={closeHandler}>
   {#if profile}
     <div class="header">
-      <div class='grid-header'>
-          <Title title={profile.title} />
-          <Keywords keywords={profile.keywords} />
-          <Location address={profile.address} dist={profile.dist}/>
-          <Phones phone={profile.phones[0]} username={profile.username}/>
+      <div class="header-element">
+        <Title title={profile.title} />
+      </div><div class="header-element">
+        <Phones phone={profile.phones[0]} username={profile.username}/>
       </div>
       <button class="close" on:click={dialogRef.close} />
     </div>

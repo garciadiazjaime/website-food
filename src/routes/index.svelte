@@ -52,7 +52,7 @@
 <style>
 	.grid-container {
 		display: grid;
-		grid-column-gap: 20px;
+		grid-column-gap: 0;
 		grid-row-gap: 12px;
 		grid-template-columns: repeat( auto-fit, minmax(247px, 1fr) );
 		margin: 10px;
