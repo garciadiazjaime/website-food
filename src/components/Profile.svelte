@@ -89,7 +89,7 @@
       <button class="close" on:click={dialogRef.close} />
     </div>
     <div class="content">
-      <Content id="simple-content" aria-label="Mapa">
+      <Content id="simple-content" aria-label="Posts">
         <div class="grid-posts">
           {#each profile.posts as post}
             {#if post.mediaUrl}
