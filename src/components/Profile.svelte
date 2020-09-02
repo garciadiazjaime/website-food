@@ -33,9 +33,9 @@
 		display: grid;
 		grid-column-gap: 20px;
 		grid-row-gap: 0;
-		grid-template-columns: repeat( auto-fit, minmax(247px, 1fr) );
+		grid-template-columns: 1fr;
     margin: 0 10px 10px 10px;
-    grid-auto-flow: column;
+    grid-auto-flow: row;
   }
   .content {
     background-color: #f8f8f8;
@@ -51,7 +51,7 @@
   }
   .post {
     padding-bottom: 15px;
-    border-bottom: solid 1px #f0f0f0;
+    border-bottom: solid 1px #d8d8d8;
   }
   .post:first-child {
     margin-top: 0;
@@ -60,6 +60,9 @@
     margin-top: 20px;
   }
   @media (min-width: 426px) {
+    .grid-header {
+      grid-template-columns: repeat( auto-fit, minmax(247px, 1fr));
+    }
     .header {
       height: 17vh;
     }
@@ -79,14 +82,10 @@
   {#if profile}
     <div class="header">
       <div class='grid-header'>
-        <div>
           <Title title={profile.title} />
           <Keywords keywords={profile.keywords} />
           <Location address={profile.address} dist={profile.dist}/>
-        </div>
-        <div class="phone-container">
           <Phones phone={profile.phones[0]} username={profile.username}/>
-        </div>
       </div>
       <button class="close" on:click={dialogRef.close} />
     </div>
