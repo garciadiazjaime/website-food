@@ -24,7 +24,7 @@
 </script>
 <style>
   .header {
-    height: 105px;
+    min-height: 105px;
     background: white;
     padding: 0 40px 0 10px;
   }
@@ -54,7 +54,7 @@
 
   @media (min-width: 600px) {
     .header {
-      height: 63px;
+      min-height: 63px;
     }
     .content{
       height: 90vh;
