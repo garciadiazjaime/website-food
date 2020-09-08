@@ -72,12 +72,12 @@
     .header-element:first-child {
       width: 60%;
     }
-    .grid-posts.singleton {
+    .grid-posts.incomplete-row {
       grid-template-columns: 1fr 1fr;
     }
   }
   @media (min-width: 950px) {
-    .grid-posts.singleton {
+    .grid-posts.incomplete-row {
       grid-template-columns: 1fr 1fr 1fr;
     }
   }
@@ -95,7 +95,7 @@
     </div>
     <div class="content">
       <Content id="simple-content" aria-label="Posts">
-        <div class={`grid-posts ${profile.posts.length < 3 ? 'singleton' : ''}`}>
+        <div class={`grid-posts ${profile.posts.length < 3 ? 'incomplete-row' : ''}`}>
           {#each profile.posts as post}
             {#if post.mediaUrl}
               <div class="post">
