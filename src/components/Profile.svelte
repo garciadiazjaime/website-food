@@ -39,7 +39,7 @@
     display: grid;
 		grid-column-gap: 20px;
 		grid-row-gap: 20px;
-		grid-template-columns: repeat( auto-fit, minmax(247px, 1fr) );
+		grid-template-columns: repeat( auto-fit, minmax(247px, 1fr));
   }
   .post {
     padding-bottom: 15px;
@@ -64,9 +64,6 @@
       display: inline-block;
       width: 50%;
     }
-    .grid-posts {
-      grid-template-columns: repeat( auto-fit, minmax(1fr, 247px) );
-    }
   }
   @media (min-width: 769px) {
     .header-element {
@@ -74,6 +71,14 @@
     }
     .header-element:first-child {
       width: 60%;
+    }
+    .grid-posts.singleton {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 950px) {
+    .grid-posts.singleton {
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
 </style>
@@ -90,7 +95,7 @@
     </div>
     <div class="content">
       <Content id="simple-content" aria-label="Posts">
-        <div class="grid-posts">
+        <div class={`grid-posts ${profile.posts.length < 3 ? 'singleton' : ''}`}>
           {#each profile.posts as post}
             {#if post.mediaUrl}
               <div class="post">
