@@ -29,7 +29,7 @@
 <section class="cta-map">
 	{#if locations}
 		<Content>
-			<Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={zonaCentro.zoom}>
+			<Map coords={[zonaCentro.lng, zonaCentro.lat]} zoom={zonaCentro.zoom}>
 				{#each locations as location }
 					{#if location.location && location.location.coordinates }
 						<MapMarker location={location} />

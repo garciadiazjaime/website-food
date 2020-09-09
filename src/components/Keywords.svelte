@@ -4,7 +4,6 @@
 
 <style>
 	.container {
-    background: white;
     position: relative;
     margin: 0 0 2px 0;
   }

@@ -11,6 +11,16 @@
 
   const dispatch = createEventDispatcher();
   let dialogRef;
+  let centerCoords;
+  
+  onMount(() => {
+    const userCoordinates = JSON.parse(window.localStorage.getItem('@location'));
+    if (userCoordinates) {
+      centerCoords = [userCoordinates.lng, userCoordinates.lat];
+    } else {
+      centerCoords = [zonaCentro.lng, zonaCentro.lat];
+    };
+  });
 
   async function handleClick() {
     await setUserLocation();
@@ -30,7 +40,9 @@
 <Dialog bind:this={dialogRef} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog cta-map location-dialog-theme">
   <Title id="simple-title">Escoge tu ubicación</Title>
   <Content id="simple-content" aria-label="Mapa">
-    <Map lat={zonaCentro.lat} lng={zonaCentro.lng} zoom={zonaCentro.zoom} enableDragMarker={true}></Map>
+    {#if centerCoords}
+      <Map coords={centerCoords} zoom={zonaCentro.zoom} enableDragMarker={true}></Map>
+    {/if}
   </Content>
   <Actions>
     <Button action="accept" on:click={handleClick}>

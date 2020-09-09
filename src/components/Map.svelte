@@ -7,8 +7,7 @@
 		});
 	}
 
-	export let lat;
-	export let lng;
+	export let coords;
 	export let zoom;
 	export let enablePinMarker = false;
 	export let enableDragMarker = false
@@ -21,7 +20,7 @@
 		map = new mapboxgl.Map({
 			container,
 			style: 'mapbox://styles/mapbox/streets-v11',
-			center: [lng, lat],
+			center: coords,
 			zoom
 		});
 
