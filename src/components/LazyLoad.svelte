@@ -5,7 +5,7 @@
 
   export let dataSrc;
   export let lazy;
-  export let posts
+  export let posts;
 
   function getValidImage(index) {
     if (index < posts.length) {
