@@ -59,6 +59,7 @@ function getProfilesQuery({ lngLat, first = 100, state = '', username = '' }) {
         address
         dist
         rank
+        gps
         posts {
           mediaUrl
           caption

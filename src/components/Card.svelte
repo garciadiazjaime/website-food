@@ -45,7 +45,7 @@
       <Title title={profile.title} />
     </div>
     <Keywords keywords={profile.keywords} />
-    <Location address={profile.address} dist={profile.dist}/>
+    <Location address={profile.address} dist={profile.dist} coords={profile.gps} />
     <div class="last-item">
       <Phones phone={profile.phones[0]} username={profile.username}/>
     </div> 
