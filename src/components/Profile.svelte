@@ -86,7 +86,6 @@
 <Dialog bind:this={dialogRef} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog profile" on:MDCDialog:closed={closeHandler}>
   {#if profile}
     <div class="header">
-      El hein esta pedorro
       <div class="header-element">
         <Title title={profile.title} />
       </div><div class="header-element">
