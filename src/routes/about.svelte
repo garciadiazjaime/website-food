@@ -15,6 +15,7 @@
 		<p>Nuestro objetivo es ofrecer un canal de promoción efectivo donde sea posible emprender sin necesidad de gastar ni tiempo ni dinero adicional.</p>
 
 		<h2>¿Cómo funciona FMTJ?</h2>
+		<p>Hello World</p>
 		<ol>
 			<li>Observamos posts con hashtags relacionados con ofertas para comer</li>
 			<li>Identificamos información de contacto y de ubicación</li>
