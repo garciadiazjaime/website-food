@@ -39,7 +39,9 @@
       src = 'error_img.svg';
     }, 200);
 
-    getValidImage(imageIndex)
+    if (Array.isArray(posts)) {
+      getValidImage(imageIndex)
+    }
 
     instagramPostImageMutation(dataSrc)
   }
