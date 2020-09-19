@@ -10,50 +10,52 @@
 	</div>
 	<div class="content-block secondary">
 		<h2>¿Qué es Feed Me Tj?</h2>
-		<p>FMTJ es un directorio que hace muy fácil publicar y ver ofertas para comer cerca de tu ubicación.</p>
-		<p>Nuestro contenido viene de Instagram a través de varios hashtags que estamos observando.</p>
-		<p>Nuestro objetivo es ofrecer un canal de promoción efectivo donde sea posible emprender sin necesidad de gastar ni tiempo ni dinero adicional.</p>
+		<p>Feed me TJ es una aplicación que logra acercar a tu producto y los clientes potenciales. Por medio del monitoreo de hashtags en Instagram y la ubicación de usuarios, hace posible contestar la eterna
+		pregunta ¿qué hay cerca de mí? Por medio de respuestas inmediatas, gratuitas y visuales, propiciando la entrada de comensales a tu negocio.</p>
 
+		 
+	
+		<div class="content-block tertiary">
 		<h2>¿Cómo funciona FMTJ?</h2>
-		<p>Hello World</p>
 		<ol>
-			<li>Observamos posts con hashtags relacionados con ofertas para comer</li>
-			<li>Identificamos información de contacto y de ubicación</li>
-			<li>Las ofertas se publican en nuestra página en un formato que facilita encontrar y ordenar lugares que están cerca del usuario.</li>
+			<li>La configuración permite el monitoreo de hasthags relacionados con oferta de servicios.</li>
+			<li>Estos hasthags se vinculan a la información de la ubicación del usuario.</li>
+			<li>Con estos datos optimizamos FMTJ, optimiza resultados para darle la mejor oferta a los usuarios cerca de cada oferta en toda la ciudad.</li>
+			
 		</ol>
+         </div>
+	
 
 		<h2>¿Por qué usar FMTJ?</h2>
 		<ul>
-			<li>Porque ya estás haciendo el esfuerzo e inversión de generar contenido.</li>
-			<li>Porque el esfuerzo para incluir tu contenido en FMTJ es mínimo.</li>
-			<li>Porque FMTJ pone ese contenido enfrente de quienes lo están buscando.</li>
+			<li>Tu inversión en contenido es optimizada con geolocalización para que llegues a quienes serán tus clientes.</li>
+			<li>No requiere inversión adicional de ninguna de las partes.</li>
+			
 		</ul>
+	
+	
+	
 	</div>
 	<div class="content-block tertiary">
 		<h2>¿Cómo administrar tu perfil?</h2>
-		<p>Tu perfil es tu cuenta de Instagram, no necesitas crear una cuenta nueva.</p>
-		<ol>
-			<li>Si en tus posts utilizas hashtags relacionados con la gastronomía en Tijuana es posible que ya seas parte de nuestro directorio.</li>
-			<li>Incluye ubicación, teléfono y whatsapp en el contenido de tu post para que aparezcan primero en nuestros resultados y nuestros usuarios puedan contactarte fácilmente.</li>
-			<li>Incluye <span class="fancy">#feedmetj</span> y tus posts tendrán prioridad.</li>
-		</ol>
-		<p>Y no olvides, mientras más completa tengamos tu información, mejor ranking van a tener tus posts en nuestros resultados.</p>
+		<p>Contamos con un amplio directorio de servicios obtenido por medio de hasthags relacionados con comida. 
+		Si quieres ser parte de nuestro directorio y estar primero en la lista de resultados  solo tienes que utilizar nuestro hasthag #feedmetj  en un post que incluya información de contacto, ubicación y whatsap  y listo,  apareces como primera opción a usuarios cercanos a tu establecimiento, listos para hacer un pedido.</p>
 	</div>
 	<div class="content-block secondary">
 		<h2>¿Por qué estamos haciendo esto?</h2>
 		<p>
-			Este proyecto comenzó con la intención de facilitar que nuestra comunidad se adapte a la <i>nueva realidad</i>.
-			Pensamos que desaparecer las barreras técnicas y económicas para incorporarse a la economía digital, 
-			va a fomentar la supervivencia y creación de nuevos negocios.
+			Somos un grupo de desarrolladores tijuanenses, felices de habitar y disfrutar esta ciudad con todos los sabores y riquezas que ofrece en cada rincón y cada esquina. Cómo fronterizos sabemos que es difícil navegar la ciudad y encontrar su oferta, siempre cambiante y variada. Creemos que estos proyectos son dignos de ser descubiertos y que la relación con el comensal sólo se dá si saben mutuamente de su existencia. Por ello nos hemos esmerado en desparecer las barreras técnicas y económicas para ese encuentro y facilitarlo con las herramientas que todas las partes tienen a su alcance: Los teléfonos inteligentes permiten hacer ese match entre quién busca y quién ofrece, resultando en un ganar-ganar del que estamos seguros nos beneficiaremos nosotros de alguna manera.
 		</p>
-		<p>
-			Creemos que conforme madure la comunidad de esta plataforma, lograremos identificar oportunidades de crecimiento para nosotros también.
-		</p>
+		
 
+		
+		
+		<div class="content-block tertiary">
 		<h2>¿Cuál es el siguiente paso para la plataforma?</h2>
 		<p>
 			Queremos escuchar de tí productor, consumidor y promotor. Si tienes ideas, comentarios, quejas queremos saberlas para mejorar.
 			Escríbenos a <a class="fancy" href="mailto:info@feedmetj.com">info@feedmetj.com</a>
 	</p>
+           </div>
 	</div>
 </div>
