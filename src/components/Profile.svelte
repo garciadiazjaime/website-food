@@ -99,7 +99,7 @@
           {#each profile.posts as post}
             {#if post.mediaUrl}
               <div class="post">
-                <LazyLoad dataSrc={post.mediaUrl} />
+                <LazyLoad dataSrc={post.mediaUrl} lazy={true} />
                 <div class="caption">
                   {removeHashtags(post.caption)}
                 </div>
