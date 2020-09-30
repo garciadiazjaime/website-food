@@ -30,12 +30,8 @@
   }
 
   .content-block {
-    padding: 5px;
-    
-    
-    &:nth-child(odd) {
-      background-color: white;
-    }
+    padding: 5px 20px;
+    background-color: white;
 
     h2 {
       font-size: 25px;
@@ -65,19 +61,18 @@
       margin: 20px 0 35px;
     }
     @media (min-width: 600px) {
-      padding: 40px 60px;
+      padding: 0;
+      padding: 20px 40px;
     }
   }
 
   .secondary {
-    margin-top: 40px;
     h2 {
       color: darken($theme-secondary, 40%);
     }
   }
 
   .tertiary {
-    margin-top: 40px;
     h2 {
       color: darken($theme-tertiary, 40%);
       
