@@ -14,6 +14,10 @@
     return `${dist.toFixed(1)}km`;
   }
   function getUrl(coords) {
+    if (!Array.isArray(coords) || !coords.length) {
+      return null
+    }
+
     const userCoordinates = JSON.parse(window.localStorage.getItem('@location'));
     const origin = userCoordinates ? `${userCoordinates.lat},${userCoordinates.lng}` : `${zonaCentro.lat},${zonaCentro.lng}`;
     const destination = `${coords[1]}, ${coords[0]}`;
