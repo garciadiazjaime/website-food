@@ -8,8 +8,9 @@
   import LazyLoad from './LazyLoad.svelte';
   import './Profile.scss';
   import { removeHashtags } from '../utils/postUtil';
-  let dialogRef;
-  let profile;
+  
+  export let profile;
+
   let posts;
 
   function closeHandler() {
@@ -19,7 +20,6 @@
   export function openProfile(currentProfile) {
     profile = currentProfile;
     posts = profile.posts;
-    dialogRef.open();
   }
 </script>
 <style>
@@ -83,31 +83,27 @@
   }
 </style>
 
-<Dialog bind:this={dialogRef} aria-labelledby="simple-title" aria-describedby="simple-content" class="dialog profile" on:MDCDialog:closed={closeHandler}>
-  {#if profile}
-    <div class="header">
-      <div class="header-element">
-        <Title title={profile.title} />
-      </div><div class="header-element">
-        <Phones phone={profile.phones[0]} username={profile.username}/>
-      </div>
-      <button class="close" on:click={dialogRef.close} />
+<div class="header">
+  <div class="header-element">
+    <Title title={profile.title} />
+  </div><div class="header-element">
+    <Phones phone={profile.phones && profile.phones[0]} username={profile.username}/>
+  </div>
+</div>
+<div class="content">
+  <Content id="simple-content" aria-label="Posts">
+    <div class={`grid-posts ${profile.posts.length < 3 ? 'incomplete-row' : ''}`}>
+      {#each profile.posts as post}
+        {#if post.mediaUrl}
+          <div class="post">
+            <LazyLoad dataSrc={post.mediaUrl} lazy={true} />
+            <div class="caption">
+              {removeHashtags(post.caption)}
+            </div>
+          </div>
+          {/if}
+      {/each}
     </div>
-    <div class="content">
-      <Content id="simple-content" aria-label="Posts">
-        <div class={`grid-posts ${profile.posts.length < 3 ? 'incomplete-row' : ''}`}>
-          {#each profile.posts as post}
-            {#if post.mediaUrl}
-              <div class="post">
-                <LazyLoad dataSrc={post.mediaUrl} lazy={true} />
-                <div class="caption">
-                  {removeHashtags(post.caption)}
-                </div>
-              </div>
-              {/if}
-          {/each}
-        </div>
-      </Content>
-    </div>
-  {/if}
-</Dialog>
+  </Content>
+</div>
+

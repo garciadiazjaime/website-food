@@ -1,7 +1,8 @@
 <script>
 	import { onMount } from "svelte";
 	import { fade } from 'svelte/transition';
-	import Card from '../components/Card.svelte';
+	import Card from 'mint-components/src/components/ProfileCard.svelte';
+	import Drawer from 'mint-components/src/components/Drawer.svelte';
 	import LocationDialog from '../components/LocationDialog.svelte';
 	import StickyBanner from '../components/StickyBanner.svelte';
 	import LocationCta from '../components/LocationCta.svelte';
@@ -15,6 +16,7 @@
 	let currentProfile;
 	let hasAPI;
 	let profiles;
+	let drawerIsVisible = false;
 	const initialImagesToLoad = 2;
 	const userRegex = /#(.+)/
 
@@ -44,8 +46,16 @@
 
 		const profile = profiles.find(item => item.username === username)
 		if (profile) {
-			profileRef.openProfile(profile)
+			drawerIsVisible = true;
+			currentProfile = profile;
 		}
+	}
+
+	function openProfile (profile) {
+		drawerIsVisible = true;
+		currentProfile = profile;
+
+		history.pushState(null, profile.username, `#${profile.username}`);
 	}
 </script>
 
@@ -98,13 +108,22 @@
 		<LocationCta location={$userLocation} />
 	</div>
 </StickyBanner>
+
+<LocationDialog bind:this={dialogRef} on:coordinatesChange={refreshProfiles}  />
+
 <div class="grid-container">
   {#if profiles}
     {#each profiles as profile, index}
-			<Card profile={profile} lazy={hasAPI && index > initialImagesToLoad} openProfile={profileRef.openProfile} />
+			<Card
+				profile={profile}
+				cardAction={() => openProfile(profile)}
+				buttonColor="#ff6745"
+			/>
     {/each}
   {/if}
 </div>
-<LocationDialog bind:this={dialogRef} on:coordinatesChange={refreshProfiles}  />
-<Profile bind:this={profileRef} />
+
+<Drawer bind:isVisible={drawerIsVisible} shaded>
+  <Profile profile={currentProfile} />
+</Drawer>
 
