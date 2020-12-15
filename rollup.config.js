@@ -2,7 +2,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
 import svelte from 'rollup-plugin-svelte';
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
@@ -12,21 +12,23 @@ const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
-const onwarn = (warning, onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning);
-const dedupe = importee => importee === 'svelte' || importee.startsWith('svelte/');
+const onwarn = (warning, onwarn) =>
+	(warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)) ||
+	(warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) ||
+	onwarn(warning);
 
 const postcssOptions = () => ({
-  extensions: ['.scss', '.sass'],
-  extract: false,
-  minimize: true,
-  use: [
-    ['sass', {
-      includePaths: [
-        './src/theme',
-        './node_modules',
-      ]
-    }]
-  ]
+	extensions: ['.scss', '.sass'],
+	extract: false,
+	minimize: true,
+	use: [
+		['sass', {
+			includePaths: [
+				'./src/theme',
+				'./node_modules',
+			]
+		}]
+	]
 });
 
 export default {
@@ -34,30 +36,28 @@ export default {
 		input: config.client.input(),
 		output: config.client.output(),
 		plugins: [
-
 			replace({
-				'process.mapboxToken': JSON.stringify("pk.eyJ1IjoibWludGl0bWVkaWEiLCJhIjoiY2s4ejFhcXNyMDIwMTNobXgzY3Z4NWJqdSJ9.MI6aZp0ww_JhSp1EgO8jrQ"),
+				'process.mapboxToken': JSON.stringify(process.env.MAPBOX_TOKEN),
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode),
 				'process.API_URL': process.env.API_URL || 'http://127.0.0.1:3030'
 			}),
 			svelte({
-        dev,
-        hydratable: true,
-        emitCss: false,
-        css: true
-      }),
+				dev,
+				hydratable: true,
+				emitCss: true
+			}),
 			resolve({
-        browser: true,
-        dedupe
-      }),
+				browser: true,
+				dedupe: ['svelte']
+			}),
 			commonjs(),
 
 			postcss(postcssOptions()),
 
 			legacy && babel({
 				extensions: ['.js', '.mjs', '.html', '.svelte'],
-				runtimeHelpers: true,
+				babelHelpers: 'runtime',
 				exclude: ['node_modules/@babel/**'],
 				presets: [
 					['@babel/preset-env', {
@@ -77,6 +77,7 @@ export default {
 			})
 		],
 
+		preserveEntrySignatures: false,
 		onwarn,
 	},
 
@@ -90,18 +91,18 @@ export default {
 			}),
 			svelte({
 				generate: 'ssr',
+				hydratable: true,
 				dev
 			}),
 			resolve({
-        dedupe
-      }),
+				dedupe: ['svelte']
+			}),
 			commonjs(),
 			postcss(postcssOptions())
 		],
-		external: Object.keys(pkg.dependencies).concat(
-			require('module').builtinModules || Object.keys(process.binding('natives'))
-		),
+		external: Object.keys(pkg.dependencies).concat(require('module').builtinModules),
 
+		preserveEntrySignatures: 'strict',
 		onwarn,
 	},
 
@@ -118,6 +119,7 @@ export default {
 			!dev && terser()
 		],
 
+		preserveEntrySignatures: false,
 		onwarn,
 	}
 };
