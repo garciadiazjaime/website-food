@@ -45,7 +45,7 @@ function getPostsQuery(lngLat, first = 100, since = '', to = '', state = '') {
   `;
 }
 
-function getProfilesQuery({ lngLat, first = 100, state = '', username = '' }) {
+function getProfilesQuery({ lngLat, first = 48, state = '', username = '' }) {
   return `
     {
       profile(first: ${first}, coordinates: ${JSON.stringify(lngLat) || null}, state: "${state}", username: "${username}") {

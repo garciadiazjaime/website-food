@@ -73,6 +73,10 @@
   }
 </style>
 
+<svelte:head>
+  <script defer src="https://d3js.org/d3.v5.min.js"></script>
+</svelte:head>
+
 <div class="container">
   <h2>Relación Posts - Usuarios <small>(que postearon)</small> de los últimos 7 días.</h2>
   <Line data={stats.byDay} props={lineProps} />
