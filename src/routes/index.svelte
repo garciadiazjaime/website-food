@@ -1,25 +1,15 @@
 <script>
 	import { onMount } from "svelte";
-	import { fade } from 'svelte/transition';
 	import Card from 'mint-components/src/components/ProfileCard.svelte';
 	import Drawer from 'mint-components/src/components/Drawer.svelte';
 	import StickyBanner from '../components/StickyBanner.svelte';
 	import Profile from '../components/Profile.svelte';
-	import { userLocation } from '../utils/stores';
 	import { getProfiles } from '../utils/mintAPIUtil';
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
 
 	let currentProfile;
 	let profiles = [];
 	let drawerIsVisible = false;
-
-	function getUserName() {
-		if (window.location.href.includes('#')) {
-			return window.location.hash.replace('#', '')
-		}
-
-		return ''
-	}
 
   onMount(async () => {
 		await refreshProfiles();
@@ -34,8 +24,6 @@
 	function openProfile (profile) {
 		drawerIsVisible = true;
 		currentProfile = profile;
-
-		history.pushState(null, profile.username, `#${profile.username}`);
 	}
 </script>
 
