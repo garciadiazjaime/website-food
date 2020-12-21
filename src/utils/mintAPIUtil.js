@@ -103,7 +103,7 @@ async function instagramPostImageMutation(mediaUrl) {
 
 async function requestHelper(payload) {
   const result = await fetch(
-    `process.API_URL/graphiql`,
+    `process.API_URL/feedme`,
     {
       method: "POST",
       headers: {
@@ -140,16 +140,8 @@ async function getLocations(first) {
   return locations;
 }
 
-async function getProfiles({ lngLat, first, state, username }) {
-  const payload = {
-    query: getProfilesQuery({ lngLat, first, state, username })
-  };
-
-  const {
-    data: { profile }
-  } = await requestHelper(payload)
-
-  return profile;
+async function getProfiles({ lngLat, first = 50, state, username }) {
+  return requestHelper({ lngLat, first, state, username })
 }
 
 export {
