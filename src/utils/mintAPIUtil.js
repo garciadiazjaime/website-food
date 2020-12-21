@@ -141,7 +141,15 @@ async function getLocations(first) {
 }
 
 async function getProfiles({ lngLat, first = 50, state, username }) {
-  return requestHelper({ lngLat, first, state, username })
+  const filters = encodeURIComponent(JSON.stringify({ lngLat, first, state, username }))
+
+  const response = await fetch(`process.API_URL/feedme?filters=${filters}`, {
+    headers: {
+      "Content-Type": "application/json"
+    },
+  })
+
+  return response.json()
 }
 
 export {
