@@ -142,10 +142,8 @@
 </svelte:head>
 
 <StickyBanner>
-	<h1>
-		¿Qué comer en Tijuana?<br>
-		#feedmetj
-	</h1>
+	<h1>¿Qué comer en Tijuana?</h1>
+	<p>En Feedmetj te recomendamos las mejores opciones de comida en Tijuana con base en lo que se publica en Instagram.</p>
 </StickyBanner>
 
 <div class="container">
