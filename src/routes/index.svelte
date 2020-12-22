@@ -17,7 +17,7 @@
 	});
 
 	async function refreshProfiles() {
-		profiles = await getProfiles({ lngLat, state: 'MAPPED', first: 50 });
+		profiles = await getProfiles({ lngLat, state: 'MAPPED', first: 100 });
 	}
 
 	function openProfile (profile) {
