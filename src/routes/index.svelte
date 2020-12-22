@@ -75,10 +75,10 @@
 <svelte:head>
   <title>#feedmetj | ¿Qué comer en Tijuana?</title>
 	<meta property="og:title" content="FeedMeTj">
-	<meta property="og:description" content="Tijuana cuenta con una oferta gastronómica muy grande, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.">
+	<meta property="og:description" content="Tijuana cuenta con una oferta muy grande de comida, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content="Tijuana cuenta con una oferta gastronómica muy grande, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.">
+	<meta name="description" content="Tijuana cuenta con una oferta muy grande de comida, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.">
 </svelte:head>
 
 <StickyBanner>
@@ -98,7 +98,7 @@
 			<Card
 				profile={profile}
 				cardAction={() => openProfile(profile)}
-				buttonColor="#ff6745"
+				buttonColor="#ca4f24"
 				showDistance={false}
 			/>
     {/each}
