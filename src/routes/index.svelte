@@ -10,15 +10,14 @@
 	let currentProfile;
 	let profiles = [];
 	let drawerIsVisible = false;
+	const lngLat = [zonaCentro.lng, zonaCentro.lat];
 
   onMount(async () => {
 		await refreshProfiles();
 	});
 
 	async function refreshProfiles() {
-		const lngLat = [zonaCentro.lng, zonaCentro.lat];
-
-		profiles = await getProfiles({ lngLat, state: 'MAPPED' });
+		profiles = await getProfiles({ lngLat, state: 'MAPPED', first: 50 });
 	}
 
 	function openProfile (profile) {
@@ -84,13 +83,13 @@
 
 <StickyBanner>
 	<h1>
-		La comida más rica del mundo se hace en Tijuana<br>
-		Encuéntrala aquí!
+		¿Qué comer en Tijuana?<br>
+		#feedmetj
 	</h1>
 </StickyBanner>
 
 <div class="container">
-	<h2>48 opciones de comida en Tijuana:</h2>
+	<h2>48 Opciones de comida en Tijuana</h2>
 </div>
 
 <div class="grid-container">
@@ -107,7 +106,7 @@
 </div>
 
 <div class="container">
-	Tijuana cuenta con una oferta gastronómica muy grande, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.
+	Tijuana cuenta con una oferta muy grande de comida, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.
 </div>
 
 <Drawer bind:isVisible={drawerIsVisible} shaded>
