@@ -4,25 +4,83 @@
 	import Drawer from 'mint-components/src/components/Drawer.svelte';
 	import StickyBanner from '../components/StickyBanner.svelte';
 	import Profile from '../components/Profile.svelte';
-	import { getProfiles } from '../utils/mintAPIUtil';
-	import { zonaCentro } from '../utils/mapboxAPIUtil';
+
+	export let profiles = []
+	export let topPlaces = ''
+	export let topOptions = ''
 
 	let currentProfile;
-	let profiles = [];
 	let drawerIsVisible = false;
-	const lngLat = [zonaCentro.lng, zonaCentro.lat];
-
-  onMount(async () => {
-		await refreshProfiles();
-	});
-
-	async function refreshProfiles() {
-		profiles = await getProfiles({ lngLat, state: 'MAPPED', first: 100 });
+	
+	let FAQPage = {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"mainEntity": [{
+			"@type": "Question",
+			"name": "¿Lugares para comer en Tijuana?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": `<ul>${topPlaces}</ul>`
+			}
+		}, {
+			"@type": "Question",
+			"name": "¿Qué hay de comer en Tijuana?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": `<ul>${topOptions}</ul>`
+			}
+		}]
 	}
 
 	function openProfile (profile) {
 		drawerIsVisible = true;
 		currentProfile = profile;
+	}
+
+	function getTitle() {
+		const date = new Date()
+		const month = date.getMonth();
+		const year = date.getFullYear()
+		const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+
+		return `#feedmetj | ¿Qué comer en Tijuana? - ${months[month]} ${year}`
+	}
+</script>
+
+<script context="module">
+	import { zonaCentro } from '../utils/mapboxAPIUtil';
+
+	const lngLat = [zonaCentro.lng, zonaCentro.lat];
+
+	export async function preload() {
+		const filters = encodeURIComponent(JSON.stringify({ lngLat, first: 100, state: 'MAPPED' }))
+
+		const response = await this.fetch(`process.env.API_URL/feedme?filters=${filters}`)
+
+		const profiles = await response.json()
+
+		const topPlaces = profiles.slice(0, 10).map(item => `<li>${item.title}</li>`).join('')
+		const topOptionsMap = profiles.reduce((accu, item) => {
+			item.keywords.forEach(keyword => {
+				if (!accu[keyword]) {
+					accu[keyword] = 0
+				}
+				accu[keyword] += 1
+			})
+			return accu
+		}, {})
+		const topOptions = Object.keys(topOptionsMap)
+			.map(key => [key, topOptionsMap[key]])
+			.sort((a, b) => a[1] - b[1])
+			.slice(0, 10)
+			.map(item => `<li>${item[0]}</li>`)
+			.join('')
+
+		return {
+			profiles,
+			topPlaces,
+			topOptions,
+		}
 	}
 </script>
 
@@ -73,12 +131,14 @@
 </style>
 
 <svelte:head>
-  <title>#feedmetj | ¿Qué comer en Tijuana?</title>
+	{@html `<title>${getTitle()}</title>`}
 	<meta property="og:title" content="FeedMeTj">
-	<meta property="og:description" content="Tijuana cuenta con una oferta gastronómica muy grande, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.">
+	<meta property="og:description" content="Tijuana cuenta con una oferta grande de comida, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content="Tijuana cuenta con una oferta gastronómica muy grande, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.">
+	<meta name="description" content="Tijuana cuenta con una oferta grande de comida, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.">
+
+	{@html `<script type="application/ld+json">${JSON.stringify(FAQPage)}	</script>`}
 </svelte:head>
 
 <StickyBanner>
@@ -89,7 +149,7 @@
 </StickyBanner>
 
 <div class="container">
-	<h2>48 Opciones de comida en Tijuana</h2>
+	<h2>Opciones de comida en Tijuana</h2>
 </div>
 
 <div class="grid-container">
@@ -98,7 +158,7 @@
 			<Card
 				profile={profile}
 				cardAction={() => openProfile(profile)}
-				buttonColor="#ff6745"
+				buttonColor="#ca4f24"
 				showDistance={false}
 			/>
     {/each}
@@ -106,7 +166,7 @@
 </div>
 
 <div class="container">
-	Tijuana cuenta con una oferta muy grande de comida, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.
+	Tijuana cuenta con una oferta grande de comida, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.
 </div>
 
 <Drawer bind:isVisible={drawerIsVisible} shaded>

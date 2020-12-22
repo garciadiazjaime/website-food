@@ -11,7 +11,7 @@
 		padding: 0 1em;
 		background: white;
 		color: #313d69;
-		border-bottom: solid 2px #bd471d;
+		border-bottom: solid 2px #ca4f24;
 	}
 	ul {
 		margin: 0;
@@ -32,8 +32,8 @@
 	[aria-current] {
 		position: relative;
 		display: inline-block;
-		color: #bd471d;
-		border-bottom-color: #bd471d;
+		color: #ca4f24;
+		border-bottom-color: #ca4f24;
 	}
 
 	a {

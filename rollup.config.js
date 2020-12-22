@@ -40,7 +40,7 @@ export default {
 				'process.mapboxToken': JSON.stringify(process.env.MAPBOX_TOKEN),
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode),
-				'process.API_URL': process.env.API_URL || 'http://127.0.0.1:3030'
+				'process.env.API_URL': process.env.API_URL || 'http://127.0.0.1:3030'
 			}),
 			svelte({
 				dev,
@@ -87,7 +87,8 @@ export default {
 		plugins: [
 			replace({
 				'process.browser': false,
-				'process.env.NODE_ENV': JSON.stringify(mode)
+				'process.env.NODE_ENV': JSON.stringify(mode),
+				'process.env.API_URL': process.env.API_URL || 'http://127.0.0.1:3030'
 			}),
 			svelte({
 				generate: 'ssr',
