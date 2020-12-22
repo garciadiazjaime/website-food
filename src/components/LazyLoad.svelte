@@ -1,7 +1,6 @@
 <script>
   import { onMount } from "svelte";
   import { Media } from '@smui/card';
-  import { instagramPostImageMutation } from '../utils/mintAPIUtil'
 
   export let dataSrc;
   export let lazy;
@@ -42,8 +41,6 @@
     if (Array.isArray(posts)) {
       getValidImage(imageIndex)
     }
-
-    instagramPostImageMutation(dataSrc)
   }
 
   onMount(() => {
