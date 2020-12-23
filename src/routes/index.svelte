@@ -6,8 +6,9 @@
 	import Profile from '../components/Profile.svelte';
 
 	export let profiles = []
-	export let topPlaces = ''
-	export let topOptions = ''
+	export let topPlacesHTML = ''
+	export let topOptionsHTML = ''
+	export let topOptions = []
 
 	let currentProfile;
 	let drawerIsVisible = false;
@@ -20,14 +21,14 @@
 			"name": "¿Lugares para comer en Tijuana?",
 			"acceptedAnswer": {
 				"@type": "Answer",
-				"text": `<ul>${topPlaces}</ul>`
+				"text": `<ul>${topPlacesHTML}</ul>`
 			}
 		}, {
 			"@type": "Question",
 			"name": "¿Qué hay de comer en Tijuana?",
 			"acceptedAnswer": {
 				"@type": "Answer",
-				"text": `<ul>${topOptions}</ul>`
+				"text": `<ul>${topOptionsHTML}</ul>`
 			}
 		}]
 	}
@@ -59,7 +60,7 @@
 
 		const profiles = await response.json()
 
-		const topPlaces = profiles.slice(0, 10).map(item => `<li>${item.title}</li>`).join('')
+		const topPlacesHTML = profiles.slice(0, 10).map(item => `<li>${item.title}</li>`).join('')
 		const topOptionsMap = profiles.reduce((accu, item) => {
 			item.keywords.forEach(keyword => {
 				if (!accu[keyword]) {
@@ -73,13 +74,15 @@
 			.map(key => [key, topOptionsMap[key]])
 			.sort((a, b) => a[1] - b[1])
 			.slice(0, 10)
-			.map(item => `<li>${item[0]}</li>`)
-			.join('')
+			.map(item => item[0])
+		
+		const topOptionsHTML = topOptions.map(item => `<li>${item}</li>`).join('')
 
 		return {
 			profiles,
-			topPlaces,
+			topPlacesHTML,
 			topOptions,
+			topOptionsHTML,
 		}
 	}
 </script>
@@ -92,7 +95,6 @@
 		grid-template-columns: repeat( auto-fit, minmax(100%, 1fr) );
 		margin: 10px;
 		padding: 15px;
-		min-height: 1000px;
 	}
 
 	h1 {
@@ -124,9 +126,31 @@
 
 	.container {
 		color: #313d69;
-		font-size: 12px;
+		font-size: 20px;
 		padding: 15px 15px 0;
 		margin: 0 10px;
+	}
+
+
+	ul.top-options {
+		list-style: none;
+		padding: 0;
+	}
+
+	ul.top-options li {
+		display: inline-block;
+		margin-right: 6px;
+		text-transform: capitalize;
+	}
+
+	ul.top-options li::after {
+		content: '|';
+		display: inline;
+		margin-left: 6px;
+	}
+
+	ul.top-options li:last-of-type::after {
+		content: ''
 	}
 </style>
 
@@ -141,28 +165,33 @@
 	{@html `<script type="application/ld+json">${JSON.stringify(FAQPage)}	</script>`}
 </svelte:head>
 
+
 <StickyBanner>
 	<h1>
-		¿Qué comer en Tijuana?<br>
-		#feedmetj
+		¿Qué comer en Tijuana? <br />
 	</h1>
+	<p>En Feedmetj te recomendamos las mejores opciones de comida en Tijuana con base en lo que se publica en Instagram.</p>
 </StickyBanner>
 
 <div class="container">
-	<h2>Opciones de comida en Tijuana</h2>
+	<h2>¿Qué se cocina en Tijuana?</h2>
+	<ul class="top-options">
+		{#each topOptions as option}
+		<li>{option}</li>
+		{/each}
+	</ul>
+	<h2>Opciones de comida en Tijuana:</h2>
 </div>
 
 <div class="grid-container">
-  {#if profiles}
-    {#each profiles as profile, index}
-			<Card
-				profile={profile}
-				cardAction={() => openProfile(profile)}
-				buttonColor="#ca4f24"
-				showDistance={false}
-			/>
-    {/each}
-  {/if}
+	{#each profiles as profile, index}
+		<Card
+			profile={profile}
+			cardAction={() => openProfile(profile)}
+			buttonColor="#ca4f24"
+			showDistance={false}
+		/>
+	{/each}
 </div>
 
 <div class="container">
@@ -170,5 +199,5 @@
 </div>
 
 <Drawer bind:isVisible={drawerIsVisible} shaded>
-  <Profile profile={currentProfile} />
+	<Profile profile={currentProfile} />
 </Drawer>
