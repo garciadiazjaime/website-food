@@ -1,5 +1,4 @@
 <script>
-	import { onMount } from "svelte";
 	import Card from 'mint-components/src/components/ProfileCard.svelte';
 	import Drawer from 'mint-components/src/components/Drawer.svelte';
 	import StickyBanner from '../components/StickyBanner.svelte';
@@ -38,13 +37,13 @@
 		currentProfile = profile;
 	}
 
-	function getTitle() {
+	function getDate() {
 		const date = new Date()
 		const month = date.getMonth();
 		const year = date.getFullYear()
 		const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
-		return `#feedmetj | ¿Qué comer en Tijuana? - ${months[month]} ${year}`
+		return `${months[month]} ${year}`
 	}
 </script>
 
@@ -73,7 +72,7 @@
 		const topOptions = Object.keys(topOptionsMap)
 			.map(key => [key, topOptionsMap[key]])
 			.sort((a, b) => a[1] - b[1])
-			.slice(0, 10)
+			.slice(0, 12)
 			.map(item => item[0])
 		
 		const topOptionsHTML = topOptions.map(item => `<li>${item}</li>`).join('')
@@ -155,16 +154,13 @@
 </style>
 
 <svelte:head>
-	{@html `<title>${getTitle()}</title>`}
-	<meta property="og:title" content="FeedMeTj">
+	<title>#feedmetj | ¿Qué comer en Tijuana? - {getDate()}</title>
+	<meta property="og:title" content="Feedmetj">
 	<meta property="og:description" content="Tijuana cuenta con una oferta grande de comida, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
 	<meta name="description" content="Tijuana cuenta con una oferta grande de comida, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.">
-
-	{@html `<script type="application/ld+json">${JSON.stringify(FAQPage)}	</script>`}
 </svelte:head>
-
 
 <StickyBanner>
 	<h1>
@@ -195,9 +191,19 @@
 </div>
 
 <div class="container">
+	<h4>Lugares Favoritos {getDate()}</h4>
+	<ul>
+		<li><a href="https://www.instagram.com/p/CIJhixunZ_T/" target="_blank" rel="nofollow noreferrer">Takunoya Ramen</li>
+		<li><a href="https://www.instagram.com/p/CIL287_HOWe/" target="_blank" rel="nofollow noreferrer">Le Lieu Reposteria</a></li>
+	</ul>
+</div>
+
+<div class="container">
 	Tijuana cuenta con una oferta grande de comida, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.
 </div>
 
 <Drawer bind:isVisible={drawerIsVisible} shaded>
 	<Profile profile={currentProfile} />
 </Drawer>
+
+{@html `<script type="application/ld+json">${JSON.stringify(FAQPage)}</script>`}
