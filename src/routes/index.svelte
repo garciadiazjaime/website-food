@@ -156,15 +156,15 @@
 <svelte:head>
 	<title>#feedmetj | ¿Qué comer en Tijuana? - {getDate()}</title>
 	<meta property="og:title" content="Feedmetj">
-	<meta property="og:description" content="Tijuana cuenta con una oferta grande de comida, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.">
+	<meta property="og:description" content="La comida de Tijuana es exquisita, en #feedmetj te respondemos qué comer con base en lo publicado en Instagram.">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content="Tijuana cuenta con una oferta grande de comida, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.">
+	<meta name="description" content="La comida de Tijuana es exquisita, en #feedmetj te respondemos qué comer con base en lo publicado en Instagram.">
 </svelte:head>
 
 <StickyBanner>
 	<h1>
-		¿Qué comer en Tijuana? <br />
+		¿Qué comer en Tijuana?
 	</h1>
 	<p>En Feedmetj te recomendamos las mejores opciones de comida en Tijuana con base en lo que se publica en Instagram.</p>
 </StickyBanner>
@@ -191,15 +191,15 @@
 </div>
 
 <div class="container">
-	<h4>Lugares Favoritos {getDate()}</h4>
+	<strong>Lugares Favoritos {getDate()}</strong>
 	<ul>
-		<li><a href="https://www.instagram.com/p/CIJhixunZ_T/" target="_blank" rel="nofollow noreferrer">Takunoya Ramen</li>
-		<li><a href="https://www.instagram.com/p/CIL287_HOWe/" target="_blank" rel="nofollow noreferrer">Le Lieu Reposteria</a></li>
+		<li><a href="https://www.instagram.com/takunoya_ramen/" target="_blank" rel="nofollow noreferrer">Takunoya Ramen</li>
+		<li><a href="https://www.instagram.com/lelieureposteria/" target="_blank" rel="nofollow noreferrer">Le Lieu Reposteria</a></li>
 	</ul>
 </div>
 
 <div class="container">
-	Tijuana cuenta con una oferta grande de comida, en #feedmetj mostramos opciones recientes de comida publicadas por la comunida de Instagram.
+	La comida de <strong>Tijuana</strong> es exquisita, en #feedmetj te respondemos <strong>qué comer</strong> con base en lo publicado en Instagram.
 </div>
 
 <Drawer bind:isVisible={drawerIsVisible} shaded>
