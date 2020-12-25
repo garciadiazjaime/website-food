@@ -170,13 +170,13 @@
 </StickyBanner>
 
 <div class="container">
-	<h2>¿Qué se cocina en Tijuana?</h2>
+	<h2>Opciones de comida en Tijuana:</h2>
 	<ul class="top-options">
 		{#each topOptions as option}
 		<li>{option}</li>
 		{/each}
 	</ul>
-	<h2>Opciones de comida en Tijuana:</h2>
+	<h2>¿Qué comer en Tijuana?</h2>
 </div>
 
 <div class="grid-container">
@@ -186,6 +186,7 @@
 			cardAction={() => openProfile(profile)}
 			buttonColor="#ca4f24"
 			showDistance={false}
+			alt="Comida Tijuana -"
 		/>
 	{/each}
 </div>
