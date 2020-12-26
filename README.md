@@ -1,5 +1,5 @@
 # Demo
-[¿Qué comer en Tijuana?](https://www.feedmetj.com/)
+[¿Que comer en Tijuana?](https://www.feedmetj.com/)
 
 ## sapper-template
 

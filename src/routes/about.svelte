@@ -2,35 +2,35 @@
 	import './about.scss';
 </script>
 <svelte:head>
-	<title>¿Qué es Feed Me Tj?</title>
+	<title>¿Qué es Feedmetj?</title>
 </svelte:head>
 <div class="about-page">
 	<div class="title">
-		<h1><img src="fmt-logo-gold.svg" alt="Feed Me Tj"></h1>
+		<h1><img src="fmt-logo-gold.svg" alt="Feedmetj"></h1>
 	</div>
 
 	<div class="content-block secondary">
-		<h2>¿Qué es Feed Me Tj?</h2>
+		<h2>¿Qué es Feedmetj?</h2>
 		<p>
-			Feed me TJ es una aplicación que logra acercar a tu producto y los clientes potenciales. Por medio del monitoreo de hashtags en Instagram y la ubicación de usuarios, hace posible contestar la eterna pregunta ¿qué hay cerca de mí? Por medio de respuestas inmediatas, gratuitas y visuales, propiciando la entrada de comensales a tu negocio.
+			Feedmetj es una aplicación que logra acercar a tu producto y los clientes potenciales. Por medio del monitoreo de hashtags en Instagram y la ubicación de usuarios, hace posible contestar la eterna pregunta ¿qué hay cerca de mí? Por medio de respuestas inmediatas, gratuitas y visuales, propiciando la entrada de comensales a tu negocio.
 		</p>
 	</div>
 
  	<div class="content-block tertiary">
 		<h2>
-			¿Cómo funciona FMTJ?
+			¿Cómo funciona Feedmetj?
 		</h2>
 		<ol>
 			<li>La configuración permite el monitoreo de hasthags relacionados con oferta de servicios.</li>
 			<li>Estos hasthags se vinculan a la información de la ubicación del usuario.</li>
 			<li>
-				Con estos datos optimizamos FMTJ, optimiza resultados para darle la mejor oferta a los usuarios cerca de cada oferta en toda la ciudad.
+				Con estos datos optimizamos Feedmetj, optimiza resultados para darle la mejor oferta a los usuarios cerca de cada oferta en toda la ciudad.
 			</li>	
 		</ol>
 	</div>
 
 	<div class="content-block secondary">
-		<h2>¿Por qué usar FMTJ?</h2>
+		<h2>¿Por qué usar Feedmetj?</h2>
 		<ul>
 			<li>Tu inversión en contenido es optimizada con geolocalización para que llegues a quienes serán tus clientes.</li>
 			<li>No requiere inversión adicional de ninguna de las partes.</li>
