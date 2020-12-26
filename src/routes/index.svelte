@@ -17,14 +17,14 @@
 		"@type": "FAQPage",
 		"mainEntity": [{
 			"@type": "Question",
-			"name": "¿Lugares para comer en Tijuana?",
+			"name": "Restaurantes para comer en Tijuana",
 			"acceptedAnswer": {
 				"@type": "Answer",
 				"text": `<ul>${topPlacesHTML}</ul>`
 			}
 		}, {
 			"@type": "Question",
-			"name": "¿Qué hay de comer en Tijuana?",
+			"name": "Que hay de comer en Tijuana",
 			"acceptedAnswer": {
 				"@type": "Answer",
 				"text": `<ul>${topOptionsHTML}</ul>`
@@ -154,17 +154,17 @@
 </style>
 
 <svelte:head>
-	<title>#feedmetj | ¿Qué comer en Tijuana? - {getDate()}</title>
+	<title>#feedmetj | Que comer en Tijuana? - {getDate()}</title>
 	<meta property="og:title" content="Feedmetj">
-	<meta property="og:description" content="La comida de Tijuana es exquisita, en #feedmetj te respondemos qué comer con base en lo publicado en Instagram.">
+	<meta property="og:description" content="La comida de Tijuana es exquisita, en #feedmetj te respondemos que comer con base en lo publicado en Instagram.">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content="La comida de Tijuana es exquisita, en #feedmetj te respondemos qué comer con base en lo publicado en Instagram.">
+	<meta name="description" content="La comida de Tijuana es exquisita, en #feedmetj te respondemos que comer con base en lo publicado en Instagram.">
 </svelte:head>
 
 <StickyBanner>
 	<h1>
-		¿Qué comer en Tijuana?
+		Que comer en Tijuana?
 	</h1>
 	<p>En Feedmetj te recomendamos las mejores opciones de comida en Tijuana con base en lo que se publica en Instagram.</p>
 </StickyBanner>
@@ -176,7 +176,7 @@
 		<li>{option}</li>
 		{/each}
 	</ul>
-	<h2>¿Qué comer en Tijuana?</h2>
+	<h2>Que comer en Tijuana?</h2>
 </div>
 
 <div class="grid-container">
@@ -192,15 +192,15 @@
 </div>
 
 <div class="container">
-	<strong>Lugares Favoritos {getDate()}</strong>
+	<strong>Restaurantes Favoritos {getDate()}</strong>
 	<ul>
 		<li><a href="https://www.instagram.com/takunoya_ramen/" target="_blank" rel="nofollow noreferrer">Takunoya Ramen</li>
-		<li><a href="https://www.instagram.com/lelieureposteria/" target="_blank" rel="nofollow noreferrer">Le Lieu Reposteria</a></li>
+		<li><a href="https://www.instagram.com/ohanatjpoke/" target="_blank" rel="nofollow noreferrer">Ohana Poke</a></li>
 	</ul>
 </div>
 
 <div class="container">
-	La comida de <strong>Tijuana</strong> es exquisita, en #feedmetj te respondemos <strong>qué comer</strong> con base en lo publicado en Instagram.
+	La <strong>comida de Tijuana</strong> es exquisita, en #feedmetj te respondemos <strong>que comer</strong> con base en lo publicado en Instagram.
 </div>
 
 <Drawer bind:isVisible={drawerIsVisible} shaded>
