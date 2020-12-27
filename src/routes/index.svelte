@@ -176,7 +176,7 @@
 		<li>{option}</li>
 		{/each}
 	</ul>
-	<h2>Que comer en Tijuana?</h2>
+	<h2>Donde comer en Tijuana?</h2>
 </div>
 
 <div class="grid-container">
@@ -196,6 +196,8 @@
 	<ul>
 		<li><a href="https://www.instagram.com/takunoya_ramen/" target="_blank" rel="nofollow noreferrer">Takunoya Ramen</li>
 		<li><a href="https://www.instagram.com/ohanatjpoke/" target="_blank" rel="nofollow noreferrer">Ohana Poke</a></li>
+		<li><a href="https://www.instagram.com/lelieureposteria/" target="_blank" rel="nofollow noreferrer">Le Lieu Reposteria</a></li>
+		<li><a href="https://www.instagram.com/kasama_ramen/" target="_blank" rel="nofollow noreferrer">Kasama Ramen</a></li>
 	</ul>
 </div>
 
