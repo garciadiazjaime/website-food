@@ -1,5 +1,5 @@
 <script>
-	import './about.scss';
+	import './feedmetj.scss';
 </script>
 <svelte:head>
 	<title>¿Qué es Feedmetj?</title>
