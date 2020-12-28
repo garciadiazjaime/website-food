@@ -170,7 +170,7 @@
 </StickyBanner>
 
 <div class="container">
-	<h2>Opciones de comida en Tijuana:</h2>
+	<h2>Que comida hay en Tijuana</h2>
 	<ul class="top-options">
 		{#each topOptions as option}
 		<li>{option}</li>
@@ -192,7 +192,7 @@
 </div>
 
 <div class="container">
-	<strong>Restaurantes Favoritos {getDate()}</strong>
+	<strong>Restaurantes y Comida Favorita {getDate()}</strong>
 	<ul>
 		<li><a href="https://www.instagram.com/takunoya_ramen/" target="_blank" rel="nofollow noreferrer">Takunoya Ramen</li>
 		<li><a href="https://www.instagram.com/ohanatjpoke/" target="_blank" rel="nofollow noreferrer">Ohana Poke</a></li>

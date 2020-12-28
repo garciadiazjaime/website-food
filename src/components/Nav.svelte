@@ -57,7 +57,7 @@
 	<ul>
 		<li><img class="logo" src="fmt_icon.svg" alt="Feed me Tj" height="40px" width="48px"/></li>
 		<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>comida</a></li>
-		<li><a aria-current='{segment === "about" ? "page" : undefined}' href='/about'>proyecto</a></li>
+		<li><a aria-current='{segment === "feedmetj" ? "page" : undefined}' href='/feedmetj'>feedmetj</a></li>
 		<li class="hide"><a aria-current='{segment === "map" ? "page" : undefined}' href='/map'>mapa</a></li>
 		<li class="hide"><a aria-current='{segment === "stats" ? "page" : undefined}' href='/stats'>datos</a></li>
 	</ul>
