@@ -205,6 +205,13 @@
 	La <strong>comida de Tijuana</strong> es exquisita, en #feedmetj te respondemos <strong>que comer</strong> con base en lo publicado en Instagram.
 </div>
 
+<div class="container">
+	Síguenos en
+	<ul>
+		<li>Instagram: <a href="https://www.instagram.com/feedmetj/" target="_blank" rel="nofollow noreferrer">feedmetj</a></li>
+	</ul>
+</div>
+
 <Drawer bind:isVisible={drawerIsVisible} shaded>
 	<Profile profile={currentProfile} />
 </Drawer>
