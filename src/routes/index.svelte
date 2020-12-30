@@ -208,7 +208,8 @@
 <div class="container">
 	Síguenos en
 	<ul>
-		<li>Instagram: <a href="https://www.instagram.com/feedmetj/" target="_blank" rel="nofollow noreferrer">feedmetj</a></li>
+		<li><a href="https://www.instagram.com/feedmetj/" target="_blank" rel="nofollow noreferrer">Instagram</a></li>
+		<li><a href="https://www.facebook.com/Feedmetj-104064654962934" target="_blank" rel="nofollow noreferrer">Facebook</a></li>
 	</ul>
 </div>
 
