@@ -5,8 +5,6 @@
 	import Profile from '../components/Profile.svelte';
 
 	export let profiles = []
-	export let topPlacesHTML = ''
-	export let topOptionsHTML = ''
 	export let topOptions = []
 	export let optionsForSEO = []
 
@@ -21,14 +19,14 @@
 			"name": "Donde comer en Tijuana",
 			"acceptedAnswer": {
 				"@type": "Answer",
-				"text": `<ul>${topPlacesHTML}</ul>`
+				"text": `<ul>${profiles.slice(0, 10).map(item => `<li>${item.title}</li>`).join('')}</ul>`
 			}
 		}, {
 			"@type": "Question",
 			"name": "Que hay de comer en Tijuana",
 			"acceptedAnswer": {
 				"@type": "Answer",
-				"text": `<ul>${topOptionsHTML}</ul>`
+				"text": `<ul>${topOptions.map(item => `<li>${item}</li>`).join('')}</ul>`
 			}
 		}, {
 			"@type": "Question",
@@ -57,6 +55,7 @@
 
 <script context="module">
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
+	import { optionsForSEO } from '../utils/meta'
 
 	const lngLat = [zonaCentro.lng, zonaCentro.lat];
 
@@ -67,7 +66,6 @@
 
 		const profiles = await response.json()
 
-		const topPlacesHTML = profiles.slice(0, 10).map(item => `<li>${item.title}</li>`).join('')
 		const topOptionsMap = profiles.reduce((accu, item) => {
 			item.keywords.forEach(keyword => {
 				if (!accu[keyword]) {
@@ -83,39 +81,10 @@
 			.slice(0, 12)
 			.map(item => item[0])
 		
-		const topOptionsHTML = topOptions.map(item => `<li>${item}</li>`).join('')
-
-		const optionsForSEO = [{
-			title: 'Ramen',
-			slug: 'ramen'
-		}, {
-			title: 'Poke',
-			slug: 'poke'
-		}, {
-			title: 'Sushi',
-			slug: 'sushi'
-		}, {
-			title: 'Mariscos',
-			slug: 'mariscos'
-		}, {
-			title: 'Pizza',
-			slug: 'pizza'
-		}, {
-			title: 'Tacos',
-			slug: 'tacos'
-		}, {
-			title: 'Restaurante',
-			slug: 'restaurante'
-		}, {
-			title: 'Cafe',
-			slug: 'cafe'
-		}]
 
 		return {
 			profiles,
-			topPlacesHTML,
 			topOptions,
-			topOptionsHTML,
 			optionsForSEO,
 		}
 	}
