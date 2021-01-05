@@ -8,6 +8,7 @@
 	export let topPlacesHTML = ''
 	export let topOptionsHTML = ''
 	export let topOptions = []
+	export let optionsForSEO = []
 
 	let currentProfile;
 	let drawerIsVisible = false;
@@ -77,11 +78,38 @@
 		
 		const topOptionsHTML = topOptions.map(item => `<li>${item}</li>`).join('')
 
+		const optionsForSEO = [{
+			title: 'Ramen',
+			slug: 'ramen'
+		}, {
+			title: 'Poke',
+			slug: 'poke'
+		}, {
+			title: 'Sushi',
+			slug: 'sushi'
+		}, {
+			title: 'Mariscos',
+			slug: 'mariscos'
+		}, {
+			title: 'Pizza',
+			slug: 'pizza'
+		}, {
+			title: 'Tacos',
+			slug: 'tacos'
+		}, {
+			title: 'Restaurante',
+			slug: 'restaurante'
+		}, {
+			title: 'Cafe',
+			slug: 'cafe'
+		}]
+
 		return {
 			profiles,
 			topPlacesHTML,
 			topOptions,
 			topOptionsHTML,
+			optionsForSEO,
 		}
 	}
 </script>
@@ -170,12 +198,15 @@
 </StickyBanner>
 
 <div class="container">
-	<h2>Que comida hay en Tijuana</h2>
+	<h2>Que hay de comer en Tijuana</h2>
 	<ul class="top-options">
-		{#each topOptions as option}
-		<li>{option}</li>
+		{#each optionsForSEO as option}
+		<li><a href={option.slug}>{option.title}</a></li>
 		{/each}
 	</ul>
+</div>
+
+<div class="container">
 	<h2>Donde comer en Tijuana?</h2>
 </div>
 
@@ -192,6 +223,13 @@
 </div>
 
 <div class="container">
+	<h2>Que comida hay en Tijuana</h2>
+	<ul class="top-options">
+		{#each topOptions as option}
+		<li>{option}</li>
+		{/each}
+	</ul>
+
 	<strong>Restaurantes y Comida Favorita {getDate()}</strong>
 	<ul>
 		<li><a href="https://www.instagram.com/takunoya_ramen/" target="_blank" rel="nofollow noreferrer">Takunoya Ramen</li>
