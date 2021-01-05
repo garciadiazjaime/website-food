@@ -18,7 +18,7 @@
 		"@type": "FAQPage",
 		"mainEntity": [{
 			"@type": "Question",
-			"name": "Restaurantes para comer en Tijuana",
+			"name": "Donde comer en Tijuana",
 			"acceptedAnswer": {
 				"@type": "Answer",
 				"text": `<ul>${topPlacesHTML}</ul>`
@@ -29,6 +29,13 @@
 			"acceptedAnswer": {
 				"@type": "Answer",
 				"text": `<ul>${topOptionsHTML}</ul>`
+			}
+		}, {
+			"@type": "Question",
+			"name": "Que comer en Tijuana",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": `<ul>${optionsForSEO.map(item => `<li><a href="/${item.slug}">${item.title}</a></li>`).join('')}</ul>`
 			}
 		}]
 	}
