@@ -1,5 +1,6 @@
 <script context="module">
   import { zonaCentro } from '../utils/mapboxAPIUtil';
+  import { optionsForSEO } from '../utils/meta'
 
 	export async function preload(page, session) {
     const lngLat = [zonaCentro.lng, zonaCentro.lat];
@@ -8,10 +9,13 @@
     const filters = encodeURIComponent(JSON.stringify({ lngLat, first: 100, state: 'MAPPED', category }))
 
 		const response = await this.fetch(`process.env.API_URL/feedme?filters=${filters}`)
-    
     const options = await response.json()
 
-		return { title: `Donde comer ${category} en Tijuana`, options };
+    const item = optionsForSEO.find(item => item.slug === category)
+
+    const option = item ?  item.title : category
+
+		return { title: `Donde comer ${option} en Tijuana`, options };
 	}
 </script>
 
@@ -25,11 +29,23 @@
     padding: 20px;
   }
 
+  .grid {
+    display: grid;
+    grid-column-gap: 20px;
+    grid-row-gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  }
+
+  @media screen and (min-width: 992px) {
+    .grid {
+      grid-template-columns: repeat(auto-fit, minmax(24%, 1fr));
+    }
+  }
+
   .card {
     padding: 6px 0;
-    max-width: 400px;
-    margin: 0 auto 20px;
     box-shadow: 2px 2px 6px 6px #c8c8c8;
+    width: 100%;
   }
 
   h2 {
@@ -38,8 +54,10 @@
   }
 
   img {
+    height: 180px;
+    min-height: 180px;
     width: 100%;
-    height: auto;
+    object-fit: cover;
   }
 
   .keywords {
@@ -69,7 +87,7 @@
 <div class="container">
   <h1>{title}</h1>
 
-  <div class="content">
+  <div class="grid">
     {#each options as option}
       <div class="card">
         <h2>{option.title}</h2>
