@@ -152,7 +152,7 @@
 </style>
 
 <svelte:head>
-	<title>#feedmetj | Que comer en Tijuana? - {getDate()}</title>
+	<title>Que comer en Tijuana {getDate()} | {optionsForSEO.slice(0, 3).map(item => `${item.title}`).join(' ')}</title>
 	<meta property="og:title" content="Feedmetj">
 	<meta property="og:description" content="La comida de Tijuana es exquisita, en #feedmetj te respondemos que comer con base en lo publicado en Instagram.">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
