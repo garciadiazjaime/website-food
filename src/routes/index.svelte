@@ -54,18 +54,9 @@
 </script>
 
 <script context="module">
-	import { zonaCentro } from '../utils/mapboxAPIUtil';
-	import { optionsForSEO } from '../utils/meta'
-
-	const lngLat = [zonaCentro.lng, zonaCentro.lat];
-
 	export async function preload() {
-		const filters = encodeURIComponent(JSON.stringify({ lngLat, first: 100, state: 'MAPPED' }))
-
-		const response = await this.fetch(`process.env.API_URL/feedme?filters=${filters}`)
-
+		let response = await this.fetch('./data/homepage.json')
 		const profiles = await response.json()
-
 		const topOptionsMap = profiles.reduce((accu, item) => {
 			item.keywords.forEach(keyword => {
 				if (!accu[keyword]) {
@@ -75,12 +66,15 @@
 			})
 			return accu
 		}, {})
+
 		const topOptions = Object.keys(topOptionsMap)
 			.map(key => [key, topOptionsMap[key]])
 			.sort((a, b) => a[1] - b[1])
 			.slice(0, 12)
 			.map(item => item[0])
 		
+		response = await this.fetch('./seoCategories.json')
+		const optionsForSEO = await response.json()
 
 		return {
 			profiles,

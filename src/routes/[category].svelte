@@ -1,15 +1,14 @@
 <script context="module">
   import { zonaCentro } from '../utils/mapboxAPIUtil';
-  import { optionsForSEO } from '../utils/meta'
 
 	export async function preload(page, session) {
-    const lngLat = [zonaCentro.lng, zonaCentro.lat];
     const { category } = page.params;
-    
-    const filters = encodeURIComponent(JSON.stringify({ lngLat, first: 100, state: 'MAPPED', category }))
 
-		const response = await this.fetch(`process.env.API_URL/feedme?filters=${filters}`)
+		let response = await this.fetch(`./data/${category}.json`)
     const options = await response.json()
+
+    response = await this.fetch('./seoCategories.json')
+		const optionsForSEO = await response.json()
 
     const item = optionsForSEO.find(item => item.slug === category)
 
