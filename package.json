@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build --legacy",
-    "data": "API_URL=http://api.feedmetj.com node etl/data.js",
-    "export": "NODE_ENV=production API_URL=http://api.feedmetj.com sapper export --legacy",
+    "data": "node etl/data.js",
+    "export": "sapper export --legacy",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
