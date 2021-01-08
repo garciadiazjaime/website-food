@@ -30,7 +30,7 @@ async function saveHomepage() {
 }
 
 async function saveCategories() {
-  const rawdata = fs.readFileSync('./static/categories.json');
+  const rawdata = fs.readFileSync('./static/seoCategories.json');
   const optionsForSEO = JSON.parse(rawdata);
 
   const promises = optionsForSEO.map(async category => {
