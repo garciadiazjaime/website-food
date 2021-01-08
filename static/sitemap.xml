@@ -1,11 +1,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://www.feedmetj.com/</loc>
+    <loc>https://www.feedmetj.com/</loc>
     <lastmod>2021-01-06T18:44:06+00:00</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
-    <loc>http://www.feedmetj.com/feedmetj/</loc>
+    <loc>https://www.feedmetj.com/feedmetj/</loc>
     <lastmod>2021-01-06T18:44:05+00:00</lastmod>
     <priority>0.80</priority>
   </url>
