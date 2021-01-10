@@ -153,12 +153,12 @@
 </style>
 
 <svelte:head>
-	<title>Que comer en Tijuana {getDate()} | {optionsForSEO.slice(0, 4).map(item => `${item.title}`).join(' ')}</title>
+	<title>Que comer Tijuana {getDate()}, {optionsForSEO.slice(0, 4).map(item => `${item.title}`).join(' ')}</title>
 	<meta property="og:title" content="Feedmetj">
-	<meta property="og:description" content="La mejor comida se hace en Tijuana. Donde comer ramen, poke, sushi, tacos, pizza, mariscos. Los mejores restaurantes, descrube que comer.">
+	<meta property="og:description" content="La mejor comida se hace en Tijuana. Donde comer ramen, poke, sushi, tacos, pizza, mariscos. Los mejores restaurantes, descrube que comer, disfruta la gastronomia local">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content="La mejor comida se hace en Tijuana. Donde comer ramen, poke, sushi, tacos, pizza, mariscos. Los mejores restaurantes, descrube que comer.">
+	<meta name="description" content="La mejor comida se hace en Tijuana. Donde comer ramen, poke, sushi, tacos, pizza, mariscos. Los mejores restaurantes, descrube que comer, disfruta la gastronomia local">
 </svelte:head>
 
 <StickyBanner>
