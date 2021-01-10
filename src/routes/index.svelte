@@ -57,6 +57,7 @@
 	export async function preload() {
 		let response = await this.fetch('./data/homepage.json')
 		const profiles = await response.json()
+
 		const topOptionsMap = profiles.reduce((accu, item) => {
 			item.keywords.forEach(keyword => {
 				if (!accu[keyword]) {
@@ -152,12 +153,12 @@
 </style>
 
 <svelte:head>
-	<title>Que comer en Tijuana {getDate()} | {optionsForSEO.slice(0, 3).map(item => `${item.title}`).join(' ')}</title>
+	<title>Que comer en Tijuana {getDate()} | {optionsForSEO.slice(0, 4).map(item => `${item.title}`).join(' ')}</title>
 	<meta property="og:title" content="Feedmetj">
-	<meta property="og:description" content="La comida de Tijuana es exquisita, en #feedmetj te respondemos que comer con base en lo publicado en Instagram.">
+	<meta property="og:description" content="La mejor comida se hace en Tijuana. Donde comer ramen, poke, sushi, tacos, pizza, mariscos. Los mejores restaurantes, descrube que comer.">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content="La comida de Tijuana es exquisita, en #feedmetj te respondemos que comer con base en lo publicado en Instagram.">
+	<meta name="description" content="La mejor comida se hace en Tijuana. Donde comer ramen, poke, sushi, tacos, pizza, mariscos. Los mejores restaurantes, descrube que comer.">
 </svelte:head>
 
 <StickyBanner>
@@ -171,7 +172,7 @@
 	<h2>Que hay de comer en Tijuana</h2>
 	<ul class="top-options">
 		{#each optionsForSEO as option}
-		<li><a href={option.slug}>{option.title}</a></li>
+		<li><a href={`/${option.slug}`} title={`donde comer ${option.title} en Tijuana`}>{option.title}</a></li>
 		{/each}
 	</ul>
 </div>
@@ -210,7 +211,7 @@
 </div>
 
 <div class="container">
-	La <strong>comida de Tijuana</strong> es exquisita, en #feedmetj te respondemos <strong>que comer</strong> con base en lo publicado en Instagram.
+	La mejor <strong>comida</strong> se hace en <strong>Tijuana</strong>. Donde comer ramen, poke, sushi, tacos, pizza, mariscos. Los mejores restaurantes, descrube que <strong>comer</strong>.
 </div>
 
 <div class="container">
