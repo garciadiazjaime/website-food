@@ -153,7 +153,7 @@
 </style>
 
 <svelte:head>
-	<title>Que comer Tijuana {getDate()}, {optionsForSEO.slice(0, 4).map(item => `${item.title}`).join(' ')}</title>
+	<title>Que comer Tijuana {getDate()}, {optionsForSEO.slice(0, 5).map(item => `${item.title}`).join(' ')}</title>
 	<meta property="og:title" content="Feedmetj">
 	<meta property="og:description" content="La mejor comida se hace en Tijuana. Donde comer ramen, poke, sushi, tacos, pizza, mariscos. Los mejores restaurantes, descrube que comer, disfruta la gastronomia local">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
@@ -211,7 +211,7 @@
 </div>
 
 <div class="container">
-	La mejor <strong>comida</strong> se hace en <strong>Tijuana</strong>. Donde comer ramen, poke, sushi, tacos, pizza, mariscos. Los mejores restaurantes, descrube que <strong>comer</strong>.
+	La mejor <strong>comida</strong> de <strong>Tijuana</strong>. Donde comer ramen, poke, sushi, tacos, pizza, mariscos. Los mejores restaurantes, descrube que <strong>comer</strong>.
 </div>
 
 <div class="container">
