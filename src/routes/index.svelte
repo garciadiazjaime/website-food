@@ -153,12 +153,12 @@
 </style>
 
 <svelte:head>
-	<title>Que comer Tijuana {getDate()}, {optionsForSEO.slice(0, 5).map(item => `${item.title}`).join(' ')}</title>
+	<title>Que comer en Tijuana {getDate()}, {optionsForSEO.slice(0, 5).map(item => `${item.title}`).join(' ')}</title>
 	<meta property="og:title" content="Feedmetj">
-	<meta property="og:description" content="La mejor comida de Tijuana. Conoce donde comer ramen, poke, sushi, tacos, pizza, mariscos. Los mejores restaurantes, descrube que comer, disfruta la gastronomia local">
+	<meta property="og:description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos. Descrube la mejor comida y disfruta la gastronomia local.">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content="La mejor comida de Tijuana. Conoce donde comer ramen, poke, sushi, tacos, pizza, mariscos. Los mejores restaurantes, descrube que comer, disfruta la gastronomia local">
+	<meta name="description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos. Descrube la mejor comida y disfruta la gastronomia local.">
 </svelte:head>
 
 <StickyBanner>
@@ -211,7 +211,7 @@
 </div>
 
 <div class="container">
-	La mejor <strong>comida</strong> de <strong>Tijuana</strong>. Donde comer ramen, poke, sushi, tacos, pizza, mariscos. Los mejores restaurantes, descrube que <strong>comer</strong>.
+	Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos. Descrube la mejor comida y disfruta la gastronomia local.
 </div>
 
 <div class="container">
