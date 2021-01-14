@@ -6,7 +6,7 @@
 
 	export let profiles = []
 	export let topOptions = []
-	export let optionsForSEO = []
+	export let seoCategories = []
 
 	let currentProfile;
 	let drawerIsVisible = false;
@@ -33,7 +33,7 @@
 			"name": "Que comer en Tijuana",
 			"acceptedAnswer": {
 				"@type": "Answer",
-				"text": `<ul>${optionsForSEO.map(item => `<li><a href="/${item.slug}">${item.title}</a></li>`).join('')}</ul>`
+				"text": `<ul>${seoCategories.map(item => `<li><a href="/${item.slug}">${item.title}</a></li>`).join('')}</ul>`
 			}
 		}]
 	}
@@ -51,6 +51,10 @@
 
 		return `${months[month]} ${year}`
 	}
+
+	function getCategoryTitle(slug) {
+		return seoCategories.find(item => item.slug === slug).title
+	}
 </script>
 
 <script context="module">
@@ -58,7 +62,16 @@
 		let response = await this.fetch('./data/homepage.json')
 		const profiles = await response.json()
 
-		const topOptionsMap = profiles.reduce((accu, item) => {
+		response = await this.fetch('./seoCategories.json')
+		const seoCategories = await response.json()
+
+		const allProfiles = profiles.reduce((accu, item) => {
+			accu.push(...item.data)
+
+			return accu
+		}, [])
+
+		const topOptionsMap = allProfiles.reduce((accu, item) => {
 			item.keywords.forEach(keyword => {
 				if (!accu[keyword]) {
 					accu[keyword] = 0
@@ -73,14 +86,11 @@
 			.sort((a, b) => a[1] - b[1])
 			.slice(0, 12)
 			.map(item => item[0])
-		
-		response = await this.fetch('./seoCategories.json')
-		const optionsForSEO = await response.json()
 
 		return {
 			profiles,
 			topOptions,
-			optionsForSEO,
+			seoCategories,
 		}
 	}
 </script>
@@ -153,7 +163,7 @@
 </style>
 
 <svelte:head>
-	<title>Que comer en Tijuana {getDate()}, {optionsForSEO.slice(0, 5).map(item => `${item.title}`).join(' ')}</title>
+	<title>Que comer en Tijuana {getDate()}, {seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}</title>
 	<meta property="og:title" content="Feedmetj">
 	<meta property="og:description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos. Descrube la mejor comida y disfruta la gastronomia local.">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
@@ -171,25 +181,28 @@
 <div class="container">
 	<h2>Que hay de comer en Tijuana</h2>
 	<ul class="top-options">
-		{#each optionsForSEO as option}
+		{#each seoCategories as option}
 		<li><a href={`/${option.slug}`} title={`donde comer ${option.title} en Tijuana`}>{option.title}</a></li>
 		{/each}
 	</ul>
 </div>
 
 <div class="container">
-	<h2>Donde comer en Tijuana?</h2>
-</div>
+	{#each profiles as profileByCategory}
+		<h2>{getCategoryTitle(profileByCategory.category)}</h2>
+		<div class="grid-container">
+		
+			{#each profileByCategory.data as profile}
+				<Card
+					profile={profile}
+					cardAction={() => openProfile(profile)}
+					buttonColor="#ca4f24"
+					showDistance={false}
+					alt="Comida Tijuana -"
+				/>
+			{/each}
 
-<div class="grid-container">
-	{#each profiles as profile, index}
-		<Card
-			profile={profile}
-			cardAction={() => openProfile(profile)}
-			buttonColor="#ca4f24"
-			showDistance={false}
-			alt="Comida Tijuana -"
-		/>
+		</div>
 	{/each}
 </div>
 
