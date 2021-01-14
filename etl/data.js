@@ -2,14 +2,13 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 const debug = require('debug')('etl:data')
 
+const seoCategories = require('../static/seoCategories.json')
 const config = require('./config.js');
 
 const zonaCentro = {
   lat: 32.5286807,
   lng: -117.0477024,
 }
-
-const lngLat = [zonaCentro.lng, zonaCentro.lat];
 
 async function extract(url) {
   const response = await fetch(url)
@@ -22,21 +21,26 @@ function load(filename, rawData) {
   fs.writeFileSync(`./static/data/${filename}.json`, data);
 }
 
+async function getProfiles(first, categories) {
+  const state = 'MAPPED'
+  return await extract(`${config.get('apiUrl')}/feedme?lng=${zonaCentro.lng}&lat=${zonaCentro.lat}&first=${first}&state=${state}&categories=${categories}`)
+}
+
 async function saveHomepage() {
-  let filters = encodeURIComponent(JSON.stringify({ lngLat, first: 100, state: 'MAPPED' }))
+  const categories = seoCategories.map(item => item.slug).join(',')
+  const first = 12
   
-  const profiles = await extract(`${config.get('apiUrl')}/feedme?filters=${filters}`)
+  const profiles = await getProfiles(first, categories)
+
   load('homepage', profiles)
 }
 
 async function saveCategories() {
-  const rawdata = fs.readFileSync('./static/seoCategories.json');
-  const optionsForSEO = JSON.parse(rawdata);
+  const promises = seoCategories.map(async category => {
+    const categories = category.slug
+    const first = 48
 
-  const promises = optionsForSEO.map(async category => {
-    filters = encodeURIComponent(JSON.stringify({ lngLat, first: 100, state: 'MAPPED', category: category.slug }))
-
-    const profiles = await extract(`${config.get('apiUrl')}/feedme?filters=${filters}`)
+    const profiles = await getProfiles(first, categories)
 
     load(category.slug, profiles)
   })
