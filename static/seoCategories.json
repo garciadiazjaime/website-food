@@ -1,25 +1,25 @@
 [{
-  "title": "Ramen",
+  "title": "Donde comer Ramen",
   "slug": "ramen"
 }, {
-  "title": "Poke",
+  "title": "Restaurantes de Poke",
   "slug": "poke"
 }, {
-  "title": "Sushi",
+  "title": "Donde comer Sushi",
   "slug": "sushi"
 }, {
-  "title": "Mariscos",
+  "title": "Restaurantes de Mariscos",
   "slug": "mariscos"
 }, {
-  "title": "Pizza",
+  "title": "Las mejores Pizzas",
   "slug": "pizza"
 }, {
-  "title": "Tacos",
+  "title": "Los mejores Tacos",
   "slug": "tacos"
 }, {
-  "title": "Restaurante",
+  "title": "Comida de Tijuana",
   "slug": "restaurante"
 }, {
-  "title": "Cafe",
+  "title": "Cafes de Tijuana",
   "slug": "cafe"
 }]
