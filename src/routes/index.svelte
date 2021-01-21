@@ -53,7 +53,7 @@
 	}
 
 	function getCategoryTitle(slug) {
-		return seoCategories.find(item => item.slug === slug).title
+		return seoCategories.find(item => item.slug === slug).fullTitle
 	}
 </script>
 
