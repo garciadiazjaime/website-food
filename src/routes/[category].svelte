@@ -5,7 +5,7 @@
     const { category } = page.params;
 
 		let response = await this.fetch(`./data/${category}.json`)
-    const options = await response.json()
+    const [options] = await response.json()
 
     response = await this.fetch('./seoCategories.json')
 		const optionsForSEO = await response.json()
@@ -14,13 +14,17 @@
 
     const option = item ?  item.title : category
 
-		return { title: `Donde comer ${option} en Tijuana`, options };
+		return { title: item.fullTitle, options };
 	}
 </script>
 
 <script>
   export let title;
   export let options;
+
+  function clickHandler(option) {
+    window.open(`https://www.instagram.com/${option.username}/`, "_blank");
+  }
 </script>
 
 <style>
@@ -45,6 +49,10 @@
     padding: 6px 0;
     box-shadow: 2px 2px 6px 6px #c8c8c8;
     width: 100%;
+  }
+
+  .card:hover {
+    cursor: pointer;
   }
 
   h2 {
@@ -87,11 +95,11 @@
   <h1>{title}</h1>
 
   <div class="grid">
-    {#each options as option}
-      <div class="card">
+    {#each options.data as option}
+      <div class="card" on:click={() => clickHandler(option)}>
         <h2>{option.title}</h2>
 
-        <img src={option.posts[0].mediaUrl} alt={option.title} />
+        <img src={option.mediaUrl} alt={option.title} />
 
         <div class="keywords">
           {#each option.keywords as keyword}
