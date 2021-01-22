@@ -1,8 +1,7 @@
 <script>
-	import Card from 'mint-components/src/components/ProfileCard.svelte';
-	import Drawer from 'mint-components/src/components/Drawer.svelte';
-	import StickyBanner from '../components/StickyBanner.svelte';
-	import Profile from '../components/Profile.svelte';
+	import Tile from '../components/Tile.svelte'
+
+	import StickyBanner from '../components/StickyBanner.svelte'
 
 	export let profiles = []
 	export let topOptions = []
@@ -163,7 +162,7 @@
 </style>
 
 <svelte:head>
-	<title>Que comer en Tijuana {getDate()}, {seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}</title>
+	<title>Que comer en Tijuana, La Mejor Comida: {seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}</title>
 	<meta property="og:title" content="Feedmetj">
 	<meta property="og:description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia local.">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
@@ -193,13 +192,7 @@
 		<div class="grid-container">
 		
 			{#each profileByCategory.data as profile}
-				<Card
-					profile={profile}
-					cardAction={() => openProfile(profile)}
-					buttonColor="#ca4f24"
-					showDistance={false}
-					alt="Comida Tijuana -"
-				/>
+				<Tile place={profile} />
 			{/each}
 
 		</div>
@@ -234,9 +227,5 @@
 		<li><a href="https://www.facebook.com/Feedmetj-104064654962934" target="_blank" rel="nofollow noreferrer">Facebook</a></li>
 	</ul>
 </div>
-
-<Drawer bind:isVisible={drawerIsVisible} shaded>
-	<Profile profile={currentProfile} />
-</Drawer>
 
 {@html `<script type="application/ld+json">${JSON.stringify(FAQPage)}</script>`}
