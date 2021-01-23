@@ -159,6 +159,11 @@
 	ul.top-options li:last-of-type::after {
 		content: ''
 	}
+
+	ul.top-options a {
+		display: inline-block;
+		height: 48px;
+	}
 </style>
 
 <svelte:head>
@@ -168,6 +173,7 @@
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
 	<meta name="description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia local.">
+	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
 <StickyBanner>

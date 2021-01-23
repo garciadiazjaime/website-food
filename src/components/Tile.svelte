@@ -54,6 +54,8 @@
 
   <img src={place.mediaUrl} alt={place.title} />
 
+  <p>{place.address || ''}</p>
+
   <div class="keywords">
     {#each place.keywords as keyword}
       <strong>{keyword}</strong>
