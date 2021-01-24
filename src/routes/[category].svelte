@@ -1,6 +1,4 @@
 <script context="module">
-  import { zonaCentro } from '../utils/mapboxAPIUtil';
-
 	export async function preload(page, session) {
     const { category } = page.params;
 
@@ -19,13 +17,9 @@
 </script>
 
 <script>
-  import Tile from '../components/Tile.svelte'
+  import Card from '../components/Card.svelte'
   export let title;
   export let options;
-
-  function clickHandler(option) {
-    window.open(`https://www.instagram.com/${option.username}/`, "_blank");
-  }
 </script>
 
 <style>
@@ -56,7 +50,7 @@
 
   <div class="grid">
     {#each options.data as option}
-      <Tile place={option} />
+      <Card {...option} />
     {/each}
   </div>
 </div>

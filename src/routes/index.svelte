@@ -1,5 +1,5 @@
 <script>
-	import Tile from '../components/Tile.svelte'
+	import Card from '../components/Card.svelte'
 
 	import StickyBanner from '../components/StickyBanner.svelte'
 
@@ -167,8 +167,8 @@
 </style>
 
 <svelte:head>
-	<title>Que comer en Tijuana? La mejor comida de Tijuana {getDate()}</title>
-	<meta property="og:title" content="Feedmetj">
+	<title>Que comer en Tijuana La mejor comida {getDate()} {seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}</title>
+	<meta property="og:title" content="feedmetj">
 	<meta property="og:description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia local.">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
@@ -198,7 +198,7 @@
 		<div class="grid-container">
 		
 			{#each profileByCategory.data as profile}
-				<Tile place={profile} />
+				<Card {...profile} />
 			{/each}
 
 		</div>

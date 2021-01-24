@@ -1,53 +1,93 @@
 <script>
-  import Card from "@smui/card";
-	import LazyLoad from './LazyLoad.svelte';
-  import Location from './Location.svelte';
-	import Keywords from './Keywords.svelte';
-  import Phones from './Phones.svelte';
-  import Title from './Title.svelte';
-  import Whatsapp from './Whatsapp.svelte';
-  import { getWhatsapp } from '../utils/postUtil';
+  export let id;
+  export let username;
+	export let title;
+	export let mediaUrl;
+  export let address;
+  export let keywords;
 
-  export let profile;
-  export let lazy;
-  export let openProfile;
+  let imgUrl = ''
 
-  let currentTab;
+  let observer = null
 
-  function handleClick() {
-    ga('send', 'event', 'card', 'click', profile.username);
+  if (process.browser) {
+    observer = new IntersectionObserver(onIntersect, {rootMargin: '200px'});
+  }
 
-    history.pushState(null, profile.username, `#${profile.username}`);
+  function onIntersect(entries) {
+    if (!imgUrl && entries[0].isIntersecting) {
+      imgUrl = mediaUrl
+    }
+  }
 
-    openProfile(profile);
+
+  function lazyLoad(node) {
+    observer && observer.observe(node);
+    return {
+      destroy() {
+        observer && observer.unobserve(node)
+      }
+    }
+  }
+
+  function clickHandler() {
+    window.open(`https://www.instagram.com/${username}/`, "_blank");
   }
 </script>
+
 <style>
-  .card-content {
-		position: relative;
-    padding: 8px;
-    transition: height .3s;
-    height: 100%;
-    display: flex;
-    flex-flow: column nowrap;
-    align-content: space-between;
+  .card {
+    padding: 6px 0;
+    box-shadow: 2px 2px 6px 6px #c8c8c8;
+    width: 100%;
   }
-  .last-item {
-    margin-top: auto;
+
+  .card:hover {
+    cursor: pointer;
+  }
+
+  h2 {
+    margin: 0;
+    padding: 0 6px 12px;
+  }
+
+  img {
+    height: 180px;
+    min-height: 180px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .keywords {
+    padding: 0 6px;
+  }
+
+  strong {
+    font-weight: normal;
+    display: inline-block;
+  }
+
+  strong::after {
+    content: '|';
+    display: inline-block;
+    padding: 0 6px;
+  }
+
+  strong:last-of-type::after {
+    content: '';
   }
 </style>
 
-<Card class="Card" data-id={profile.id} data-rank={profile.rank} data-dist={profile.dist}}>
-  <div class="card-content">
-    <div on:click={handleClick}>
-      <LazyLoad lazy={lazy} dataSrc={profile.mediaUrl} posts={profile.posts} />
-      <Whatsapp whatsapp={getWhatsapp(profile.caption)} />
-      <Title title={profile.title} />
-    </div>
-    <Keywords keywords={profile.keywords} />
-    <Location address={profile.address} dist={profile.dist} coords={profile.gps} />
-    <div class="last-item">
-      <Phones phone={profile.phones[0]} username={profile.username}/>
-    </div> 
-  </div> 
-</Card>
+<div class="card" on:click={clickHandler} data-id={id}>
+  <h2>{title}</h2>
+
+  <img src={imgUrl} alt={title} use:lazyLoad />
+
+  <p>{address || ''}</p>
+
+  <div class="keywords">
+    {#each keywords as keyword}
+      <strong>{keyword}</strong>
+    {/each}
+  </div>
+</div>
