@@ -28,7 +28,7 @@ async function getProfiles(first, categories) {
 
 async function saveHomepage() {
   const categories = seoCategories.map(item => item.slug).join(',')
-  const first = 4
+  const first = 8
   
   const profiles = await getProfiles(first, categories)
 

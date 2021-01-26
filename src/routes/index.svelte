@@ -167,12 +167,12 @@
 </style>
 
 <svelte:head>
-	<title>Que comer en Tijuana La mejor comida {getDate()} {seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}</title>
+	<title>Que comer en Tijuana. La mejor comida {getDate()} {seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}</title>
 	<meta property="og:title" content="feedmetj">
-	<meta property="og:description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia local.">
+	<meta property="og:description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia local | {getDate()}">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia local.">
+	<meta name="description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia local | {getDate()}">
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
@@ -198,7 +198,14 @@
 		<div class="grid-container">
 		
 			{#each profileByCategory.data as profile}
-				<Card {...profile} />
+				<Card
+					id={profile.id}
+					username={profile.username}
+					title={profile.title}
+					mediaUrl={profile.mediaUrl}
+					address={profile.address}
+					keywords={profile.keywords}
+				/>
 			{/each}
 
 		</div>
