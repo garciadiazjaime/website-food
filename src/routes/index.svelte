@@ -167,7 +167,7 @@
 </style>
 
 <svelte:head>
-	<title>Que comer en Tijuana. La mejor comida {getDate()} {seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}</title>
+	<title>Que comer en Tijuana. {getDate()} {seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}</title>
 	<meta property="og:title" content="feedmetj">
 	<meta property="og:description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia tijuanense.">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
@@ -224,13 +224,12 @@
 	<ul>
 		<li><a href="https://www.instagram.com/takunoya_ramen/" target="_blank" rel="nofollow noreferrer">Takunoya Ramen</li>
 		<li><a href="https://www.instagram.com/ohanatjpoke/" target="_blank" rel="nofollow noreferrer">Ohana Poke</a></li>
-		<li><a href="https://www.instagram.com/lelieureposteria/" target="_blank" rel="nofollow noreferrer">Le Lieu Reposteria</a></li>
 		<li><a href="https://www.instagram.com/kasama_ramen/" target="_blank" rel="nofollow noreferrer">Kasama Ramen</a></li>
 	</ul>
 </div>
 
 <div class="container">
-	Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia local.
+	<strong>Que comer en Tijuana</strong>. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia tijuanense.
 </div>
 
 <div class="container">
