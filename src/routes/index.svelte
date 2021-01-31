@@ -167,12 +167,12 @@
 </style>
 
 <svelte:head>
-	<title>Que comer en Tijuana. {getDate()} {seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}</title>
+	<title>Que comer en Tijuana: {seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')} | {getDate()}</title>
 	<meta property="og:title" content="feedmetj">
-	<meta property="og:description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia tijuanense.">
+	<meta property="og:description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia tijuanense. Alimentate sanamente.">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia tijuanense.">
+	<meta name="description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia tijuanense. Alimentate sanamente.">
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
@@ -187,7 +187,7 @@
 	<h2>Que hay de comer en Tijuana</h2>
 	<ul class="top-options">
 		{#each seoCategories as option}
-		<li><a href={`/${option.slug}`} title={`donde comer ${option.title} en Tijuana`}>{option.title}</a></li>
+		<li><a href={`/${option.slug}`} title={option.fullTitle}>{option.title}</a></li>
 		{/each}
 	</ul>
 </div>
@@ -229,14 +229,14 @@
 </div>
 
 <div class="container">
-	<strong>Que comer en Tijuana</strong>. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia tijuanense.
+	<strong>Que comer en Tijuana</strong>. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia tijuanense. Alimentate sanamente.
 </div>
 
 <div class="container">
 	Síguenos en
 	<ul>
-		<li><a href="https://www.instagram.com/feedmetj/" target="_blank" rel="nofollow noreferrer">Instagram</a></li>
-		<li><a href="https://www.facebook.com/Feedmetj-104064654962934" target="_blank" rel="nofollow noreferrer">Facebook</a></li>
+		<li><a href="https://www.instagram.com/feedmetj/" target="_blank" rel="nofollow noreferrer" title="que comer en tijuana">Instagram</a></li>
+		<li><a href="https://www.facebook.com/Feedmetj-104064654962934" target="_blank" rel="nofollow noreferrer" title="la mejor comida de tijuana">Facebook</a></li>
 	</ul>
 </div>
 

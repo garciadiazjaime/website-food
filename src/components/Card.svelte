@@ -29,10 +29,6 @@
       }
     }
   }
-
-  function clickHandler() {
-    window.open(`https://www.instagram.com/${username}/`, "_blank");
-  }
 </script>
 
 <style>
@@ -76,12 +72,16 @@
   strong:last-of-type::after {
     content: '';
   }
+
+  a {
+    text-decoration: none;
+  }
 </style>
 
-<div class="card" on:click={clickHandler} data-id={id}>
-  <h3>{title || username}</h3>
+<div class="card" data-id={id}>
+  <h3><a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer" title={title || username}>{title || username}</a></h3>
 
-  <img src={imgUrl} alt={`Que comer en Tijuana: ${title}`} use:lazyLoad />
+  <img src={imgUrl} alt={`${title}: ${keywords.join(' ')}`} use:lazyLoad />
 
   <p>{address || ''}</p>
 
