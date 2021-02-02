@@ -169,10 +169,10 @@
 <svelte:head>
 	<title>Que comer en Tijuana: {seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')} | {getDate()}</title>
 	<meta property="og:title" content="feedmetj">
-	<meta property="og:description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia tijuanense. Alimentate sanamente.">
+	<meta property="og:description" content="Que comer en Tijuana. Descubre la mejor comida y disfruta la gastronomia tijuanense.">
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content="Que comer en Tijuana. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia tijuanense. Alimentate sanamente.">
+	<meta name="description" content="Que comer en Tijuana. Descubre la mejor comida y disfruta la gastronomia tijuanense.">
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
@@ -204,6 +204,7 @@
 					title={profile.title}
 					mediaUrl={profile.mediaUrl}
 					address={profile.address}
+					gps={profile.gps}
 					keywords={profile.keywords}
 				/>
 			{/each}
@@ -229,7 +230,7 @@
 </div>
 
 <div class="container">
-	<strong>Que comer en Tijuana</strong>. Restaurantes de ramen, poke, sushi, tacos, pizza, mariscos, cafes. Descubre la mejor comida y disfruta la gastronomia tijuanense. Alimentate sanamente.
+	<strong>Que comer en Tijuana</strong>. Descubre la mejor comida y disfruta la gastronomia tijuanense.
 </div>
 
 <div class="container">

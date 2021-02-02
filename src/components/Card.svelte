@@ -5,6 +5,7 @@
 	export let mediaUrl;
   export let address;
   export let keywords;
+  export let gps;
 
   let imgUrl = ''
 
@@ -36,10 +37,6 @@
     padding: 6px 0;
     box-shadow: 2px 2px 6px 6px #c8c8c8;
     width: 100%;
-  }
-
-  .card:hover {
-    cursor: pointer;
   }
 
   h3 {
@@ -83,7 +80,13 @@
 
   <img src={imgUrl} alt={`${title}: ${keywords.join(' ')}`} use:lazyLoad />
 
-  <p>{address || ''}</p>
+  <p>
+    {#if gps && gps.length }
+      <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={title} target="_blank" rel="nofollow noreferrer">{address}</a>
+    {:else}
+      {address || ''}
+    {/if}
+  </p>
 
   <div class="keywords">
     {#each keywords as keyword}
