@@ -6,6 +6,7 @@
   export let address;
   export let keywords;
   export let gps;
+  export let phone;
 
   let imgUrl = ''
 
@@ -82,11 +83,17 @@
 
   <p>
     {#if gps && gps.length }
-      <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={title} target="_blank" rel="nofollow noreferrer">{address}</a>
+      <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={`restaurante: ${title}`} target="_blank" rel="nofollow noreferrer">{address}</a>
     {:else}
       {address || ''}
     {/if}
   </p>
+
+  {#if phone}
+  <p>
+    <a href={`tel:${phone}`} title={`Llamar ${title}`} rel="nofollow noreferrer">{phone}</a>
+  </p>
+  {/if}
 
   <div class="keywords">
     {#each keywords as keyword}
