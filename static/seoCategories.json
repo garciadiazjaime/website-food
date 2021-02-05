@@ -1,6 +1,6 @@
 [{
   "title": "Ramen",
-  "fullTitle": "Donde comer Ramen",
+  "fullTitle": "El mejor Ramen en Tijuana",
   "slug": "ramen"
 }, {
   "title": "Poke",
@@ -8,19 +8,19 @@
   "slug": "poke"
 }, {
   "title": "Sushi",
-  "fullTitle": "Donde comer Sushi",
+  "fullTitle": "Donde comer Sushi en Tijuana",
   "slug": "sushi"
 }, {
   "title": "Mariscos",
   "fullTitle": "Restaurantes de Mariscos",
   "slug": "mariscos"
 }, {
-  "title": "Pizzas",
-  "fullTitle": "Las mejores Pizzas",
+  "title": "Pizzas Tijuana",
+  "fullTitle": "Pizzas",
   "slug": "pizza"
 }, {
   "title": "Tacos",
-  "fullTitle": "Los mejores Tacos",
+  "fullTitle": "Tacos",
   "slug": "tacos"
 }, {
   "title": "Restaurantes",

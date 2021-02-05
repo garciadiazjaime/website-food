@@ -167,12 +167,12 @@
 </style>
 
 <svelte:head>
-	<title>Que comer en Tijuana. Descubre la mejor comida y disfruta la gastronomia local | {getDate()}</title>
+	<title>Que comer en Tijuana. Encuentra la mejor comida | {getDate()}</title>
 	<meta property="og:title" content="feedmetj">
-	<meta property="og:description" content={`La mejor comida de Tijuana. Descubre que comer en tijuana: ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}`}>
+	<meta property="og:description" content={`La mejor comida de Tijuana. Encuentra que comer en tijuana: ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content={`La mejor comida de Tijuana. Descubre que comer en tijuana: ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}`}>
+	<meta name="description" content={`La mejor comida de Tijuana. Encuentra que comer en tijuana: ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local.`}>
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
@@ -207,6 +207,7 @@
 					gps={profile.gps}
 					keywords={profile.keywords}
 					phone={profile.phone}
+					category={profileByCategory.category}
 				/>
 			{/each}
 

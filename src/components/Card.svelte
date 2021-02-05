@@ -7,6 +7,7 @@
   export let keywords;
   export let gps;
   export let phone;
+  export let category;
 
   let imgUrl = ''
 
@@ -77,13 +78,13 @@
 </style>
 
 <div class="card" data-id={id}>
-  <h3><a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer" title={title || username}>{title || username}</a></h3>
+  <h3><a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer" title={`${category}: ${title || username}`}>{title || username}</a></h3>
 
   <img src={imgUrl} alt={`${title}: ${keywords.join(' ')}`} use:lazyLoad />
 
   <p>
     {#if gps && gps.length }
-      <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={`restaurante: ${title}`} target="_blank" rel="nofollow noreferrer">{address}</a>
+      <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={`donde comer: ${keywords.join(' ')}`} target="_blank" rel="nofollow noreferrer">{address}</a>
     {:else}
       {address || ''}
     {/if}
