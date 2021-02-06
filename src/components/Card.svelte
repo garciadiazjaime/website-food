@@ -78,7 +78,7 @@
 </style>
 
 <div class="card" data-id={id}>
-  <h3><a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer" title={`${category}: ${title || username}`}>{title || username}</a></h3>
+  <h3><a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer" title={`donde comer ${category}: ${title || username}`}>{title || username}</a></h3>
 
   <img src={imgUrl} alt={`${title}: ${keywords.join(' ')}`} use:lazyLoad />
 
@@ -92,7 +92,7 @@
 
   {#if phone}
   <p>
-    <a href={`tel:${phone}`} title={`Llamar ${title}`} rel="nofollow noreferrer">{phone}</a>
+    <a href={`tel:${phone}`} title={`pedir comida de: ${title}`} rel="nofollow noreferrer">{phone}</a>
   </p>
   {/if}
 
