@@ -8,6 +8,7 @@
   export let gps;
   export let phone;
   export let category;
+  export let description;
 
   let imgUrl = ''
 
@@ -75,6 +76,12 @@
   a {
     text-decoration: none;
   }
+
+  .description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 </style>
 
 <div class="card" data-id={id}>
@@ -93,6 +100,12 @@
   {#if phone}
   <p>
     <a href={`tel:${phone}`} title={`pedir comida de: ${title}`} rel="nofollow noreferrer">{phone}</a>
+  </p>
+  {/if}
+
+  {#if description}
+  <p class="description">
+    {description.split('#')[0]}
   </p>
   {/if}
 
