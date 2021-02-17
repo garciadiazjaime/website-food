@@ -87,7 +87,7 @@
 <div class="card" data-id={id}>
   <h3><a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer" title={`donde comer ${category}: ${title || username}`}>{title || username}</a></h3>
 
-  <img src={imgUrl} alt={`${title}: ${keywords.join(' ')}`} use:lazyLoad />
+  <img src={imgUrl} alt={`donde comer ${category} en Tijuana`} use:lazyLoad />
 
   <p>
     {#if gps && gps.length }

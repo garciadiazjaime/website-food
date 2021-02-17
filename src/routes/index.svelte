@@ -9,16 +9,23 @@
 
 	let currentProfile;
 	let drawerIsVisible = false;
-	
+
+	const topPlaces = profiles.reduce((accu, item) => {
+		item.data.slice(0, 2).forEach(place => {
+			accu.push(place.title)
+		})
+		return accu
+	}, [])
+
 	let FAQPage = {
 		"@context": "https://schema.org",
 		"@type": "FAQPage",
 		"mainEntity": [{
 			"@type": "Question",
-			"name": "Donde comer en Tijuana",
+			"name": "Los mejores restaurantes de Tijuana",
 			"acceptedAnswer": {
 				"@type": "Answer",
-				"text": `<ul>${profiles.slice(0, 10).map(item => `<li>${item.title}</li>`).join('')}</ul>`
+				"text": `<ul>${topPlaces.map(item => `<li>${item}</li>`).join('')}</ul>`
 			}
 		}, {
 			"@type": "Question",
