@@ -4,7 +4,6 @@
 	export let title;
 	export let mediaUrl;
   export let address;
-  export let keywords;
   export let gps;
   export let phone;
   export let category;
@@ -54,33 +53,12 @@
     object-fit: cover;
   }
 
-  .keywords {
-    padding: 0 6px;
-  }
-
-  strong {
-    font-weight: normal;
-    display: inline-block;
-  }
-
-  strong::after {
-    content: '|';
-    display: inline-block;
-    padding: 0 6px;
-  }
-
-  strong:last-of-type::after {
-    content: '';
-  }
-
   a {
     text-decoration: none;
   }
 
   .description {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    word-break: break-word;
   }
 </style>
 
@@ -88,14 +66,6 @@
   <h3><a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer" title={`donde comer ${category}: ${title || username}`}>{title || username}</a></h3>
 
   <img src={imgUrl} alt={`donde comer ${category} en Tijuana`} use:lazyLoad />
-
-  <p>
-    {#if gps && gps.length }
-      <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={`donde comer: ${keywords.join(' ')}`} target="_blank" rel="nofollow noreferrer">{address}</a>
-    {:else}
-      {address || ''}
-    {/if}
-  </p>
 
   {#if phone}
   <p>
@@ -105,13 +75,17 @@
 
   {#if description}
   <p class="description">
-    {description.split('#')[0]}
+    {description}
   </p>
   {/if}
 
-  <div class="keywords">
-    {#each keywords as keyword}
-      <strong>{keyword}</strong>
-    {/each}
-  </div>
+  {#if address}
+  <p class="address">
+    {#if gps && gps.length }
+      <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={`donde comer: ${category}`} target="_blank" rel="nofollow noreferrer">{address}</a>
+    {:else}
+      {address || ''}
+    {/if}
+  </p>
+  {/if}
 </div>

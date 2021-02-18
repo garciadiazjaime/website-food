@@ -20,6 +20,7 @@
     "convict": "^6.0.0",
     "debug": "^4.3.1",
     "mapbox-gl": "^1.11.1",
+    "mongoose": "^5.11.16",
     "node-fetch": "^2.6.1",
     "polka": "next",
     "sirv": "^0.4.6"

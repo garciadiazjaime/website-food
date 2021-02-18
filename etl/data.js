@@ -1,8 +1,10 @@
+const mongoose = require('mongoose');
 const fetch = require('node-fetch');
 const fs = require('fs');
 const debug = require('debug')('etl:data')
 
 const seoCategories = require('../static/seoCategories.json')
+const { Post } = require('./models')
 const config = require('./config.js');
 
 const zonaCentro = {
@@ -10,39 +12,99 @@ const zonaCentro = {
   lng: -117.0477024,
 }
 
-async function extract(url) {
-  const response = await fetch(url)
-
-  return response.json()
-}
-
 function load(filename, rawData) {
   const data = JSON.stringify(rawData);
   fs.writeFileSync(`./static/data/${filename}.json`, data);
 }
 
-async function getProfiles(first, categories) {
-  const state = 'MAPPED'
-  return await extract(`${config.get('apiUrl')}/feedme?lng=${zonaCentro.lng}&lat=${zonaCentro.lat}&first=${first}&state=${state}&categories=${categories}`)
+function presenter(data, category) {
+  const caption = data.caption.length > 280 ? `${data.caption.slice(0, 280)}...` : data.caption
+
+  const post = {
+    id: data.id,
+    username: data.user.username,
+    title: data.user.fullName || data.user.username,
+    mediaUrl: data.mediaUrl,
+    phone: '',
+    category,
+    description: caption.split('#')[0],
+  }
+
+  if (data.location) {
+    const address = JSON.parse(data.location.address)
+    if (address) {
+      post.address = address.street_address || data.location.name
+    }
+
+    if (data.location.gps) {
+      post.gps = data.location.gps.coordinates
+    }
+  }
+
+  return post
+}
+
+function getPosts(category, limit) {
+  return Post.find({ $or:[{ source: 'tijuanamakesmehungry' }, { source: 'tijuanafood' }], $text: { $search: category }, location: { $exists: true } })
+    .limit(limit)
+    .sort({ createdAt: -1 })
+}
+
+async function getPostsByCategory(categories, limit) {
+  const promises = categories.map(async(category) => {
+    const posts = await getPosts(category, limit * 2)
+
+    return {
+      category,
+      posts,
+    }
+  })
+  
+  const results = await Promise.all(promises)
+
+  const postsIds = {}
+
+  return results.reduce((accu, { category, posts }) => {
+    const item = {
+      category,
+      data: []
+    }
+
+    posts.forEach(post => {
+      if (!postsIds[post.id] && item.data.length < limit) {
+        postsIds[post.id] = true
+        item.data.push(presenter(post, category))
+      }
+    })
+
+    accu.push(item)
+
+    return accu
+  }, [])
 }
 
 async function saveHomepage() {
-  const categories = seoCategories.map(item => item.slug).join(',')
-  const first = 8
+  const categories = seoCategories.map(item => item.slug)
+  const limit = 8
   
-  const profiles = await getProfiles(first, categories)
+  const posts = await getPostsByCategory(categories, limit)
 
-  load('homepage', profiles)
+  load('homepage', posts)
 }
 
 async function saveCategories() {
-  const promises = seoCategories.map(async category => {
-    const categories = category.slug
-    const first = 48
+  const promises = seoCategories.map(async item => {
+    const { slug: category } = item
+    const limit = 50
 
-    const profiles = await getProfiles(first, categories)
+    const posts = await getPosts(category, limit)
 
-    load(category.slug, profiles)
+    const data = [{
+      category,
+      data: posts.map(presenter)
+    }]
+
+    load(category, data)
   })
 
   return Promise.all(promises)
@@ -56,14 +118,24 @@ function createDirectory() {
   }
 }
 
+function openDB() {
+  return mongoose.connect(config.get('db.url'), {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+  });
+}
+
 async function main() {
+  await openDB();
+
   createDirectory()
 
   await saveHomepage()
   
   await saveCategories()
 }
-
 
 if (require.main === module) {
   main().then(() => {

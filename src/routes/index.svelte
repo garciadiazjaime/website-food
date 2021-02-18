@@ -77,25 +77,8 @@
 			return accu
 		}, [])
 
-		const topOptionsMap = allProfiles.reduce((accu, item) => {
-			item.keywords.forEach(keyword => {
-				if (!accu[keyword]) {
-					accu[keyword] = 0
-				}
-				accu[keyword] += 1
-			})
-			return accu
-		}, {})
-
-		const topOptions = Object.keys(topOptionsMap)
-			.map(key => [key, topOptionsMap[key]])
-			.sort((a, b) => a[1] - b[1])
-			.slice(0, 12)
-			.map(item => item[0])
-
 		return {
 			profiles,
-			topOptions,
 			seoCategories,
 		}
 	}
@@ -212,10 +195,9 @@
 					mediaUrl={profile.mediaUrl}
 					address={profile.address}
 					gps={profile.gps}
-					keywords={profile.keywords}
 					phone={profile.phone}
 					category={profileByCategory.category}
-					description={profile.caption}
+					description={profile.description}
 				/>
 			{/each}
 
@@ -224,13 +206,6 @@
 </div>
 
 <div class="container">
-	<h2>Que comida hay en Tijuana</h2>
-	<ul class="top-options">
-		{#each topOptions as option}
-		<li>{option}</li>
-		{/each}
-	</ul>
-
 	<strong>Restaurantes y Comida Favorita {getDate()}</strong>
 	<ul>
 		<li><a href="https://www.instagram.com/takunoya_ramen/" target="_blank" rel="nofollow noreferrer">Takunoya Ramen</li>
