@@ -4,7 +4,6 @@
 	import StickyBanner from '../components/StickyBanner.svelte'
 
 	export let profiles = []
-	export let topOptions = []
 	export let seoCategories = []
 
 	let currentProfile;
@@ -26,13 +25,6 @@
 			"acceptedAnswer": {
 				"@type": "Answer",
 				"text": `<ul>${topPlaces.map(item => `<li>${item}</li>`).join('')}</ul>`
-			}
-		}, {
-			"@type": "Question",
-			"name": "Que hay de comer en Tijuana",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": `<ul>${topOptions.map(item => `<li>${item}</li>`).join('')}</ul>`
 			}
 		}, {
 			"@type": "Question",
