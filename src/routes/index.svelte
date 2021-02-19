@@ -3,13 +3,10 @@
 
 	import StickyBanner from '../components/StickyBanner.svelte'
 
-	export let profiles = []
+	export let posts = []
 	export let seoCategories = []
 
-	let currentProfile;
-	let drawerIsVisible = false;
-
-	const topPlaces = profiles.reduce((accu, item) => {
+	const topPlaces = posts.reduce((accu, item) => {
 		item.data.slice(0, 2).forEach(place => {
 			accu.push(place.title)
 		})
@@ -36,11 +33,6 @@
 		}]
 	}
 
-	function openProfile (profile) {
-		drawerIsVisible = true;
-		currentProfile = profile;
-	}
-
 	function getDate() {
 		const date = new Date()
 		const month = date.getMonth();
@@ -58,19 +50,13 @@
 <script context="module">
 	export async function preload() {
 		let response = await this.fetch('./data/homepage.json')
-		const profiles = await response.json()
+		const posts = await response.json()
 
 		response = await this.fetch('./seoCategories.json')
 		const seoCategories = await response.json()
 
-		const allProfiles = profiles.reduce((accu, item) => {
-			accu.push(...item.data)
-
-			return accu
-		}, [])
-
 		return {
-			profiles,
+			posts,
 			seoCategories,
 		}
 	}
@@ -175,21 +161,22 @@
 </div>
 
 <div class="container">
-	{#each profiles as profileByCategory}
-		<h2>{getCategoryTitle(profileByCategory.category)}</h2>
+	{#each posts as { category, data} }
+		<h2>{getCategoryTitle(category)}</h2>
 		<div class="grid-container">
 		
-			{#each profileByCategory.data as profile}
+			{#each data as post}
 				<Card
-					id={profile.id}
-					username={profile.username}
-					title={profile.title}
-					mediaUrl={profile.mediaUrl}
-					address={profile.address}
-					gps={profile.gps}
-					phone={profile.phone}
-					category={profileByCategory.category}
-					description={profile.description}
+					id={post.id}
+					username={post.username}
+					title={post.title}
+					mediaUrl={post.mediaUrl}
+					address={post.address}
+					gps={post.gps}
+					phone={post.phone}
+					category={category}
+					description={post.description}
+					date={post.date}
 				/>
 			{/each}
 

@@ -8,6 +8,7 @@
   export let phone;
   export let category;
   export let description;
+  export let date;
 
   let imgUrl = ''
 
@@ -31,6 +32,36 @@
         observer && observer.unobserve(node)
       }
     }
+  }
+
+  function getTimeSince(date) {
+    const diff = Date.now() - new Date(date).getTime()
+
+    var seconds = Math.floor(diff / 1000);
+
+    var interval = seconds / 31536000;
+
+    interval = seconds / 2592000;
+    if (interval > 1) {
+      return `publicado hace ${Math.floor(interval)} mes${interval < 2 ?  '' : 'es'}`;
+    }
+
+    interval = seconds / 86400;
+    if (interval > 1) {
+      return `publicado hace ${Math.floor(interval)} día${interval < 2 ?  '' : 's'}`;
+    }
+
+    interval = seconds / 3600;
+    if (interval > 1) {
+      return `publicado hace ${Math.floor(interval)} hora${interval < 2 ?  '' : 's'}`;
+    }
+
+    interval = seconds / 60;
+    if (interval > 1) {
+      return `publicado hace ${Math.floor(interval)} minuto${interval < 2 ?  '' : 's'}`;
+    }
+
+    return `publicado hace ${Math.floor(seconds)} segundo${interval < 2 ?  '' : 's'}`;
   }
 </script>
 
@@ -88,4 +119,8 @@
     {/if}
   </p>
   {/if}
+
+  <p>
+    {getTimeSince(date)}
+  </p>
 </div>

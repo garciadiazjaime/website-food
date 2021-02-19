@@ -18,7 +18,8 @@ function load(filename, rawData) {
 }
 
 function presenter(data, category) {
-  const caption = data.caption.length > 280 ? `${data.caption.slice(0, 280)}...` : data.caption
+  const caption = data.caption.split('#').map(item => item.trim()).filter(item => item.includes(' ')).join(' ')
+  const description = `${caption.slice(0, 280)}${caption.length > 280 ? '...' : ''}`
 
   const post = {
     id: data.id,
@@ -27,7 +28,8 @@ function presenter(data, category) {
     mediaUrl: data.mediaUrl,
     phone: '',
     category,
-    description: caption.split('#')[0],
+    description,
+    date: data.createdAt,
   }
 
   if (data.location) {
@@ -45,7 +47,12 @@ function presenter(data, category) {
 }
 
 function getPosts(category, limit) {
-  return Post.find({ $or:[{ source: 'tijuanamakesmehungry' }, { source: 'tijuanafood' }], $text: { $search: category }, location: { $exists: true } })
+  return Post.find({ 
+      $or:[{ source: 'tijuanamakesmehungry' }, { source: 'tijuanafood' }],
+      $text: { $search: category },
+      location: { $exists: true },
+      mediaType: 'GraphImage',
+    })
     .limit(limit)
     .sort({ createdAt: -1 })
 }
@@ -101,7 +108,7 @@ async function saveCategories() {
 
     const data = [{
       category,
-      data: posts.map(presenter)
+      data: posts.map(post => presenter(post, category))
     }]
 
     load(category, data)

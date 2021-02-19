@@ -3,42 +3,65 @@
     const { category } = page.params;
 
 		let response = await this.fetch(`./data/${category}.json`)
-    const [options] = await response.json()
+    const [{ data: posts }] = await response.json()
 
     response = await this.fetch('./seoCategories.json')
-		const optionsForSEO = await response.json()
+		const postForSEO = await response.json()
 
-    const item = optionsForSEO.find(item => item.slug === category)
+    const item = postForSEO.find(item => item.slug === category)
 
     const option = item ?  item.title : category
 
-		return { title: item.fullTitle, options };
+		return { title: item.fullTitle, category, posts };
 	}
 </script>
 
 <script>
   import Card from '../components/Card.svelte'
   export let title;
-  export let options;
+  export let posts;
+  export let category
 </script>
 
 <style>
-  .container {
-    padding: 20px;
-  }
+  .grid-container {
+		display: grid;
+		grid-column-gap: 20px;
+		grid-row-gap: 12px;
+		grid-template-columns: repeat( auto-fit, minmax(100%, 1fr) );
+		margin: 10px;
+		padding: 15px;
+	}
 
-  .grid {
-    display: grid;
-    grid-column-gap: 20px;
-    grid-row-gap: 12px;
-    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-  }
+	h1 {
+		margin-bottom: 20px;
+		color: #313d69;
+	}
 
-  @media screen and (min-width: 992px) {
-    .grid {
-      grid-template-columns: repeat(auto-fit, minmax(24%, 1fr));
-    }
-  }
+	@media (min-width: 600px) {
+		.grid-container {
+			grid-template-columns: repeat( auto-fit, minmax(48%, 1fr) );
+		}
+	}
+
+	@media (min-width: 900px) {
+		.grid-container {
+			grid-template-columns: repeat( auto-fit, minmax(30%, 1fr) );
+		}
+	}
+
+	@media (min-width: 1200px) {
+		.grid-container {
+			grid-template-columns: repeat( auto-fit, minmax(23%, 1fr) );
+		}
+	}
+
+	.container {
+		color: #313d69;
+		font-size: 20px;
+		padding: 15px 15px 0;
+		margin: 0 10px;
+	}
 </style>
 
 <svelte:head>
@@ -47,10 +70,20 @@
 
 <div class="container">
   <h1>{title}</h1>
-
-  <div class="grid">
-    {#each options.data as option}
-      <Card {...option} />
+  <div class="grid-container">
+    {#each posts as post}
+      <Card
+        id={post.id}
+        username={post.username}
+        title={post.title}
+        mediaUrl={post.mediaUrl}
+        address={post.address}
+        gps={post.gps}
+        phone={post.phone}
+        category={category}
+        description={post.description}
+        date={post.date}
+      />
     {/each}
   </div>
 </div>
