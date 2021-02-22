@@ -88,8 +88,9 @@
     text-decoration: none;
   }
 
-  .description {
+  .container {
     word-break: break-word;
+    padding: 0 6px;
   }
 </style>
 
@@ -98,29 +99,31 @@
 
   <img src={imgUrl} alt={`donde comer ${category} en Tijuana`} use:lazyLoad />
 
-  {#if phone}
-  <p>
-    <a href={`tel:${phone}`} title={`pedir comida de: ${title}`} rel="nofollow noreferrer">{phone}</a>
-  </p>
-  {/if}
-
-  {#if description}
-  <p class="description">
-    {description}
-  </p>
-  {/if}
-
-  {#if address}
-  <p class="address">
-    {#if gps && gps.length }
-      <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={`donde comer: ${category}`} target="_blank" rel="nofollow noreferrer">{address}</a>
-    {:else}
-      {address || ''}
+  <div class="container">
+    {#if description}
+    <p class="description">
+      {description}
+    </p>
     {/if}
-  </p>
-  {/if}
 
-  <p>
-    {getTimeSince(date)}
-  </p>
+    {#if address}
+    <p class="address">
+      {#if gps && gps.length }
+        <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={`donde comer: ${category}`} target="_blank" rel="nofollow noreferrer">{address}</a>
+      {:else}
+        {address || ''}
+      {/if}
+    </p>
+    {/if}
+
+    {#if phone}
+    <p>
+      <a href={`tel:${phone}`} title={`pedir comida de: ${title}`} rel="nofollow noreferrer">Llamar por teléfono</a>
+    </p>
+    {/if}
+
+    <p>
+      {getTimeSince(date)}
+    </p>
+  </div>
 </div>

@@ -17,6 +17,27 @@ function load(filename, rawData) {
   fs.writeFileSync(`./static/data/${filename}.json`, data);
 }
 
+const phoneRegexs = [
+  /[\(]?[\d]{3}[\)]?[\s|-]?[\d]{3}[\s|\.|-]?[\d]{4}/,
+  /\d\s\d{2}\s\d{4}/,
+  /\d{3}-\d{4}/,
+  /\([\d]{3}\)-[\d]{3}-[\d]{2}-[\d]{2}/,
+]
+
+function getPhone(description, index = 0) {
+  if (index >= phoneRegexs.length) {
+    return null
+  }
+
+  const results = phoneRegexs[index].exec(description)
+
+  if (!Array.isArray(results)) {
+    return getPhone(description, index + 1)
+  }
+
+  return results[0].replace(/\D/g, '')
+}
+
 function presenter(data, category) {
   const caption = data.caption.split('#').map(item => item.trim()).filter(item => item.includes(' ')).join(' ')
   const description = `${caption.slice(0, 280)}${caption.length > 280 ? '...' : ''}`
@@ -26,7 +47,7 @@ function presenter(data, category) {
     username: data.user.username,
     title: data.user.fullName || data.user.username,
     mediaUrl: data.mediaUrl,
-    phone: '',
+    phone: getPhone(data.caption),
     category,
     description,
     date: data.createdAt,
@@ -59,7 +80,7 @@ function getPosts(category, limit) {
 
 async function getPostsByCategory(categories, limit) {
   const promises = categories.map(async(category) => {
-    const posts = await getPosts(category, limit * 2)
+    const posts = await getPosts(category, limit * 5)
 
     return {
       category,
@@ -69,7 +90,7 @@ async function getPostsByCategory(categories, limit) {
   
   const results = await Promise.all(promises)
 
-  const postsIds = {}
+  const userIds = {}
 
   return results.reduce((accu, { category, posts }) => {
     const item = {
@@ -78,8 +99,9 @@ async function getPostsByCategory(categories, limit) {
     }
 
     posts.forEach(post => {
-      if (!postsIds[post.id] && item.data.length < limit) {
-        postsIds[post.id] = true
+      if (!userIds[post.user.id] && item.data.length < limit) {
+        userIds[post.user.id] = true
+
         item.data.push(presenter(post, category))
       }
     })
