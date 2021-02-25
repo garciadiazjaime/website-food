@@ -9,6 +9,7 @@
   export let category;
   export let description;
   export let date;
+  export let delivery;
 
   let imgUrl = ''
 
@@ -113,6 +114,12 @@
       {:else}
         {address || ''}
       {/if}
+    </p>
+    {/if}
+
+    {#if delivery}
+    <p>
+      Servicio a domicilio!
     </p>
     {/if}
 

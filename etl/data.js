@@ -38,6 +38,29 @@ function getPhone(description, index = 0) {
   return results[0].replace(/\D/g, '')
 }
 
+const deliveryTexts = [
+  'para llevar',
+  'servicioadomicilio',
+  'ordena vía',
+  'ordena via',
+  'uber eats',
+  'ubereats',
+  'didi food',
+  'didifood',
+]
+
+function hasDelivery(caption, index = 0) {
+  if (index >= deliveryTexts.length) {
+    return false
+  }
+
+  if (caption.toLowerCase().includes(deliveryTexts[index])) {
+    return true
+  }
+
+  return hasDelivery(caption,  index + 1)
+}
+
 function presenter(data, category) {
   const caption = data.caption.split('#').map(item => item.trim()).filter(item => item.includes(' ')).join(' ')
   const description = `${caption.slice(0, 280)}${caption.length > 280 ? '...' : ''}`
@@ -48,6 +71,7 @@ function presenter(data, category) {
     title: data.user.fullName || data.user.username,
     mediaUrl: data.mediaUrl,
     phone: getPhone(data.caption),
+    delivery: hasDelivery(data.caption),
     category,
     description,
     date: data.createdAt,
