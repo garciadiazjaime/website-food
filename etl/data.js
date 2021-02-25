@@ -68,48 +68,63 @@ function presenter(data, category) {
 }
 
 function getPosts(category, limit) {
-  return Post.find({ 
-      $or:[{ source: 'tijuanamakesmehungry' }, { source: 'tijuanafood' }],
-      $text: { $search: category },
-      location: { $exists: true },
-      mediaType: 'GraphImage',
-    })
-    .limit(limit)
-    .sort({ createdAt: -1 })
+  return Post.aggregate([
+    {
+      $match: { 
+        $or:[{ source: 'tijuanamakesmehungry' }, { source: 'tijuanafood' }], 
+        mediaType: 'GraphImage',
+        $text: { $search: category },
+      },
+    },
+    {
+      $group: {
+        _id: "$user.id",
+        id: { 
+          $first : "$id" 
+        },
+        caption: {
+          $first: "$caption"
+        },
+        createdAt: {
+          $first: "$createdAt"
+        },
+        location: {
+          $first: "$location"
+        },
+        mediaUrl: {
+          $first: "$mediaUrl"
+        },
+        permalink: {
+          $first: "$permalink"
+        },
+        user: {
+          $first: "$user"
+        },
+      }
+    },
+    {
+      $sort: { createdAt: -1 },
+    },
+    { $limit : limit },
+  ])
 }
 
 async function getPostsByCategory(categories, limit) {
-  const promises = categories.map(async(category) => {
-    const posts = await getPosts(category, limit * 5)
+  const promises = categories.map(async (category) => {
+    const posts = await getPosts(category, limit)
 
     return {
       category,
-      posts,
+      posts: posts.map(post => presenter(post, category)),
     }
   })
   
   const results = await Promise.all(promises)
 
-  const userIds = {}
-
-  return results.reduce((accu, { category, posts }) => {
-    const item = {
-      category,
-      data: []
-    }
-
-    posts.forEach(post => {
-      if (!userIds[post.user.id] && item.data.length < limit) {
-        userIds[post.user.id] = true
-
-        item.data.push(presenter(post, category))
-      }
-    })
-
-    accu.push(item)
-
-    return accu
-  }, [])
+  return results.map(({ category, posts }) => ({
+    category,
+    posts
+  }))
 }
 
 async function saveHomepage() {

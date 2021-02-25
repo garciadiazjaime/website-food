@@ -7,7 +7,7 @@
 	export let seoCategories = []
 
 	const topPlaces = posts.reduce((accu, item) => {
-		item.data.slice(0, 2).forEach(place => {
+		item.posts.slice(0, 2).forEach(place => {
 			accu.push(place.title)
 		})
 		return accu
@@ -161,11 +161,11 @@
 </div>
 
 <div class="container">
-	{#each posts as { category, data} }
+	{#each posts as { category, posts } }
 		<h2>{getCategoryTitle(category)}</h2>
 		<div class="grid-container">
 		
-			{#each data as post}
+			{#each posts as post}
 				<Card
 					id={post.id}
 					username={post.username}
