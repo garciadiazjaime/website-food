@@ -10,6 +10,7 @@
   export let description;
   export let date;
   export let delivery;
+  export let topics = [];
 
   let imgUrl = ''
 
@@ -93,6 +94,20 @@
     word-break: break-word;
     padding: 0 6px;
   }
+
+   strong {	
+    font-weight: normal;	
+    display: inline-block;	
+  }
+
+  strong::after {	
+    content: '|';	
+    display: inline-block;	
+    padding: 0 6px;	
+  }	
+  strong:last-of-type::after {	
+    content: '';	
+  }
 </style>
 
 <div class="card" data-id={id}>
@@ -106,6 +121,10 @@
       {description}
     </p>
     {/if}
+
+    {#each topics as topic}
+      <strong>{topic}</strong>
+    {/each}
 
     {#if address}
     <p class="address">

@@ -5,6 +5,7 @@ const debug = require('debug')('etl:data')
 
 const seoCategories = require('../static/seoCategories.json')
 const { Post } = require('./models')
+const LDA = require('./lda')
 const config = require('./config.js');
 
 const zonaCentro = {
@@ -61,6 +62,19 @@ function hasDelivery(caption, index = 0) {
   return hasDelivery(caption,  index + 1)
 }
 
+function getTopics(post) {
+  const { caption, accessibility, user, id, location } = post
+
+  const documents = `${caption} ${accessibility} ${user.fullName} ${location && location.name || ''}`.match( /[^\.!\?]+[\.!\?]+/g );
+  const [topics] = LDA(documents, 1, 3, ['es']);
+
+  return topics.reduce((accu, { term }) => {
+    accu.push(term)
+
+    return accu
+  }, [])
+}
+
 function presenter(data, category) {
   const caption = data.caption.split('#').map(item => item.trim()).filter(item => item.includes(' ')).join(' ')
   const description = `${caption.slice(0, 280)}${caption.length > 280 ? '...' : ''}`
@@ -75,6 +89,7 @@ function presenter(data, category) {
     category,
     description,
     date: data.createdAt,
+    topics: getTopics(data),
   }
 
   if (data.location) {
@@ -104,25 +119,28 @@ function getPosts(category, limit) {
       $group: {
         _id: "$user.id",
         id: { 
-          $first : "$id" 
+          $first : "$id" ,
         },
         caption: {
-          $first: "$caption"
+          $first: "$caption",
+        },
+        accessibility: {
+          $first: "$accessibility",
         },
         createdAt: {
-          $first: "$createdAt"
+          $first: "$createdAt",
         },
         location: {
-          $first: "$location"
+          $first: "$location",
         },
         mediaUrl: {
-          $first: "$mediaUrl"
+          $first: "$mediaUrl",
         },
         permalink: {
-          $first: "$permalink"
+          $first: "$permalink",
         },
         user: {
-          $first: "$user"
+          $first: "$user",
         },
       }
     },

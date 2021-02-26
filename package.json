@@ -23,7 +23,8 @@
     "mongoose": "^5.11.16",
     "node-fetch": "^2.6.1",
     "polka": "next",
-    "sirv": "^0.4.6"
+    "sirv": "^0.4.6",
+    "stem-porter": "0.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",

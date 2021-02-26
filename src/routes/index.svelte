@@ -178,6 +178,7 @@
 					description={post.description}
 					date={post.date}
 					delivery={post.delivery}
+					topics={post.topics}
 				/>
 			{/each}
 
