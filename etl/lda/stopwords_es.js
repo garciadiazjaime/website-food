@@ -732,9 +732,12 @@ exports.stop_words = [
   'tijuanamesorprende',
   'tijuanamakesmehappy',
   'tijuanamakesmehungry',
+  'tijuanabajacalifornia',
   'text',
   'tel',
   '664',
   '58',
   'también',
+  'pm',
+  'jeing0812',
 ];
