@@ -170,9 +170,9 @@ function getPostsByCategory(category, limit) {
 }
 
 function getPostsByLocation(coordinates, limit) {
-  const radiusInMTS = 1000 * 5;
+  const radiusInMTS = 1000 * 3.5;
 
-  const filters = [
+  return Post.aggregate([
     {
       $geoNear: {
         near: {
@@ -185,12 +185,45 @@ function getPostsByLocation(coordinates, limit) {
       }
     },
     {
+      $match: {
+        $or:[{ source: 'tijuanamakesmehungry' }, { source: 'tijuanafood' }],
+        mediaType: 'GraphImage',
+      },
+    },
+    {
+      $group: {
+        _id: "$user.id",
+        id: {
+          $first : "$id" ,
+        },
+        caption: {
+          $first: "$caption",
+        },
+        accessibility: {
+          $first: "$accessibility",
+        },
+        createdAt: {
+          $first: "$createdAt",
+        },
+        location: {
+          $first: "$location",
+        },
+        mediaUrl: {
+          $first: "$mediaUrl",
+        },
+        permalink: {
+          $first: "$permalink",
+        },
+        user: {
+          $first: "$user",
+        },
+      }
+    },
+    {
       $sort: { createdAt: -1 },
     },
     { $limit : limit },
-  ]
-
-  return Post.aggregate(filters)
+  ])
 }
 
 async function getPosts(categories, geoZones, limit) {
