@@ -41,10 +41,6 @@
 
 		return `${months[month]} ${year}`
 	}
-
-	function getCategoryTitle(slug) {
-		return seoCategories.find(item => item.slug === slug).fullTitle
-	}
 </script>
 
 <script context="module">
@@ -135,12 +131,12 @@
 </style>
 
 <svelte:head>
-	<title>Que comer en Tijuana | Los mejores Restaurantes {getDate()}</title>
+	<title>Que comer en Tijuana? Los mejores Restaurantes {getDate()}</title>
 	<meta property="og:title" content="feedmetj">
-	<meta property="og:description" content={`La mejor comida se haze en Tijuana. Lugares para comer: ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local en los mejores Restaurantes.`}>
+	<meta property="og:description" content={`La mejor comida se haze en Tijuana. Que comer: ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local en los mejores Restaurantes.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content={`La mejor comida se haze en Tijuana. Lugares para comer: ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local en los mejores Restaurantes.`}>
+	<meta name="description" content={`La mejor comida se haze en Tijuana. Que comer: ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local en los mejores Restaurantes.`}>
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
@@ -161,8 +157,8 @@
 </div>
 
 <div class="container">
-	{#each posts as { category, posts } }
-		<h2>{getCategoryTitle(category)}</h2>
+	{#each posts as { fullTitle, slug, posts } }
+		<h2>{fullTitle}</h2>
 		<div class="grid-container">
 		
 			{#each posts as post}
@@ -174,7 +170,7 @@
 					address={post.address}
 					gps={post.gps}
 					phone={post.phone}
-					category={category}
+					category={slug}
 					description={post.description}
 					date={post.date}
 					delivery={post.delivery}
@@ -184,15 +180,6 @@
 
 		</div>
 	{/each}
-</div>
-
-<div class="container">
-	<strong>Restaurantes y Comida Favorita {getDate()}</strong>
-	<ul>
-		<li><a href="https://www.instagram.com/takunoya_ramen/" target="_blank" rel="nofollow noreferrer">Takunoya Ramen</li>
-		<li><a href="https://www.instagram.com/ohanatjpoke/" target="_blank" rel="nofollow noreferrer">Ohana Poke</a></li>
-		<li><a href="https://www.instagram.com/kasama_ramen/" target="_blank" rel="nofollow noreferrer">Kasama Ramen</a></li>
-	</ul>
 </div>
 
 <div class="container">

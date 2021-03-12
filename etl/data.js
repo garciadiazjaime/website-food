@@ -8,10 +8,27 @@ const { Post } = require('./models')
 const LDA = require('./lda')
 const config = require('./config.js');
 
-const zonaCentro = {
-  lat: 32.5286807,
-  lng: -117.0477024,
-}
+const zones = [{
+  title: 'Zona Centro',
+  fullTitle: 'Zona Centro',
+  slug: 'zona-centro',
+  coordinates: [-117.0364, 32.5309]
+}, {
+  title: 'Zona Rio',
+  fullTitle: 'Zona Rio',
+  slug: 'zona-rio',
+  coordinates: [-117.0176, 32.5247 ]
+}, {
+  title: 'Otay',
+  fullTitle: 'Otay',
+  slug: 'otay',
+  coordinates: [-116.9699, 32.5298]
+}, {
+  title: 'Playas de Tijuana',
+  fullTitle: 'Playas de Tijuana',
+  slug: 'playas',
+  coordinates: [-117.1161, 32.5207]
+}]
 
 function load(filename, rawData) {
   const data = JSON.stringify(rawData);
@@ -107,7 +124,7 @@ function presenter(data, category) {
   return post
 }
 
-function getPosts(category, limit) {
+function getPostsByCategory(category, limit) {
   return Post.aggregate([
     {
       $match: { 
@@ -152,46 +169,78 @@ function getPosts(category, limit) {
   ])
 }
 
-async function getPostsByCategory(categories, limit) {
-  const promises = categories.map(async (category) => {
-    const posts = await getPosts(category, limit)
+function getPostsByLocation(coordinates, limit) {
+  const radiusInMTS = 1000 * 5;
+
+  const filters = [
+    {
+      $geoNear: {
+        near: {
+          type: "Point",
+          coordinates,
+        },
+        distanceField: "dist.calculated",
+        maxDistance: radiusInMTS,
+        spherical: true
+      }
+    },
+    {
+      $sort: { createdAt: -1 },
+    },
+    { $limit : limit },
+  ]
+
+  return Post.aggregate(filters)
+}
+
+async function getPosts(categories, geoZones, limit) {
+  const categoryPromise = categories.map(async ({ title, fullTitle, slug }) => {
+    const posts = await getPostsByCategory(slug, limit)
 
     return {
-      category,
-      posts: posts.map(post => presenter(post, category)),
+      title,
+      fullTitle,
+      slug,
+      posts: posts.map(post => presenter(post, slug)),
     }
   })
-  
-  const results = await Promise.all(promises)
 
-  return results.map(({ category, posts }) => ({
-    category,
-    posts
-  }))
+  const locationPromises = geoZones.map(async ({ coordinates, title, fullTitle, slug }) => {
+    const posts = await getPostsByLocation(coordinates, limit)
+
+    return {
+      title,
+      fullTitle,
+      slug,
+      posts: posts.map(post => presenter(post, slug)),
+    }
+  })
+
+  return Promise.all([...categoryPromise, ...locationPromises])
 }
 
 async function saveHomepage() {
-  const categories = seoCategories.map(item => item.slug)
-  const limit = 8
+  const limit = 4
   
-  const posts = await getPostsByCategory(categories, limit)
+  const posts = await getPosts(seoCategories, zones, limit)
 
   load('homepage', posts)
 }
 
 async function saveCategories() {
-  const promises = seoCategories.map(async item => {
-    const { slug: category } = item
+  const promises = seoCategories.map(async ({ title, fullTitle, slug }) => {
     const limit = 50
 
-    const posts = await getPosts(category, limit)
+    const posts = await getPostsByCategory(slug, limit)
 
     const data = [{
-      category,
-      data: posts.map(post => presenter(post, category))
+      title,
+      fullTitle,
+      slug,
+      data: posts.map(post => presenter(post, slug))
     }]
 
-    load(category, data)
+    load(slug, data)
   })
 
   return Promise.all(promises)
