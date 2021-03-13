@@ -129,7 +129,7 @@
     {#if address}
     <p class="address">
       {#if gps && gps.length }
-        <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={`donde comer: ${category}`} target="_blank" rel="nofollow noreferrer">{address}</a>
+        <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={`donde comer: ${category} en Tijuana`} target="_blank" rel="nofollow noreferrer">{address}</a>
       {:else}
         {address || ''}
       {/if}
@@ -144,7 +144,7 @@
 
     {#if phone}
     <p>
-      <a href={`tel:${phone}`} title={`pedir comida de: ${title}`} rel="nofollow noreferrer">Llamar por teléfono</a>
+      <a href={`tel:${phone}`} title={`pedir comida: ${title}`} rel="nofollow noreferrer">Llamar por teléfono</a>
     </p>
     {/if}
 

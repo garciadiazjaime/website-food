@@ -25,7 +25,7 @@
 			}
 		}, {
 			"@type": "Question",
-			"name": "Que comer en Tijuana",
+			"name": "¿Qué comer en Tijuana?",
 			"acceptedAnswer": {
 				"@type": "Answer",
 				"text": `<ul>${seoCategories.map(item => `<li><a href="/${item.slug}">${item.title}</a></li>`).join('')}</ul>`
@@ -131,24 +131,24 @@
 </style>
 
 <svelte:head>
-	<title>Que comer en Tijuana? Los mejores Restaurantes {getDate()}</title>
+	<title>¿Qué comer en Tijuana? Los mejores Restaurantes {getDate()}</title>
 	<meta property="og:title" content="feedmetj">
-	<meta property="og:description" content={`La mejor comida se haze en Tijuana. Que comer: ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local en los mejores Restaurantes.`}>
+	<meta property="og:description" content={`La mejor comida se hace en Tijuana. ¿Qué comer? ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local en los mejores Restaurantes.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content={`La mejor comida se haze en Tijuana. Que comer: ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local en los mejores Restaurantes.`}>
+	<meta name="description" content={`La mejor comida se hace en Tijuana. ¿Qué comer? ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local en los mejores Restaurantes.`}>
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
 <StickyBanner>
 	<h1>
-		Que comer en Tijuana?
+		¿Qué comer en Tijuana?
 	</h1>
 	<p>En Feedmetj te recomendamos las mejores opciones de comida en Tijuana con base en lo que se publica en Instagram.</p>
 </StickyBanner>
 
 <div class="container">
-	<h2>Que hay de comer en Tijuana</h2>
+	<h2>¿Qué hay de comer en Tijuana?</h2>
 	<ul class="top-options">
 		{#each seoCategories as option}
 		<li><a href={`/${option.slug}`} title={option.fullTitle}>{option.title}</a></li>
@@ -183,14 +183,14 @@
 </div>
 
 <div class="container">
-	<strong>Que comer en Tijuana</strong>. Disfruta de la gastronomia local en los mejores Restaurantes.
+	<strong>¿Qué comer en Tijuana?</strong>. Disfruta de la gastronomia local en los mejores Restaurantes.
 </div>
 
 <div class="container">
 	Síguenos en
 	<ul>
-		<li><a href="https://www.instagram.com/feedmetj/" target="_blank" rel="nofollow noreferrer" title="que comer en tijuana">Instagram</a></li>
-		<li><a href="https://www.facebook.com/Feedmetj-104064654962934" target="_blank" rel="nofollow noreferrer" title="la mejor comida de tijuana">Facebook</a></li>
+		<li><a href="https://www.instagram.com/feedmetj/" target="_blank" rel="nofollow noreferrer" title="¿Qué comer en Tijuana">Instagram</a></li>
+		<li><a href="https://www.facebook.com/Feedmetj-104064654962934" target="_blank" rel="nofollow noreferrer" title="la mejor comida de Tijuana">Facebook</a></li>
 	</ul>
 </div>
 
