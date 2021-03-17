@@ -8,7 +8,6 @@
   export let phone;
   export let category;
   export let description;
-  export let date;
   export let delivery;
   export let topics = [];
 
@@ -35,36 +34,6 @@
       }
     }
   }
-
-  function getTimeSince(date) {
-    const diff = Date.now() - new Date(date).getTime()
-
-    var seconds = Math.floor(diff / 1000);
-
-    var interval = seconds / 31536000;
-
-    interval = seconds / 2592000;
-    if (interval > 1) {
-      return `publicado hace ${Math.floor(interval)} mes${interval < 2 ?  '' : 'es'}`;
-    }
-
-    interval = seconds / 86400;
-    if (interval > 1) {
-      return `publicado hace ${Math.floor(interval)} día${interval < 2 ?  '' : 's'}`;
-    }
-
-    interval = seconds / 3600;
-    if (interval > 1) {
-      return `publicado hace ${Math.floor(interval)} hora${interval < 2 ?  '' : 's'}`;
-    }
-
-    interval = seconds / 60;
-    if (interval > 1) {
-      return `publicado hace ${Math.floor(interval)} minuto${interval < 2 ?  '' : 's'}`;
-    }
-
-    return `publicado hace ${Math.floor(seconds)} segundo${interval < 2 ?  '' : 's'}`;
-  }
 </script>
 
 <style>
@@ -77,11 +46,13 @@
   h3 {
     margin: 0;
     padding: 0 6px 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   img {
-    height: 180px;
-    min-height: 180px;
+    height: auto;
     width: 100%;
     object-fit: cover;
   }
@@ -113,7 +84,7 @@
 <div class="card" data-id={id}>
   <h3><a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer" title={`donde comer ${category}: ${title || username}`}>{title || username}</a></h3>
 
-  <img src={imgUrl} alt={`donde comer ${category} en Tijuana`} use:lazyLoad />
+  <img src={imgUrl} alt={`que comer en Tijuana: ${category}`} use:lazyLoad />
 
   <div class="container">
     {#if description}
@@ -147,9 +118,5 @@
       <a href={`tel:${phone}`} title={`pedir comida: ${title}`} rel="nofollow noreferrer">Llamar por teléfono</a>
     </p>
     {/if}
-
-    <p>
-      {getTimeSince(date)}
-    </p>
   </div>
 </div>

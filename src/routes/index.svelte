@@ -7,7 +7,7 @@
 	export let seoCategories = []
 
 	const topPlaces = posts.reduce((accu, item) => {
-		item.posts.slice(0, 2).forEach(place => {
+		item.posts.slice(0, 1).forEach(place => {
 			accu.push(place.title)
 		})
 		return accu
@@ -18,7 +18,7 @@
 		"@type": "FAQPage",
 		"mainEntity": [{
 			"@type": "Question",
-			"name": "Los mejores restaurantes de Tijuana",
+			"name": "Los mejores Restaurantes de Tijuana",
 			"acceptedAnswer": {
 				"@type": "Answer",
 				"text": `<ul>${topPlaces.map(item => `<li>${item}</li>`).join('')}</ul>`
@@ -31,15 +31,6 @@
 				"text": `<ul>${seoCategories.map(item => `<li><a href="/${item.slug}">${item.title}</a></li>`).join('')}</ul>`
 			}
 		}]
-	}
-
-	function getDate() {
-		const date = new Date()
-		const month = date.getMonth();
-		const year = date.getFullYear()
-		const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-
-		return `${months[month]} ${year}`
 	}
 </script>
 
@@ -64,8 +55,7 @@
 		grid-column-gap: 20px;
 		grid-row-gap: 12px;
 		grid-template-columns: repeat( auto-fit, minmax(100%, 1fr) );
-		margin: 10px;
-		padding: 15px;
+		margin: 24px 0;
 	}
 
 	h1 {
@@ -99,7 +89,6 @@
 		color: #313d69;
 		font-size: 20px;
 		padding: 15px 15px 0;
-		margin: 0 10px;
 	}
 
 
@@ -131,7 +120,7 @@
 </style>
 
 <svelte:head>
-	<title>¿Qué comer en Tijuana? Los mejores Restaurantes {getDate()}</title>
+	<title>¿Qué comer en Tijuana? Los mejores lugares para comer en Tijuana</title>
 	<meta property="og:title" content="feedmetj">
 	<meta property="og:description" content={`La mejor comida se hace en Tijuana. ¿Qué comer? ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local en los mejores Restaurantes.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
@@ -172,7 +161,6 @@
 					phone={post.phone}
 					category={slug}
 					description={post.description}
-					date={post.date}
 					delivery={post.delivery}
 					topics={post.topics}
 				/>

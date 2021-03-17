@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const fetch = require('node-fetch');
 const fs = require('fs');
+const mapSeries = require('async/mapSeries');
 const debug = require('debug')('etl:data')
 
 const seoCategories = require('../static/seoCategories.json')
@@ -9,23 +9,23 @@ const LDA = require('./lda')
 const config = require('./config.js');
 
 const zones = [{
-  title: 'Zona Centro',
-  fullTitle: 'Zona Centro',
+  title: 'Dónde comer en el Centro?',
+  fullTitle: 'Dónde comer en el Centro?',
   slug: 'zona-centro',
   coordinates: [-117.0364, 32.5309]
 }, {
-  title: 'Zona Rio',
-  fullTitle: 'Zona Rio',
+  title: 'Qué comer en Zona Rio?',
+  fullTitle: 'Qué comer en Zona Rio?',
   slug: 'zona-rio',
   coordinates: [-117.0176, 32.5247 ]
 }, {
-  title: 'Otay',
-  fullTitle: 'Otay',
+  title: 'Si andas en Otay',
+  fullTitle: 'Si andas en Otay',
   slug: 'otay',
   coordinates: [-116.9699, 32.5298]
 }, {
-  title: 'Playas de Tijuana',
-  fullTitle: 'Playas de Tijuana',
+  title: 'Como Playas no hay dos',
+  fullTitle: 'Como Playas no hay dos',
   slug: 'playas',
   coordinates: [-117.1161, 32.5207]
 }]
@@ -108,6 +108,8 @@ function presenter(data, category) {
     description,
     date: data.createdAt,
     topics: getTopics(data),
+    dist: data.dist,
+    userId: data.user.id,
   }
 
   if (data.location) {
@@ -124,13 +126,24 @@ function presenter(data, category) {
   return post
 }
 
-function getPostsByCategory(category, limit) {
+function getPostsByCategory(category, limit, postsBySection = []) {
+  const ids = postsBySection.reduce((accu, item) => {
+    item.posts.forEach(post => {
+      accu[post.userId] = true
+    })
+
+    return accu
+  }, {})
+
   return Post.aggregate([
     {
       $match: { 
         $or:[{ source: 'tijuanamakesmehungry' }, { source: 'tijuanafood' }], 
         mediaType: 'GraphImage',
         $text: { $search: category },
+        'user.id': {
+          $nin: Object.keys(ids)
+        }
       },
     },
     {
@@ -171,6 +184,8 @@ function getPostsByCategory(category, limit) {
 
 function getPostsByLocation(coordinates, limit) {
   const radiusInMTS = 1000 * 3.5;
+  const since = new Date()
+  since.setDate(since.getDate() - 14)
 
   return Post.aggregate([
     {
@@ -179,7 +194,7 @@ function getPostsByLocation(coordinates, limit) {
           type: "Point",
           coordinates,
         },
-        distanceField: "dist.calculated",
+        distanceField: "dist",
         maxDistance: radiusInMTS,
         spherical: true
       }
@@ -188,6 +203,7 @@ function getPostsByLocation(coordinates, limit) {
       $match: {
         $or:[{ source: 'tijuanamakesmehungry' }, { source: 'tijuanafood' }],
         mediaType: 'GraphImage',
+        createdAt: { $gte : since }
       },
     },
     {
@@ -217,39 +233,44 @@ function getPostsByLocation(coordinates, limit) {
         user: {
           $first: "$user",
         },
+        dist: {
+          $first: "$dist",
+        },
       }
     },
     {
-      $sort: { createdAt: -1 },
+      $sort: { dist: 1 },
     },
     { $limit : limit },
   ])
 }
 
 async function getPosts(categories, geoZones, limit) {
-  const categoryPromise = categories.map(async ({ title, fullTitle, slug }) => {
-    const posts = await getPostsByCategory(slug, limit)
+  const postsBySection = []
 
-    return {
+  await mapSeries(categories, async ({ title, fullTitle, slug }) => {
+    const posts = await getPostsByCategory(slug, limit, postsBySection)
+
+    postsBySection.push({
       title,
       fullTitle,
       slug,
       posts: posts.map(post => presenter(post, slug)),
-    }
+    })
   })
 
-  const locationPromises = geoZones.map(async ({ coordinates, title, fullTitle, slug }) => {
+  await mapSeries(geoZones, async ({ coordinates, title, fullTitle, slug }) => {
     const posts = await getPostsByLocation(coordinates, limit)
 
-    return {
+    postsBySection.push({
       title,
       fullTitle,
       slug,
       posts: posts.map(post => presenter(post, slug)),
-    }
+    })
   })
 
-  return Promise.all([...categoryPromise, ...locationPromises])
+  return postsBySection
 }
 
 async function saveHomepage() {
