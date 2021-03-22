@@ -84,7 +84,7 @@
 <div class="card" data-id={id}>
   <h3><a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer" title={`donde comer ${category}: ${title || username}`}>{title || username}</a></h3>
 
-  <img src={imgUrl} alt={`que comer en Tijuana: ${category}`} use:lazyLoad />
+  <img src={imgUrl} alt={`donde comer ${category}`} width="640px" height="640px" use:lazyLoad />
 
   <div class="container">
     {#if description}
