@@ -120,12 +120,12 @@
 </style>
 
 <svelte:head>
-	<title>¿Qué comer en Tijuana? Los mejores lugares para comer en Tijuana</title>
+	<title>¿Qué comer? Los mejores Restaurantes de Tijuana</title>
 	<meta property="og:title" content="feedmetj">
-	<meta property="og:description" content={`La mejor comida se hace en Tijuana. ¿Qué comer? ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local en los mejores Restaurantes.`}>
+	<meta property="og:description" content={`La mejor comida se hace en Tijuana. Encuentra qué comer: ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local en los mejores Restaurantes.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content={`La mejor comida se hace en Tijuana. ¿Qué comer? ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local en los mejores Restaurantes.`}>
+	<meta name="description" content={`La mejor comida se hace en Tijuana. Encuentra qué comer ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local en los mejores Restaurantes.`}>
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 

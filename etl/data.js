@@ -127,13 +127,16 @@ function presenter(data, category) {
 }
 
 function getPostsByCategory(category, limit, postsBySection = []) {
-  const ids = postsBySection.reduce((accu, item) => {
+  const userIDsTaken = postsBySection.reduce((accu, item) => {
     item.posts.forEach(post => {
       accu[post.userId] = true
     })
 
     return accu
   }, {})
+
+  const since = new Date()
+  since.setDate(since.getDate() - 30)
 
   return Post.aggregate([
     {
@@ -142,9 +145,15 @@ function getPostsByCategory(category, limit, postsBySection = []) {
         mediaType: 'GraphImage',
         $text: { $search: category },
         'user.id': {
-          $nin: Object.keys(ids)
+          $nin: Object.keys(userIDsTaken)
+        },
+        createdAt: {
+          $gt: since
         }
       },
+    },
+    {
+      $sort: { createdAt: -1 },
     },
     {
       $group: {
@@ -174,9 +183,6 @@ function getPostsByCategory(category, limit, postsBySection = []) {
           $first: "$user",
         },
       }
-    },
-    {
-      $sort: { createdAt: -1 },
     },
     { $limit : limit },
   ])

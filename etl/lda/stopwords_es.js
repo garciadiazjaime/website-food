@@ -717,6 +717,7 @@ exports.stop_words = [
 
   // custom stop words
   'tj',
+  'tijuas',
   'tjlife',
   'tjfood',
   'tijuana',
@@ -725,11 +726,14 @@ exports.stop_words = [
   'tijuanalife',
   'tijuanaeats',
   'tijuanafood',
+  'tijuanastyle',
   'tijuanafoodie',
   'tijuanamexico',
+  'whatiworeigers',
   'tijuanafoodlovers',
   'viajerasmexicanas',
   'tijuanamesorprende',
+  'tijuanatesorprende',
   'tijuanamakesmehappy',
   'tijuanamakesmehungry',
   'tijuanabajacalifornia',
@@ -740,4 +744,5 @@ exports.stop_words = [
   'también',
   'pm',
   'jeing0812',
+  'photo',
 ];

@@ -51,7 +51,7 @@ const PostSchema = new Schema({
   timestamps: true,
 });
 
-PostSchema.index({name: 'text', 'caption': 'text'});
+PostSchema.index({ 'user.fullName': 'text', caption: 'text' });
 
 
 const Post = mongoose.model('post', PostSchema);
