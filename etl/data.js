@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
 const mapSeries = require('async/mapSeries');
-const debug = require('debug')('etl:data')
+const debug = require('debug')('app:data')
 
 const seoCategories = require('../static/seoCategories.json')
 const { Post } = require('./models')
@@ -80,11 +80,30 @@ function hasDelivery(caption, index = 0) {
   return hasDelivery(caption,  index + 1)
 }
 
-function getTopics(post) {
+function getTopics(post, terms = 3) {
   const { caption, accessibility, user, id, location } = post
 
-  const documents = `${caption} ${accessibility} ${user.fullName} ${location && location.name || ''}`.match( /[^\.!\?]+[\.!\?]+/g );
-  const [topics] = LDA(documents, 1, 3, ['es']);
+  const content = [caption || '']
+
+  if (accessibility) {
+    content.push(accessibility)
+  }
+
+  if (user && user.fullName) {
+    content.push(user.fullName)
+  }
+
+  if (location && location.name) {
+    content.push(`${location.name}.`)
+  }
+
+  const documents = content.join('.').match( /[^\.!\?]+[\.!\?]+/g );
+  const [topics] = LDA(documents || [content], 1, terms, ['es']);
+
+  if (!topics) {
+    debug(`NO_TOPICS:${id}`)
+    return []
+  }
 
   return topics.reduce((accu, { term }) => {
     accu.push(term)
@@ -323,14 +342,31 @@ function openDB() {
   });
 }
 
+async function updateTopics() {
+  const posts = await Post.find({ topics: { $exists: false }}).sort({ createdAt: -1 })
+  debug(`posts_found:${posts.length}`)
+
+  const promises = posts.slice(0, 500).map(post => {
+    post.topics = getTopics(post, 10)
+
+    return post.save()
+  })
+  
+  await Promise.all(promises)
+  
+  debug(`updated:${promises.length}`)
+}
+
 async function main() {
   await openDB();
 
-  createDirectory()
+  // createDirectory()
 
-  await saveHomepage()
+  // await saveHomepage()
   
-  await saveCategories()
+  // await saveCategories()
+
+  await updateTopics()
 }
 
 if (require.main === module) {
@@ -338,4 +374,8 @@ if (require.main === module) {
     debug('data generated')
     process.exit(0);
   });
+}
+
+module.exports = {
+  getTopics
 }

@@ -47,6 +47,7 @@ const PostSchema = new Schema({
 
   user: UserSchema,
   location: LocationSchema,
+  topics: [],
 }, {
   timestamps: true,
 });
