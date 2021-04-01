@@ -120,12 +120,12 @@
 </style>
 
 <svelte:head>
-	<title>¿Qué comer? Los mejores Restaurantes de Tijuana</title>
+	<title>¿Qué comer? En Tijuana se come bien, descrube dónde 🙂</title>
 	<meta property="og:title" content="feedmetj">
-	<meta property="og:description" content={`La mejor comida se hace en Tijuana. Encuentra qué comer: ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local en los mejores Restaurantes.`}>
+	<meta property="og:description" content={`La mejor comida se hace en Tijuana. ¿Qué se te antoja comer? ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Te recomendamos los mejores Lugares de Tijuana.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content={`La mejor comida se hace en Tijuana. Encuentra qué comer ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Disfruta de la gastronomia local en los mejores Restaurantes.`}>
+	<meta name="description" content={`La mejor comida se hace en Tijuana. ¿Qué se te antoja comer? ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Te recomendamos los mejores Lugares de Tijuana.`}>
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
@@ -178,7 +178,7 @@
 	Síguenos en
 	<ul>
 		<li><a href="https://www.instagram.com/feedmetj/" target="_blank" rel="nofollow noreferrer" title="¿Qué comer en Tijuana">Instagram</a></li>
-		<li><a href="https://www.facebook.com/Feedmetj-104064654962934" target="_blank" rel="nofollow noreferrer" title="la mejor comida de Tijuana">Facebook</a></li>
+		<li><a href="https://www.facebook.com/Feedmetj-104064654962934" target="_blank" rel="nofollow noreferrer" title="La mejor comida de Tijuana">Facebook</a></li>
 	</ul>
 </div>
 
