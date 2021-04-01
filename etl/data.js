@@ -360,11 +360,11 @@ async function updateTopics() {
 async function main() {
   await openDB();
 
-  // createDirectory()
+  createDirectory()
 
-  // await saveHomepage()
+  await saveHomepage()
   
-  // await saveCategories()
+  await saveCategories()
 
   await updateTopics()
 }
