@@ -343,10 +343,10 @@ function openDB() {
 }
 
 async function updateTopics() {
-  const posts = await Post.find({ topics: { $exists: false }}).sort({ createdAt: -1 })
+  const posts = await Post.find({ topics: { $exists: false }}).sort({ createdAt: -1 }).limit(500)
   debug(`posts_found:${posts.length}`)
 
-  const promises = posts.slice(0, 500).map(post => {
+  const promises = posts.map(post => {
     post.topics = getTopics(post, 10)
 
     return post.save()
