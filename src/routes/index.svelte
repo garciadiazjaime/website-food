@@ -120,7 +120,7 @@
 </style>
 
 <svelte:head>
-	<title>¿Qué comer? En Tijuana se come bien, descrube dónde 🙂</title>
+	<title>Que comer en Tijuana | Los mejores Restaurantes Abril 2021</title>
 	<meta property="og:title" content="feedmetj">
 	<meta property="og:description" content={`La mejor comida se hace en Tijuana. ¿Qué se te antoja comer? ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Te recomendamos los mejores Lugares de Tijuana.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
