@@ -171,7 +171,47 @@
 </div>
 
 <div class="container">
-	<strong>¿Qué comer en Tijuana?</strong>. Disfruta de la gastronomia local en los mejores Restaurantes.
+	<strong>¿Qué comer en Tijuana?</strong>
+	<p>
+		Tijuana es una ciudad en crecimiento, actualmente cuenta con varias zonas que ofrecen una gran variedad de comida.
+		Aquí dejamos 5 zonas en las que podrás encontrar buenos lugares para comer:
+	</p>
+	<ul>
+		<li>
+			<strong>Playas de Tijuana</strong>
+			<p>
+				Además de tener buenas opciones de comida cuenta con la playa, la cual siempre es buena para una caminata, especialmente durante el atardecer.
+				Si buscas un ambiente relajado y buenos precios, esta es la zona.
+			</p>
+		</li>
+		<li>
+			<strong>Centro</strong>
+			<p>
+				El centro es un punto de folklore, donde además de opciones de comida se puede disfrutar de una caminata por la emblemática calle Revolución.
+				Es una zona de contrastes que bien define una de las caras de Tijuana. Si estas en busca de algo alternativo esta es la zona.
+			</p>
+		</li>
+		<li>
+			<strong>Rio</strong>
+			<p>
+				Zona rio se caracteriza por su urbanismo donde se encuentran restaurantes de renombre, adicionalmente hay varios centros comerciales y zonas de entretenimiento para continuar la vuelta.
+				Si estas en busca de una opción más moderna esta es la zona.
+			</p>
+		</li>
+		<li>
+			<strong>Insurgentes</strong>
+			<p>
+				Esta zona ha crecido mucho en los últimos años y de igual forma lo ha hecho su oferta gastronómica. Podría parecer lejos para algunas personas, sin embargo vale la pena, pues las opciones de comida son buenas y por lo regular a buen precio.
+			</p>
+		</li>
+		<li>
+			<strong>El Valle de Guadalupe</strong>
+			<p>
+				El valle se encuentra en Ensenada, apróximadamente a una hora de distancia, por tanto se puede considerar como una alternativa. 
+				El valle es una zona entre montañas que cuenta con su propio clima. La oferta gastronómica es más sofisticada y en general los precios son altos, sin embargo la experiencia lo vale.
+			</p>
+		</li>
+	</ul>
 </div>
 
 <div class="container">
