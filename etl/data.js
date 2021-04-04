@@ -4,7 +4,9 @@ const mapSeries = require('async/mapSeries');
 const debug = require('debug')('app:data')
 
 const seoCategories = require('../static/seoCategories.json')
-const { Post } = require('./models')
+const {
+  Post
+} = require('./models')
 const LDA = require('./lda')
 const config = require('./config.js');
 
@@ -17,7 +19,7 @@ const zones = [{
   title: 'Qué comer en Zona Rio?',
   fullTitle: 'Qué comer en Zona Rio?',
   slug: 'zona-rio',
-  coordinates: [-117.0176, 32.5247 ]
+  coordinates: [-117.0176, 32.5247]
 }, {
   title: 'Si andas en Otay',
   fullTitle: 'Si andas en Otay',
@@ -77,11 +79,17 @@ function hasDelivery(caption, index = 0) {
     return true
   }
 
-  return hasDelivery(caption,  index + 1)
+  return hasDelivery(caption, index + 1)
 }
 
 function getTopics(post, terms = 3) {
-  const { caption, accessibility, user, id, location } = post
+  const {
+    caption,
+    accessibility,
+    user,
+    id,
+    location
+  } = post
 
   const content = [caption || '']
 
@@ -97,7 +105,7 @@ function getTopics(post, terms = 3) {
     content.push(`${location.name}.`)
   }
 
-  const documents = content.join('.').match( /[^\.!\?]+[\.!\?]+/g );
+  const documents = content.join('.').match(/[^\.!\?]+[\.!\?]+/g);
   const [topics] = LDA(documents || [content], 1, terms, ['es']);
 
   if (!topics) {
@@ -105,7 +113,9 @@ function getTopics(post, terms = 3) {
     return []
   }
 
-  return topics.reduce((accu, { term }) => {
+  return topics.reduce((accu, {
+    term
+  }) => {
     accu.push(term)
 
     return accu
@@ -157,12 +167,17 @@ function getPostsByCategory(category, limit, postsBySection = []) {
   const since = new Date()
   since.setDate(since.getDate() - 29)
 
-  return Post.aggregate([
-    {
-      $match: { 
-        $or:[{ source: 'tijuanamakesmehungry' }, { source: 'tijuanafood' }], 
+  return Post.aggregate([{
+      $match: {
+        $or: [{
+          source: 'tijuanamakesmehungry'
+        }, {
+          source: 'tijuanafood'
+        }],
         mediaType: 'GraphImage',
-        $text: { $search: category },
+        $text: {
+          $search: category
+        },
         'user.id': {
           $nin: Object.keys(userIDsTaken)
         },
@@ -172,13 +187,15 @@ function getPostsByCategory(category, limit, postsBySection = []) {
       },
     },
     {
-      $sort: { createdAt: -1 },
+      $sort: {
+        createdAt: -1
+      },
     },
     {
       $group: {
         _id: "$user.id",
-        id: { 
-          $first : "$id" ,
+        id: {
+          $first: "$id",
         },
         caption: {
           $first: "$caption",
@@ -203,7 +220,9 @@ function getPostsByCategory(category, limit, postsBySection = []) {
         },
       }
     },
-    { $limit : limit },
+    {
+      $limit: limit
+    },
   ])
 }
 
@@ -212,8 +231,7 @@ function getPostsByLocation(coordinates, limit) {
   const since = new Date()
   since.setDate(since.getDate() - 14)
 
-  return Post.aggregate([
-    {
+  return Post.aggregate([{
       $geoNear: {
         near: {
           type: "Point",
@@ -226,16 +244,22 @@ function getPostsByLocation(coordinates, limit) {
     },
     {
       $match: {
-        $or:[{ source: 'tijuanamakesmehungry' }, { source: 'tijuanafood' }],
+        $or: [{
+          source: 'tijuanamakesmehungry'
+        }, {
+          source: 'tijuanafood'
+        }],
         mediaType: 'GraphImage',
-        createdAt: { $gte : since }
+        createdAt: {
+          $gte: since
+        }
       },
     },
     {
       $group: {
         _id: "$user.id",
         id: {
-          $first : "$id" ,
+          $first: "$id",
         },
         caption: {
           $first: "$caption",
@@ -264,16 +288,24 @@ function getPostsByLocation(coordinates, limit) {
       }
     },
     {
-      $sort: { dist: 1 },
+      $sort: {
+        dist: 1
+      },
     },
-    { $limit : limit },
+    {
+      $limit: limit
+    },
   ])
 }
 
 async function getPosts(categories, geoZones, limit) {
   const postsBySection = []
 
-  await mapSeries(categories, async ({ title, fullTitle, slug }) => {
+  await mapSeries(categories, async ({
+    title,
+    fullTitle,
+    slug
+  }) => {
     const posts = await getPostsByCategory(slug, limit, postsBySection)
 
     postsBySection.push({
@@ -284,7 +316,12 @@ async function getPosts(categories, geoZones, limit) {
     })
   })
 
-  await mapSeries(geoZones, async ({ coordinates, title, fullTitle, slug }) => {
+  await mapSeries(geoZones, async ({
+    coordinates,
+    title,
+    fullTitle,
+    slug
+  }) => {
     const posts = await getPostsByLocation(coordinates, limit)
 
     postsBySection.push({
@@ -300,14 +337,18 @@ async function getPosts(categories, geoZones, limit) {
 
 async function saveHomepage() {
   const limit = 4
-  
+
   const posts = await getPosts(seoCategories, zones, limit)
 
   load('homepage', posts)
 }
 
 async function saveCategories() {
-  const promises = seoCategories.map(async ({ title, fullTitle, slug }) => {
+  const promises = seoCategories.map(async ({
+    title,
+    fullTitle,
+    slug
+  }) => {
     const limit = 50
 
     const posts = await getPostsByCategory(slug, limit)
@@ -328,7 +369,7 @@ async function saveCategories() {
 function createDirectory() {
   const dir = './static/data'
 
-  if (!fs.existsSync(dir)){
+  if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   }
 }
@@ -343,7 +384,13 @@ function openDB() {
 }
 
 async function updateTopics() {
-  const posts = await Post.find({ topics: { $exists: false }}).sort({ createdAt: -1 }).limit(500)
+  const posts = await Post.find({
+    topics: {
+      $exists: false
+    }
+  }).sort({
+    createdAt: -1
+  }).limit(500)
   debug(`posts_found:${posts.length}`)
 
   const promises = posts.map(post => {
@@ -351,10 +398,101 @@ async function updateTopics() {
 
     return post.save()
   })
-  
+
   await Promise.all(promises)
-  
+
   debug(`updated:${promises.length}`)
+}
+
+function getPostsByDay() {
+  const pipeline = [{
+    $match: {
+      $or: [{
+          source: 'tijuanamakesmehungry'
+        },
+        {
+          source: 'tijuanafood'
+        }
+      ],
+      mediaType: 'GraphImage',
+    }
+  }, {
+    $project: {
+      date: {
+        '$dateToString': {
+          format: '%Y-%m-%d',
+          date: '$createdAt'
+        }
+      },
+      username: '$user.username'
+    }
+  }, {
+    $group: {
+      _id: '$date',
+      count: {
+        '$sum': 1
+      }
+    }
+  }, {
+    $sort: {
+      _id: -1
+    }
+  }, {
+    $limit: 30
+  }, {
+    $sort: {
+      _id: 1
+    }
+  }]
+
+  return Post.aggregate(pipeline)
+}
+
+function getPostsByUser() {
+  const pipeline = [{
+    $match: {
+      $or: [{
+          source: 'tijuanamakesmehungry'
+        },
+        {
+          source: 'tijuanafood'
+        }
+      ],
+      mediaType: 'GraphImage',
+      createdAt: {
+        $gte: new Date(new Date().setDate(new Date().getDate() - 30))
+      }
+    }
+  }, {
+    $group: {
+      _id: "$user.username",
+      followedBy: {
+        $last: "$user.followedBy"
+      },
+      postsCount: {
+        $last: "$user.postsCount"
+      },
+      count: {
+        $sum: 1
+      },
+    }
+  }, {
+    $sort: {
+      count: -1
+    }
+  }, {
+    $limit: 100
+  }]
+
+  return Post.aggregate(pipeline)
+}
+
+async function statsETL() {
+  const postsByDay = await getPostsByDay()
+  load('posts_by_day', postsByDay)
+
+  const postsByUser = await getPostsByUser()
+  load('posts_by_user', postsByUser)
 }
 
 async function main() {
@@ -363,10 +501,12 @@ async function main() {
   createDirectory()
 
   await saveHomepage()
-  
+
   await saveCategories()
 
   await updateTopics()
+
+  await statsETL()
 }
 
 if (require.main === module) {
