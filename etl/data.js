@@ -384,24 +384,42 @@ function openDB() {
 }
 
 async function updateTopics() {
-  const posts = await Post.find({
-    topics: {
-      $exists: false
+  const pipeline = [{
+    $match: {
+      $or: [{
+          source: 'tijuanamakesmehungry'
+        },
+        {
+          source: 'tijuanafood'
+        }
+      ],
+      topics: {
+        $exists: false
+      }
     }
-  }).sort({
-    createdAt: -1
-  }).limit(500)
-  debug(`posts_found:${posts.length}`)
+  }, {
+    $sort: {
+      createdAt: -1
+    }
+  }, {
+    $limit: 1
+  }]
+
+  const posts = await Post.aggregate(pipeline)
 
   const promises = posts.map(post => {
-    post.topics = getTopics(post, 10)
+    const topics = getTopics(post, 10)
 
-    return post.save()
+    return Post.findOneAndUpdate({
+      id: post.id
+    }, {
+      topics
+    })
   })
 
   await Promise.all(promises)
 
-  debug(`updated:${promises.length}`)
+  debug(`updateTopics:${promises.length}`)
 }
 
 function getPostsByDay() {
@@ -441,7 +459,7 @@ function getPostsByDay() {
     $limit: 30
   }, {
     $sort: {
-      _id: 1
+      _id: -1
     }
   }]
 
@@ -487,12 +505,209 @@ function getPostsByUser() {
   return Post.aggregate(pipeline)
 }
 
+async function getHashtags() {
+  const pipeline = [{
+    $match: {
+      $or: [{
+          source: 'tijuanamakesmehungry'
+        },
+        {
+          source: 'tijuanafood'
+        }
+      ],
+      mediaType: 'GraphImage',
+      createdAt: {
+        $gte: new Date(new Date().setDate(new Date().getDate() - 30))
+      }
+    }
+  }, {
+    $project: {
+      id: "$id",
+      caption: "$caption"
+    }
+  }]
+
+  const posts = await Post.aggregate(pipeline)
+
+  debug(`getHashtags:posts:${posts.length}`)
+
+  const result = posts.reduce((accu, post) => {
+    if (!post.caption) {
+      debug(`NO_CAPTION:${post.id}`)
+      return accu
+    }
+    const hashtags = post.caption.split('#')
+
+    hashtags.forEach(hashtag => {
+      const key = hashtag.trim()
+
+      if (key && !key.includes(' ')) {
+        if (!accu[key]) {
+          accu[key] = 0
+        }
+
+        accu[key] += 1
+      }
+    })
+
+    return accu
+  }, {})
+
+  return Object.entries(result).sort((a, b) => b[1] - a[1]).slice(0, 100)
+}
+
+async function getLocations() {
+  const pipeline = [{
+    $match: {
+      $or: [{
+          source: 'tijuanamakesmehungry'
+        },
+        {
+          source: 'tijuanafood'
+        }
+      ],
+      mediaType: 'GraphImage',
+      createdAt: {
+        $gte: new Date(new Date().setDate(new Date().getDate() - 30))
+      },
+      location: {
+        $exists: 1
+      }
+    }
+  }, {
+    $group: {
+      _id: "$location.id",
+      count: {
+        $sum: 1
+      },
+      slug: {
+        $last: "$location.slug"
+      },
+      name: {
+        $last: "$location.name"
+      }
+    }
+  }, {
+    $sort: {
+      count: -1
+    }
+  }, {
+    $limit: 100
+  }]
+
+  return Post.aggregate(pipeline)
+}
+
+async function getTopicsCount() {
+  const pipeline = [{
+    $match: {
+      $or: [{
+          source: 'tijuanamakesmehungry'
+        },
+        {
+          source: 'tijuanafood'
+        }
+      ],
+      mediaType: 'GraphImage',
+      createdAt: {
+        $gte: new Date(new Date().setDate(new Date().getDate() - 30))
+      },
+      topics: {
+        $exists: 1
+      }
+    }
+  }, {
+    $project: {
+      topics: "$topics"
+    }
+  }]
+
+  const posts = await Post.aggregate(pipeline)
+
+  const result = posts.reduce((accu, post) => {
+    post.topics.forEach(topic => {
+      if (!accu[topic]) {
+        accu[topic] = 0
+      }
+
+      accu[topic] += 1
+    })
+
+    return accu
+  }, {})
+
+  return Object.entries(result).sort((a, b) => b[1] - a[1]).slice(0, 100)
+}
+
+async function getPostsToCompare() {
+  const pipeline = [{
+    $match: {
+      $or: [{
+          source: 'tijuanamakesmehungry'
+        },
+        {
+          source: 'tijuanafood'
+        }
+      ],
+      mediaType: 'GraphImage',
+      createdAt: {
+        $gte: new Date(new Date().setDate(new Date().getDate() - 7))
+      },
+      $text: {
+        $search: "tacos"
+      },
+      compared: {
+        $exists: false
+      }
+    }
+  }, {
+    $group: {
+      _id: "$user.id",
+      mediaUrl: {
+        $last: "$mediaUrl"
+      },
+      permalink: {
+        $last: "$permalink"
+      },
+      username: {
+        $last: "$user.username"
+      },
+      profilePicture: {
+        $last: "$user.profilePicture"
+      },
+      topics: {
+        $last: "$topics"
+      }
+    }
+  }, {
+    $sort: {
+      createdAt: -1
+    }
+  }, {
+    $limit: 2
+  }]
+
+  return Post.aggregate(pipeline)
+}
+
 async function statsETL() {
   const postsByDay = await getPostsByDay()
   load('posts_by_day', postsByDay)
 
   const postsByUser = await getPostsByUser()
   load('posts_by_user', postsByUser)
+
+  const hashtags = await getHashtags()
+  load('hashtags', hashtags)
+
+  const locations = await getLocations()
+  load('locations', locations)
+
+  const topics = await getTopicsCount()
+  load('topics', topics)
+
+  const comparePosts = await comparePosts()
+  load('compare-posts', comparePosts)
 }
 
 async function main() {
@@ -507,6 +722,8 @@ async function main() {
   await updateTopics()
 
   await statsETL()
+
+  await getPostsToCompare()
 }
 
 if (require.main === module) {
