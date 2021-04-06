@@ -25,7 +25,7 @@
 			}
 		}, {
 			"@type": "Question",
-			"name": "¿Qué comer en Tijuana?",
+			"name": "¿Que comer en Tijuana?",
 			"acceptedAnswer": {
 				"@type": "Answer",
 				"text": `<ul>${seoCategories.map(item => `<li><a href="/${item.slug}">${item.title}</a></li>`).join('')}</ul>`
@@ -122,22 +122,22 @@
 <svelte:head>
 	<title>Que comer en Tijuana | Los mejores Restaurantes Abril 2021</title>
 	<meta property="og:title" content="feedmetj">
-	<meta property="og:description" content={`La mejor comida se hace en Tijuana. ¿Qué se te antoja comer? ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Te recomendamos los mejores Lugares de Tijuana.`}>
+	<meta property="og:description" content={`La mejor comida se hace en Tijuana. ¿Que se te antoja comer? ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Te recomendamos los mejores Lugares de Tijuana.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content={`La mejor comida se hace en Tijuana. ¿Qué se te antoja comer? ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Te recomendamos los mejores Lugares de Tijuana.`}>
+	<meta name="description" content={`La mejor comida se hace en Tijuana. ¿Que se te antoja comer? ${seoCategories.slice(0, 5).map(item => `${item.title}`).join(' ')}. Te recomendamos los mejores Lugares de Tijuana.`}>
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
 <StickyBanner>
 	<h1>
-		¿Qué comer en Tijuana?
+		¿Que comer en Tijuana?
 	</h1>
 	<p>En Feedmetj te recomendamos las mejores opciones de comida en Tijuana con base en lo que se publica en Instagram.</p>
 </StickyBanner>
 
 <div class="container">
-	<h2>¿Qué hay de comer en Tijuana?</h2>
+	<h2>¿Que hay de comer en Tijuana?</h2>
 	<ul class="top-options">
 		{#each seoCategories as option}
 		<li><a href={`/${option.slug}`} title={option.fullTitle}>{option.title}</a></li>
@@ -171,7 +171,7 @@
 </div>
 
 <div class="container">
-	<strong>¿Qué comer en Tijuana?</strong>
+	<strong>¿Que comer en Tijuana?</strong>
 	<p>
 		Tijuana es una ciudad en crecimiento, actualmente cuenta con varias zonas que ofrecen una gran variedad de comida.
 		Aquí dejamos 5 zonas en las que podrás encontrar buenos lugares para comer:
@@ -217,7 +217,7 @@
 <div class="container">
 	Síguenos en
 	<ul>
-		<li><a href="https://www.instagram.com/feedmetj/" target="_blank" rel="nofollow noreferrer" title="¿Qué comer en Tijuana">Instagram</a></li>
+		<li><a href="https://www.instagram.com/feedmetj/" target="_blank" rel="nofollow noreferrer" title="¿Que comer en Tijuana">Instagram</a></li>
 		<li><a href="https://www.facebook.com/Feedmetj-104064654962934" target="_blank" rel="nofollow noreferrer" title="La mejor comida de Tijuana">Facebook</a></li>
 	</ul>
 </div>
