@@ -677,6 +677,9 @@ async function getPostsToCompare() {
       },
       topics: {
         $last: "$topics"
+      },
+      caption: {
+        $last: "$caption"
       }
     }
   }, {
@@ -706,7 +709,7 @@ async function statsETL() {
   const topics = await getTopicsCount()
   load('topics', topics)
 
-  const comparePosts = await comparePosts()
+  const comparePosts = await getPostsToCompare()
   load('compare-posts', comparePosts)
 }
 
