@@ -175,7 +175,7 @@ function getPostsByCategory(category, limit, postsBySection = []) {
           source: 'tijuanafood'
         }],
         mediaType: {
-          $ne: 'GraphVideo'
+          $nin: ['GraphVideo', 'GraphSidecar']
         },
         $text: {
           $search: category
