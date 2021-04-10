@@ -174,7 +174,9 @@ function getPostsByCategory(category, limit, postsBySection = []) {
         }, {
           source: 'tijuanafood'
         }],
-        mediaType: 'GraphImage',
+        mediaType: {
+          $ne: 'GraphVideo'
+        },
         $text: {
           $search: category
         },
@@ -249,7 +251,9 @@ function getPostsByLocation(coordinates, limit) {
         }, {
           source: 'tijuanafood'
         }],
-        mediaType: 'GraphImage',
+        mediaType: {
+          $ne: 'GraphVideo'
+        },
         createdAt: {
           $gte: since
         }
@@ -402,7 +406,7 @@ async function updateTopics() {
       createdAt: -1
     }
   }, {
-    $limit: 1
+    $limit: 10
   }]
 
   const posts = await Post.aggregate(pipeline)
@@ -432,7 +436,6 @@ function getPostsByDay() {
           source: 'tijuanafood'
         }
       ],
-      mediaType: 'GraphImage',
     }
   }, {
     $project: {
@@ -476,7 +479,6 @@ function getPostsByUser() {
           source: 'tijuanafood'
         }
       ],
-      mediaType: 'GraphImage',
       createdAt: {
         $gte: new Date(new Date().setDate(new Date().getDate() - 30))
       }
@@ -515,7 +517,6 @@ async function getHashtags() {
           source: 'tijuanafood'
         }
       ],
-      mediaType: 'GraphImage',
       createdAt: {
         $gte: new Date(new Date().setDate(new Date().getDate() - 30))
       }
@@ -566,7 +567,6 @@ async function getLocations() {
           source: 'tijuanafood'
         }
       ],
-      mediaType: 'GraphImage',
       createdAt: {
         $gte: new Date(new Date().setDate(new Date().getDate() - 30))
       },
@@ -608,7 +608,6 @@ async function getTopicsCount() {
           source: 'tijuanafood'
         }
       ],
-      mediaType: 'GraphImage',
       createdAt: {
         $gte: new Date(new Date().setDate(new Date().getDate() - 30))
       },
@@ -649,7 +648,6 @@ async function getPostsToCompare() {
           source: 'tijuanafood'
         }
       ],
-      mediaType: 'GraphImage',
       createdAt: {
         $gte: new Date(new Date().setDate(new Date().getDate() - 7))
       },
