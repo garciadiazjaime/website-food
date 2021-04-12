@@ -28,6 +28,11 @@
     flex: 1;
     align-self: flex-end;
   }
+
+  .img-responsive {
+    width: 100%;
+    height: auto;
+  }
 </style>
 
 <div class="container">
@@ -64,7 +69,7 @@
 
   <div class="post">
     <p>
-      <img src="https://bxecreative.com/wp-content/uploads/2016/04/dummy-post-horisontal.jpg" width="400px" alt="imagen dummy" />
+      <img src="https://bxecreative.com/wp-content/uploads/2016/04/dummy-post-horisontal.jpg" alt="imagen dummy" class="img-responsive" />
     </p>
     <p>
       Hola Comunidad de <b>#feedmetj</b>,
@@ -104,7 +109,7 @@
 
   <p>
     * Ejemplo de QR Code: <br />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png" width="100px" alt="ejemplo de qr code" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png" width="150px" alt="ejemplo de qr code" />
   </p>
 
   <br />
