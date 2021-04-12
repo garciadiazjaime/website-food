@@ -32,7 +32,7 @@
 
 <div class="container">
 
-  <h1>Acuerdo para Rifa de $50 m.n.</h1>
+  <h1>Acuerdo para Rifa de $100 m.n.</h1>
 
   <h2>Datos del Cliente</h2>
   <p>
@@ -49,7 +49,7 @@
     Compromisos del cliente:
   </h2>
   <ul>
-    <li>Hacer válido el monto de $50 m.n. a la persona que resulte ganadora de la rifa.</li>
+    <li>Hacer válido el monto de $100 m.n. a la persona que resulte ganadora de la rifa.</li>
     <li>El monto se podrá utilizar como balance para la compra de cualquier producto que ofrezca el cliente.</li>
     <li>El monto se utilizará en una única transacción.</li>
     <li>El monto no generá saldo a favor, es decir no se dará cambio.</li>
@@ -69,7 +69,7 @@
     <p>
       Hola Comunidad de <b>#feedmetj</b>,
 
-      nuestros amigos de <b>@cafed.alicia</b> nos regalaron un Gift Card de <b>$50 m.n.</b>
+      nuestros amigos de <b>@cafed.alicia</b> nos regalaron un Gift Card de <b>$100 m.n.</b>
     </p>
 
     <p>
