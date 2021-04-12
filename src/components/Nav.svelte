@@ -60,5 +60,6 @@
 		<li><a aria-current='{segment === "feedmetj" ? "page" : undefined}' href='/feedmetj'>feedmetj</a></li>
 		<li class="hide"><a aria-current='{segment === "map" ? "page" : undefined}' href='/map'>mapa</a></li>
 		<li class="hide"><a aria-current='{segment === "stats" ? "page" : undefined}' href='/stats'>datos</a></li>
+		<li class="hide"><a aria-current='{segment === "rifa" ? "page" : undefined}' href='/rifa'>rifa</a></li>
 	</ul>
 </nav>
