@@ -16,18 +16,18 @@ const zones = [{
   slug: 'zona-centro',
   coordinates: [-117.0364, 32.5309]
 }, {
-  title: 'Qué comer en Zona Rio?',
-  fullTitle: 'Qué comer en Zona Rio?',
+  title: 'Que comer en Zona Rio?',
+  fullTitle: 'Que comer en Zona Rio?',
   slug: 'zona-rio',
   coordinates: [-117.0176, 32.5247]
 }, {
-  title: 'Si andas en Otay',
-  fullTitle: 'Si andas en Otay',
+  title: 'Que comer en Otay?',
+  fullTitle: 'Que comer en Otay?',
   slug: 'otay',
   coordinates: [-116.9699, 32.5298]
 }, {
-  title: 'Como Playas no hay dos',
-  fullTitle: 'Como Playas no hay dos',
+  title: 'Y para comer en Playas?',
+  fullTitle: 'Y para comer en Playas?',
   slug: 'playas',
   coordinates: [-117.1161, 32.5207]
 }]
