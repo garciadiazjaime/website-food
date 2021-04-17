@@ -1,33 +1,33 @@
 [{
   "title": "Ramen",
-  "fullTitle": "Dónde comer Ramen?",
+  "fullTitle": "Donde comer Ramen?",
   "slug": "ramen"
 }, {
   "title": "Poke",
-  "fullTitle": "Y para comer Poke?",
+  "fullTitle": "Restaurantes de Poke",
   "slug": "poke"
 }, {
   "title": "Sushi",
-  "fullTitle": "Y si quiero comer Sushi?",
+  "fullTitle": "Si quieres comer Sushi",
   "slug": "sushi"
 }, {
   "title": "Mariscos",
-  "fullTitle": "Mariscos?",
+  "fullTitle": "Donde comer Mariscos?",
   "slug": "mariscos"
 }, {
   "title": "Pizzas",
-  "fullTitle": "Nada como comer Pizza",
+  "fullTitle": "Pizza",
   "slug": "pizza"
 }, {
   "title": "Tacos",
-  "fullTitle": "Que tal uno Tacos?",
+  "fullTitle": "Lugares para comer Tacos",
   "slug": "tacos"
 }, {
   "title": "Restaurantes",
-  "fullTitle": "Que más hay de comer?",
+  "fullTitle": "Que mas hay de comer?",
   "slug": "restaurante"
 }, {
   "title": "Cafes",
-  "fullTitle": "Cafes",
+  "fullTitle": "Despues de comer un buen Cafe",
   "slug": "cafe"
 }]

@@ -9,7 +9,6 @@
   export let category;
   export let description;
   export let delivery;
-  export let topics = [];
 
   let imgUrl = ''
 
@@ -82,9 +81,9 @@
 </style>
 
 <div class="card" data-id={id}>
-  <h3><a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer" title={`que comer en Tijuana? ${title || username}`}>{title || username}</a></h3>
+  <h3><a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer" title={`${title || username}`}>{title || username}</a></h3>
 
-  <img src={imgUrl} alt={`que comer en Tijuana: ${category}`} title={`que comer en Tijuana: ${category}`} width="640px" height="640px" use:lazyLoad />
+  <img src={imgUrl} alt={`donde comer: ${category}`} title={`lugar para comer: ${category}`} width="640px" height="640px" use:lazyLoad />
 
   <div class="container">
     {#if description}
@@ -93,14 +92,10 @@
     </p>
     {/if}
 
-    {#each topics as topic}
-      <strong>{topic}</strong>
-    {/each}
-
     {#if address}
     <p class="address">
       {#if gps && gps.length }
-        <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={`donde comer: ${category} en Tijuana`} target="_blank" rel="nofollow noreferrer">{address}</a>
+        <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={`lugar para comer: ${category}`} target="_blank" rel="nofollow noreferrer">{address}</a>
       {:else}
         {address || ''}
       {/if}
@@ -115,7 +110,7 @@
 
     {#if phone}
     <p>
-      <a href={`tel:${phone}`} title={`pedir comida: ${title}`} rel="nofollow noreferrer">Llamar por teléfono</a>
+      <a href={`tel:${phone}`} title={`pedir comida por telefono de: ${title}`} rel="nofollow noreferrer">Llamar por teléfono</a>
     </p>
     {/if}
   </div>

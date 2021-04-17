@@ -11,8 +11,8 @@ const LDA = require('./lda')
 const config = require('./config.js');
 
 const zones = [{
-  title: 'Dónde comer en el Centro?',
-  fullTitle: 'Dónde comer en el Centro?',
+  title: 'Donde comer en el Centro?',
+  fullTitle: 'Donde comer en el Centro?',
   slug: 'zona-centro',
   coordinates: [-117.0364, 32.5309]
 }, {
@@ -26,8 +26,8 @@ const zones = [{
   slug: 'otay',
   coordinates: [-116.9699, 32.5298]
 }, {
-  title: 'Y para comer en Playas?',
-  fullTitle: 'Y para comer en Playas?',
+  title: 'Donde comer en Playas?',
+  fullTitle: 'Donde comer en Playas?',
   slug: 'playas',
   coordinates: [-117.1161, 32.5207]
 }]
@@ -340,7 +340,7 @@ async function getPosts(categories, geoZones, limit) {
 }
 
 async function saveHomepage() {
-  const limit = 4
+  const limit = 3
 
   const posts = await getPosts(seoCategories, zones, limit)
 

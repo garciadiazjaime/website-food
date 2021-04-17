@@ -120,12 +120,12 @@
 </style>
 
 <svelte:head>
-	<title>Que comer en Tijuana? Los mejores Restaurantes y comida</title>
+	<title>Que comer en Tijuana? La mejores lugares para comer: Sushi, Tacos, Pizza, Mariscos</title>
 	<meta property="og:title" content="feedmetj">
-	<meta property="og:description" content={`Encuentra que comer en los mejores Restaurantes de Tijuana. Te recomendamos: Sushi, Mariscos, Tacos, Pizza, Cafes y más.`}>
+	<meta property="og:description" content={`Encuentra que comer en los mejores Restaurantes de Tijuana. Te recomendamos: Sushi, Mariscos, Tacos, Pizza, Cafes y mas.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content={`Encuentra que comer en los mejores Restaurantes de Tijuana. Te recomendamos: Sushi, Mariscos, Tacos, Pizza, Cafes y más.`}>
+	<meta name="description" content={`Encuentra que comer en los mejores Restaurantes de Tijuana. Te recomendamos: Sushi, Mariscos, Tacos, Pizza, Cafes y mas.`}>
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
@@ -162,7 +162,6 @@
 					category={slug}
 					description={post.description}
 					delivery={post.delivery}
-					topics={post.topics}
 				/>
 			{/each}
 
