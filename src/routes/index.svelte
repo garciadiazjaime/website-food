@@ -129,22 +129,6 @@
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
-<StickyBanner>
-	<h1>
-		¿Que comer en Tijuana?
-	</h1>
-	<p>En Feedmetj te recomendamos las mejores opciones de comida en Tijuana con base en lo que se publica en Instagram.</p>
-</StickyBanner>
-
-<div class="container">
-	<h2>¿Que hay de comer en Tijuana?</h2>
-	<ul class="top-options">
-		{#each seoCategories as option}
-		<li><a href={`/${option.slug}`} title={option.fullTitle}>{option.title}</a></li>
-		{/each}
-	</ul>
-</div>
-
 <div class="container">
 	{#each posts as { fullTitle, slug, posts } }
 		<h2>{fullTitle}</h2>
@@ -167,6 +151,22 @@
 
 		</div>
 	{/each}
+</div>
+
+<div class="container">
+	<h1>
+		¿Que comer en Tijuana?
+	</h1>
+	<p>En Feedmetj te recomendamos las mejores opciones de comida en Tijuana con base en lo que se publica en Instagram.</p>
+</div>
+
+<div class="container">
+	<h2>¿Que hay de comer en Tijuana?</h2>
+	<ul class="top-options">
+		{#each seoCategories as option}
+		<li><a href={`/${option.slug}`} title={option.fullTitle}>{option.title}</a></li>
+		{/each}
+	</ul>
 </div>
 
 <div class="container">
