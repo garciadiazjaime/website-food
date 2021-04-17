@@ -5,9 +5,7 @@
 	<title>¿Qué es Feedmetj?</title>
 </svelte:head>
 <div class="about-page">
-	<div class="title">
-		<h1><img src="fmt-logo-gold.svg" alt="Feedmetj"></h1>
-	</div>
+	<br />
 
 	<div class="content-block secondary">
 		<h2>¿Qué es Feedmetj?</h2>

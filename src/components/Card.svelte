@@ -38,7 +38,7 @@
 <style>
   .card {
     padding: 6px 0;
-    box-shadow: 2px 2px 6px 6px #c8c8c8;
+    box-shadow: 1px 1px 2px 2px #8C8C9C;
     width: 100%;
   }
 
@@ -48,6 +48,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  h3 a {
+    text-transform: lowercase;
   }
 
   img {
@@ -63,20 +67,6 @@
   .container {
     word-break: break-word;
     padding: 0 6px;
-  }
-
-   strong {	
-    font-weight: normal;	
-    display: inline-block;	
-  }
-
-  strong::after {	
-    content: '|';	
-    display: inline-block;	
-    padding: 0 6px;	
-  }	
-  strong:last-of-type::after {	
-    content: '';	
   }
 </style>
 

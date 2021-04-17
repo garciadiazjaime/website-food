@@ -9,9 +9,9 @@
 	nav {
 		font-weight: 300;
 		padding: 0 1em;
-		background-color: #e2dcd5;
-		color: #313d69;
-		border-bottom: solid 2px #ca4f24;
+		background-color: #FFF;
+		color: #2A2F33;
+		border-bottom: solid 2px #8C9491;
 	}
 	ul {
 		margin: 0;
@@ -32,8 +32,8 @@
 	[aria-current] {
 		position: relative;
 		display: inline-block;
-		color: #ca4f24;
-		border-bottom-color: #ca4f24;
+		color: #8C9491;
+		border-bottom-color: #8C9491;
 	}
 
 	a {

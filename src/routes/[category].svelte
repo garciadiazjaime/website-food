@@ -35,7 +35,7 @@
 
 	h1 {
 		margin-bottom: 20px;
-		color: #313d69;
+		color: #2A2F33;
 	}
 
 	@media (min-width: 600px) {
@@ -57,7 +57,7 @@
 	}
 
 	.container {
-		color: #313d69;
+		color: #2A2F33;
 		font-size: 20px;
 		padding: 15px 15px 0;
 		margin: 0 10px;

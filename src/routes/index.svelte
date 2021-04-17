@@ -60,7 +60,7 @@
 
 	h1 {
 		margin-bottom: 20px;
-		color: #313d69;
+		color: #2A2F33;
 	}
 
 	h2 {
@@ -86,7 +86,7 @@
 	}
 
 	.container {
-		color: #313d69;
+		color: #2A2F33;
 		font-size: 20px;
 		padding: 15px 15px 0;
 	}
@@ -129,6 +129,8 @@
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
+<br />
+
 <div class="container">
 	{#each posts as { fullTitle, slug, posts } }
 		<h2>{fullTitle}</h2>
@@ -150,6 +152,7 @@
 			{/each}
 
 		</div>
+		<br />
 	{/each}
 </div>
 
