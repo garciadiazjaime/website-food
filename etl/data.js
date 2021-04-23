@@ -342,7 +342,7 @@ async function getPosts(categories, geoZones, limit) {
 async function saveHomepage() {
   const limit = 3
 
-  const posts = await getPosts(seoCategories, zones, limit)
+  const posts = await getPosts(seoCategories, [], limit)
 
   load('homepage', posts)
 }

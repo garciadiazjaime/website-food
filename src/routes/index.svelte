@@ -129,6 +129,21 @@
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
+<div class="container">
+	<h1>
+		¿Que comer en Tijuana?
+	</h1>
+	<p>En Feedmetj te recomendamos las mejores opciones de comida en Tijuana con base en lo que se publica en Instagram.</p>
+</div>
+
+<div class="container">
+	<ul class="top-options">
+		{#each seoCategories as option}
+		<li><a href={`/${option.slug}`} title={option.fullTitle}>{option.title}</a></li>
+		{/each}
+	</ul>
+</div>
+
 <br />
 
 <div class="container">
@@ -146,7 +161,6 @@
 					gps={post.gps}
 					phone={post.phone}
 					category={slug}
-					description={post.description}
 					delivery={post.delivery}
 				/>
 			{/each}
@@ -154,22 +168,6 @@
 		</div>
 		<br />
 	{/each}
-</div>
-
-<div class="container">
-	<h1>
-		¿Que comer en Tijuana?
-	</h1>
-	<p>En Feedmetj te recomendamos las mejores opciones de comida en Tijuana con base en lo que se publica en Instagram.</p>
-</div>
-
-<div class="container">
-	<h2>¿Que hay de comer en Tijuana?</h2>
-	<ul class="top-options">
-		{#each seoCategories as option}
-		<li><a href={`/${option.slug}`} title={option.fullTitle}>{option.title}</a></li>
-		{/each}
-	</ul>
 </div>
 
 <div class="container">
@@ -216,8 +214,9 @@
 	</ul>
 </div>
 
-<div>
-	La mejor comida se hace en Tijuana, encuentra que comer en Tijuana en los mejores Restaurantes. Te recomendamos: Sushi, Mariscos, Tacos, Pizza, Cafes y mas.
+<div class="container">
+	<small>Que comer en Tijuana | La mejor comida se hace en Tijuana, encuentra que comer en Tijuana en los mejores Restaurantes.
+	<br /> Te recomendamos: Sushi, Mariscos, Tacos, Pizza, Cafes y mas.</small>
 </div>
 
 <div class="container">

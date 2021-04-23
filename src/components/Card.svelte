@@ -7,7 +7,6 @@
   export let gps;
   export let phone;
   export let category;
-  export let description;
   export let delivery;
 
   let imgUrl = ''
@@ -76,12 +75,6 @@
   <img src={imgUrl} alt={`donde comer: ${category}`} title={`lugar para comer: ${category}`} width="640px" height="640px" use:lazyLoad />
 
   <div class="container">
-    {#if description}
-    <p class="description">
-      {description}
-    </p>
-    {/if}
-
     {#if address}
     <p class="address">
       {#if gps && gps.length }
