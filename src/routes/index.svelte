@@ -120,7 +120,7 @@
 </style>
 
 <svelte:head>
-	<title>Que comer en Tijuana? Encuentra la mejor comida</title>
+	<title>Que comer en Tijuana? Encuentra los mejores lugares pare comer en Tijuana</title>
 	<meta property="og:title" content="feedmetj">
 	<meta property="og:description" content={`La mejor comida se hace en Tijuana, encuentra que comer en los mejores Restaurantes. Te recomendamos: Sushi, Mariscos, Tacos, Pizza, Cafes y mas.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
