@@ -2,7 +2,6 @@
   export let id;
   export let username;
 	export let title;
-	export let mediaUrl;
   export let address;
   export let gps;
   export let phone;
@@ -19,7 +18,7 @@
 
   function onIntersect(entries) {
     if (!imgUrl && entries[0].isIntersecting) {
-      imgUrl = mediaUrl
+      imgUrl = `/que-comer-en-tijuana/${username}-${id}.jpg`
     }
   }
 

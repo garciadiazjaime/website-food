@@ -1,16 +1,14 @@
 <script context="module">
-	export async function preload(page, session) {
+	export async function preload(page) {
     const { category } = page.params;
 
 		let response = await this.fetch(`./data/${category}.json`)
-    const [{ data: posts }] = await response.json()
+    const [{ posts }] = await response.json()
 
     response = await this.fetch('./seoCategories.json')
 		const postForSEO = await response.json()
 
     const item = postForSEO.find(item => item.slug === category)
-
-    const option = item ?  item.title : category
 
 		return { title: item.fullTitle, category, posts };
 	}

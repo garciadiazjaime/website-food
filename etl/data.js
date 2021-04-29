@@ -3,6 +3,8 @@ const fs = require('fs');
 const mapSeries = require('async/mapSeries');
 const debug = require('debug')('app:data')
 
+const { saveImages, saveImagesForPublicPage } = require('./support/image')
+
 const seoCategories = require('../static/seoCategories.json')
 const {
   Post
@@ -345,6 +347,8 @@ async function saveHomepage() {
   const posts = await getPosts(seoCategories, [], limit)
 
   load('homepage', posts)
+
+  await saveImagesForPublicPage(posts)
 }
 
 async function saveCategories() {
@@ -361,20 +365,24 @@ async function saveCategories() {
       title,
       fullTitle,
       slug,
-      data: posts.map(post => presenter(post, slug))
+      posts: posts.map(post => presenter(post, slug))
     }]
 
     load(slug, data)
+
+    await saveImagesForPublicPage(data)
   })
 
   return Promise.all(promises)
 }
 
 function createDirectory() {
-  const dir = './static/data'
+  if (!fs.existsSync('./static/data')) {
+    fs.mkdirSync('./static/data');
+  }
 
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
+  if (!fs.existsSync('./static/que-comer-en-tijuana')) {
+    fs.mkdirSync('./static/que-comer-en-tijuana');
   }
 }
 
@@ -691,6 +699,40 @@ async function getPostsToCompare() {
   return Post.aggregate(pipeline)
 }
 
+async function getLatestPost(limit = 100) {
+  const since = new Date()
+  since.setDate(since.getDate() - 1)
+
+  return Post.aggregate([
+    {
+      $match: {
+        $or: [
+          {
+            source: 'tijuanamakesmehungry'
+          }, 
+          {
+            source: 'tijuanafood'
+          }
+        ],
+        mediaType: {
+          $nin: ['GraphVideo', 'GraphSidecar']
+        },
+        createdAt: {
+          $gt: since
+        }
+      },
+    },
+    {
+      $sort: {
+        createdAt: -1
+      },
+    },
+    {
+      $limit: limit
+    },
+  ])
+}
+
 async function statsETL() {
   const postsByDay = await getPostsByDay()
   load('posts_by_day', postsByDay)
@@ -709,6 +751,10 @@ async function statsETL() {
 
   const comparePosts = await getPostsToCompare()
   load('compare-posts', comparePosts)
+
+  const latestPosts = await getLatestPost(30)
+  await saveImages(latestPosts)
+  load('latest-posts', latestPosts)
 }
 
 async function main() {

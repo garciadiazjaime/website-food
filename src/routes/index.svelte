@@ -156,7 +156,6 @@
 					id={post.id}
 					username={post.username}
 					title={post.title}
-					mediaUrl={post.mediaUrl}
 					address={post.address}
 					gps={post.gps}
 					phone={post.phone}
