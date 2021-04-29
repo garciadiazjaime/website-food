@@ -91,7 +91,8 @@
 		<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>que comer</a></li>
 		<li><a aria-current='{segment === "nosotros" ? "page" : undefined}' href='/nosotros'>nosotros</a></li>
 		<li class="hide"><a aria-current='{segment === "map" ? "page" : undefined}' href='/map'>mapa</a></li>
-		<li class="hide"><a aria-current='{segment === "stats" ? "page" : undefined}' href='/stats'>datos</a></li>
+		<li class="hide"><a aria-current='{segment === "stats" ? "page" : undefined}' href='/stats'>stats</a></li>
 		<li class="hide"><a aria-current='{segment === "rifa" ? "page" : undefined}' href='/rifa'>rifa</a></li>
+		<li class="hide"><a aria-current='{segment === "latest" ? "page" : undefined}' href='/latest'>latest</a></li>
 	</ul>
 </nav>
