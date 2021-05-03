@@ -53,6 +53,7 @@
       <th>Likes</th>
       <th>Comments</th>
       <th>Location</th>
+      <th>Date</th>
     </tr>
     {#each latestPosts as post, index}
       <tr data-id={post.id}>
@@ -70,7 +71,8 @@
           {#if post.location && post.location.slug }
           <a href={`https://www.instagram.com/explore/locations/${post.location.id}`}>{post.location.slug}</a>
           {/if}
-      </td>
+        </td>
+        <td>{new Date(post.createdAt).toLocaleDateString()} <br /> {new Date(post.updatedAt).toLocaleDateString()}</td>
       </tr>
     {/each}
   </table>

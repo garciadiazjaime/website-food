@@ -342,7 +342,7 @@ async function getPosts(categories, geoZones, limit) {
 }
 
 async function saveHomepage() {
-  const limit = 3
+  const limit = 2
 
   const posts = await getPosts(seoCategories, [], limit)
 
@@ -701,7 +701,7 @@ async function getPostsToCompare() {
 
 async function getLatestPost(limit = 100) {
   const since = new Date()
-  since.setDate(since.getDate() - 1)
+  since.setDate(since.getDate() - 10)
 
   return Post.aggregate([
     {
@@ -752,7 +752,7 @@ async function statsETL() {
   const comparePosts = await getPostsToCompare()
   load('compare-posts', comparePosts)
 
-  const latestPosts = await getLatestPost(30)
+  const latestPosts = await getLatestPost(50)
   await saveImages(latestPosts)
   load('latest-posts', latestPosts)
 }
