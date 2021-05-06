@@ -70,7 +70,7 @@
     <li>Hacer válido el monto de $100 m.n. a la persona que resulte ganadora de la rifa.</li>
     <li>El monto se podrá utilizar como balance para la compra de cualquier producto que ofrezca el cliente.</li>
     <li>El monto se utilizará en una única transacción.</li>
-    <li>El monto no generá saldo a favor, es decir no se dará cambio.</li>
+    <li>El monto no generará saldo a favor, es decir no se dará cambio.</li>
     <li>El monto tendrá una vigencia de un mes después de la fecha del sorteo.</li>
   </ul>
 
