@@ -1,3 +1,16 @@
+<script>
+  const account = {
+    user: 'hamburguesastitos',
+    address: '16 Blvd. De Las Americas, Buena Vista',
+    tel: '(664) 878-1940',
+    facebook: 'www.facebook.com/HamburguesasTitosTJ',
+  }
+
+  const dates = {
+    published: '11 de Mayo del 2021',
+    announcement: '26 de Abril del 2021'
+  }
+</script>
 <style>
   .container {
     padding: 12px;
@@ -41,13 +54,13 @@
 
   <h2>Datos del Cliente</h2>
   <p>
-    Cuenta: <b>cafed.alicia</b>
+    Cuenta: <b>{account.user}</b>
     <br />
-    Dirección: <b>Tijuana, Baja California Colectivo VYS Showroom Plaza Alameda 22425</b>
+    Dirección: <b>{account.address}</b>
     <br />
-    Teléfono: <b>664 6742592</b>
+    Teléfono: <b>{account.tel}</b>
     <br />
-    Correo: <b>cafe.alicia@outlook.com</b>
+    Facebook: <b>{account.facebook}</b>
   </p>
 
   <h2>
@@ -58,13 +71,13 @@
     <li>El monto se podrá utilizar como balance para la compra de cualquier producto que ofrezca el cliente.</li>
     <li>El monto se utilizará en una única transacción.</li>
     <li>El monto no generá saldo a favor, es decir no se dará cambio.</li>
-    <li>El monto se podrá utilizar hasta el 26 de Mayo del 2021.</li>
+    <li>El monto tendrá una vigencia de un mes después de la fecha del sorteo.</li>
   </ul>
 
   <h2>Rifa</h2>
 
   <p>
-    El lunes <b>19 de Abril del 2021</b>, la cuenta de <b>feedmetj</b> hará una publicación con el siguiente contenido:
+    El martes <b>{dates.published}</b>, la cuenta <b>@feedmetj</b> hará una publicación con el siguiente contenido:
   </p>
 
   <div class="post">
@@ -72,28 +85,25 @@
       <img src="https://bxecreative.com/wp-content/uploads/2016/04/dummy-post-horisontal.jpg" alt="imagen dummy" class="img-responsive" />
     </p>
     <p>
-      Hola Comunidad de <b>#feedmetj</b>,
-
-      nuestros amigos de <b>@cafed.alicia</b> nos regalaron un Gift Card de <b>$100 m.n.</b>
+      Participa en la rifa de un Gift Card de $100 m.n. cortesía de <b>@{account.user}</b>.
+    </p>
+    <p>
+      Para participar solo debes darle like a esta publicación.
+    </p>
+    <p>
+      Para más entradas: <br />
+      - Etiqueta a un amigo <br />
+      - Sigue a la cuenta: <b>@{account.user}</b> <br />
+      - Sube este post a tus historias <br />
+      - Etiqueta a más amigos <br />
     </p>
 
     <p>
-      El cual vamos a rifar el lunes <b>26 de Abril del 2021 a las 8pm</b>.
-    </p>
-
-    <p>Cómo participar?</p>
-    <p>
-      Fácil, solo deja un comentario en esta publicación etiquetando a un amigo.
+      La cuenta ganadora se notificará el próximo lunes.
     </p>
 
     <p>
-      Para tener más posibilidades: <br />
-      -  Sigue a la cuenta: <b>@cafed.alicia</b> <br />
-      - Etiqueta a más amigos
-    </p>
-
-    <p>
-      Suerte!
+      Suerte 😎
     </p>
   </div>
 
@@ -120,7 +130,7 @@
         <span>Equipo de Feedmetj</span>
     </div>
     <div>
-      <span>@cafed.alicia</span>
+      <span><b>@{account.user}</b></span>
     </div>
   </div>
 
