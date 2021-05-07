@@ -1,8 +1,8 @@
 <script>
   const account = {
     user: 'hamburguesastitos',
-    address: '16 Blvd. De Las Americas, Buena Vista',
-    tel: '(664) 878-1940',
+    address: 'Av. Aquiles Serdán, Col. Libertad # 11024, 22400 Tijuana, B.C.',
+    tel: '(664) 683-2480',
     facebook: 'www.facebook.com/HamburguesasTitosTJ',
   }
 
