@@ -69,15 +69,15 @@
 </style>
 
 <div class="card" data-id={id}>
-  <h3><a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer" title={`${title || username}`}>{title || username}</a></h3>
+  <h3><a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer" title={`que comer en tijuana: ${title || username}`}>{title || username}</a></h3>
 
-  <img src={imgUrl} alt={`donde comer: ${category}`} title={`lugar para comer: ${category}`} width="640px" height="640px" use:lazyLoad />
+  <img src={imgUrl} alt={`que comer en tijuana: ${category}`} title={`que comer en tijuana: ${category}`} width="640px" height="640px" use:lazyLoad />
 
   <div class="container">
     {#if address}
     <p class="address">
       {#if gps && gps.length }
-        <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={`lugar para comer: ${category}`} target="_blank" rel="nofollow noreferrer">{address}</a>
+        <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={`que comer en tijuana: ${category}`} target="_blank" rel="nofollow noreferrer">{address}</a>
       {:else}
         {address || ''}
       {/if}
@@ -92,7 +92,7 @@
 
     {#if phone}
     <p>
-      <a href={`tel:${phone}`} title={`pedir comida por telefono de: ${title}`} rel="nofollow noreferrer">Llamar por teléfono</a>
+      <a href={`tel:${phone}`} title={`que comer en tijuana: ${title}`} rel="nofollow noreferrer">Llamar por teléfono</a>
     </p>
     {/if}
   </div>
