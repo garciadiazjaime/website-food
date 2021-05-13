@@ -31,6 +31,10 @@
       }
     }
   }
+
+  function cardClickHandler() {
+    window.open(`https://www.instagram.com/${username}/`, '_blank')
+  }
 </script>
 
 <style>
@@ -40,15 +44,16 @@
     width: 100%;
   }
 
+  .card:hover {
+    cursor: pointer;
+  }
+
   h3 {
     margin: 0;
     padding: 0 6px 12px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-
-  h3 a {
     text-transform: lowercase;
   }
 
@@ -58,19 +63,18 @@
     object-fit: cover;
   }
 
-  a {
-    text-decoration: none;
-  }
-
   .container {
     word-break: break-word;
     padding: 0 6px;
   }
+
+  .address {
+    z-index: 1;
+  }
 </style>
 
-<div class="card" data-id={id}>
-  <h3><a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer" title={`que comer en tijuana: ${title || username}`}>{title || username}</a></h3>
-
+<div class="card" data-id={id} on:click={cardClickHandler}>
+  <h3>{title || username}</h3>
   <img src={imgUrl} alt={`que comer en tijuana: ${category}`} title={`que comer en tijuana: ${category}`} width="640px" height="640px" use:lazyLoad />
 
   <div class="container">
