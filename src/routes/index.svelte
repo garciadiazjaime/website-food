@@ -156,11 +156,7 @@
 					id={post.id}
 					username={post.username}
 					title={post.title}
-					address={post.address}
-					gps={post.gps}
-					phone={post.phone}
 					category={slug}
-					delivery={post.delivery}
 				/>
 			{/each}
 

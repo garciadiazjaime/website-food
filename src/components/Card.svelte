@@ -2,11 +2,7 @@
   export let id;
   export let username;
 	export let title;
-  export let address;
-  export let gps;
-  export let phone;
   export let category;
-  export let delivery;
 
   let imgUrl = ''
 
@@ -39,7 +35,6 @@
 
 <style>
   .card {
-    padding: 6px 0;
     box-shadow: 1px 1px 2px 2px #8C8C9C;
     width: 100%;
   }
@@ -62,42 +57,9 @@
     width: 100%;
     object-fit: cover;
   }
-
-  .container {
-    word-break: break-word;
-    padding: 0 6px;
-  }
-
-  .address {
-    z-index: 1;
-  }
 </style>
 
 <div class="card" data-id={id} on:click={cardClickHandler}>
-  <h3>{title || username}</h3>
   <img src={imgUrl} alt={`que comer en tijuana: ${category}`} title={`que comer en tijuana: ${category}`} width="640px" height="640px" use:lazyLoad />
-
-  <div class="container">
-    {#if address}
-    <p class="address">
-      {#if gps && gps.length }
-        <a href={`https://www.google.com/maps/place/${gps[1]},${gps[0]}`} title={`que comer en tijuana: ${category}`} target="_blank" rel="nofollow noreferrer">{address}</a>
-      {:else}
-        {address || ''}
-      {/if}
-    </p>
-    {/if}
-
-    {#if delivery}
-    <p>
-      Servicio a domicilio!
-    </p>
-    {/if}
-
-    {#if phone}
-    <p>
-      <a href={`tel:${phone}`} title={`que comer en tijuana: ${title}`} rel="nofollow noreferrer">Llamar por teléfono</a>
-    </p>
-    {/if}
-  </div>
+  <h3>{title || username}</h3>
 </div>
