@@ -95,6 +95,6 @@
 		<li class="hide"><a href='/rifa'>rifa</a></li>
 		<li class="hide"><a href='/latest'>latest</a></li>
 		<li class="hide"><a href='/miri.mendozaa'>miri.mendozaa</a></li>
-		<li class="hide"><a href='/rifa/ganador/user'>ganador</a></li>
+		<li class="hide"><a href='/rifa/ganador/YW5heWFzNw=='>ganador</a></li>
 	</ul>
 </nav>
