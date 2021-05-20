@@ -7,7 +7,7 @@ const streamPipeline = promisify(require('stream').pipeline);
 const fetch = require('node-fetch');
 
 async function saveImagesForPublicPage(posts) {
-  debug(`downloading:${posts.length}*N`)
+  debug(`downloading:${posts.length}`)
   let total = 0
 
   await mapSeries(posts, async (category) => {

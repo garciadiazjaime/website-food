@@ -752,7 +752,7 @@ async function statsETL() {
   const comparePosts = await getPostsToCompare()
   load('compare-posts', comparePosts)
 
-  const latestPosts = await getLatestPost(50)
+  const latestPosts = await getLatestPost()
   await saveImages(latestPosts)
   load('latest-posts', latestPosts)
 }
