@@ -167,7 +167,7 @@ function getPostsByCategory(category, limit, postsBySection = []) {
   }, {})
 
   const since = new Date()
-  since.setDate(since.getDate() - 29)
+  since.setDate(since.getDate() - 28)
 
   return Post.aggregate([{
       $match: {
