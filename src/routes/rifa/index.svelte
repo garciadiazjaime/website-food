@@ -1,15 +1,17 @@
 <script>
   const account = {
-    user: 'hamburguesastitos',
-    address: 'Av. Aquiles Serdán, Col. Libertad # 11024, 22400 Tijuana, B.C.',
-    tel: '(664) 683-2480',
-    facebook: 'www.facebook.com/HamburguesasTitosTJ',
+    user: 'marengocoffeeoficial',
+    address: 'Blvrd Salinas #10650-Local 10, Aviacion, 22014 Tijuana, B.C.',
+    tel: '(664) 973-3807',
+    facebook: 'https://www.facebook.com/Marengo-Coffee-oficial-101801942010687',
   }
 
   const dates = {
-    published: '11 de Mayo del 2021',
-    announcement: '26 de Abril del 2021'
+    published: '19 de Julio del 2021',
+    announcement: '26 de Julio del 2021'
   }
+
+  const monto = 200
 </script>
 <style>
   .container {
@@ -50,24 +52,24 @@
 
 <div class="container">
 
-  <h1>Acuerdo para Rifa de $100 m.n.</h1>
+  <h1>Acuerdo para Rifa de ${monto} m.n.</h1>
 
   <h2>Datos del Cliente</h2>
   <p>
-    Cuenta: <b>{account.user}</b>
+    Cuenta: <b><a href="https://www.instagram.com/{account.user}">{account.user}</a></b>
     <br />
     Dirección: <b>{account.address}</b>
     <br />
     Teléfono: <b>{account.tel}</b>
     <br />
-    Facebook: <b>{account.facebook}</b>
+    Facebook: <b><a href={account.facebook}>Marengo-Coffee-oficial-101801942010687</a></b>
   </p>
 
   <h2>
     Compromisos del cliente:
   </h2>
   <ul>
-    <li>Hacer válido el monto de $100 m.n. a la persona que resulte ganadora de la rifa.</li>
+    <li>Hacer válido el monto de ${monto} m.n. a la persona que resulte ganadora de la rifa.</li>
     <li>El monto se podrá utilizar como balance para la compra de cualquier producto que ofrezca el cliente.</li>
     <li>El monto se utilizará en una única transacción.</li>
     <li>El monto no generará saldo a favor, es decir no se dará cambio.</li>
@@ -85,7 +87,7 @@
       <img src="https://bxecreative.com/wp-content/uploads/2016/04/dummy-post-horisontal.jpg" alt="imagen dummy" class="img-responsive" />
     </p>
     <p>
-      Participa en la rifa de un Gift Card de $100 m.n. cortesía de <b>@{account.user}</b>.
+      Participa en la rifa de un Gift Card de ${monto} m.n. cortesía de <b>@{account.user}</b>.
     </p>
     <p>
       Para participar solo debes darle like a esta publicación.
