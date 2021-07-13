@@ -47,12 +47,11 @@ async function downloadImage(mediaUrl, imageName) {
   return fetch(mediaUrl)
     .then((res) => {
       if (!res.ok) {
-        console.log(mediaUrl)
-        throw new Error(`unexpected response ${res.statusText}`);
+        return debug(`unexpected response ${res.statusText}`);
       }
 
       return streamPipeline(res.body, fs.createWriteStream(imageName));
-    });
+    })
 }
 
 module.exports = {
