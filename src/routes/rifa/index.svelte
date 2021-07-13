@@ -24,7 +24,7 @@
   .post {
     background-color: white;
     padding: 12px;
-    width: 400px;
+    max-width: 400px;
   }
 
   .aggreatment {
@@ -48,6 +48,12 @@
     width: 100%;
     height: auto;
   }
+
+  @media (max-width: 800px) {
+		.aggreatment {
+			display: block;
+		}
+	}
 </style>
 
 <div class="container">
@@ -56,13 +62,23 @@
 
   <h2>Datos del Cliente</h2>
   <p>
-    Cuenta: <b><a href="https://www.instagram.com/{account.user}">{account.user}</a></b>
+    Cuenta: 
     <br />
-    Dirección: <b>{account.address}</b>
+    <b><a href="https://www.instagram.com/{account.user}">{account.user}</a></b>
+    
     <br />
-    Teléfono: <b>{account.tel}</b>
+    Dirección: 
     <br />
-    Facebook: <b><a href={account.facebook}>Marengo-Coffee-oficial-101801942010687</a></b>
+    <b>{account.address}</b>
+
+    <br />
+    Teléfono:
+    <br />
+    <b>{account.tel}</b>
+    <br />
+    Facebook:
+    <br />
+    <b><a href={account.facebook}>Marengo-Coffee-oficial-101801942010687</a></b>
   </p>
 
   <h2>
