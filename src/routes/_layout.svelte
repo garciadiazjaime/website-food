@@ -11,6 +11,7 @@
 		margin: 0 auto;
 		box-sizing: border-box;
 		height: auto;
+		font-size: 2em;
 	}
 </style>
 

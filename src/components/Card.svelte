@@ -1,9 +1,8 @@
 <script>
-  export let id;
   export let username;
 	export let title;
-  export let category;
-
+  export let imgSrc;
+  
   let imgUrl = ''
 
   let observer = null
@@ -14,7 +13,7 @@
 
   function onIntersect(entries) {
     if (!imgUrl && entries[0].isIntersecting) {
-      imgUrl = `/que-comer-en-tijuana/${username}-${id}.jpg`
+      imgUrl = imgSrc
     }
   }
 
@@ -35,31 +34,49 @@
 
 <style>
   .card {
-    box-shadow: 1px 1px 2px 2px #8C8C9C;
-    width: 100%;
+    margin-bottom: 42px;
+    display: flex;
   }
+
+  @media (max-width: 800px) {
+		.card {
+			display: block;
+		}
+
+    h3 {
+      margin-top: 12px;
+    }
+	}
 
   .card:hover {
     cursor: pointer;
   }
 
   h3 {
-    margin: 0;
-    padding: 0 6px 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-transform: lowercase;
+    font-weight: bold;
   }
 
-  img {
-    height: auto;
-    width: 100%;
-    object-fit: cover;
+  .img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 400px;
+    height: 400px;
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  .content {
+    padding: 0 6px 12px;
   }
 </style>
 
-<div class="card" data-id={id} on:click={cardClickHandler}>
-  <img src={imgUrl} alt={`que comer en tijuana: ${category}`} title={`que comer en tijuana: ${category}`} width="640px" height="640px" use:lazyLoad />
-  <h3>{title || username}</h3>
+<div class="card" on:click={cardClickHandler}>
+  <div>
+    <div class="img" style={`background-image: url("${imgUrl}")`} use:lazyLoad></div>
+  </div>
+
+  <div class="content">
+    <h3>{title}</h3>
+    <slot></slot>
+  </div>
 </div>

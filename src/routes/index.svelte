@@ -1,172 +1,196 @@
 <script>
 	import Card from '../components/Card.svelte'
-
-	import StickyBanner from '../components/StickyBanner.svelte'
-
-	export let posts = []
-	export let seoCategories = []
-
-	const topPlaces = posts.reduce((accu, item) => {
-		item.posts.slice(0, 1).forEach(place => {
-			accu.push(place.title)
-		})
-		return accu
-	}, [])
-
-	let FAQPage = {
-		"@context": "https://schema.org",
-		"@type": "FAQPage",
-		"mainEntity": [{
-			"@type": "Question",
-			"name": "Los mejores Restaurantes de Tijuana",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": `<ul>${topPlaces.map(item => `<li>${item}</li>`).join('')}</ul>`
-			}
-		}, {
-			"@type": "Question",
-			"name": "¿Que comer en Tijuana?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": `<ul>${seoCategories.map(item => `<li><a href="/${item.slug}">${item.title}</a></li>`).join('')}</ul>`
-			}
-		}]
-	}
-</script>
-
-<script context="module">
-	export async function preload() {
-		let response = await this.fetch('./data/homepage.json')
-		const posts = await response.json()
-
-		response = await this.fetch('./seoCategories.json')
-		const seoCategories = await response.json()
-
-		return {
-			posts,
-			seoCategories,
-		}
-	}
 </script>
 
 <style>
-	.grid-container {
-		display: grid;
-		grid-column-gap: 20px;
-		grid-row-gap: 12px;
-		grid-template-columns: repeat( auto-fit, minmax(100%, 1fr) );
-		margin: 24px 0;
-	}
-
 	h1 {
 		margin-bottom: 20px;
 		color: #2A2F33;
 	}
 
-	h2 {
-		margin: 0;
-	}
-
-	@media (min-width: 600px) {
-		.grid-container {
-			grid-template-columns: repeat( auto-fit, minmax(48%, 1fr) );
-		}
-	}
-
-	@media (min-width: 900px) {
-		.grid-container {
-			grid-template-columns: repeat( auto-fit, minmax(30%, 1fr) );
-		}
-	}
-
-	@media (min-width: 1200px) {
-		.grid-container {
-			grid-template-columns: repeat( auto-fit, minmax(23%, 1fr) );
-		}
-	}
-
 	.container {
-		color: #2A2F33;
-		font-size: 20px;
-		padding: 15px 15px 0;
+		padding: 0 12px;
 	}
 
-
-	ul.top-options {
-		list-style: none;
-		padding: 0;
+	.item-list {
+		margin: 0 12px;
 	}
 
-	ul.top-options li {
-		display: inline-block;
-		margin-right: 6px;
-		text-transform: capitalize;
+	@media (max-width: 800px) {
+		.item-list {
+			margin: 0;
+		}
 	}
 
-	ul.top-options li::after {
-		content: '|';
-		display: inline;
-		margin-left: 6px;
+	ul {
+		padding: 0 0 0 24px;
 	}
-
-	ul.top-options li:last-of-type::after {
-		content: ''
-	}
-
-	ul.top-options a {
-		display: inline-block;
-		height: 48px;
-	}
+	li {
+    list-style-type: '- ';
+  }
 </style>
 
 <svelte:head>
-	<title>Que comer en Tijuana? Encuentra la mejor comida de Tijuana</title>
+	<title>Qué comer en Tijuana? Encuentra la mejor comida de Tijuana</title>
 	<meta property="og:title" content="feedmetj">
-	<meta property="og:description" content={`La mejor comida se hace en Tijuana, encuentra que comer en los mejores Restaurantes. Te recomendamos: Sushi, Mariscos, Tacos, Pizza, Cafes y mas.`}>
+	<meta property="og:description" content={`La mejor comida se hace en Tijuana, encuentra qué comer en los mejores Restaurantes. Te recomendamos: Sushi, Mariscos, Tacos, Pizza, Cafes y mas.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content={`La mejor comida se hace en Tijuana, encuentra que comer en los mejores Restaurantes. Te recomendamos: Sushi, Mariscos, Tacos, Pizza, Cafes y mas.`}>
+	<meta name="description" content={`La mejor comida se hace en Tijuana, encuentra qué comer en los mejores Restaurantes. Te recomendamos: Sushi, Mariscos, Tacos, Pizza, Cafes y mas.`}>
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
-
-<div class="container">
-	<h1>
-		¿Que comer en Tijuana?
-	</h1>
-	<p>En Feedmetj te recomendamos las mejores opciones de comida en Tijuana con base en lo que se publica en Instagram.</p>
-</div>
-
-<div class="container">
-	<ul class="top-options">
-		{#each seoCategories as option}
-		<li><a href={`/${option.slug}`} title={option.fullTitle}>{option.title}</a></li>
-		{/each}
-	</ul>
-</div>
 
 <br />
 
 <div class="container">
-	{#each posts as { fullTitle, slug, posts } }
-		<h2>{fullTitle}</h2>
-		<div class="grid-container">
-		
-			{#each posts as post}
-				<Card
-					id={post.id}
-					username={post.username}
-					title={post.title}
-					category={slug}
-				/>
-			{/each}
+	<h1>
+		¿Qué comer en Tijuana?
+	</h1>
+	<p>
+		La mejor comida se hace en Tijuana, descubre los mejores lugares para comer.
+	</p>
+</div>
 
+<br />
+
+
+<div class="item-list">
+	<Card
+		username="takunoya_ramen"
+		title="Takunoya Ramen"
+		category="ramen"
+		imgSrc="/images/ramen.jpeg"
+	>
+		<div>
+			Takunoya cuenta con un menú excelente que permite degustar comida Japonesa. 
+			<br />
+			Por mencionar algunos de sus platillos:
+			<ul>
+				<li>Ramen Miso</li>
+				<li>Ramen frió</li>
+				<li>Ramen Tonkotsu</li>
+				<li>Ramen Miso Veggie</li>
+			</ul>
+			Algo de celebrar son sus noodles frescos hechos en casa.
+			<br />
+			Además de Ramen también puedes pedir:
+			<ul>
+				<li>Yakisoba</li>
+				<li>Curry</li>
+				<li>Wonton</li>
+				<li>y más!</li>
+			</ul>
+			Takunoya lo encuentras en zona Cacho.
+			<br>
+			Adicionalmente cuentan con servicio a domicilio a través de las plataformas: Uber Eats, DiDi Food y Rappi.
 		</div>
-		<br />
-	{/each}
+	</Card>
+
+	<Card
+		username="artezza_pizza"
+		title="Artezza Pizza"
+		category="pizza"
+		imgSrc="/images/pizza.jpeg"
+	>
+		<div>
+			Pizzería 100% Mexicana. Ofrece una gran variedad de pizzas con originalidad y calidad.
+			<br />
+			Por mencionar algunas de sus pizzas:
+			<ul>
+				<li>Pepperoni</li>
+				<li>Italiana</li>
+				<li>Pollo con chipotle</li>
+			</ul>
+			Además de pizzas también puedes pedir:
+			<ul>
+				<li>Espagueti</li>
+				<li>Artezzitos Bites</li>
+				<li>y más!</li>
+			</ul>
+			Artezza Pizza lo encuentras en Lomas de la Presa.
+			<br>
+			Adicionalmente cuentan con servicio a domicilio.
+		</div>
+	</Card>
+
+	<Card
+		username="ohanatjpoke"
+		title="Ohana Poke"
+		category="poke"
+		imgSrc="/images/poke.jpeg"
+	>
+		<div>
+			Un poke distinto, hecho con las manos de una gran familia.
+			<br />
+			Por mencionar algunas de sus pokes:
+			<ul>
+				<li>Atún</li>
+				<li>Spicy tuna</li>
+				<li>Tofu</li>
+			</ul>
+			Lo interesante del poke es que lo puedes escoger a tu gusto.
+			<ul>
+				<li>Proteína</li>
+				<li>Toppings</li>
+				<li>Salsas</li>
+				<li>y más!</li>
+			</ul>
+			Ohana Poke lo encuentras en Colinas de Aguacaliente.
+			<br>
+			Adicionalmente cuentan con servicio a domicilio a través de las plataformas: Uber Eats, DiDi Food y Rappi.
+		</div>
+	</Card>
+
+	<Card
+		username="sushimimx"
+		title="Sushimimx"
+		category="sushi"
+		imgSrc="/images/sushi.jpeg"
+	>
+		<div>
+			Creadores de los mejores sushis y teriyakis de Tijuana.
+			<br />
+			Por mencionar algunos de sus rollos:
+			<ul>
+				<li>FunkaRoll</li>
+				<li>MojadoRoll</li>
+				<li>Crunchy Roll </li>
+			</ul>
+			Además de Sushi también puedes pedir:
+			<ul>
+				<li>Brochetas</li>
+				<li>Sopa Miso</li>
+				<li>Udón</li>
+				<li>y más!</li>
+			</ul>
+			Sushimimx en múltiples ubicaciones: Playas, Plaza Rio, Galerías, Otay y más.
+			<br>
+			Adicionalmente cuentan con servicio a domicilio.
+		</div>
+	</Card>
+
+	<Card
+		username="lionfishrestaurant"
+		title="Lion Fish"
+		category="mariscos"
+		imgSrc="/images/mariscos.jpeg"
+	>
+		<div>
+			Auténtica cocina de mariscos-fusión en donde el servicio y sazón son principales diferenciadores.
+			<br />
+			Por mencionar alguno de sus platillos:
+			<ul>
+				<li>Aguachile</li>
+				<li>Tacos</li>
+				<li>Ceviche</li>
+			</ul>
+			Lion Fish lo encuentras en zona Rio.
+		</div>
+	</Card>
+	
 </div>
 
 <div class="container">
-	<strong>¿Que comer en Tijuana?</strong>
 	<p>
 		Tijuana es una ciudad en crecimiento, actualmente cuenta con varias zonas que ofrecen una gran variedad de comida.
 		Aquí dejamos 5 zonas en las que podrás encontrar buenos lugares para comer:
@@ -210,16 +234,9 @@
 </div>
 
 <div class="container">
-	<small>Que comer en Tijuana | La mejor comida se hace en Tijuana, encuentra que comer en Tijuana en los mejores Restaurantes.
-	<br /> Te recomendamos: Sushi, Mariscos, Tacos, Pizza, Cafes y mas.</small>
-</div>
-
-<div class="container">
 	Síguenos en
 	<ul>
-		<li><a href="https://www.instagram.com/feedmetj/" target="_blank" rel="nofollow noreferrer" title="¿Que comer en Tijuana">Instagram</a></li>
+		<li><a href="https://www.instagram.com/feedmetj/" target="_blank" rel="nofollow noreferrer" title="¿Qué comer en Tijuana">Instagram</a></li>
 		<li><a href="https://www.facebook.com/Feedmetj-104064654962934" target="_blank" rel="nofollow noreferrer" title="La mejor comida de Tijuana">Facebook</a></li>
 	</ul>
 </div>
-
-{@html `<script type="application/ld+json">${JSON.stringify(FAQPage)}</script>`}
