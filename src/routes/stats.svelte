@@ -4,7 +4,6 @@
   export let hashtags
   export let locations
   export let topics
-  export let comparePosts
 </script>
 
 <script context="module">
@@ -57,6 +56,7 @@
   .container {
     max-width: 800px;
     margin: 0 auto;
+    overflow-x: scroll;
   }
 </style>
 
@@ -156,42 +156,5 @@
         <td>{topic[1]}</td>
       </tr>
     {/each}
-  </table>
-
-  <br>
-
-  <table>
-    <tr>
-      <th>Post 1</th>
-      <th>Post 2</th>
-    </tr>
-    <tr>
-      <td><img src={comparePosts[0].profilePicture} alt=""></td>
-      <td><img src={comparePosts[1].profilePicture} alt=""></td>
-    </tr>
-    <tr>
-      <td><img src={comparePosts[0].mediaUrl} alt=""></td>
-      <td><img src={comparePosts[1].mediaUrl} alt=""></td>
-    </tr>
-    <tr>
-      <td>{comparePosts[0].caption}</td>
-      <td>{comparePosts[1].caption}</td>
-    </tr>
-    <tr>
-      <td>{comparePosts[0].permalink}</td>
-      <td>{comparePosts[1].permalink}</td>
-    </tr>
-    <tr>
-      <td>{comparePosts[0].username}</td>
-      <td>{comparePosts[1].username}</td>
-    </tr>
-    <tr>
-      <td>{comparePosts[0].topics}</td>
-      <td>{comparePosts[1].topics}</td>
-    </tr>
-    <tr>
-      <td>{comparePosts[0]._id}</td>
-      <td>{comparePosts[1]._id}</td>
-    </tr>
   </table>
 </div>  

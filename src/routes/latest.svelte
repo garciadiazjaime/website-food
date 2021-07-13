@@ -31,6 +31,7 @@
 
   .container {
     margin: 0 auto;
+    overflow-x: scroll;
   }
 
   img {
