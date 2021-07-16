@@ -12,6 +12,7 @@
 		box-sizing: border-box;
 		height: auto;
 		font-size: 2em;
+		font-family: Trebuchet MS, sans-serif;
 	}
 </style>
 

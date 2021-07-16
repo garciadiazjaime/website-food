@@ -734,23 +734,23 @@ async function getLatestPost(limit = 100) {
 }
 
 async function statsETL() {
-  const postsByDay = await getPostsByDay()
-  load('posts_by_day', postsByDay)
+  // const postsByDay = await getPostsByDay()
+  // load('posts_by_day', postsByDay)
 
-  const postsByUser = await getPostsByUser()
-  load('posts_by_user', postsByUser)
+  // const postsByUser = await getPostsByUser()
+  // load('posts_by_user', postsByUser)
 
-  const hashtags = await getHashtags()
-  load('hashtags', hashtags)
+  // const hashtags = await getHashtags()
+  // load('hashtags', hashtags)
 
-  const locations = await getLocations()
-  load('locations', locations)
+  // const locations = await getLocations()
+  // load('locations', locations)
 
-  const topics = await getTopicsCount()
-  load('topics', topics)
+  // const topics = await getTopicsCount()
+  // load('topics', topics)
 
-  const comparePosts = await getPostsToCompare()
-  load('compare-posts', comparePosts)
+  // const comparePosts = await getPostsToCompare()
+  // load('compare-posts', comparePosts)
 
   const latestPosts = await getLatestPost()
   await saveImages(latestPosts)
@@ -762,15 +762,15 @@ async function main() {
 
   createDirectory()
 
-  await saveHomepage()
+  // await saveHomepage()
 
-  await saveCategories()
+  // await saveCategories()
 
-  await updateTopics()
+  // await updateTopics()
 
   await statsETL()
 
-  await getPostsToCompare()
+  // await getPostsToCompare()
 }
 
 if (require.main === module) {

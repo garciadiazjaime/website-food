@@ -56,27 +56,25 @@
     font-weight: bold;
   }
 
-  .img {
+  img {
     background-size: cover;
     background-repeat: no-repeat;
     width: 400px;
     height: 400px;
-    max-height: 100%;
-    max-width: 100%;
   }
 
   .content {
-    padding: 0 6px 12px;
+    padding: 0 20px;
   }
 </style>
 
 <div class="card" on:click={cardClickHandler}>
   <div>
-    <div class="img" style={`background-image: url("${imgUrl}")`} use:lazyLoad></div>
+    <img src={imgUrl} use:lazyLoad alt="comida en tijuana">
   </div>
 
   <div class="content">
-    <h3>{title}</h3>
+    <h3>{title}.</h3>
     <slot></slot>
   </div>
 </div>

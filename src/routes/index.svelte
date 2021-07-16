@@ -31,12 +31,12 @@
 </style>
 
 <svelte:head>
-	<title>Qué comer en Tijuana? Encuentra la mejor comida de Tijuana</title>
+	<title>Encuentra la mejor comida de Tijuana</title>
 	<meta property="og:title" content="feedmetj">
-	<meta property="og:description" content={`La mejor comida se hace en Tijuana, encuentra qué comer en los mejores Restaurantes. Te recomendamos: Sushi, Mariscos, Tacos, Pizza, Cafes y mas.`}>
+	<meta property="og:description" content={`La mejor comida se hace en Tijuana, descubre los mejores lugares para comer.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content={`La mejor comida se hace en Tijuana, encuentra qué comer en los mejores Restaurantes. Te recomendamos: Sushi, Mariscos, Tacos, Pizza, Cafes y mas.`}>
+	<meta name="description" content={`La mejor comida se hace en Tijuana, descubre los mejores lugares para comer.`}>
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
@@ -44,11 +44,8 @@
 
 <div class="container">
 	<h1>
-		¿Qué comer en Tijuana?
+		La mejor comida se hace en Tijuana.
 	</h1>
-	<p>
-		La mejor comida se hace en Tijuana, descubre los mejores lugares para comer.
-	</p>
 </div>
 
 <br />
@@ -62,22 +59,22 @@
 		imgSrc="/images/ramen.jpeg"
 	>
 		<div>
-			Takunoya cuenta con un menú excelente que permite degustar comida Japonesa. 
+			Takunoya cuenta con un menú excelente que permite degustar <strong>comida Japonesa</strong>. 
 			<br />
 			Por mencionar algunos de sus platillos:
 			<ul>
-				<li>Ramen Miso</li>
-				<li>Ramen frió</li>
-				<li>Ramen Tonkotsu</li>
-				<li>Ramen Miso Veggie</li>
+				<li>Ramen Miso.</li>
+				<li>Ramen frio.</li>
+				<li>Ramen Tonkotsu.</li>
+				<li>Ramen Miso Veggie.</li>
 			</ul>
 			Algo de celebrar son sus noodles frescos hechos en casa.
 			<br />
 			Además de Ramen también puedes pedir:
 			<ul>
-				<li>Yakisoba</li>
-				<li>Curry</li>
-				<li>Wonton</li>
+				<li>Yakisoba.</li>
+				<li>Curry.</li>
+				<li>Wonton.</li>
 				<li>y más!</li>
 			</ul>
 			Takunoya lo encuentras en zona Cacho.
@@ -97,14 +94,14 @@
 			<br />
 			Por mencionar algunas de sus pizzas:
 			<ul>
-				<li>Pepperoni</li>
-				<li>Italiana</li>
-				<li>Pollo con chipotle</li>
+				<li>Pepperoni.</li>
+				<li>Italiana.</li>
+				<li>Pollo con chipotle.</li>
 			</ul>
 			Además de pizzas también puedes pedir:
 			<ul>
-				<li>Espagueti</li>
-				<li>Artezzitos Bites</li>
+				<li>Espagueti.</li>
+				<li>Artezzitos Bites.</li>
 				<li>y más!</li>
 			</ul>
 			Artezza Pizza lo encuentras en Lomas de la Presa.
@@ -124,15 +121,15 @@
 			<br />
 			Por mencionar algunas de sus pokes:
 			<ul>
-				<li>Atún</li>
-				<li>Spicy tuna</li>
-				<li>Tofu</li>
+				<li>Atún.</li>
+				<li>Spicy tuna.</li>
+				<li>Tofu.</li>
 			</ul>
 			Lo interesante del poke es que lo puedes escoger a tu gusto.
 			<ul>
-				<li>Proteína</li>
-				<li>Toppings</li>
-				<li>Salsas</li>
+				<li>Proteína.</li>
+				<li>Toppings.</li>
+				<li>Salsas.</li>
 				<li>y más!</li>
 			</ul>
 			Ohana Poke lo encuentras en Colinas de Aguacaliente.
@@ -152,15 +149,15 @@
 			<br />
 			Por mencionar algunos de sus rollos:
 			<ul>
-				<li>FunkaRoll</li>
-				<li>MojadoRoll</li>
-				<li>Crunchy Roll </li>
+				<li>FunkaRoll.</li>
+				<li>MojadoRoll.</li>
+				<li>Crunchy Roll.</li>
 			</ul>
 			Además de Sushi también puedes pedir:
 			<ul>
-				<li>Brochetas</li>
-				<li>Sopa Miso</li>
-				<li>Udón</li>
+				<li>Brochetas.</li>
+				<li>Sopa Miso.</li>
+				<li>Udón.</li>
 				<li>y más!</li>
 			</ul>
 			Sushimimx en múltiples ubicaciones: Playas, Plaza Rio, Galerías, Otay y más.
@@ -180,9 +177,9 @@
 			<br />
 			Por mencionar alguno de sus platillos:
 			<ul>
-				<li>Aguachile</li>
-				<li>Tacos</li>
-				<li>Ceviche</li>
+				<li>Aguachile.</li>
+				<li>Tacos.</li>
+				<li>Ceviche.</li>
 			</ul>
 			Lion Fish lo encuentras en zona Rio.
 		</div>
