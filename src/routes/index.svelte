@@ -44,8 +44,11 @@
 
 <div class="container">
 	<h1>
-		La mejor comida se hace en Tijuana.
+		Qué comer en Tijuana?
 	</h1>
+	<p>
+		La mejor comida se hace en Tijuana, descubre los mejores lugares para comer.
+	</p>
 </div>
 
 <br />
@@ -54,13 +57,13 @@
 <div class="item-list">
 	<Card
 		username="takunoya_ramen"
-		title="Takunoya Ramen"
+		title="Dónde comer Ramen?"
 		category="ramen"
 		imgSrc="/images/ramen.jpeg"
 	>
 		<div>
-			Takunoya cuenta con un menú excelente que permite degustar <strong>comida Japonesa</strong>. 
-			<br />
+			Takunoya Ramen cuenta con un menú excelente que permite degustar <strong>comida Japonesa</strong>. 
+			<br /><br />
 			Por mencionar algunos de sus platillos:
 			<ul>
 				<li>Ramen Miso.</li>
@@ -77,7 +80,7 @@
 				<li>Wonton.</li>
 				<li>y más!</li>
 			</ul>
-			Takunoya lo encuentras en zona Cacho.
+			Takunoya lo encuentras en la zona Cacho.
 			<br>
 			Adicionalmente cuentan con servicio a domicilio a través de las plataformas: Uber Eats, DiDi Food y Rappi.
 		</div>
@@ -85,13 +88,13 @@
 
 	<Card
 		username="artezza_pizza"
-		title="Artezza Pizza"
+		title="Dónde comer pizza?"
 		category="pizza"
 		imgSrc="/images/pizza.jpeg"
 	>
 		<div>
-			Pizzería 100% Mexicana. Ofrece una gran variedad de pizzas con originalidad y calidad.
-			<br />
+			Artezza Pizza ofrece una gran variedad de pizzas con originalidad y calidad.
+			<br /><br />
 			Por mencionar algunas de sus pizzas:
 			<ul>
 				<li>Pepperoni.</li>
@@ -112,20 +115,20 @@
 
 	<Card
 		username="ohanatjpoke"
-		title="Ohana Poke"
+		title="Dónde comer Poke?"
 		category="poke"
 		imgSrc="/images/poke.jpeg"
 	>
 		<div>
-			Un poke distinto, hecho con las manos de una gran familia.
-			<br />
-			Por mencionar algunas de sus pokes:
+			Ohana Poke es un poke distinto, hecho con las manos de una gran familia.
+			<br /><br />
+			Por mencionar algunas de sus opciones:
 			<ul>
 				<li>Atún.</li>
 				<li>Spicy tuna.</li>
 				<li>Tofu.</li>
 			</ul>
-			Lo interesante del poke es que lo puedes escoger a tu gusto.
+			Lo interesante del poke es que lo puedes hacer a tu gusto.
 			<ul>
 				<li>Proteína.</li>
 				<li>Toppings.</li>
@@ -140,13 +143,13 @@
 
 	<Card
 		username="sushimimx"
-		title="Sushimimx"
+		title="Dónde comer Sushi?"
 		category="sushi"
 		imgSrc="/images/sushi.jpeg"
 	>
 		<div>
-			Creadores de los mejores sushis y teriyakis de Tijuana.
-			<br />
+			Sushimimx ofrece rollos de sushi y teriyaki de muy buena calidad en Tijuana.
+			<br /><br />
 			Por mencionar algunos de sus rollos:
 			<ul>
 				<li>FunkaRoll.</li>
@@ -160,7 +163,7 @@
 				<li>Udón.</li>
 				<li>y más!</li>
 			</ul>
-			Sushimimx en múltiples ubicaciones: Playas, Plaza Rio, Galerías, Otay y más.
+			Sushimimx cuenta con múltiples ubicaciones: Playas, Plaza Rio, Galerías, Otay y más.
 			<br>
 			Adicionalmente cuentan con servicio a domicilio.
 		</div>
@@ -168,13 +171,13 @@
 
 	<Card
 		username="lionfishrestaurant"
-		title="Lion Fish"
+		title="Dónde comer Mariscos?"
 		category="mariscos"
 		imgSrc="/images/mariscos.jpeg"
 	>
 		<div>
-			Auténtica cocina de mariscos-fusión en donde el servicio y sazón son principales diferenciadores.
-			<br />
+			Lion Fish ofrece auténtica cocina de mariscos-fusión en donde el servicio y sazón son principales diferenciadores.
+			<br /><br />
 			Por mencionar alguno de sus platillos:
 			<ul>
 				<li>Aguachile.</li>
@@ -186,6 +189,8 @@
 	</Card>
 	
 </div>
+
+<br />
 
 <div class="container">
 	<p>

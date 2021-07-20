@@ -26,15 +26,11 @@
       }
     }
   }
-
-  function cardClickHandler() {
-    window.open(`https://www.instagram.com/${username}/`, '_blank')
-  }
 </script>
 
 <style>
   .card {
-    margin-bottom: 42px;
+    margin-bottom: 48px;
     display: flex;
   }
 
@@ -43,18 +39,10 @@
 			display: block;
 		}
 
-    h3 {
+    h2 {
       margin-top: 12px;
     }
 	}
-
-  .card:hover {
-    cursor: pointer;
-  }
-
-  h3 {
-    font-weight: bold;
-  }
 
   img {
     background-size: cover;
@@ -66,15 +54,23 @@
   .content {
     padding: 0 20px;
   }
+
+  a {
+    border: 1px solid black;
+    padding: 12px 24px;
+    text-decoration: none;
+  }
 </style>
 
-<div class="card" on:click={cardClickHandler}>
+<div class="card" >
   <div>
     <img src={imgUrl} use:lazyLoad alt="comida en tijuana">
   </div>
 
   <div class="content">
-    <h3>{title}.</h3>
+    <h2>{title}</h2>
     <slot></slot>
+    <br />
+    <a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow">@{username}</a>
   </div>
 </div>
