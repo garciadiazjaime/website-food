@@ -2,6 +2,7 @@
   export let username;
 	export let title;
   export let imgSrc;
+  export let category;
   
   let imgUrl = ''
 
@@ -64,7 +65,7 @@
 
 <div class="card" >
   <div>
-    <img src={imgUrl} use:lazyLoad alt="comida en tijuana">
+    <img src={imgUrl} use:lazyLoad alt="Dónde comer {category} en Tijuana?">
   </div>
 
   <div class="content">

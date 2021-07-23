@@ -734,8 +734,8 @@ async function getLatestPost(limit = 100) {
 }
 
 async function statsETL() {
-  // const postsByDay = await getPostsByDay()
-  // load('posts_by_day', postsByDay)
+  const postsByDay = await getPostsByDay()
+  load('posts_by_day', postsByDay)
 
   // const postsByUser = await getPostsByUser()
   // load('posts_by_user', postsByUser)
