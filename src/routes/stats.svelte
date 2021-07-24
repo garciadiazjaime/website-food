@@ -23,16 +23,12 @@
     response = await this.fetch('./data/topics.json')
 		const topics = await response.json()
 
-    response = await this.fetch('./data/compare-posts.json')
-    const comparePosts = await response.json()
-
 		return {
 			postsByDay,
 			postsByUser,
       hashtags,
       locations,
       topics,
-      comparePosts
 		}
 	}
 </script>

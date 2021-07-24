@@ -737,17 +737,17 @@ async function statsETL() {
   const postsByDay = await getPostsByDay()
   load('posts_by_day', postsByDay)
 
-  // const postsByUser = await getPostsByUser()
-  // load('posts_by_user', postsByUser)
+  const postsByUser = await getPostsByUser()
+  load('posts_by_user', postsByUser)
 
-  // const hashtags = await getHashtags()
-  // load('hashtags', hashtags)
+  const hashtags = await getHashtags()
+  load('hashtags', hashtags)
 
-  // const locations = await getLocations()
-  // load('locations', locations)
+  const locations = await getLocations()
+  load('locations', locations)
 
-  // const topics = await getTopicsCount()
-  // load('topics', topics)
+  const topics = await getTopicsCount()
+  load('topics', topics)
 
   // const comparePosts = await getPostsToCompare()
   // load('compare-posts', comparePosts)
