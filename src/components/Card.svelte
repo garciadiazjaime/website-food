@@ -72,6 +72,6 @@
     <h2>{title}</h2>
     <slot></slot>
     <br />
-    <a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow">@{username}</a>
+    <a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer">{title}</a>
   </div>
 </div>
