@@ -69,7 +69,7 @@
   </div>
 
   <div class="content">
-    <h2>{title}</h2>
+    <h3>{title}</h3>
     <slot></slot>
     <br />
     <a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer">{title}</a>

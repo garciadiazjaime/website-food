@@ -63,7 +63,7 @@
         <td>{post.user.followedBy}</td>
         <td>{post.user.postsCount}</td>
         <td>
-          <img src={`/que-comer-en-tijuana/${post.user.username}-${post.id}.jpg`} alt="" />
+          <img src={`/ig/${post.user.username}-${post.id}.jpg`} alt="" />
         </td>
         <td>{post.caption}</td>
         <td>{post.likeCount}</td>

@@ -31,12 +31,12 @@
 </style>
 
 <svelte:head>
-	<title>Qué comer en Tijuana? | Encuentra la mejor comida de Tijuana</title>
+	<title>Qué comer en Tijuana? Encuentra la mejor comida de Tijuana</title>
 	<meta property="og:title" content="feedmetj">
-	<meta property="og:description" content={`Qué comer en Tijuana? | La mejor comida se hace en Tijuana, descubre los mejores lugares para comer.`}>
+	<meta property="og:description" content={`La mejor comida se hace en Tijuana, descubre los mejores lugares para comer Ramen, Pizza, Poke, Tacos, Mariscos y más.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content={`Qué comer en Tijuana? | La mejor comida se hace en Tijuana, descubre los mejores lugares para comer.`}>
+	<meta name="description" content={`La mejor comida se hace en Tijuana, descubre los mejores lugares para comer Ramen, Pizza, Poke, Tacos, Mariscos y más.`}>
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
@@ -59,7 +59,7 @@
 		username="takunoya_ramen"
 		title="Takunoya Ramen"
 		category="ramen"
-		imgSrc="/images/tijuana/donde-comer/comer-ramen-tijuana.jpeg"
+		imgSrc="/que-comer-en-tijuana/comer-ramen-tijuana.jpeg"
 	>
 		<div>
 			Si lo que buscas es <strong>comer Ramen</strong>, Takunoya Ramen cuenta con un menú excelente, por mencionar algunos de sus platillos:
@@ -88,7 +88,7 @@
 		username="artezza_pizza"
 		title="Artezza Pizza"
 		category="pizza"
-		imgSrc="/images/tijuana/donde-comer/comer-pizza-tijuana.jpeg"
+		imgSrc="/que-comer-en-tijuana/comer-pizza-tijuana.jpeg"
 	>
 		<div>
 			Si lo que buscas es <strong>comer Pizza</strong>, Artezza Pizza ofrece una gran variedad de pizzas con originalidad y calidad.
@@ -115,7 +115,7 @@
 		username="ohanatjpoke"
 		title="Ohana Poke"
 		category="poke"
-		imgSrc="/images/tijuana/donde-comer/comer-poke-tijuana.jpeg"
+		imgSrc="/que-comer-en-tijuana/comer-poke-tijuana.jpeg"
 	>
 		<div>
 			Uno de los mejores lugares para <strong>comer Poke en Tijuana</strong> es Ohana Poke.
@@ -143,7 +143,7 @@
 		username="sushimimx"
 		title="Sushi Sushimimx"
 		category="sushi"
-		imgSrc="/images/tijuana/donde-comer/comer-sushi-tijuana.jpeg"
+		imgSrc="/que-comer-en-tijuana/comer-sushi-tijuana.jpeg"
 	>
 		<div>
 			Si lo que buscas es <strong>comer Sushi</strong>, Sushimimx ofrece rollos de sushi y teriyaki de muy buena calidad en <strong>Tijuana</strong>.
@@ -171,7 +171,7 @@
 		username="lionfishrestaurant"
 		title="Mariscos Lion Fish"
 		category="mariscos"
-		imgSrc="/images/tijuana/donde-comer/comer-mariscos-tijuana.jpeg"
+		imgSrc="/que-comer-en-tijuana/comer-mariscos-tijuana.jpeg"
 	>
 		<div>
 			Si lo que buscas es <strong>comer Mariscos</strong>, Lion Fish ofrece auténtica cocina de mariscos-fusión en donde el servicio y sazón son principales diferenciadores.
@@ -197,14 +197,14 @@
 	</p>
 	<ul>
 		<li>
-			<h3>Qué comer en Playas de Tijuana?</h3>
+			<h2>Qué comer en Playas de Tijuana?</h2>
 			<p>
 				Además de tener buenas opciones de comida cuenta con la playa, la cual siempre es buena para una caminata, especialmente durante el atardecer.
 				Si buscas un ambiente relajado y buenos precios, esta es la zona.
 			</p>
 		</li>
 		<li>
-			<h3>Qué comer en Centro?</h3>
+			<h2>Qué comer en Centro?</h2>
 			<p>
 				El centro es un punto de folklore, donde además de opciones de comida se puede disfrutar de una caminata por la emblemática calle Revolución.
 				Es una zona de contrastes que bien define una de las caras de Tijuana. Si estas en busca de algo alternativo esta es la zona.
@@ -217,20 +217,20 @@
 			<br />
 		</li>
 		<li>
-			<h3>Qué comer en Zona Río?</h3>
+			<h2>Qué comer en Zona Río?</h2>
 			<p>
 				Zona río se caracteriza por su urbanismo donde se encuentran restaurantes de renombre, adicionalmente hay varios centros comerciales y zonas de entretenimiento para continuar la vuelta.
 				Si estas en busca de una opción más moderna esta es la zona.
 			</p>
 		</li>
 		<li>
-			<h3>Qué comer en Insurgentes?</h3>
+			<h2>Zona Insurgentes.</h2>
 			<p>
 				Esta zona ha crecido mucho en los últimos años y de igual forma lo ha hecho su oferta gastronómica. Podría parecer lejos para algunas personas, sin embargo vale la pena, pues las opciones de comida son buenas y por lo regular a buen precio.
 			</p>
 		</li>
 		<li>
-			<h3>El valle de Guadalupe?</h3>
+			<h2>El valle de Guadalupe?</h2>
 			<p>
 				El valle se encuentra en Ensenada, apróximadamente a una hora de distancia, por tanto se puede considerar como una alternativa. 
 				El valle es una zona entre montañas que cuenta con su propio clima. La oferta gastronómica es más sofisticada y en general los precios son altos, sin embargo la experiencia lo vale.
