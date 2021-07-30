@@ -79,7 +79,7 @@
     <br />
     Facebook:
     <br />
-    <b><a href={account.facebook}>Marengo-Coffee-oficial-101801942010687</a></b>
+    <b><a href={account.facebook}>{account.name}</a></b>
   </p>
 
   <h2>
