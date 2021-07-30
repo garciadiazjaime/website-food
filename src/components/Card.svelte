@@ -40,7 +40,7 @@
 			display: block;
 		}
 
-    h2 {
+    h3 {
       margin-top: 12px;
     }
 	}

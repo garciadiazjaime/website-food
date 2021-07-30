@@ -1,14 +1,15 @@
 <script>
   const account = {
-    user: 'marengocoffeeoficial',
-    address: 'Blvrd Salinas #10650-Local 10, Aviacion, 22014 Tijuana, B.C.',
-    tel: '(664) 973-3807',
-    facebook: 'https://www.facebook.com/Marengo-Coffee-oficial-101801942010687',
+    name: 'La Spezia (Plaza Río)',
+    user: 'laspeziatj',
+    address: 'Paseo de los Héroes 1174, Zona Urbana Río, Tijuana, B.C.',
+    tel: '(664) 631-3131',
+    facebook: 'https://www.facebook.com/LaSpezia.PlazaRio/',
   }
 
   const dates = {
-    published: '19 de Julio del 2021',
-    announcement: '26 de Julio del 2021'
+    published: '9 de Agosto del 2021',
+    announcement: '16 de Agosto del 2021'
   }
 
   const monto = 200
@@ -60,9 +61,9 @@
 
   <h1>Acuerdo para Rifa de ${monto} m.n.</h1>
 
-  <h2>Datos del Cliente</h2>
+  <h2>Datos de {account.name} - cliente.</h2>
   <p>
-    Cuenta: 
+    Instagram: 
     <br />
     <b><a href="https://www.instagram.com/{account.user}">{account.user}</a></b>
     
@@ -95,7 +96,7 @@
   <h2>Rifa</h2>
 
   <p>
-    El martes <b>{dates.published}</b>, la cuenta <b>@feedmetj</b> hará una publicación con el siguiente contenido:
+    El lunes <b>{dates.published}</b>, la cuenta <b>@feedmetj</b> hará una publicación con el siguiente contenido:
   </p>
 
   <div class="post">
