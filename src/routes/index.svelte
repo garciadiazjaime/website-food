@@ -31,12 +31,12 @@
 </style>
 
 <svelte:head>
-	<title>Qué comer en Tijuana? Encuentra la mejor comida de Tijuana</title>
+	<title>Qué comer en Tijuana? | Encuentra la mejor comida y bebida de Tijuana</title>
 	<meta property="og:title" content="feedmetj">
-	<meta property="og:description" content={`La mejor comida se hace en Tijuana, descubre los mejores lugares para comer Ramen, Pizza, Poke, Tacos, Mariscos y más.`}>
+	<meta property="og:description" content={`La mejor comida se hace en Tijuana, descubre los mejores lugares para comer Ramen, Pizza, Poke, Tacos, Mariscos y más. Así como cafés y bebidas.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content={`La mejor comida se hace en Tijuana, descubre los mejores lugares para comer Ramen, Pizza, Poke, Tacos, Mariscos y más.`}>
+	<meta name="description" content={`La mejor comida se hace en Tijuana, descubre los mejores lugares para comer Ramen, Pizza, Poke, Tacos, Mariscos y más. Así como cafés y bebidas.`}>
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
@@ -185,6 +185,25 @@
 			Lion Fish lo encuentras en zona Rio.
 		</div>
 	</Card>
+
+	<Card
+		username="essenzacafe"
+		title="Essenza Café"
+		category="café"
+		imgSrc="/que-comer-en-tijuana/tomar-cafe-tijuana.jpeg"
+	>
+		<div>
+			Después de comer que tal un café? Frío o caliente Essenza Café ofrece uno de los mejores cafés de Tijuana.
+			<br /><br />
+			Adicionalmente cuenta con:
+			<ul>
+				<li>Frappes.</li>
+				<li>Matcha.</li>
+				<li>Tisana.</li>
+			</ul>
+			Essenza Café lo encuentras en el centro.
+		</div>
+	</Card>
 	
 </div>
 
@@ -202,6 +221,12 @@
 				Además de tener buenas opciones de comida cuenta con la playa, la cual siempre es buena para una caminata, especialmente durante el atardecer.
 				Si buscas un ambiente relajado y buenos precios, esta es la zona.
 			</p>
+			<ul>
+				<li><a href="https://www.instagram.com/mipizzaalalena/" target="_blank" rel="nofollow noreferrer">Mi Pizza a la leña</a></li>
+				<li><a href="https://www.instagram.com/tacoselwero/" target="_blank" rel="nofollow noreferrer">Tacos "El Wero"</a></li>
+				<li><a href="https://www.instagram.com/purpurareal.deli/" target="_blank" rel="nofollow noreferrer">Purpura Real</a></li>
+			</ul>
+			<br />
 		</li>
 		<li>
 			<h2>Qué comer en Centro?</h2>
@@ -217,7 +242,7 @@
 			<br />
 		</li>
 		<li>
-			<h2>Qué comer en Zona Río?</h2>
+			<h2>Zona Río?</h2>
 			<p>
 				Zona río se caracteriza por su urbanismo donde se encuentran restaurantes de renombre, adicionalmente hay varios centros comerciales y zonas de entretenimiento para continuar la vuelta.
 				Si estas en busca de una opción más moderna esta es la zona.
