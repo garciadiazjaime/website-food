@@ -31,7 +31,7 @@
 </style>
 
 <svelte:head>
-	<title>Qué comer en Tijuana? | Encuentra la mejor comida y bebida de Tijuana</title>
+	<title>Qué comer en Tijuana? Encuentra la mejor comida y bebida de Tijuana</title>
 	<meta property="og:title" content="feedmetj">
 	<meta property="og:description" content={`La mejor comida se hace en Tijuana, descubre los mejores lugares para comer Ramen, Pizza, Poke, Tacos, Mariscos y más. Así como cafés y bebidas.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
@@ -187,21 +187,59 @@
 	</Card>
 
 	<Card
-		username="essenzacafe"
-		title="Essenza Café"
+		username="seolleim_tijuana"
+		title="Seolleim | café Coreano"
 		category="café"
 		imgSrc="/que-comer-en-tijuana/tomar-cafe-tijuana.jpeg"
 	>
 		<div>
-			Después de comer que tal un café? Frío o caliente Essenza Café ofrece uno de los mejores cafés de Tijuana.
+			El primer local especializado de Sándwich, Toast y Hot Dog al estilo Coreano.
 			<br /><br />
 			Adicionalmente cuenta con:
 			<ul>
-				<li>Frappes.</li>
-				<li>Matcha.</li>
-				<li>Tisana.</li>
+				<li>Refresher.</li>
+				<li>Jolly pong latte.</li>
+				<li>Pastel de zanahoria.</li>
 			</ul>
-			Essenza Café lo encuentras en el centro.
+			Seolleim Café lo encuentras en la Cacho.
+		</div>
+	</Card>
+
+	<Card
+		username="maharosarito"
+		title="Maha Restaurante"
+		category="restaurante"
+		imgSrc="/que-comer-en-tijuana/comer-restaurante-tijuana.jpeg"
+	>
+		<div>
+			Descubre la riqueza culinaria de México en Maha! Deleita tus sentidos a través de nuestra propuesta contemporánea de la cocina Mexicana!
+			<br /><br />
+			Por mencionar algunos platillos de su menú:
+			<ul>
+				<li>Taco mar y tierra.</li>
+				<li>Taco de pulpo zarandeado.</li>
+				<li>Tostada de paté de pescado, callo y camarón.</li>
+			</ul>
+			Maha Restaurante lo encuentras en Rosarito.
+		</div>
+	</Card>
+
+	<Card
+		username="lelieureposteria"
+		title="Le Lieu Repostería"
+		category="resposteria"
+		imgSrc="/que-comer-en-tijuana/comer-resposteria-tijuana.jpeg"
+	>
+		<div>
+			Boutique de Repostería Francesa | Tijuana.
+			<br /><br />
+			Por mencionar algunas opciones de su menú:
+			<ul>
+				<li>Eclair de vainilla.</li>
+				<li>Tartas de Lavanda.</li>
+				<li>Macarons.</li>
+			</ul>
+			Le Lieu Repostería lo encuentras en la Cacho.
 		</div>
 	</Card>
 	
@@ -247,6 +285,11 @@
 				Zona río se caracteriza por su urbanismo donde se encuentran restaurantes de renombre, adicionalmente hay varios centros comerciales y zonas de entretenimiento para continuar la vuelta.
 				Si estas en busca de una opción más moderna esta es la zona.
 			</p>
+			<ul>
+				<li><a href="https://www.instagram.com/asaderobajasonora/" target="_blank" rel="nofollow noreferrer">Asadero Baja Sonora</a> [Burrito de asada]</li>
+				<li><a href="https://www.instagram.com/bunkerfoodcrew.rio/" target="_blank" rel="nofollow noreferrer">Bunker Food Crew Río</a> [Arepa]</li>
+				<li><a href="https://www.instagram.com/rootsriorestaurant/" target="_blank" rel="nofollow noreferrer">Roots Río</a> [Pappardelle en crema de azafrán]</li>
+			</ul>
 		</li>
 		<li>
 			<h2>Zona Insurgentes.</h2>
