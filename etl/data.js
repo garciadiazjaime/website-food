@@ -381,8 +381,8 @@ function createDirectory() {
     fs.mkdirSync('./static/data');
   }
 
-  if (!fs.existsSync('./static/que-comer-en-tijuana')) {
-    fs.mkdirSync('./static/que-comer-en-tijuana');
+  if (!fs.existsSync('./static/ig')) {
+    fs.mkdirSync('./static/ig');
   }
 }
 
@@ -717,6 +717,22 @@ async function getLatestPost(limit = 100) {
         mediaType: {
           $nin: ['GraphVideo', 'GraphSidecar']
         },
+        $or: [
+          {
+            labels: {
+              $elemMatch: {
+                name: 'Food'
+              }
+            },
+          }, 
+          {
+            labels: {
+              $elemMatch: {
+                name: 'Beverage'
+              }
+            },
+          }
+        ],
         createdAt: {
           $gt: since
         }

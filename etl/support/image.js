@@ -14,7 +14,7 @@ async function saveImagesForPublicPage(posts) {
     await mapSeries(category.posts, async(post) => {
       const { mediaUrl, username, id } = post
 
-      const imageName = `./static/que-comer-en-tijuana/${username}-${id}.jpg`
+      const imageName = `./static/ig/${username}-${id}.jpg`
       if (!fs.existsSync(imageName)) {
         await downloadImage(mediaUrl, imageName)
         total += 1
