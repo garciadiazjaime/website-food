@@ -32,7 +32,7 @@ async function saveImages(posts) {
   await mapSeries(posts, async (post) => {
     const { mediaUrl, user, id } = post
 
-    const imageName = `./static/que-comer-en-tijuana/${user.username}-${id}.jpg`
+    const imageName = `./static/ig/${user.username}-${id}.jpg`
     if (!fs.existsSync(imageName)) {
       await downloadImage(mediaUrl, imageName)
       total += 1
