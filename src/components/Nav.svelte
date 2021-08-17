@@ -93,5 +93,6 @@
 		<li class="hide"><a aria-current='{segment === "map" ? "page" : undefined}' href='/map'>mapa</a></li>
 		<li class="hide"><a href='/rifa'>rifa</a></li>
 		<li class="hide"><a href='/rifa/acelgasolar'>ganador</a></li>
+		<li class="hide"><a href='/rifa/ganador/0mar1106'>ganador</a></li>
 	</ul>
 </nav>
