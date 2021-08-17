@@ -6,4 +6,4 @@
 </style>
 
 
-<img src="/gift-card/gift-card-anayas7.png" alt="">
+<img src="/gift-card/gift-card-0mar1106.png" alt="">
