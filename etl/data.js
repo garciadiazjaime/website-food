@@ -395,45 +395,6 @@ function openDB() {
   });
 }
 
-async function updateTopics() {
-  const pipeline = [{
-    $match: {
-      $or: [{
-          source: 'tijuanamakesmehungry'
-        },
-        {
-          source: 'tijuanafood'
-        }
-      ],
-      topics: {
-        $exists: false
-      }
-    }
-  }, {
-    $sort: {
-      createdAt: -1
-    }
-  }, {
-    $limit: 10
-  }]
-
-  const posts = await Post.aggregate(pipeline)
-
-  const promises = posts.map(post => {
-    const topics = getTopics(post, 10)
-
-    return Post.findOneAndUpdate({
-      id: post.id
-    }, {
-      topics
-    })
-  })
-
-  await Promise.all(promises)
-
-  debug(`updateTopics:${promises.length}`)
-}
-
 function getPostsByDay() {
   const pipeline = [{
     $match: {
@@ -646,59 +607,6 @@ async function getTopicsCount() {
   return Object.entries(result).sort((a, b) => b[1] - a[1]).slice(0, 100)
 }
 
-async function getPostsToCompare() {
-  const pipeline = [{
-    $match: {
-      $or: [{
-          source: 'tijuanamakesmehungry'
-        },
-        {
-          source: 'tijuanafood'
-        }
-      ],
-      createdAt: {
-        $gte: new Date(new Date().setDate(new Date().getDate() - 7))
-      },
-      $text: {
-        $search: "tacos"
-      },
-      compared: {
-        $exists: false
-      }
-    }
-  }, {
-    $group: {
-      _id: "$user.id",
-      mediaUrl: {
-        $last: "$mediaUrl"
-      },
-      permalink: {
-        $last: "$permalink"
-      },
-      username: {
-        $last: "$user.username"
-      },
-      profilePicture: {
-        $last: "$user.profilePicture"
-      },
-      topics: {
-        $last: "$topics"
-      },
-      caption: {
-        $last: "$caption"
-      }
-    }
-  }, {
-    $sort: {
-      createdAt: -1
-    }
-  }, {
-    $limit: 2
-  }]
-
-  return Post.aggregate(pipeline)
-}
-
 async function getLatestPost(limit = 100) {
   const since = new Date()
   since.setDate(since.getDate() - 10)
@@ -765,9 +673,6 @@ async function statsETL() {
   const topics = await getTopicsCount()
   load('topics', topics)
 
-  // const comparePosts = await getPostsToCompare()
-  // load('compare-posts', comparePosts)
-
   const latestPosts = await getLatestPost()
   await saveImages(latestPosts)
   load('latest-posts', latestPosts)
@@ -782,11 +687,7 @@ async function main() {
 
   // await saveCategories()
 
-  // await updateTopics()
-
   await statsETL()
-
-  // await getPostsToCompare()
 }
 
 if (require.main === module) {
