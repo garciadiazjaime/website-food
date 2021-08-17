@@ -4,6 +4,7 @@ const mapSeries = require('async/mapSeries');
 const debug = require('debug')('app:data')
 
 const { saveImages, saveImagesForPublicPage } = require('./support/image')
+const exportFollowers = require('./support/export-followers')
 
 const seoCategories = require('../static/seoCategories.json')
 const {
@@ -686,6 +687,8 @@ async function main() {
   // await saveHomepage()
 
   // await saveCategories()
+
+  await exportFollowers()
 
   await statsETL()
 }
