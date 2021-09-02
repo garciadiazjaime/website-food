@@ -48,8 +48,8 @@
       <th>Biography</th>
       <th>category_name</th>
       <th>posts</th>
-      <th>followers</th>
       <th>following</th>
+      <th>followers</th>
       <th>is_business</th>
       <th>is_professional</th>
       <th>is_verified</th>
@@ -65,8 +65,8 @@
         <td>{follower.biography || ''}</td>
         <td>{follower.category_name || ''}</td>
         <td>{follower.posts}</td>
-        <td>{follower.followers}</td>
         <td>{follower.following}</td>
+        <td>{follower.followers}</td>
         <td>{follower.is_business_account}</td>
         <td>{follower.is_professional_accountis_professional_account}</td>
         <td>{follower.is_verified}</td>

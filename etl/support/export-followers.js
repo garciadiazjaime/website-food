@@ -8,9 +8,17 @@ async function exportFollowers() {
     biography: {
       $exists: true
     }
+  }, {}, {
+    skip: 20
   })
+  // .sort({
+  //   posts: 1,
+  //   followers: -1,
+  // })
   .sort({
-    posts: 0
+    posts: -1,
+    followers: -1,
+    is_professional_accountis_professional_account: false,
   })
 
   saveToJSON('followers', followers)
