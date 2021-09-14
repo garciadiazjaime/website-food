@@ -37,12 +37,12 @@
 </style>
 
 <svelte:head>
-	<title>Qué comer en Tijuana? Encuentra la mejor comida y bebida de Tijuana</title>
+	<title>Qué comer en Tijuana? Encuentra la mejor comida de Tijuana</title>
 	<meta property="og:title" content="feedmetj">
-	<meta property="og:description" content={`La mejor comida se hace en Tijuana, descubre los mejores lugares para comer Ramen, Pizza, Poke, Tacos, Mariscos y más. Así como cafés y bebidas.`}>
+	<meta property="og:description" content={`La mejor comida se hace en Tijuana, descubre los mejores lugares para comer Ramen, Pizza, Poke, Tacos, Mariscos y más.`}>
 	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
 	<meta property="og:url" content="http://www.feedmetj.com/">
-	<meta name="description" content={`La mejor comida se hace en Tijuana, descubre los mejores lugares para comer Ramen, Pizza, Poke, Tacos, Mariscos y más. Así como cafés y bebidas.`}>
+	<meta name="description" content={`La mejor comida se hace en Tijuana, descubre los mejores lugares para comer Ramen, Pizza, Poke, Tacos, Mariscos y más.`}>
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
@@ -259,6 +259,19 @@
 		</p>
 		<ul>
 			<li>
+				<h2>Septiembre, Mes patrio.</h2>
+				<p>
+					Se dice que en Tijuana comienza la patria, y que mejor que celebrarlo disfrutando de comida mexicana.
+					Aquí te dejamos 3 opciones:
+				</p>
+				<ul>
+					<li><a href="https://www.instagram.com/rootsriorestaurant/" target="_blank" rel="nofollow noreferrer">Roots Río</a></li>
+					<li><a href="https://www.instagram.com/rincon.guerrerense/" target="_blank" rel="nofollow noreferrer">Rincon Guerrerense</a></li>
+					<li><a href="https://www.instagram.com/madeleinesgalicia/" target="_blank" rel="nofollow noreferrer">Madeleines</a></li>
+				</ul>
+				<br />
+			</li>
+			<li>
 				<h2>Qué comer en Playas de Tijuana?</h2>
 				<p>
 					Además de tener buenas opciones de comida cuenta con la playa, la cual siempre es buena para una caminata, especialmente durante el atardecer.
@@ -285,7 +298,7 @@
 				<br />
 			</li>
 			<li>
-				<h2>Zona Río?</h2>
+				<h2>Zona Río</h2>
 				<p>
 					Zona río se caracteriza por su urbanismo donde se encuentran restaurantes de renombre, adicionalmente hay varios centros comerciales y zonas de entretenimiento para continuar la vuelta.
 					Si estas en busca de una opción más moderna esta es la zona.
@@ -320,7 +333,7 @@
 	<div class="container">
 		Síguenos en
 		<ul>
-			<li><a href="https://www.instagram.com/feedmetj/" target="_blank" rel="nofollow noreferrer" title="¿Qué comer en Tijuana">Instagram</a></li>
+			<li><a href="https://www.instagram.com/feedmetj/" target="_blank" title="¿Qué comer en Tijuana">@feedmetj</a></li>
 			<li><a href="https://www.facebook.com/Feedmetj-104064654962934" target="_blank" rel="nofollow noreferrer" title="La mejor comida de Tijuana">Facebook</a></li>
 		</ul>
 	</div>
