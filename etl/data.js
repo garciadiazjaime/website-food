@@ -5,6 +5,7 @@ const debug = require('debug')('app:data')
 
 const { saveImages, saveImagesForPublicPage } = require('./support/image')
 const exportFollowers = require('./support/export-followers')
+const { saveTrendingLabels } = require('./labels')
 
 const seoCategories = require('../static/seoCategories.json')
 const {
@@ -688,9 +689,11 @@ async function main() {
 
   // await saveCategories()
 
-  await exportFollowers()
+  // await exportFollowers()
 
-  await statsETL()
+  // await statsETL()
+
+  await saveTrendingLabels()
 }
 
 if (require.main === module) {

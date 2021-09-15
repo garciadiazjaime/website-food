@@ -4,6 +4,7 @@
   export let hashtags
   export let locations
   export let topics
+  export let labels
 </script>
 
 <script context="module">
@@ -23,12 +24,16 @@
     response = await this.fetch('./data/topics.json')
 		const topics = await response.json()
 
+    response = await this.fetch('./data/labels.json')
+		const labels = await response.json()
+
 		return {
 			postsByDay,
 			postsByUser,
       hashtags,
       locations,
       topics,
+      labels,
 		}
 	}
 </script>
@@ -150,6 +155,23 @@
         <td>{index+1}</td>
         <td>{topic[0]}</td>
         <td>{topic[1]}</td>
+      </tr>
+    {/each}
+  </table>
+
+  <br />
+  <h2>Labels más usados</h2>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Label</th>
+      <th>Total</th>
+    </tr>
+    {#each labels as label, index}
+      <tr>
+        <td>{index+1}</td>
+        <td>{label[0]}</td>
+        <td>{label[1]}</td>
       </tr>
     {/each}
   </table>
