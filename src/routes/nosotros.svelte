@@ -1,6 +1,3 @@
-<script>
-	import './nosotros.scss';
-</script>
 <svelte:head>
 	<title>¿Qué es Feedmetj?</title>
 </svelte:head>
