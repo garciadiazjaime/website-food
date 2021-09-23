@@ -1,6 +1,5 @@
 <script>
 	import { onMount } from "svelte";
-	import { Content } from '@smui/dialog';
 
 	import Map from '../components/Map.svelte';
 	import MapMarker from '../components/MapMarker.svelte';
@@ -23,14 +22,12 @@
 
 <section class="cta-map">
 	{#if locations}
-		<Content>
-			<Map coords={[zonaCentro.lng, zonaCentro.lat]} zoom={zonaCentro.zoom}>
-				{#each locations as location }
-					{#if location.location && location.location.coordinates }
-						<MapMarker location={location} />
-					{/if}
-				{/each}
-			</Map>
-		</Content>
+		<Map coords={[zonaCentro.lng, zonaCentro.lat]} zoom={zonaCentro.zoom}>
+			{#each locations as location }
+				{#if location.location && location.location.coordinates }
+					<MapMarker location={location} />
+				{/if}
+			{/each}
+		</Map>
 	{/if}
 </section>
