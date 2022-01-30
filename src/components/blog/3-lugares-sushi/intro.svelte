@@ -1,3 +1,6 @@
+<script>
+  import Lazy from 'svelte-lazy';
+</script>
 <style>
   img {
 		width: 100%;
@@ -28,11 +31,13 @@
   Rollo de Atún
 </p>
 <p>
-  <img src="/que-comer-en-tijuana/3-lugares-sushi/roll-atun.webp" 
-    alt="Roll atun" 
-    width="750"
-    height="938"
-  />
+  <Lazy height={300}>
+    <img src="/que-comer-en-tijuana/3-lugares-sushi/roll-atun.webp" 
+      alt="Roll atun" 
+      width="750"
+      height="938"
+    />
+  </Lazy>
 </p>
 <p>
   <a href="https://www.instagram.com/restaurantetobu/" target="_blank" rel="nofollow noreferrer">@restaurantetobu</a>
@@ -45,11 +50,13 @@
   Panko Empanizado de Camarón
 </p>
 <p>
-  <img src="/que-comer-en-tijuana/3-lugares-sushi/panko-empanizado.webp" 
-    alt="Panko Empanizado de Camarón" 
-    width="750"
-    height="938"
-  />
+  <Lazy height={300}>
+    <img src="/que-comer-en-tijuana/3-lugares-sushi/panko-empanizado.webp" 
+      alt="Panko Empanizado de Camarón" 
+      width="750"
+      height="938"
+    />
+  </Lazy>
 </p>
 <p>
   <a href="https://www.instagram.com/UmaiSushiMX/" target="_blank" rel="nofollow noreferrer">@UmaiSushiMX</a>
@@ -62,11 +69,13 @@
   Sakura Roll cubierto de atún spicy
 </p>
 <p>
-  <img src="/que-comer-en-tijuana/3-lugares-sushi/sakura-roll.webp" 
-    alt="Omelette y Chilaquiles" 
-    width="750"
-    height="938"
-  />
+  <Lazy height={300}>
+    <img src="/que-comer-en-tijuana/3-lugares-sushi/sakura-roll.webp" 
+      alt="Omelette y Chilaquiles" 
+      width="750"
+      height="938"
+    />
+  </Lazy>
 </p>
 <p>
   <a href="https://www.instagram.com/taikishioficial/" target="_blank" rel="nofollow noreferrer">@taikishioficial</a>

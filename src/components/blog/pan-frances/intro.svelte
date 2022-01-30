@@ -1,3 +1,7 @@
+<script>
+  import Lazy from 'svelte-lazy';
+</script>
+
 <style>
   img {
 		width: 100%;
@@ -5,11 +9,13 @@
 	}
 </style>
 
-<img src="/que-comer-en-tijuana/citron.mx/pan-frances.webp" 
-  alt="pan frances tijuana" 
-  width="750"
-  height="938"
-/>
+<Lazy height={300}>
+  <img src="/que-comer-en-tijuana/citron.mx/pan-frances.webp" 
+    alt="pan frances tijuana" 
+    width="750"
+    height="938"
+  />
+</Lazy>
 
 <h2>Delicioso Pan Francés en Tijuana</h2>
 <p>
