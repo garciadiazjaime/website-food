@@ -54,9 +54,11 @@
 <div class="content">
 	<div class="item-list">
 		<ul>
-			<li><TacosTijuana /></li>
-
 			<li><TresLugaresSushi /></li>
+
+			<li><hr /></li>
+
+			<li><TacosTijuana /></li>
 
 			<li><hr /></li>
 
