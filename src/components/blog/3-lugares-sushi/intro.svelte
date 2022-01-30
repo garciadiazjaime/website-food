@@ -6,13 +6,27 @@
 		width: 100%;
 		height: auto;
 	}
+
+  .cover {
+    height: 727px;
+    background-color: black;
+    color: white;
+    font-size: 2.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .cover span {
+    color:rgb(151, 25, 25);
+  }
 </style>
 
-<img src="/que-comer-en-tijuana/3-lugares-sushi/3-lugares-sushi-tijuana.webp" 
-  alt="sushi tijuana" 
-  width="750"
-  height="938"
-/>
+<div class="cover">
+  <div>
+    3 lugares <br /> de <span>Sushi</span>
+  </div>
+</div>
 <h2>3 lugares de Sushi en Tijuana</h2>
 <p>
   Cuando pensamos en sushi, normalmente pensamos en un rollo, sin embargo la palabra sushi hace referencia principalmente al arroz, mientras que maki que significa rollo, es a lo que usualmente nos referimos por sushi.
