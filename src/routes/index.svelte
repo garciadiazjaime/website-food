@@ -1,4 +1,5 @@
 <script>
+	import TacosTijuana from "../components/blog/tijuana-tacos/intro.svelte"
 	import TresLugaresBrunch from "../components/blog/3-lugares-brunch/intro.svelte"
 	import TresLugaresSushi from "../components/blog/3-lugares-sushi/intro.svelte"
 	import PanFrances from "../components/blog/pan-frances/intro.svelte"
@@ -34,6 +35,10 @@
 		margin: 0 auto;
 		padding-top: 20px;
 	}
+	strong {
+		display: block;
+		font-weight: normal;
+	}
 </style>
 
 <svelte:head>
@@ -49,6 +54,8 @@
 <div class="content">
 	<div class="item-list">
 		<ul>
+			<li><TacosTijuana /></li>
+
 			<li><TresLugaresSushi /></li>
 
 			<li><hr /></li>
@@ -64,9 +71,10 @@
 	<br />
 
 	<footer>
-		<p>
+		<strong>
 			{description}
-		</p>
+		</strong>
+		<br />
 		<div class="container">
 			Síguenos en
 			<ul>
