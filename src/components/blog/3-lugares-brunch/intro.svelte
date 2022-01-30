@@ -5,7 +5,7 @@
 	}
 </style>
 
-<img src="/que-comer-en-tijuana/brunch/3-lugares-brunch-tijuana.png" 
+<img src="/que-comer-en-tijuana/brunch/3-lugares-brunch-tijuana.webp" 
   alt="pan-frances" 
   width="750"
   height="938"
@@ -28,7 +28,7 @@
   Churro Waffles y Huevos Rancheros
 </p>
 <p>
-  <img src="/que-comer-en-tijuana/cielo.restaurante/churro-waffle-huevos-rancheros.jpeg" 
+  <img src="/que-comer-en-tijuana/cielo.restaurante/churro-waffle-huevos-rancheros.webp" 
     alt="Churro Waffles y Huevos Rancheros" 
     width="750"
     height="938"
@@ -45,7 +45,7 @@
   Huevos, Frijoles y Chilaquiles.
 </p>
 <p>
-  <img src="/que-comer-en-tijuana/folklorcafe/desayuno.jpeg" 
+  <img src="/que-comer-en-tijuana/folklorcafe/desayuno.webp" 
     alt="Desayuno Folklor Café" 
     width="750"
     height="938"
@@ -62,7 +62,7 @@
   Omelette de la Casa con Chilaquiles
 </p>
 <p>
-  <img src="/que-comer-en-tijuana/buna/omelette-chilaquiles.jpeg" 
+  <img src="/que-comer-en-tijuana/buna/omelette-chilaquiles.webp" 
     alt="Omelette y Chilaquiles" 
     width="750"
     height="938"

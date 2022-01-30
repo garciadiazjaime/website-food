@@ -5,7 +5,7 @@
 	}
 </style>
 
-<img src="/que-comer-en-tijuana/3-lugares-sushi/3-lugares-sushi-tijuana.png" 
+<img src="/que-comer-en-tijuana/3-lugares-sushi/3-lugares-sushi-tijuana.webp" 
   alt="sushi tijuana" 
   width="750"
   height="938"
@@ -28,7 +28,7 @@
   Rollo de Atún
 </p>
 <p>
-  <img src="/que-comer-en-tijuana/3-lugares-sushi/roll-atun.jpeg" 
+  <img src="/que-comer-en-tijuana/3-lugares-sushi/roll-atun.webp" 
     alt="Roll atun" 
     width="750"
     height="938"
@@ -45,7 +45,7 @@
   Panko Empanizado de Camarón
 </p>
 <p>
-  <img src="/que-comer-en-tijuana/3-lugares-sushi/panko-empanizado.jpeg" 
+  <img src="/que-comer-en-tijuana/3-lugares-sushi/panko-empanizado.webp" 
     alt="Panko Empanizado de Camarón" 
     width="750"
     height="938"
@@ -62,7 +62,7 @@
   Sakura Roll cubierto de atún spicy
 </p>
 <p>
-  <img src="/que-comer-en-tijuana/3-lugares-sushi/sakura-roll.jpeg" 
+  <img src="/que-comer-en-tijuana/3-lugares-sushi/sakura-roll.webp" 
     alt="Omelette y Chilaquiles" 
     width="750"
     height="938"

@@ -1,4 +1,11 @@
-<img src="/que-comer-en-tijuana/citron.mx/pan-frances.jpeg" 
+<style>
+  img {
+		width: 100%;
+		height: auto;
+	}
+</style>
+
+<img src="/que-comer-en-tijuana/citron.mx/pan-frances.webp" 
   alt="pan frances tijuana" 
   width="750"
   height="938"
