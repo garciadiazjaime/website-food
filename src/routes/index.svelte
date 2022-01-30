@@ -78,7 +78,7 @@
 		<div class="container">
 			Síguenos en
 			<ul>
-				<li><a href="https://www.instagram.com/feedmetj/" target="_blank" title="¿Qué comer en Tijuana">Instagram</a></li>
+				<li><a href="https://www.instagram.com/feedmetijuana/" target="_blank" title="¿Qué comer en Tijuana">Instagram</a></li>
 				<li><a href="https://www.facebook.com/Feedmetj-104064654962934" target="_blank" rel="nofollow noreferrer" title="La mejor comida de Tijuana">Facebook</a></li>
 			</ul>
 		</div>
