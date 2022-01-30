@@ -1,53 +1,81 @@
 <script>
-  import Card from "@smui/card";
-	import LazyLoad from './LazyLoad.svelte';
-  import Location from './Location.svelte';
-	import Keywords from './Keywords.svelte';
-  import Phones from './Phones.svelte';
-  import Title from './Title.svelte';
-  import Whatsapp from './Whatsapp.svelte';
-  import { getWhatsapp } from '../utils/postUtil';
+  export let username;
+	export let title;
+  export let imgSrc;
+  export let category;
+  
+  let imgUrl = ''
 
-  export let profile;
-  export let lazy;
-  export let openProfile;
+  let observer = null
 
-  let currentTab;
+  if (process.browser) {
+    observer = new IntersectionObserver(onIntersect, {rootMargin: '200px'});
+  }
 
-  function handleClick() {
-    ga('send', 'event', 'card', 'click', profile.username);
+  function onIntersect(entries) {
+    if (!imgUrl && entries[0].isIntersecting) {
+      imgUrl = imgSrc
+    }
+  }
 
-    history.pushState(null, profile.username, `#${profile.username}`);
 
-    openProfile(profile);
+  function lazyLoad(node) {
+    observer && observer.observe(node);
+    return {
+      destroy() {
+        observer && observer.unobserve(node)
+      }
+    }
   }
 </script>
+
 <style>
-  .card-content {
-		position: relative;
-    padding: 8px;
-    transition: height .3s;
-    height: 100%;
+  .card {
+    margin-bottom: 48px;
     display: flex;
-    flex-flow: column nowrap;
-    align-content: space-between;
   }
-  .last-item {
-    margin-top: auto;
+
+  @media (max-width: 800px) {
+		.card {
+			display: block;
+		}
+
+    h3 {
+      margin-top: 12px;
+    }
+	}
+
+  img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 400px;
+    height: 400px;
+  }
+
+  .content {
+    padding: 0 20px;
+  }
+
+  a {
+    border: 1px solid black;
+    padding: 12px 24px;
+    text-decoration: none;
   }
 </style>
 
-<Card class="Card" data-id={profile.id} data-rank={profile.rank} data-dist={profile.dist}}>
-  <div class="card-content">
-    <div on:click={handleClick}>
-      <LazyLoad lazy={lazy} dataSrc={profile.mediaUrl} posts={profile.posts} />
-      <Whatsapp whatsapp={getWhatsapp(profile.caption)} />
-      <Title title={profile.title} />
-    </div>
-    <Keywords keywords={profile.keywords} />
-    <Location address={profile.address} dist={profile.dist} coords={profile.gps} />
-    <div class="last-item">
-      <Phones phone={profile.phones[0]} username={profile.username}/>
-    </div> 
-  </div> 
-</Card>
+<div class="card">
+  <div>
+    <img src={imgUrl} 
+      use:lazyLoad 
+      alt="qué comer en Tijuana? {category}" 
+      title="qué comer en Tijuana? {category}"
+    />
+  </div>
+
+  <div class="content">
+    <h3>{title}</h3>
+    <slot></slot>
+    <br />
+    <a href={`https://www.instagram.com/${username}/`} target="_blank" rel="nofollow noreferrer">{title}</a>
+  </div>
+</div>

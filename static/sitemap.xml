@@ -1,52 +1,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.feedmetj.com/</loc>
-    <lastmod>2021-01-06T18:44:06+00:00</lastmod>
+    <lastmod>2021-07-10T18:44:06+00:00</lastmod>
     <priority>1.00</priority>
-  </url>
-  <url>
-    <loc>https://www.feedmetj.com/feedmetj/</loc>
-    <lastmod>2021-01-06T18:44:05+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.feedmetj.com/ramen/</loc>
-    <lastmod>2021-01-06T18:44:05+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.feedmetj.com/poke/</loc>
-    <lastmod>2021-01-06T18:44:05+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.feedmetj.com/sushi/</loc>
-    <lastmod>2021-01-06T18:44:05+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.feedmetj.com/mariscos/</loc>
-    <lastmod>2021-01-06T18:44:05+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.feedmetj.com/pizza/</loc>
-    <lastmod>2021-01-06T18:44:05+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.feedmetj.com/tacos/</loc>
-    <lastmod>2021-01-06T18:44:05+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.feedmetj.com/restaurante/</loc>
-    <lastmod>2021-01-06T18:44:05+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.feedmetj.com/cafe/</loc>
-    <lastmod>2021-01-06T18:44:05+00:00</lastmod>
-    <priority>0.80</priority>
   </url>
 </urlset>

@@ -5,4 +5,5 @@ yarn-error.log
 /cypress/screenshots/
 /__sapper__/
 secrets.txt
-static/data
+static/ig
+static/data/followers.json

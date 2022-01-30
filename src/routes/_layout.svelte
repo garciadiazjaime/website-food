@@ -7,10 +7,12 @@
 <style>
 	main {
 		position: relative;
-		background-color: #f8f8f8;
+		background-color: #fff;
 		margin: 0 auto;
 		box-sizing: border-box;
 		height: auto;
+		font-size: 2em;
+		font-family: Trebuchet MS, sans-serif;
 	}
 </style>
 

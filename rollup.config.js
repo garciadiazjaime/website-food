@@ -6,7 +6,6 @@ import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
-import postcss from 'rollup-plugin-postcss';
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -16,20 +15,6 @@ const onwarn = (warning, onwarn) =>
 	(warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)) ||
 	(warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) ||
 	onwarn(warning);
-
-const postcssOptions = () => ({
-	extensions: ['.scss', '.sass'],
-	extract: false,
-	minimize: true,
-	use: [
-		['sass', {
-			includePaths: [
-				'./src/theme',
-				'./node_modules',
-			]
-		}]
-	]
-});
 
 export default {
 	client: {
@@ -52,8 +37,6 @@ export default {
 				dedupe: ['svelte']
 			}),
 			commonjs(),
-
-			postcss(postcssOptions()),
 
 			legacy && babel({
 				extensions: ['.js', '.mjs', '.html', '.svelte'],
@@ -99,7 +82,6 @@ export default {
 				dedupe: ['svelte']
 			}),
 			commonjs(),
-			postcss(postcssOptions())
 		],
 		external: Object.keys(pkg.dependencies).concat(require('module').builtinModules),
 

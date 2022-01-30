@@ -9,9 +9,7 @@
 	nav {
 		font-weight: 300;
 		padding: 0 1em;
-		background: white;
-		color: #313d69;
-		border-bottom: solid 2px #ca4f24;
+		color: #8C9491;
 	}
 	ul {
 		margin: 0;
@@ -32,8 +30,8 @@
 	[aria-current] {
 		position: relative;
 		display: inline-block;
-		color: #ca4f24;
-		border-bottom-color: #ca4f24;
+		color: white;
+		border-bottom-color: #8C9491;
 	}
 
 	a {
@@ -43,22 +41,41 @@
 		border: solid 2px transparent;
 	}
 
-	.logo {
-		margin: 5px 5px 0 0;
+	li {
+		padding: 0;
 	}
 
-	@media (min-width: 375px) {
-		.logo {
-				margin-right: 10px;
-		}
+	.header {
+		background-color: #000;
+	}
+	
+	.logo {
+		text-align: center;
+		color: white;
+		font-size: 40px;
+		padding: 20px 0 0;
+	}
+
+	.content {
+		max-width: 960px;
+		margin: 0 auto;
 	}
 </style>
-<nav>
-	<ul>
-		<li><img class="logo" src="fmt_icon.svg" alt="Feed me Tj" height="40px" width="48px"/></li>
-		<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>comida</a></li>
-		<li><a aria-current='{segment === "feedmetj" ? "page" : undefined}' href='/feedmetj'>feedmetj</a></li>
-		<li class="hide"><a aria-current='{segment === "map" ? "page" : undefined}' href='/map'>mapa</a></li>
-		<li class="hide"><a aria-current='{segment === "stats" ? "page" : undefined}' href='/stats'>datos</a></li>
-	</ul>
-</nav>
+
+<div class="header">
+	<div class="content">
+		<div class="logo">
+			feedmetj
+		</div>
+		<nav>
+			<ul>
+				<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>qué comer</a></li>
+				<li class="hide"><a aria-current='{segment === "nosotros" ? "page" : undefined}' href='/nosotros'>nosotros</a></li>
+				<li class="hide"><a aria-current='{segment === "map" ? "page" : undefined}' href='/map'>mapa</a></li>
+				<li class="hide"><a href='/rifa'>rifa</a></li>
+				<li class="hide"><a href='/rifa/acelgasolar'>ganador</a></li>
+				<li class="hide"><a href='/rifa/ganador/0mar1106'>ganador</a></li>
+			</ul>
+		</nav>
+	</div>
+</div>

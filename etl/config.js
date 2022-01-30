@@ -2,9 +2,13 @@ var convict = require('convict');
  
 // Define a schema
 var config = convict({
-  apiUrl: {
-    default: 'http://127.0.0.1:3030',
-    env: 'API_URL',
+  db: {
+    url: {
+      doc: 'Database host name/IP',
+      format: '*',
+      default: 'mongodb://localhost:27017/rve',
+      env: 'DB_URL',
+    },
   },
 });
  

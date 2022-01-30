@@ -1,14 +1,10 @@
 <script>
 	import { onMount } from "svelte";
-	import { Content } from '@smui/dialog';
 
-	import '../components/LocationDialog.scss';
 	import Map from '../components/Map.svelte';
 	import MapMarker from '../components/MapMarker.svelte';
 	import { getLocations } from '../utils/mintAPIUtil'
-	import { getTitle } from '../utils/postUtil'
 	import { zonaCentro } from '../utils/mapboxAPIUtil';
-	import UnderConstruction from '../components/UnderConstruction.svelte';
 
 	let locations;
 
@@ -24,18 +20,14 @@
 	}
 </style>
 
-<UnderConstruction />
-
 <section class="cta-map">
 	{#if locations}
-		<Content>
-			<Map coords={[zonaCentro.lng, zonaCentro.lat]} zoom={zonaCentro.zoom}>
-				{#each locations as location }
-					{#if location.location && location.location.coordinates }
-						<MapMarker location={location} />
-					{/if}
-				{/each}
-			</Map>
-		</Content>
+		<Map coords={[zonaCentro.lng, zonaCentro.lat]} zoom={zonaCentro.zoom}>
+			{#each locations as location }
+				{#if location.location && location.location.coordinates }
+					<MapMarker location={location} />
+				{/if}
+			{/each}
+		</Map>
 	{/if}
 </section>
