@@ -70,8 +70,6 @@
 		<nav>
 			<ul>
 				<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>qué comer</a></li>
-				<li class="hide"><a aria-current='{segment === "nosotros" ? "page" : undefined}' href='/nosotros'>nosotros</a></li>
-				<li class="hide"><a aria-current='{segment === "map" ? "page" : undefined}' href='/map'>mapa</a></li>
 			</ul>
 		</nav>
 	</div>

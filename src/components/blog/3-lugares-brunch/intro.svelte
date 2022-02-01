@@ -6,16 +6,28 @@
 		width: 100%;
 		height: auto;
 	}
+  .cover {
+    height: 727px;
+    background-color: rgb(240, 204, 88);
+    color: white;
+    font-size: 2.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .cover span {
+    color:#333;
+  }
 </style>
 
-<Lazy height={300}>
-  <img src="/que-comer-en-tijuana/brunch/3-lugares-brunch-tijuana.webp" 
-    alt="pan-frances" 
-    width="750"
-    height="938"
-  />
-</Lazy>
+<div class="cover">
+  <div>
+    Brunch <br /> <span>Tijuana</span>
+  </div>
+</div>
 <h2>3 lugares para hacer Brunch en Tijuana</h2>
+
 <p>
   La palabra Brunch viene de las palabras anglosajonas breakfast (desayuno) y lunch (almuerzo).
 <p>

@@ -7,17 +7,29 @@
 		width: 100%;
 		height: auto;
 	}
+  .cover {
+    height: 727px;
+    background-color: rgb(228, 9, 9);
+    color: white;
+    font-size: 2.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .cover span {
+    color:#333;
+  }
 </style>
 
-<Lazy height={300}>
-  <img src="/que-comer-en-tijuana/tacos/tacos-koshy.webp" 
-    alt="tacos del koshy tijuana" 
-    width="750"
-    height="938"
-  />
-</Lazy>
+<div class="cover">
+  <div>
+    Tacos <br /> <span>Tijuana</span>
+  </div>
+</div>
 
 <h2>Tijuana se escribe con T de Tacos</h2>
+
 <p>
   Sin duda los mejores tacos los encuentras en Tijuana.
 </p>
@@ -32,3 +44,11 @@
 <p>
   Al Pastor o Carne Asada no hay falla.
 </p>
+
+<Lazy height={300}>
+  <img src="/que-comer-en-tijuana/tacos/tacos-koshy.webp" 
+    alt="tacos del koshy tijuana" 
+    width="750"
+    height="938"
+  />
+</Lazy>

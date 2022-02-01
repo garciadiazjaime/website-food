@@ -7,7 +7,25 @@
 		width: 100%;
 		height: auto;
 	}
+  .cover {
+    height: 727px;
+    background-color: rgb(188, 241, 175);
+    color: white;
+    font-size: 2.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
 </style>
+
+<div class="cover">
+  <div>
+    Citrón
+  </div>
+</div>
+
+<h2>Delicioso Pan Francés en Tijuana</h2>
 
 <Lazy height={300}>
   <img src="/que-comer-en-tijuana/citron.mx/pan-frances.webp" 
@@ -17,7 +35,6 @@
   />
 </Lazy>
 
-<h2>Delicioso Pan Francés en Tijuana</h2>
 <p>
   Citrón es un café que se encuentra en avenida Alba Roja.
 </p>

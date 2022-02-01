@@ -8,18 +8,12 @@
 </script>
 
 <style>
-.container {
+	.container {
 		padding: 0 12px;
 	}
 
-	.item-list {
-		margin: 0 12px;
-	}
-
-	@media (max-width: 800px) {
-		.item-list {
-			margin: 0;
-		}
+	h1 {
+		margin: 12px 0;
 	}
 
 	ul {
@@ -35,10 +29,6 @@
 		margin: 0 auto;
 		padding-top: 20px;
 	}
-	strong {
-		display: block;
-		font-weight: normal;
-	}
 </style>
 
 <svelte:head>
@@ -51,31 +41,32 @@
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 </svelte:head>
 
+
 <div class="content">
-	<div class="item-list">
-		<ul>
-			<li><TresLugaresSushi /></li>
+	<h1>La mejor comida se hace en Tijuana</h1>
 
-			<li><hr /></li>
+	<ul>
+		<li><TresLugaresSushi /></li>
 
-			<li><TacosTijuana /></li>
+		<li><hr /></li>
 
-			<li><hr /></li>
+		<li><TacosTijuana /></li>
 
-			<li><TresLugaresBrunch /></li>
+		<li><hr /></li>
 
-			<li><hr /></li>
+		<li><TresLugaresBrunch /></li>
 
-			<li><PanFrances /></li>
-		</ul>
-	</div>
+		<li><hr /></li>
+
+		<li><PanFrances /></li>
+	</ul>
 
 	<br />
 
 	<footer>
-		<strong>
-			{description}
-		</strong>
+		<p>
+			La mejor <strong>comida</strong> se hace en <strong>Tijuana</strong>, descubre los mejores lugares para <strong>comer</strong> Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.
+		</p>
 		<br />
 		<div class="container">
 			Síguenos en

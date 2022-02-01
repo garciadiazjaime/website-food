@@ -36,10 +36,10 @@
 </p>
 
 <p>
-  Independiente de cómo lo llamemos, el "sushi" es muy rico en cada una de sus versiones y como es de esperar, Tijuana cuenta con muy buenos lugares para comer sushi, así que sin más maki aquí te dejamos 3 lugares para comer Sushi en Tijuana.
+  Independiente de cómo lo llamemos, el "sushi" es muy rico en cada una de sus versiones y como es de esperar, Tijuana cuenta con muy buenos lugares para comer sushi, así que sin más maki aquí te dejamos 3 lugares para <strong>comer Sushi en Tijuana</strong>.
 </p>
 <p>
-  - Tobu Japanese Fusion
+  - Tobu Japanese Fusión
 </p>
 <p>
   Rollo de Atún
