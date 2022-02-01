@@ -77,12 +77,12 @@
 		</div>
 		<br />
 		<div class="container">
-			Proyecto de <br />
-			<a href="http://www.mintitmedia.com" title="Sofware Development Tijuana">Mint IT Media</a>
+			Proyecto en Colaboración con: <br />
+			<a href="https://www.garitacenter.com/">Reporte de Garitas | Linea Tijuana / San Ysidro - Otay</a>
 			<br />
-			<a href="Reporte de Garitas San Diego / Tijuana">GaritaCenter</a>
+			<a href="http://www.playami.com">Qué comer en Playas de Tijuana?</a>
 			<br />
-			<a href="http://www.playami.com" title="Qué comer en Playas de Tijuana">Playami</a>
+			<a href="https://www.mintitmedia.com/">Desarrollo Web en Tijuana</a>
 		</div>
 	</footer>
 </div>
