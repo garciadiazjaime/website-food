@@ -75,5 +75,14 @@
 				<li><a href="https://www.facebook.com/Feedmetj-104064654962934" target="_blank" rel="nofollow noreferrer" title="La mejor comida de Tijuana">Facebook</a></li>
 			</ul>
 		</div>
+		<br />
+		<div class="container">
+			Proyecto de <br />
+			<a href="http://www.mintitmedia.com" title="Sofware Development Tijuana">Mint IT Media</a>
+			<br />
+			<a href="Reporte de Garitas San Diego / Tijuana">GaritaCenter</a>
+			<br />
+			<a href="http://www.playami.com" title="Qué comer en Playas de Tijuana">Playami</a>
+		</div>
 	</footer>
 </div>
