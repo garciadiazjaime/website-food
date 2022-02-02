@@ -80,7 +80,7 @@
 			Proyecto en Colaboración con: <br />
 			<a href="https://www.garitacenter.com/">Reporte de Garitas | Linea Tijuana / San Ysidro - Otay</a>
 			<br />
-			<a href="http://www.playami.com">Qué comer en Playas de Tijuana?</a>
+			<a href="http://www.playami.com">¿Qué comer en Playas de Tijuana?</a>
 			<br />
 			<a href="https://www.mintitmedia.com/">Desarrollo Web en Tijuana</a>
 		</div>
