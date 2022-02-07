@@ -8,8 +8,6 @@
     "data": "node etl/data.js",
     "export": "sapper export --legacy",
     "start": "node __sapper__/build",
-    "cy:run": "cypress run",
-    "cy:open": "cypress open",
     "test": "run-p --race dev cy:run",
     "google:clean": "gsutil -m rm -r gs://food.mintitmedia.com/*",
     "google:upload": "gsutil -m cp -r ./__sapper__/export/* gs://food.mintitmedia.com",
