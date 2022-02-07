@@ -35,7 +35,7 @@
 	<title>Qué comer en Tijuana? Encuentra la mejor comida de Tijuana</title>
 	<meta property="og:title" content="feedmetj">
 	<meta property="og:description" content={description}>
-	<meta property="og:image" content="http://www.feedmetj.com/sharing-banner.jpg">
+	<meta property="og:image" content="http://www.feedmetj.com/banner.webp">
 	<meta property="og:url" content="http://www.feedmetj.com/">
 	<meta name="description" content={description}>
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
