@@ -35,13 +35,15 @@
   preferimos despertar más tarde.
 </p>
 <p>
-  Tijuana como buena ciudad fronteriza, cuenta con excelentes opciones para "brunchear". Aquí te dejamos 3:
+  Tijuana como buena ciudad fronteriza, cuenta con excelentes opciones para "brunchear". Aquí te dejamos 3 Restaurantes:
 </p>
 
 <p>
   1. Restaurante Cielo
 </p>
 <p>
+  Qué comer?
+  <br />
   Churro Waffles y Huevos Rancheros
 </p>
 <p>
@@ -61,6 +63,8 @@
   2. Folklor Café
 </p>
 <p>
+  Qué comer?
+  <br />
   Huevos, Frijoles y Chilaquiles.
 </p>
 <p>
@@ -80,6 +84,8 @@
   3. Restaurante Buna
 </p>
 <p>
+  Qué comer?
+  <br />
   Omelette de la Casa con Chilaquiles
 </p>
 <p>

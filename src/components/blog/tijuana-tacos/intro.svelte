@@ -34,7 +34,7 @@
   Sin duda los mejores tacos los encuentras en Tijuana.
 </p>
 <p>
-  Aquí te dejamos 3 opciones:
+  Aquí te dejamos 3 opciones deliciosas para comer Tacos en Tijuana:
 </p>
 <ul>
   <li><a href="https://www.instagram.com/tacosdelkoshy/" target="_blank" rel="nofollow noreferrer">Tacos Del Koshy</a></li>

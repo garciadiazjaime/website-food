@@ -39,6 +39,8 @@
 	<meta property="og:url" content="http://www.feedmetj.com/">
 	<meta name="description" content={description}>
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
+
+	<link rel="apple-touch-icon" href="/logo-192.webp" />
 </svelte:head>
 
 
@@ -62,6 +64,10 @@
 	</ul>
 
 	<br />
+
+	<p>
+		Tijuana es una ciudad en crecimiento, actualmente cuenta con varias zonas que ofrecen una gran variedad de comida.
+	</p>
 
 	<footer>
 		<p>

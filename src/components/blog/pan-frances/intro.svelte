@@ -39,7 +39,7 @@
   Citrón es un café que se encuentra en avenida Alba Roja.
 </p>
 <p>
-  El lugar se distingue por su toque artístico, cada detalle importa, y esto se puede apreciar tanto en su atmósfera como en su cocina.
+  El lugar se distingue por su toque artístico, cada detalle importa, y esto se puede apreciar tanto en su atmósfera como en su comida.
 </p>
 <p>
   Cuentan con estacionamiento y no es necesario reservación.
