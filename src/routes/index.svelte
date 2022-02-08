@@ -93,6 +93,10 @@
 			<a href="http://www.playami.com">¿Qué comer en Playas de Tijuana?</a>
 			<br />
 			<a href="https://www.mintitmedia.com/">Desarrollo Web en Tijuana</a>
+			<br />
+			<a href="https://www.noticiasmexico.org/">Últimas Noticias de México</a>
+			<br />
+			<a href="https://www.comprarcasatijuana.com/">Comprar casa en Tijuana</a>
 		</div>
 	</footer>
 </div>
