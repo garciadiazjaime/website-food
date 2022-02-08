@@ -7,11 +7,7 @@
     "build": "sapper build --legacy",
     "data": "node etl/data.js",
     "export": "sapper export --legacy",
-    "start": "node __sapper__/build",
-    "test": "run-p --race dev cy:run",
-    "google:clean": "gsutil -m rm -r gs://food.mintitmedia.com/*",
-    "google:upload": "gsutil -m cp -r ./__sapper__/export/* gs://food.mintitmedia.com",
-    "deploy": "npm run google:clean && npm run google:upload"
+    "start": "node __sapper__/build"
   },
   "dependencies": {
     "async": "^3.2.0",
