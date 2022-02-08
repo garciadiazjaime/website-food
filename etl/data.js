@@ -169,7 +169,7 @@ function getPostsByCategory(category, limit, postsBySection = []) {
   }, {})
 
   const since = new Date()
-  since.setDate(since.getDate() - 28)
+  since.setDate(since.getDate() - 280)
 
   return Post.aggregate([{
       $match: {
@@ -354,12 +354,12 @@ async function saveHomepage() {
 }
 
 async function saveCategories() {
-  const promises = seoCategories.map(async ({
+  const promises = seoCategories.filter(item => item.slug === 'sushi').map(async ({
     title,
     fullTitle,
     slug
   }) => {
-    const limit = 50
+    const limit = 30
 
     const posts = await getPostsByCategory(slug, limit)
 
@@ -372,7 +372,7 @@ async function saveCategories() {
 
     load(slug, data)
 
-    await saveImagesForPublicPage(data)
+    // await saveImagesForPublicPage(data)
   })
 
   return Promise.all(promises)
@@ -687,13 +687,13 @@ async function main() {
 
   // await saveHomepage()
 
-  // await saveCategories()
+  await saveCategories()
 
   // await exportFollowers()
 
   // await statsETL()
 
-  await saveTrendingLabels()
+  // await saveTrendingLabels()
 }
 
 if (require.main === module) {

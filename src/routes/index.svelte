@@ -66,6 +66,10 @@
 	<br />
 
 	<p>
+		Conoce más lugares de <a href="/sushi">Sushi en Tijuana</a>
+	</p>
+
+	<p>
 		Tijuana es una ciudad en crecimiento, actualmente cuenta con varias zonas que ofrecen una gran variedad de comida.
 	</p>
 

@@ -6,3 +6,4 @@ yarn-error.log
 secrets.txt
 static/ig
 static/data/followers.json
+static/data/

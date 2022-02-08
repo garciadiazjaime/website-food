@@ -64,13 +64,6 @@
 </style>
 
 <div class="card">
-  <div>
-    <img src={imgUrl} 
-      use:lazyLoad 
-      alt="qué comer en Tijuana? {category}" 
-      title="qué comer en Tijuana? {category}"
-    />
-  </div>
 
   <div class="content">
     <h3>{title}</h3>
