@@ -10,7 +10,7 @@ import pkg from './package.json';
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
-const API_URL = JSON.stringify(process.env.API_URL) || 'http://127.0.0.1:3030'
+const API_URL = process.env.API_URL
 
 const onwarn = (warning, onwarn) =>
 	(warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)) ||
