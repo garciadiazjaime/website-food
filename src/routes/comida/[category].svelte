@@ -1,11 +1,6 @@
 <script>
-	import DondeComerTijuana from '../components/blog/donde-comer-tijuana/intro.svelte'
-	import TacosTijuana from "../components/blog/tijuana-tacos/intro.svelte"
-	import TresLugaresBrunch from "../components/blog/3-lugares-brunch/intro.svelte"
-	import TresLugaresSushi from "../components/blog/3-lugares-sushi/intro.svelte"
-	import PanFrances from "../components/blog/pan-frances/intro.svelte"
-
-	export let placesByCategory
+	export let places = []
+	export let category = ''
 	const description = 'La mejor comida se hace en Tijuana, descubre los mejores lugares para comer Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.'
 	const categoryMap = {
 		bar: 'Bares en Tijuana',
@@ -16,11 +11,12 @@
 
 <script context="module">
 	export async function preload(page, session) {
-		const url = 'process.env.API_URL/posts/by-category'
+		const { category } = page.params;
+		const url = `process.env.API_URL/posts/by-category?category=${category}&limit=33`
 		const response = await this.fetch(url)
-		const placesByCategory = await response.json()
+		const places = await response.json()
 
-		return { placesByCategory };
+		return { places, category };
 	}
 </script>
 
@@ -59,7 +55,7 @@
 </style>
 
 <svelte:head>
-	<title>Qué comer en Tijuana? Encuentra la mejor comida de Tijuana</title>
+	<title>{categoryMap[category]} | Encuentra la mejor comida de Tijuana</title>
 	<meta property="og:title" content="feedmetj">
 	<meta property="og:description" content={description}>
 	<meta property="og:image" content="http://www.feedmetj.com/banner.webp">
@@ -72,48 +68,21 @@
 
 
 <div class="content">
-	<h1>La mejor comida se hace en Tijuana</h1>
-
-	{#each placesByCategory as category}
-	<section>
-		<h3>
-			<a href={`comida/${category.name}`}>{categoryMap[category.name]}</a>
-		</h3>
-		<ul>
-			{#each category.places as place, index}
-			<li>
-				<h2>
-					{index + 1} -
-					<a href={`https://www.instagram.com/${place.user.username}/`}
-						rel="nofollow noreferrer"
-						target="_blank">{place.user.fullName}</a>
-				</h2>
-				<img src={place.imageUrl} alt={place.user.fullName}>
-				<p>{place.caption}</p>
-			</li>
-			{/each}
-		</ul>
-	</section>
-	{/each}
+	<h1>{categoryMap[category]}</h1>
 
 	<ul>
-		<li><DondeComerTijuana /></li>
-		
-		<li><hr /></li>
-
-		<li><TresLugaresSushi /></li>
-
-		<li><hr /></li>
-
-		<li><TacosTijuana /></li>
-
-		<li><hr /></li>
-
-		<li><TresLugaresBrunch /></li>
-
-		<li><hr /></li>
-
-		<li><PanFrances /></li>
+		{#each places as place, index}
+		<li>
+			<h2>
+				{index + 1} -
+				<a href={`https://www.instagram.com/${place.user.username}/`}
+					rel="nofollow noreferrer"
+					target="_blank">{place.user.fullName}</a>
+			</h2>
+			<img src={place.imageUrl} alt={place.user.fullName}>
+			<p>{place.caption}</p>
+		</li>
+		{/each}
 	</ul>
 
 	<br />

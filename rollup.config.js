@@ -10,6 +10,7 @@ import pkg from './package.json';
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
+const API_URL = JSON.stringify(process.env.API_URL) || 'http://127.0.0.1:3030'
 
 const onwarn = (warning, onwarn) =>
 	(warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)) ||
@@ -25,7 +26,7 @@ export default {
 				'process.mapboxToken': JSON.stringify(process.env.MAPBOX_TOKEN),
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode),
-				'process.env.API_URL': process.env.API_URL || 'http://127.0.0.1:3030'
+				'process.env.API_URL': API_URL
 			}),
 			svelte({
 				dev,
@@ -71,7 +72,7 @@ export default {
 			replace({
 				'process.browser': false,
 				'process.env.NODE_ENV': JSON.stringify(mode),
-				'process.env.API_URL': process.env.API_URL || 'http://127.0.0.1:3030'
+				'process.env.API_URL': API_URL
 			}),
 			svelte({
 				generate: 'ssr',
@@ -96,7 +97,8 @@ export default {
 			resolve(),
 			replace({
 				'process.browser': true,
-				'process.env.NODE_ENV': JSON.stringify(mode)
+				'process.env.NODE_ENV': JSON.stringify(mode),
+				'process.env.API_URL': API_URL
 			}),
 			commonjs(),
 			!dev && terser()
