@@ -1,4 +1,5 @@
 <script>
+	import DondeComerTijuana from '../components/blog/donde-comer-tijuana/intro.svelte'
 	import TacosTijuana from "../components/blog/tijuana-tacos/intro.svelte"
 	import TresLugaresBrunch from "../components/blog/3-lugares-brunch/intro.svelte"
 	import TresLugaresSushi from "../components/blog/3-lugares-sushi/intro.svelte"
@@ -48,6 +49,10 @@
 	<h1>La mejor comida se hace en Tijuana</h1>
 
 	<ul>
+		<li><DondeComerTijuana /></li>
+		
+		<li><hr /></li>
+
 		<li><TresLugaresSushi /></li>
 
 		<li><hr /></li>
@@ -92,11 +97,13 @@
 			<br />
 			<a href="http://www.playami.com">¿Qué comer en Playas de Tijuana?</a>
 			<br />
-			<a href="https://www.mintitmedia.com/">Desarrollo Web en Tijuana</a>
-			<br />
 			<a href="https://www.noticiasmexico.org/">Últimas Noticias de México</a>
 			<br />
 			<a href="https://www.comprarcasatijuana.com/">Comprar casa en Tijuana</a>
+			<br />>
+			<a href="https://www.larutadelvinoensenada.com/">La Ruta del Vino Ensenada</a>
+			<br />
+			<a href="https://www.mintitmedia.com/">Desarrollo Web en Tijuana</a>
 		</div>
 	</footer>
 </div>

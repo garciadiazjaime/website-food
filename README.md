@@ -14,9 +14,9 @@
 
 [Casas en Venta en Tijuana](https://www.comprarcasatijuana.com/)
 
-### El Valle
+### El Valle de Guadalupe
 
-[La Ruta del Vino Ensenada](http://www.larutadelvinoensenada.com/)
+[La Ruta del Vino Ensenada](https://www.larutadelvinoensenada.com/)
 
 ### Playami
 
