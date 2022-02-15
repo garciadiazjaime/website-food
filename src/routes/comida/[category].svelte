@@ -1,4 +1,5 @@
 <script>
+	import Lazy from 'svelte-lazy';
 	export let places = []
 	export let category = ''
 	const description = 'La mejor comida se hace en Tijuana, descubre los mejores lugares para comer Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.'
@@ -58,8 +59,8 @@
 	<title>{categoryMap[category]} | Encuentra la mejor comida de Tijuana</title>
 	<meta property="og:title" content="feedmetj">
 	<meta property="og:description" content={description}>
-	<meta property="og:image" content="http://www.feedmetj.com/banner.webp">
-	<meta property="og:url" content="http://www.feedmetj.com/">
+	<meta property="og:image" content="https://www.feedmetj.com/banner.webp">
+	<meta property="og:url" content="https://www.feedmetj.com/">
 	<meta name="description" content={description}>
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
 
@@ -79,7 +80,9 @@
 					rel="nofollow noreferrer"
 					target="_blank">{place.user.fullName}</a>
 			</h2>
-			<img src={place.imageUrl} alt={place.user.fullName}>
+			<Lazy height={300}>
+				<img src={place.imageUrl.replace('http:', 'https:')} alt={place.user.fullName}>
+			</Lazy>
 			<p>{place.caption}</p>
 		</li>
 		{/each}
@@ -112,7 +115,7 @@
 			Proyecto en Colaboración con: <br />
 			<a href="https://www.garitacenter.com/">Reporte de Garitas | Linea Tijuana / San Ysidro - Otay</a>
 			<br />
-			<a href="http://www.playami.com">¿Qué comer en Playas de Tijuana?</a>
+			<a href="https://www.playami.com/">¿Qué comer en Playas de Tijuana?</a>
 			<br />
 			<a href="https://www.noticiasmexico.org/">Últimas Noticias de México</a>
 			<br />

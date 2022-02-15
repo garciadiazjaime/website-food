@@ -20,7 +20,7 @@
 
 ### Playami
 
-[Qué comer en Playas de Tijuana?](http://www.playami.com/)
+[Qué comer en Playas de Tijuana?](https://www.playami.com/)
 
 ### Mint IT Media
 

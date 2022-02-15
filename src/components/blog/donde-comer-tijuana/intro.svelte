@@ -25,7 +25,7 @@
   Además de contar con opciones de comida se cuenta con la playa, la cual siempre es buena para una caminata, especialmente durante el atardecer. Si buscas de un ambiente relajado y precios razonables, Playas es la opción.
 </p>
 <p>
-  <a href="http://www.playami.com">¿Qué comer en Playas de Tijuana?</a>
+  <a href="https://www.playami.com/">¿Qué comer en Playas de Tijuana?</a>
 </p>
 
 <h3>Zona Centro</h3>
