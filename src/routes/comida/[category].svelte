@@ -2,30 +2,39 @@
 	import Lazy from 'svelte-lazy';
 	export let places = []
 	export let category = ''
-	const description = 'La mejor comida se hace en Tijuana, descubre los mejores lugares para comer Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.'
-	const categoryMap = {
+	const categoryTitle = {
 		bar: 'Bares en Tijuana',
 		cafe: 'Cafés en Tijuana',
-		restaurant: 'Dónde comer en Tijuana?'
+		restaurant: 'Restaurantes en Tijuana',
+		sushi: 'Restaurantes de Sushi en Tijuana',
 	}
+
+	const description = `La mejor comida se hace en Tijuana, descubre los mejores ${categoryTitle[category]} para comer Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.`
+	const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+	const currentMonthTitle = months[new Date().getMonth()]
+	
 </script>
 
 <script context="module">
 	export async function preload(page, session) {
 		const { category } = page.params;
-		const url = `process.env.API_URL/posts/by-category?category=${category}&limit=33`
+		const source = 'tijuanamakesmehungry';
+		const limit = 33
+		const url = `process.env.API_URL/posts/by-category?category=${category}&source=${source}&limit=${limit}`
 		const response = await this.fetch(url)
 		const places = await response.json()
 
-		return { places, category };
+		return { 
+			places: places.map(place => ({
+				...place,
+				caption: place.caption.slice(0, place.caption.indexOf('#'))
+			})),
+			category 
+		};
 	}
 </script>
 
 <style>
-	.container {
-		padding: 0 12px;
-	}
-
 	h1 {
 		margin: 12px 0;
 	}
@@ -37,12 +46,6 @@
 	li {
     list-style-type: none;
   }
-
-	.content {
-		max-width: 960px;
-		margin: 0 auto;
-		padding-top: 20px;
-	}
 
 	img {
 		height: 300px;
@@ -56,7 +59,7 @@
 </style>
 
 <svelte:head>
-	<title>{categoryMap[category]} | Encuentra la mejor comida de Tijuana</title>
+	<title>Encuentra los mejores {categoryTitle[category]} | {currentMonthTitle} 2022</title>
 	<meta property="og:title" content="feedmetj">
 	<meta property="og:description" content={description}>
 	<meta property="og:image" content="https://www.feedmetj.com/banner.webp">
@@ -68,62 +71,23 @@
 </svelte:head>
 
 
-<div class="content">
-	<h1>{categoryMap[category]}</h1>
+<section>
+	<h1>{categoryTitle[category]}</h1>
 
 	<ul>
 		{#each places as place, index}
 		<li>
 			<h2>
 				{index + 1} -
-				<a href={`https://www.instagram.com/${place.user.username}/`}
+				<a href={`https://www.instagram.com/${place.username}/`}
 					rel="nofollow noreferrer"
-					target="_blank">{place.user.fullName}</a>
+					target="_blank">{place.fullName}</a>
 			</h2>
 			<Lazy height={300}>
-				<img src={place.imageUrl.replace('http:', 'https:')} alt={place.user.fullName}>
+				<img src={place.imageUrl.replace('http:', 'https:')} alt={place.fullName}>
 			</Lazy>
 			<p>{place.caption}</p>
 		</li>
 		{/each}
 	</ul>
-
-	<br />
-
-	<p>
-		Conoce más lugares de <a href="/sushi">Sushi en Tijuana</a>
-	</p>
-
-	<p>
-		Tijuana es una ciudad en crecimiento, actualmente cuenta con varias zonas que ofrecen una gran variedad de comida.
-	</p>
-
-	<footer>
-		<p>
-			La mejor <strong>comida</strong> se hace en <strong>Tijuana</strong>, descubre los mejores lugares para <strong>comer</strong> Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.
-		</p>
-		<br />
-		<div class="container">
-			Síguenos en
-			<ul>
-				<li><a href="https://www.instagram.com/feedmetijuana/" target="_blank" title="¿Qué comer en Tijuana">Instagram</a></li>
-				<li><a href="https://www.facebook.com/Feedmetj-104064654962934" target="_blank" rel="nofollow noreferrer" title="La mejor comida de Tijuana">Facebook</a></li>
-			</ul>
-		</div>
-		<br />
-		<div class="container">
-			Proyecto en Colaboración con: <br />
-			<a href="https://www.garitacenter.com/">Reporte de Garitas | Linea Tijuana / San Ysidro - Otay</a>
-			<br />
-			<a href="https://www.playami.com/">¿Qué comer en Playas de Tijuana?</a>
-			<br />
-			<a href="https://www.noticiasmexico.org/">Últimas Noticias de México</a>
-			<br />
-			<a href="https://www.comprarcasatijuana.com/">Comprar casa en Tijuana</a>
-			<br />>
-			<a href="https://www.larutadelvinoensenada.com/">La Ruta del Vino Ensenada</a>
-			<br />
-			<a href="https://www.mintitmedia.com/">Desarrollo Web en Tijuana</a>
-		</div>
-	</footer>
-</div>
+</section>

@@ -7,29 +7,40 @@
 	import PanFrances from "../components/blog/pan-frances/intro.svelte"
 
 	export let placesByCategory
-	const description = 'La mejor comida se hace en Tijuana, descubre los mejores lugares para comer Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.'
+	const description = 'La mejor comida se hace en Tijuana, descubre los mejores restaurantes para comer Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.'
 	const categoryMap = {
 		bar: 'Bares en Tijuana',
 		cafe: 'Cafés en Tijuana',
-		restaurant: 'Dónde comer en Tijuana?'
+		restaurant: 'Restaurantes en Tijuana'
+	}
+	const categoryLabel = {
+		bar: 'Bar',
+		cafe: 'Café',
+		restaurant: 'Restaurante'
 	}
 </script>
 
 <script context="module">
 	export async function preload(page, session) {
-		const url = 'process.env.API_URL/posts/by-category'
+		const source = 'tijuanamakesmehungry';
+		const limit = 3
+		const url = `process.env.API_URL/posts/by-category?&source=${source}&limit=${limit}`
 		const response = await this.fetch(url)
-		const placesByCategory = await response.json()
+		const data = await response.json()
 
-		return { placesByCategory };
+		return { 
+			placesByCategory: data.map(placesByCategory => ({
+				...placesByCategory,
+				places: placesByCategory.places.map(place => ({
+					...place,
+					caption: place.caption.slice(0, place.caption.indexOf('#'))
+				}))	
+			})),
+		 };
 	}
 </script>
 
 <style>
-	.container {
-		padding: 0 12px;
-	}
-
 	h1 {
 		margin: 12px 0;
 	}
@@ -41,12 +52,6 @@
 	li {
     list-style-type: none;
   }
-
-	.content {
-		max-width: 960px;
-		margin: 0 auto;
-		padding-top: 20px;
-	}
 
 	img {
 		height: 300px;
@@ -72,8 +77,8 @@
 </svelte:head>
 
 
-<div class="content">
-	<h1>La mejor comida se hace en Tijuana</h1>
+<section>
+	<h1>Los Mejores Restaurantes de Tijuana</h1>
 
 	{#each placesByCategory as category}
 	<section>
@@ -85,19 +90,22 @@
 			<li>
 				<h2>
 					{index + 1} -
-					<a href={`https://www.instagram.com/${place.user.username}/`}
+					<a href={`https://www.instagram.com/${place.username}/`}
 						rel="nofollow noreferrer"
-						target="_blank">{place.user.fullName}</a>
+						target="_blank">{place.fullName}</a>
 				</h2>
 				<Lazy height={300}>
-					<img src={place.imageUrl.replace('http:', 'https:')} alt={place.user.fullName}>
+					<img src={place.imageUrl.replace('http:', 'https:')} alt={place.fullName}>
 				</Lazy>
+				<strong>{categoryLabel[category.name]}</strong>
 				<p>{place.caption}</p>
 			</li>
 			{/each}
 		</ul>
 	</section>
 	{/each}
+
+	<hr />
 
 	<ul>
 		<li><DondeComerTijuana /></li>
@@ -122,39 +130,6 @@
 	<br />
 
 	<p>
-		Conoce más lugares de <a href="/sushi">Sushi en Tijuana</a>
+		Conoce más lugares de <a href="/comida/sushi">Sushi en Tijuana</a>
 	</p>
-
-	<p>
-		Tijuana es una ciudad en crecimiento, actualmente cuenta con varias zonas que ofrecen una gran variedad de comida.
-	</p>
-
-	<footer>
-		<p>
-			La mejor <strong>comida</strong> se hace en <strong>Tijuana</strong>, descubre los mejores lugares para <strong>comer</strong> Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.
-		</p>
-		<br />
-		<div class="container">
-			Síguenos en
-			<ul>
-				<li><a href="https://www.instagram.com/feedmetijuana/" target="_blank" title="¿Qué comer en Tijuana">Instagram</a></li>
-				<li><a href="https://www.facebook.com/Feedmetj-104064654962934" target="_blank" rel="nofollow noreferrer" title="La mejor comida de Tijuana">Facebook</a></li>
-			</ul>
-		</div>
-		<br />
-		<div class="container">
-			Proyecto en Colaboración con: <br />
-			<a href="https://www.garitacenter.com/">Reporte de Garitas | Linea Tijuana / San Ysidro - Otay</a>
-			<br />
-			<a href="https://www.playami.com/">¿Qué comer en Playas de Tijuana?</a>
-			<br />
-			<a href="https://www.noticiasmexico.org/">Últimas Noticias de México</a>
-			<br />
-			<a href="https://www.comprarcasatijuana.com/">Comprar casa en Tijuana</a>
-			<br />>
-			<a href="https://www.larutadelvinoensenada.com/">La Ruta del Vino Ensenada</a>
-			<br />
-			<a href="https://www.mintitmedia.com/">Desarrollo Web en Tijuana</a>
-		</div>
-	</footer>
-</div>
+</section>

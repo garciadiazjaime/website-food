@@ -24,9 +24,6 @@
 <p>
   Además de contar con opciones de comida se cuenta con la playa, la cual siempre es buena para una caminata, especialmente durante el atardecer. Si buscas de un ambiente relajado y precios razonables, Playas es la opción.
 </p>
-<p>
-  <a href="https://www.playami.com/">¿Qué comer en Playas de Tijuana?</a>
-</p>
 
 <h3>Zona Centro</h3>
 <p>
@@ -46,7 +43,4 @@
 <h3>El Valle de Guadalupe</h3>
 <p>
   El valle se encuentra en Ensenada. El valle es una zona entre montañas que cuenta con su propio clima. La oferta gastronómica es más sofisticada y en general los precios son altos, sin embargo la experiencia lo vale.
-</p>
-<p>
-  <a href="https://www.larutadelvinoensenada.com/">La Ruta del Vino Ensenada</a>
 </p>
