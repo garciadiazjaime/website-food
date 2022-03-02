@@ -7,6 +7,20 @@
 
 	%sapper.base%
 
+	<link rel="stylesheet" href="global.css">
+	<link rel='manifest' href='manifest.json' crossorigin='use-credentials'>
+	<link rel='icon' type='image/png' href='feedme_icon.png'>
+	<link rel="apple-touch-icon" href="feedme_icon.png">
+
+	<!-- Sapper generates a <style> tag containing critical CSS
+	     for the current page. CSS for the rest of the app is
+	     lazily loaded when it precaches secondary pages -->
+	%sapper.styles%
+
+	<!-- This contains the contents of the <svelte:head> component, if
+			the current page has one -->
+	%sapper.head%
+
 	<script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -22,49 +36,21 @@
     }
 	</script>
 
-	<style>
-		body {
-			margin: 0;
-			line-height: 1.5;
-			color: #333;
-		}
-	</style>
-	<link rel='manifest' href='manifest.json' crossorigin='use-credentials'>
-	<link rel='icon' type='image/png' href='feedme_icon.png'>
-
 	<link href="https://www.google-analytics.com" rel="dns-prefetch">
-
 	<script async src='https://www.google-analytics.com/analytics.js'></script>
 	<script>
 		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
 		ga('create', 'UA-167054696-1', 'auto');
 		ga('send', 'pageview');
 	</script>
-
-
-	<!-- Sapper generates a <style> tag containing critical CSS
-	     for the current page. CSS for the rest of the app is
-	     lazily loaded when it precaches secondary pages -->
-	%sapper.styles%
-
-	<!-- This contains the contents of the <svelte:head> component, if
-	     the current page has one -->
-	%sapper.head%
-
-	<style>
-		html,body,#sapper,main {
-			height: 100%;
-		}
-	</style>
 </head>
 <body>
-	<!-- The application will be rendered inside this element,
-	     because `src/client.js` references it -->
-	<div id='sapper'>%sapper.html%</div>
-
 	<!-- Sapper creates a <script> tag containing `src/client.js`
 	     and anything else it needs to hydrate the app and
 	     initialise the router -->
-	%sapper.scripts%
+			 %sapper.scripts%
+	<!-- The application will be rendered inside this element,
+	     because `src/client.js` references it -->
+	<div id='sapper'>%sapper.html%</div>
 </body>
 </html>

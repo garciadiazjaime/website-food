@@ -7,12 +7,8 @@
 	import PanFrances from "../components/blog/pan-frances/intro.svelte"
 
 	export let placesByCategory
+	const title = 'La mejor comida se cocina en Tijuana. Restaurantes, Cafés, Bares'
 	const description = 'La mejor comida se hace en Tijuana, descubre los mejores restaurantes para comer Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.'
-	const categoryMap = {
-		bar: 'Bares en Tijuana',
-		cafe: 'Cafés en Tijuana',
-		restaurant: 'Restaurantes en Tijuana'
-	}
 	const categoryLabel = {
 		bar: 'Bar',
 		cafe: 'Café',
@@ -21,7 +17,7 @@
 </script>
 
 <script context="module">
-	export async function preload(page, session) {
+	export async function preload() {
 		const source = 'tijuanamakesmehungry';
 		const limit = 3
 		const url = `process.env.API_URL/posts/by-category?&source=${source}&limit=${limit}`
@@ -41,31 +37,43 @@
 </script>
 
 <style>
-	h1 {
-		margin: 12px 0;
-	}
-
 	ul {
 		padding: 0;
-		margin: 0;
+		list-style-type: none;
 	}
+
 	li {
-    list-style-type: none;
-  }
+		margin: 40px 0;
+	}
 
 	img {
-		height: 300px;
+		height: 454px;
 		width: 100%;
 		object-fit: cover;
+	}
+
+	.cover {
+		padding: 220px 0;
+		background-color: #45cbb2;
+		color: white;
+		text-align: center;	
+	}
+
+	h2, h3, p {
+		padding: 0 12px;
 	}
 
 	a {
 		text-decoration: none;
 	}
+
+	p {
+		word-break: break-word;
+	}
 </style>
 
 <svelte:head>
-	<title>Qué comer en Tijuana? Encuentra la mejor comida de Tijuana</title>
+	<title>{title}</title>
 	<meta property="og:title" content="feedmetj">
 	<meta property="og:description" content={description}>
 	<meta property="og:image" content="https://www.feedmetj.com/banner.webp">
@@ -76,33 +84,29 @@
 	<link rel="apple-touch-icon" href="/logo-192.webp" />
 </svelte:head>
 
+<div class="cover">
+	<h1>Los Mejores Restaurantes de Tijuana</h1>
+</div>
 
 <section>
-	<h1>Los Mejores Restaurantes de Tijuana</h1>
-
 	{#each placesByCategory as category}
-	<section>
-		<h3>
-			<a href={`comida/${category.name}`}>{categoryMap[category.name]}</a>
-		</h3>
-		<ul>
-			{#each category.places as place, index}
-			<li>
-				<h2>
-					{index + 1} -
-					<a href={`https://www.instagram.com/${place.username}/`}
-						rel="nofollow noreferrer"
-						target="_blank">{place.fullName}</a>
-				</h2>
-				<Lazy height={300}>
-					<img src={place.imageUrl.replace('http:', 'https:')} alt={place.fullName}>
-				</Lazy>
-				<strong>{categoryLabel[category.name]}</strong>
-				<p>{place.caption}</p>
-			</li>
-			{/each}
-		</ul>
-	</section>
+	<ul>
+		{#each category.places as place, index}
+		<li>
+			<h2>
+				<a href={`https://www.instagram.com/${place.username}/`}
+					rel="nofollow noreferrer"
+					target="_blank">{place.fullName}</a>
+			</h2>
+			<h3>{categoryLabel[category.name]}</h3>
+			<Lazy height={300}>
+				<img src={place.imageUrl.replace('http:', 'https:')} alt={place.fullName}>
+			</Lazy>
+			
+			<p>{place.caption}</p>
+		</li>
+		{/each}
+	</ul>
 	{/each}
 
 	<hr />
@@ -126,10 +130,4 @@
 
 		<li><PanFrances /></li>
 	</ul>
-
-	<br />
-
-	<p>
-		Conoce más lugares de <a href="/comida/sushi">Sushi en Tijuana</a>
-	</p>
 </section>

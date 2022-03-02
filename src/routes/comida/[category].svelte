@@ -1,12 +1,28 @@
 <script>
 	import Lazy from 'svelte-lazy';
+
+	import { publish } from "../../support/events"
+
 	export let places = []
 	export let category = ''
+
+	publish('update_menu', category)
+
 	const categoryTitle = {
-		bar: 'Bares en Tijuana',
-		cafe: 'Cafés en Tijuana',
-		restaurant: 'Restaurantes en Tijuana',
+		bares: 'Bares en Tijuana',
+		cafes: 'Cafés en Tijuana',
+		restaurantes: 'Restaurantes en Tijuana',
 		sushi: 'Restaurantes de Sushi en Tijuana',
+		desayuno: 'Desayunos en Tijuana',
+		tacos: 'Tacos en Tijuana',
+	}
+	const categoryLabel = {
+		bares: 'Bar',
+		cafes: 'Café',
+		restaurantes: 'Restaurante',
+		sushi: 'Sushi',
+		desayuno: 'Desayuno',
+		tacos: 'Tacos',
 	}
 
 	const description = `La mejor comida se hace en Tijuana, descubre los mejores ${categoryTitle[category]} para comer Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.`
@@ -16,11 +32,20 @@
 </script>
 
 <script context="module">
-	export async function preload(page, session) {
+	export async function preload(page) {
 		const { category } = page.params;
+		const categoryAdjusted = {
+			bares: 'bar',
+			cafes: 'cafe',
+			restaurantes: 'restaurant',
+			sushi: 'sushi',
+			desayuno: 'desayuno',
+			tacos: 'taco',
+		}
+		
 		const source = 'tijuanamakesmehungry';
 		const limit = 33
-		const url = `process.env.API_URL/posts/by-category?category=${category}&source=${source}&limit=${limit}`
+		const url = `process.env.API_URL/posts/by-category?category=${categoryAdjusted[category]}&source=${source}&limit=${limit}`
 		const response = await this.fetch(url)
 		const places = await response.json()
 
@@ -35,26 +60,38 @@
 </script>
 
 <style>
-	h1 {
-		margin: 12px 0;
-	}
-
 	ul {
 		padding: 0;
-		margin: 0;
+		list-style-type: none;
 	}
-	li {
-    list-style-type: none;
-  }
+
+  li {
+		margin: 40px 0;
+	}
 
 	img {
-		height: 300px;
+		height: 454px;
 		width: 100%;
 		object-fit: cover;
 	}
 
-	a {
+	.cover {
+		padding: 220px 0;
+		background-color: #45cbb2;
+		color: white;
+		text-align: center;	
+	}
+
+	h2, h3, p {
+		padding: 0 12px;
+	}
+
+  a {
 		text-decoration: none;
+	}
+
+	p {
+		word-break: break-word;
 	}
 </style>
 
@@ -71,18 +108,21 @@
 </svelte:head>
 
 
-<section>
+<div class="cover">
 	<h1>{categoryTitle[category]}</h1>
+</div>
+
+<section>
 
 	<ul>
 		{#each places as place, index}
 		<li>
 			<h2>
-				{index + 1} -
 				<a href={`https://www.instagram.com/${place.username}/`}
 					rel="nofollow noreferrer"
 					target="_blank">{place.fullName}</a>
 			</h2>
+			<h3>{categoryLabel[category]}</h3>
 			<Lazy height={300}>
 				<img src={place.imageUrl.replace('http:', 'https:')} alt={place.fullName}>
 			</Lazy>

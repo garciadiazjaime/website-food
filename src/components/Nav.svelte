@@ -1,19 +1,30 @@
 <script>
+	import { publish, subscribe } from "../support/events"
 	export let segment;
+
+	subscribe('update_menu', (path) => {
+		segment = path
+	})
+
+	function clickHandler() {
+		publish('update_menu', this.attributes.href.value.split('/').pop())
+	}
 </script>
 
 <style>
 	nav {
+		border-bottom: 1px solid rgba(255,62,0,0.1);
 		font-weight: 300;
 		padding: 0 1em;
-		color: #8C9491;
 	}
+
 	ul {
 		margin: 0;
 		padding: 0;
 	}
 
-	ul:after {
+	/* clearfix */
+	ul::after {
 		content: '';
 		display: block;
 		clear: both;
@@ -27,48 +38,33 @@
 	[aria-current] {
 		position: relative;
 		display: inline-block;
-		color: white;
-		border-bottom-color: #8C9491;
+	}
+
+	[aria-current]::after {
+		position: absolute;
+		content: '';
+		width: calc(100% - 1em);
+		height: 2px;
+		background-color: rgb(255,62,0);
+		display: block;
+		bottom: -1px;
 	}
 
 	a {
 		text-decoration: none;
 		padding: 1em 0.5em;
 		display: block;
-		border: solid 2px transparent;
-	}
-
-	li {
-		padding: 0;
-	}
-
-	.header {
-		background-color: #000;
-	}
-	
-	.logo {
-		text-align: center;
-		color: white;
-		font-size: 40px;
-		padding: 20px 0 0;
-	}
-
-	.content {
-		max-width: 960px;
-		margin: 0 auto;
 	}
 </style>
 
-<div class="header">
-	<div class="content">
-		<div class="logo">
-			feedmetj
-		</div>
-		<nav>
-			<ul>
-				<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>restaurantes</a></li>
-				<li><a aria-current='{segment === "nosotros" ? "page" : undefined}' href='/nosotros'>nosotros</a></li>
-			</ul>
-		</nav>
-	</div>
-</div>
+<nav>
+	<ul>
+		<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>Qué comer?</a></li>
+		<li><a aria-current='{segment === "restaurantes" ? "page" : undefined}' href='comida/restaurantes' on:click={clickHandler}>Restaurantes</a></li>
+		<li><a aria-current='{segment === "cafes" ? "page" : undefined}' href='comida/cafes' on:click={clickHandler}>Cafés</a></li>
+		<li><a aria-current='{segment === "bares" ? "page" : undefined}' href='comida/bares' on:click={clickHandler}>Bares</a></li>
+		<li><a aria-current='{segment === "sushi" ? "page" : undefined}' href='comida/sushi' on:click={clickHandler}>Sushi</a></li>
+		<li><a aria-current='{segment === "desayuno" ? "page" : undefined}' href='comida/desayuno' on:click={clickHandler}>Desayunos</a></li>
+		<li><a aria-current='{segment === "tacos" ? "page" : undefined}' href='comida/tacos' on:click={clickHandler}>Tacos</a></li>
+	</ul>
+</nav>

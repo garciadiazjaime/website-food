@@ -1,6 +1,6 @@
 # Feedmetj
 
-[Qué comer en Tijuana?](https://www.feedmetj.com/)
+[Restaurantes en Tijuana?](https://www.feedmetj.com/)
 
 ## Garita Center
 
@@ -20,7 +20,7 @@
 
 ### Playami
 
-[Qué comer en Playas de Tijuana?](https://www.playami.com/)
+[Restaurantes en Playas de Tijuana?](https://www.playami.com/)
 
 ### Mint IT Media
 
