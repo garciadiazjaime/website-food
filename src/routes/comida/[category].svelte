@@ -1,4 +1,5 @@
 <script>
+	import Cover from '../../components/Cover.svelte'
 	import Card from '../../components/Card.svelte'
 
 	import { publish } from "../../support/events"
@@ -64,8 +65,6 @@
 		const response = await this.fetch(url)
 		const places = await response.json()
 
-		
-
 		return { 
 			places,
 			category,
@@ -82,13 +81,6 @@
   li {
 		margin: 40px 0;
 	}
-
-	.cover {
-		padding: 220px 0;
-		background-color: #45cbb2;
-		color: white;
-		text-align: center;	
-	}
 </style>
 
 <svelte:head>
@@ -97,13 +89,9 @@
 	<meta name="description" content={description}>
 </svelte:head>
 
-
-<div class="cover">
-	<h1>{category.title}</h1>
-</div>
+<Cover title={category.title} />
 
 <section>
-
 	<ul>
 		{#each places as place, index}
 		<li>

@@ -1,4 +1,5 @@
 <script>
+	import Cover from '../components/Cover.svelte'
 	import Card from '../components/Card.svelte'
 
 	export let places
@@ -35,13 +36,6 @@
 	li {
 		margin: 40px 0;
 	}
-
-	.cover {
-		padding: 220px 0;
-		background-color: #45cbb2;
-		color: white;
-		text-align: center;	
-	}
 </style>
 
 <svelte:head>
@@ -50,9 +44,7 @@
 	<meta name="description" content={description}>
 </svelte:head>
 
-<div class="cover">
-	<h1>Los Mejores Restaurantes de Tijuana</h1>
-</div>
+<Cover title="Los Mejores Restaurantes de Tijuana" />
 
 <section>
 	<ul>
