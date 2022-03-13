@@ -1,60 +1,74 @@
 <script>
-	import Lazy from 'svelte-lazy';
+	import Card from '../../components/Card.svelte'
 
 	import { publish } from "../../support/events"
 
 	export let places = []
-	export let category = ''
+	export let category = {}
 
-	publish('update_menu', category)
+	publish('update_menu', category.menu)
 
-	const categoryTitle = {
-		bares: 'Bares en Tijuana',
-		cafes: 'Cafés en Tijuana',
-		restaurantes: 'Restaurantes en Tijuana',
-		sushi: 'Restaurantes de Sushi en Tijuana',
-		desayuno: 'Desayunos en Tijuana',
-		tacos: 'Tacos en Tijuana',
-	}
-	const categoryLabel = {
-		bares: 'Bar',
-		cafes: 'Café',
-		restaurantes: 'Restaurante',
-		sushi: 'Sushi',
-		desayuno: 'Desayuno',
-		tacos: 'Tacos',
-	}
-
-	const description = `La mejor comida se hace en Tijuana, descubre los mejores ${categoryTitle[category]} para comer Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.`
+	const description = `La mejor comida se hace en Tijuana, descubre los mejores ${category.title} para comer Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.`
 	const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 	const currentMonthTitle = months[new Date().getMonth()]
 	
 </script>
 
 <script context="module">
+	const categoryMeta = {
+		bares: {
+			title: 'Bares en Tijuana',
+			label: 'Bar',
+			menu: 'bares',
+			api: 'bar',
+		},
+		cafes: {
+			title: 'Cafés en Tijuana',
+			label: 'Café',
+			menu: 'cafes',
+			api: 'cafe',
+		},
+		restaurantes: {
+			title: 'Restaurantes en Tijuana',
+			label: 'Restaurante',
+			menu: 'restaurantes',
+			api: 'restaurant',
+		},
+		sushi: {
+			title: 'Restaurantes de Sushi en Tijuana',
+			label: 'Sushi',
+			menu: 'sushi',
+			api: 'sushi',
+		},
+		desayuno: {
+			title: 'Desayunos en Tijuana',
+			label: 'Desayuno',
+			menu: 'desayuno',
+			api: 'desayuno',
+		},
+		tacos: {
+			title: 'Tacos en Tijuana',
+			label: 'Tacos',
+			menu: 'tacos',
+			api: 'taco',
+		},
+	}
+
 	export async function preload(page) {
-		const { category } = page.params;
-		const categoryAdjusted = {
-			bares: 'bar',
-			cafes: 'cafe',
-			restaurantes: 'restaurant',
-			sushi: 'sushi',
-			desayuno: 'desayuno',
-			tacos: 'taco',
-		}
+		const { category: categoryParam } = page.params;
+		const category = categoryMeta[categoryParam]
 		
 		const source = 'tijuanamakesmehungry';
 		const limit = 33
-		const url = `process.env.API_URL/posts/by-category?categories=${categoryAdjusted[category]}&source=${source}&limit=${limit}`
+		const url = `process.env.API_URL/posts/by-category?categories=${category.api}&source=${source}&limit=${limit}`
 		const response = await this.fetch(url)
 		const places = await response.json()
 
+		
+
 		return { 
-			places: places.map(place => ({
-				...place,
-				caption: place.caption.slice(0, place.caption.indexOf('#'))
-			})),
-			category 
+			places,
+			category,
 		};
 	}
 </script>
@@ -69,55 +83,23 @@
 		margin: 40px 0;
 	}
 
-	img {
-		height: 454px;
-		width: 100%;
-		object-fit: cover;
-	}
-
 	.cover {
 		padding: 220px 0;
 		background-color: #45cbb2;
 		color: white;
 		text-align: center;	
 	}
-
-	h2, h3, p {
-		padding: 0 12px;
-	}
-
-  a {
-		text-decoration: none;
-	}
-
-	p {
-		word-break: break-word;
-	}
-
-	small {
-		height: 24px;
-		width: 24px;
-		background-color: #45cbb2;
-		color: white;
-		border-radius: 50%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 12px;
-		font-weight: bold;
-		margin-left: 12px;
-	}
 </style>
 
 <svelte:head>
-	<title>Encuentra los mejores {categoryTitle[category]} | {currentMonthTitle} 2022</title>
+	<title>Encuentra los mejores {category.title} | {currentMonthTitle} 2022</title>
 	<meta property="og:description" content={description}>
 	<meta name="description" content={description}>
 </svelte:head>
 
 
 <div class="cover">
-	<h1>{categoryTitle[category]}</h1>
+	<h1>{category.title}</h1>
 </div>
 
 <section>
@@ -125,17 +107,14 @@
 	<ul>
 		{#each places as place, index}
 		<li>
-			<small>{index + 1}</small>
-			<h2>
-				<a href={`https://www.instagram.com/${place.username}/`}
-					rel="nofollow noreferrer"
-					target="_blank">{place.fullName}</a>
-			</h2>
-			<h3>{categoryLabel[category]}</h3>
-			<Lazy height={300}>
-				<img src={place.imageUrl.replace('http:', 'https:')} alt={place.fullName}>
-			</Lazy>
-			<p>{place.caption}</p>
+			<Card 
+				index={index + 1} 
+				title={place.fullName}
+				link={`https://www.instagram.com/${place.username}/`}
+				subtitle={category.label}
+				image={place.imageUrl.replace('http:', 'https:')}
+				description={place.caption.slice(0, place.caption.indexOf('#'))}
+			/>
 		</li>
 		{/each}
 	</ul>

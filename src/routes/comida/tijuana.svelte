@@ -5,6 +5,10 @@
 	import TresLugaresSushi from "../../components/blog/3-lugares-sushi/intro.svelte"
 	import PanFrances from "../../components/blog/pan-frances/intro.svelte"
 
+	import { publish } from "../../support/events"
+
+	publish('update_menu', 'tijuana')
+
 	const title = 'Recomendaciones de comida en Tijuana.'
 	const description = 'Descubre los mejores Restaurantes de Tijuana.'
 </script>

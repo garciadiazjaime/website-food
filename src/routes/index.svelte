@@ -1,5 +1,5 @@
 <script>
-	import Lazy from 'svelte-lazy';
+	import Card from '../components/Card.svelte'
 
 	export let places
 	const title = 'La mejor comida se cocina en Tijuana. Restaurantes, Cafés, Bares'
@@ -14,7 +14,7 @@
 <script context="module">
 	export async function preload() {
 		const source = 'tijuanamakesmehungry';
-		const limit = 4
+		const limit = 5
 		const categories = 'restaurant,cafe,bar'
 		const url = `process.env.API_URL/posts/by-category?categories=${categories}&source=${source}&limit=${limit}`
 		const response = await this.fetch(url)
@@ -36,49 +36,11 @@
 		margin: 40px 0;
 	}
 
-	img {
-		height: 454px;
-		width: 100%;
-		object-fit: cover;
-	}
-
 	.cover {
 		padding: 220px 0;
 		background-color: #45cbb2;
 		color: white;
 		text-align: center;	
-	}
-
-	h2, p {
-		padding: 0 12px;
-		margin-bottom: 0;
-	}
-
-	strong {
-		font-weight: normal;
-		padding: 0 12px;
-	}
-
-	a {
-		text-decoration: none;
-	}
-
-	p {
-		word-break: break-word;
-	}
-
-	small {
-		height: 24px;
-		width: 24px;
-		background-color: #45cbb2;
-		color: white;
-		border-radius: 50%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 12px;
-		font-weight: bold;
-		margin-left: 12px;
 	}
 </style>
 
@@ -96,18 +58,14 @@
 	<ul>
 		{#each places as place, index}
 		<li>
-			<small>{index + 1}</small>
-			<h2>
-				<a href={`https://www.instagram.com/${place.username}/`}
-					rel="nofollow noreferrer"
-					target="_blank">{place.fullName}</a>
-			</h2>
-			<strong>{categoryLabel[place.category]}</strong>
-			<Lazy height={300}>
-				<img src={place.imageUrl.replace('http:', 'https:')} alt={place.fullName}>
-			</Lazy>
-			
-			<p>{place.caption}</p>
+			<Card 
+				index={index + 1} 
+				title={place.fullName}
+				link={`https://www.instagram.com/${place.username}/`}
+				subtitle={categoryLabel[place.category]}
+				image={place.imageUrl.replace('http:', 'https:')}
+				description={place.caption.slice(0, place.caption.indexOf('#'))}
+			/>
 		</li>
 		{/each}
 	</ul>
