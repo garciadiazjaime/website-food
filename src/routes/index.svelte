@@ -3,8 +3,8 @@
 	import Card from '../components/Card.svelte'
 
 	export let places
-	const title = 'La mejor comida se cocina en Tijuana. Restaurantes, Cafés, Bares'
-	const description = 'La mejor comida se hace en Tijuana, descubre los mejores restaurantes para comer Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.'
+	const title = 'La mejor comida de Tijuana. Restaurantes, Cafés, Bares, Sushi'
+	const description = 'La mejor comida se hace en Tijuana, descubre los mejores Restaurantes, Cafés y Bares.'
 	const categoryLabel = {
 		bar: 'Bar',
 		cafe: 'Café',
