@@ -1,12 +1,7 @@
 <script>
 	import Lazy from 'svelte-lazy';
-	import DondeComerTijuana from '../components/blog/donde-comer-tijuana/intro.svelte'
-	import TacosTijuana from "../components/blog/tijuana-tacos/intro.svelte"
-	import TresLugaresBrunch from "../components/blog/3-lugares-brunch/intro.svelte"
-	import TresLugaresSushi from "../components/blog/3-lugares-sushi/intro.svelte"
-	import PanFrances from "../components/blog/pan-frances/intro.svelte"
 
-	export let placesByCategory
+	export let places
 	const title = 'La mejor comida se cocina en Tijuana. Restaurantes, Cafés, Bares'
 	const description = 'La mejor comida se hace en Tijuana, descubre los mejores restaurantes para comer Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.'
 	const categoryLabel = {
@@ -20,19 +15,14 @@
 	export async function preload() {
 		const source = 'tijuanamakesmehungry';
 		const limit = 4
-		const url = `process.env.API_URL/posts/by-category?&source=${source}&limit=${limit}`
+		const categories = 'restaurant,cafe,bar'
+		const url = `process.env.API_URL/posts/by-category?categories=${categories}&source=${source}&limit=${limit}`
 		const response = await this.fetch(url)
-		const data = await response.json()
+		const places = await response.json()
 
-		return { 
-			placesByCategory: data.map(placesByCategory => ({
-				...placesByCategory,
-				places: placesByCategory.places.map(place => ({
-					...place,
-					caption: place.caption.slice(0, place.caption.indexOf('#'))
-				}))	
-			})),
-		 };
+		return {
+			places
+		}
 	}
 </script>
 
@@ -76,18 +66,26 @@
 	p {
 		word-break: break-word;
 	}
+
+	small {
+		height: 24px;
+		width: 24px;
+		background-color: #45cbb2;
+		color: white;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 12px;
+		font-weight: bold;
+		margin-left: 12px;
+	}
 </style>
 
 <svelte:head>
 	<title>{title}</title>
-	<meta property="og:title" content="feedmetj">
 	<meta property="og:description" content={description}>
-	<meta property="og:image" content="https://www.feedmetj.com/banner.webp">
-	<meta property="og:url" content="https://www.feedmetj.com/">
 	<meta name="description" content={description}>
-	<link href="https://www.google-analytics.com" rel="dns-prefetch">
-
-	<link rel="apple-touch-icon" href="/logo-192.webp" />
 </svelte:head>
 
 <div class="cover">
@@ -95,16 +93,16 @@
 </div>
 
 <section>
-	{#each placesByCategory as category}
 	<ul>
-		{#each category.places as place, index}
+		{#each places as place, index}
 		<li>
+			<small>{index + 1}</small>
 			<h2>
 				<a href={`https://www.instagram.com/${place.username}/`}
 					rel="nofollow noreferrer"
 					target="_blank">{place.fullName}</a>
 			</h2>
-			<strong>{categoryLabel[category.name]}</strong>
+			<strong>{categoryLabel[place.category]}</strong>
 			<Lazy height={300}>
 				<img src={place.imageUrl.replace('http:', 'https:')} alt={place.fullName}>
 			</Lazy>
@@ -112,28 +110,5 @@
 			<p>{place.caption}</p>
 		</li>
 		{/each}
-	</ul>
-	{/each}
-
-	<hr />
-
-	<ul>
-		<li><DondeComerTijuana /></li>
-		
-		<li><hr /></li>
-
-		<li><TresLugaresSushi /></li>
-
-		<li><hr /></li>
-
-		<li><TacosTijuana /></li>
-
-		<li><hr /></li>
-
-		<li><TresLugaresBrunch /></li>
-
-		<li><hr /></li>
-
-		<li><PanFrances /></li>
 	</ul>
 </section>

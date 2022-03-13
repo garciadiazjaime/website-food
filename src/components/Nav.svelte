@@ -66,5 +66,6 @@
 		<li><a aria-current='{segment === "sushi" ? "page" : undefined}' href='comida/sushi' on:click={clickHandler}>Sushi</a></li>
 		<li><a aria-current='{segment === "desayuno" ? "page" : undefined}' href='comida/desayuno' on:click={clickHandler}>Desayunos</a></li>
 		<li><a aria-current='{segment === "tacos" ? "page" : undefined}' href='comida/tacos' on:click={clickHandler}>Tacos</a></li>
+		<li><a aria-current='{segment === "tijuana" ? "page" : undefined}' href='comida/tijuana' on:click={clickHandler}>Tijuana</a></li>
 	</ul>
 </nav>

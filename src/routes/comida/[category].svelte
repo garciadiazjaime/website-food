@@ -45,7 +45,7 @@
 		
 		const source = 'tijuanamakesmehungry';
 		const limit = 33
-		const url = `process.env.API_URL/posts/by-category?category=${categoryAdjusted[category]}&source=${source}&limit=${limit}`
+		const url = `process.env.API_URL/posts/by-category?categories=${categoryAdjusted[category]}&source=${source}&limit=${limit}`
 		const response = await this.fetch(url)
 		const places = await response.json()
 
@@ -93,18 +93,26 @@
 	p {
 		word-break: break-word;
 	}
+
+	small {
+		height: 24px;
+		width: 24px;
+		background-color: #45cbb2;
+		color: white;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 12px;
+		font-weight: bold;
+		margin-left: 12px;
+	}
 </style>
 
 <svelte:head>
 	<title>Encuentra los mejores {categoryTitle[category]} | {currentMonthTitle} 2022</title>
-	<meta property="og:title" content="feedmetj">
 	<meta property="og:description" content={description}>
-	<meta property="og:image" content="https://www.feedmetj.com/banner.webp">
-	<meta property="og:url" content="https://www.feedmetj.com/">
 	<meta name="description" content={description}>
-	<link href="https://www.google-analytics.com" rel="dns-prefetch">
-
-	<link rel="apple-touch-icon" href="/logo-192.webp" />
 </svelte:head>
 
 
@@ -117,6 +125,7 @@
 	<ul>
 		{#each places as place, index}
 		<li>
+			<small>{index + 1}</small>
 			<h2>
 				<a href={`https://www.instagram.com/${place.username}/`}
 					rel="nofollow noreferrer"
