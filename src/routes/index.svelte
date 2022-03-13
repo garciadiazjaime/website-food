@@ -19,7 +19,7 @@
 <script context="module">
 	export async function preload() {
 		const source = 'tijuanamakesmehungry';
-		const limit = 3
+		const limit = 4
 		const url = `process.env.API_URL/posts/by-category?&source=${source}&limit=${limit}`
 		const response = await this.fetch(url)
 		const data = await response.json()
@@ -59,7 +59,13 @@
 		text-align: center;	
 	}
 
-	h2, h3, p {
+	h2, p {
+		padding: 0 12px;
+		margin-bottom: 0;
+	}
+
+	strong {
+		font-weight: normal;
 		padding: 0 12px;
 	}
 
@@ -98,7 +104,7 @@
 					rel="nofollow noreferrer"
 					target="_blank">{place.fullName}</a>
 			</h2>
-			<h3>{categoryLabel[category.name]}</h3>
+			<strong>{categoryLabel[category.name]}</strong>
 			<Lazy height={300}>
 				<img src={place.imageUrl.replace('http:', 'https:')} alt={place.fullName}>
 			</Lazy>

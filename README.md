@@ -20,7 +20,7 @@
 
 ### Playami
 
-[Restaurantes en Playas de Tijuana?](https://www.playami.com/)
+[Restaurantes en Playas de Tijuana](https://www.playami.com/)
 
 ### Mint IT Media
 
