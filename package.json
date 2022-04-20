@@ -12,7 +12,7 @@
   "dependencies": {
     "async": "^3.2.0",
     "compression": "^1.7.1",
-    "convict": "^6.0.0",
+    "convict": "^6.2.2",
     "debug": "^4.3.1",
     "mapbox-gl": "^1.11.1",
     "mongoose": "^5.11.16",
