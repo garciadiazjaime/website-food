@@ -26,13 +26,6 @@
 
 
 <footer>
-	<p>
-		Tijuana es una ciudad en crecimiento, actualmente cuenta con varias zonas que ofrecen una gran variedad de comida.
-	</p>
-	<p>
-		La mejor <strong>comida</strong> se hace en <strong>Tijuana</strong>, descubre los mejores lugares para <strong>comer</strong> Ramen, Sushi, Pizza, Poke, Tacos, Mariscos y más.
-	</p>
-
 	<br />
 
 	<div>

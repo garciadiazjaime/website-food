@@ -2,11 +2,14 @@
 	import Lazy from 'svelte-lazy';
 
 	export let index
-  export let link
-  export let title
-  export let subtitle
-  export let image
-  export let description
+	export let link
+	export let title
+	export let subtitle
+	export let image
+	export let description
+	export let address
+	export let phone
+	export let gmaps
 </script>
 
 <style>
@@ -47,6 +50,16 @@
 		font-weight: bold;
 		margin-left: 12px;
 	}
+
+	ul {
+		list-style-type: none;
+		padding: 0 0 0 12px;
+	}
+	
+	li {
+		color: #666;
+		font-size: 0.8em;
+	}
 </style>
 
 <small>{index}</small>
@@ -61,3 +74,7 @@
 </Lazy>
 
 <p>{description}</p>
+<ul>
+	<li><a href={gmaps} rel="nofollow noreferrer" target="_blank">{address}</a></li>
+	<li>{phone}</li>
+</ul>

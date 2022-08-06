@@ -1,30 +1,12 @@
 <script>
-	import Cover from '../components/Cover.svelte'
-	import Card from '../components/Card.svelte'
+	import DondeComerTijuana from '../components/blog/donde-comer-tijuana/intro.svelte'
+	import TacosTijuana from "../components/blog/tijuana-tacos/intro.svelte"
+	import TresLugaresBrunch from "../components/blog/3-lugares-brunch/intro.svelte"
+	import TresLugaresSushi from "../components/blog/3-lugares-sushi/intro.svelte"
+	import PanFrances from "../components/blog/pan-frances/intro.svelte"
 
-	export let places
-	const title = 'La mejor comida de Tijuana. Restaurantes, Cafés, Bares, Sushi'
-	const description = 'La mejor comida se hace en Tijuana, descubre los mejores Restaurantes, Cafés y Bares.'
-	const categoryLabel = {
-		bar: 'Bar',
-		cafe: 'Café',
-		restaurant: 'Restaurante'
-	}
-</script>
-
-<script context="module">
-	export async function preload() {
-		const source = 'tijuanamakesmehungry';
-		const limit = 5
-		const categories = 'restaurant,cafe,bar'
-		const url = `process.env.API_URL/posts/by-category?categories=${categories}&source=${source}&limit=${limit}`
-		const response = await this.fetch(url)
-		const places = await response.json()
-
-		return {
-			places
-		}
-	}
+	const title = 'Recomendaciones de comida en Tijuana.'
+	const description = 'Descubre los mejores Restaurantes de Tijuana.'
 </script>
 
 <style>
@@ -36,6 +18,13 @@
 	li {
 		margin: 40px 0;
 	}
+
+	.cover {
+		padding: 220px 0;
+		background-color: #45cbb2;
+		color: white;
+		text-align: center;	
+	}
 </style>
 
 <svelte:head>
@@ -44,21 +33,28 @@
 	<meta name="description" content={description}>
 </svelte:head>
 
-<Cover title="Los Mejores Restaurantes de Tijuana" />
+<div class="cover">
+	<h1>Recomendaciones de comida en Tijuana</h1>
+</div>
 
 <section>
 	<ul>
-		{#each places as place, index}
-		<li>
-			<Card 
-				index={index + 1} 
-				title={place.fullName}
-				link={`https://www.instagram.com/${place.username}/`}
-				subtitle={categoryLabel[place.category]}
-				image={place.imageUrl.replace('http:', 'https:')}
-				description={place.caption.slice(0, place.caption.indexOf('#'))}
-			/>
-		</li>
-		{/each}
+		<li><DondeComerTijuana /></li>
+		
+		<li><hr /></li>
+
+		<li><TresLugaresSushi /></li>
+
+		<li><hr /></li>
+
+		<li><TacosTijuana /></li>
+
+		<li><hr /></li>
+
+		<li><TresLugaresBrunch /></li>
+
+		<li><hr /></li>
+
+		<li><PanFrances /></li>
 	</ul>
 </section>

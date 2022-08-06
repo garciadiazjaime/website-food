@@ -59,13 +59,7 @@
 
 <nav>
 	<ul>
-		<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>Qué comer?</a></li>
-		<li><a aria-current='{segment === "restaurantes" ? "page" : undefined}' href='comida/restaurantes' on:click={clickHandler}>Restaurantes</a></li>
-		<li><a aria-current='{segment === "cafes" ? "page" : undefined}' href='comida/cafes' on:click={clickHandler}>Cafés</a></li>
-		<li><a aria-current='{segment === "bares" ? "page" : undefined}' href='comida/bares' on:click={clickHandler}>Bares</a></li>
-		<li><a aria-current='{segment === "sushi" ? "page" : undefined}' href='comida/sushi' on:click={clickHandler}>Sushi</a></li>
+		<li><a aria-current='{segment === undefined ? "page" : undefined}' href='.'>Tijuana</a></li>
 		<li><a aria-current='{segment === "desayuno" ? "page" : undefined}' href='comida/desayuno' on:click={clickHandler}>Desayunos</a></li>
-		<li><a aria-current='{segment === "tacos" ? "page" : undefined}' href='comida/tacos' on:click={clickHandler}>Tacos</a></li>
-		<li><a aria-current='{segment === "tijuana" ? "page" : undefined}' href='comida/tijuana' on:click={clickHandler}>Tijuana</a></li>
 	</ul>
 </nav>
