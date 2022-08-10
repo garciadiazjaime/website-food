@@ -18,7 +18,7 @@
 <script context="module">
 
 	export async function preload() {
-		const response = await this.fetch('/data/restaurants.json')
+		const response = await this.fetch('/restaurants.json')
         const places = await response.json()
 
 		return { 
@@ -48,6 +48,26 @@
 	<title>Encuentra los mejores {category.title} | {currentMonthTitle} 2022</title>
 	<meta property="og:description" content={description}>
 	<meta name="description" content={description}>
+
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "FAQPage",
+			"mainEntity": [{
+				"@type": "Question",
+				"name": "Dónde desayunar en Tijuana?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": `<ul>
+						<li><h3>La Espadaña</h3><p>Donde queremos que desayune, coma y cene, casi como en su casa.</p></li>
+						<li><h3>Marenca Restaurante</h3><p>Sabemos lo que te gusta, y lo llevamos a tu mesa.</p></li>
+						<li><h3>El Yogurt Place</h3><p>Desayunos con frutas, verduras, cereales, granos y semillas convertidas en deliciosas creaciones para cuidar de tu salud y vida.</p></li>
+					</ul>
+					`
+				}
+			}]
+		}
+	</script>
 </svelte:head>
 
 <Cover title={category.title} />

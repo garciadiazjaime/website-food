@@ -7,7 +7,7 @@ async function main() {
     const response = await fetch('https://mint-api-central.herokuapp.com/restaurant/');
     const restaurants = await response.json()
 
-    fs.writeFileSync('./static/data/restaurants.json', JSON.stringify(restaurants))
+    fs.writeFileSync('./static/restaurants.json', JSON.stringify(restaurants))
     debug('end')
 }
 
