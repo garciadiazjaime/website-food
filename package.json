@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build --legacy",
-    "data": "node etl/data.js",
+    "data": "node src/scripts/download-restaurants.js",
     "export": "sapper export --legacy",
     "start": "node __sapper__/build"
   },
