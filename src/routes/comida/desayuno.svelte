@@ -12,7 +12,8 @@
 	const description = `Los mejores lugares pare desayunar en Tijuana.`
 	const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 	const currentMonthTitle = months[new Date().getMonth()]
-	
+
+	const title = `Encuentra los mejores ${category.title} | ${currentMonthTitle} 2022`
 </script>
 
 <script context="module">
@@ -42,11 +43,28 @@
   li {
 		margin: 40px 0;
 	}
+
+	.share-social-media {
+		position: fixed;
+		right: 12px;
+		bottom: 12px;
+	}
+
+	.share-social-media a {
+		text-decoration: none;
+		border-radius: 3px;
+		padding: 16px 24px;
+		background: #1877f2;
+		color: white;
+		z-index: 10;
+	}
 </style>
 
 <svelte:head>
-	<title>Encuentra los mejores {category.title} | {currentMonthTitle} 2022</title>
+	<title>{title}</title>
+	<meta property="og:title" content={title}>
 	<meta property="og:description" content={description}>
+	<meta property="og:url" content="https://www.feedmetj.com/comida/desayuno/">
 	<meta name="description" content={description}>
 
 	<script type="application/ld+json">
@@ -91,3 +109,7 @@
 		{/each}
 	</ul>
 </section>
+
+<div class="share-social-media">
+	<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.feedmetj.com%2Fcomida%2Fdesayuno%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a>
+</div>

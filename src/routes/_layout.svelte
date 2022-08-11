@@ -6,7 +6,6 @@
 
 <style>
 	main, footer {
-		position: relative;
 		max-width: 56em;
 		background-color: white;
 		margin: 0 auto;
@@ -17,13 +16,18 @@
 		padding: 0;
 		list-style-type: none;
 	}
+
+	@media (max-width: 56em) {
+		footer {
+			padding: 12px;
+		}
+	}
 </style>
 
 <Nav {segment} />
 <main>
 	<slot></slot>
 </main>
-
 
 <footer>
 	<br />
