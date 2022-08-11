@@ -10,10 +10,6 @@
 	export let address
 	export let phone
 	export let gmaps
-
-	function outsideLinkClickHandler(link) {
-		window.open(link, '_blank')
-	}
 </script>
 
 <style>
@@ -31,6 +27,10 @@
 	strong {
 		font-weight: normal;
 		padding: 0 12px;
+	}
+
+	a {
+		text-decoration: none;
 	}
 
 	p {
@@ -60,18 +60,13 @@
 		color: #666;
 		font-size: 0.8em;
 	}
-
-	.pointer {
-		cursor: pointer;
-	}
-	.pointer:hover {
-		text-decoration: underline;
-	}
 </style>
 
 <small>{index}</small>
-<h2 on:click={() => outsideLinkClickHandler(link)} class="pointer">
-  {title}
+<h2>
+  <a href={link}
+    rel="nofollow noreferrer"
+    target="_blank">{title}</a>
 </h2>
 <strong>{subtitle}</strong>
 <Lazy height={300}>
@@ -80,8 +75,6 @@
 
 <p>{description}</p>
 <ul>
-	<li on:click={() => outsideLinkClickHandler(gmaps)} class="pointer">
-		{address}
-	</li>
+	<li><a href={gmaps} rel="nofollow noreferrer" target="_blank">{address}</a></li>
 	<li>{phone}</li>
 </ul>
