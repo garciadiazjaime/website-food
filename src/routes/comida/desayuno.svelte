@@ -88,7 +88,7 @@
 	</script>
 </svelte:head>
 
-<Cover title={category.title} />
+<Cover title={title} />
 
 <section>
 	<ul>

@@ -4,7 +4,7 @@ const debug = require('debug')('app:webp')
 
 async function main() {
     debug('start')
-    const dirPath = './images/desayuno'
+    const dirPath = './static/desayuno'
     const files = fs.readdirSync(dirPath)
 
     files.forEach(filename => {

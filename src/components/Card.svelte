@@ -70,7 +70,11 @@
 </h2>
 <strong>{subtitle}</strong>
 <Lazy height={300}>
-  <img src={image} alt={title}>
+	<picture>
+		<source src={image} type="image/webp">
+		<source src={image.replace('webp', 'jpeg')} type="image/jpeg"> 
+		<img src={image.replace('webp', 'jpeg')} alt={title}>
+	</picture>
 </Lazy>
 
 <p>{description}</p>
