@@ -62,23 +62,23 @@
 	}
 </style>
 
-<small>{index}</small>
-<h2>
-  <a href={link}
-    rel="nofollow noreferrer"
-    target="_blank">{title}</a>
-</h2>
-<strong>{subtitle}</strong>
-<Lazy height={300}>
-	<picture>
-		<source src={image} type="image/webp">
-		<source src={image.replace('webp', 'jpeg')} type="image/jpeg"> 
-		<img src={image.replace('webp', 'jpeg')} alt={title}>
-	</picture>
-</Lazy>
+<a href={link} title={title}>
+	<small>{index}</small>
+	<h2>
+	{title}
+	</h2>
+	<strong>{subtitle}</strong>
+	<Lazy height={300}>
+		<picture>
+			<source src={image} type="image/webp">
+			<source src={image.replace('webp', 'jpeg')} type="image/jpeg"> 
+			<img src={image.replace('webp', 'jpeg')} alt={title}>
+		</picture>
+	</Lazy>
 
-<p>{description}</p>
-<ul>
-	<li><a href={gmaps} rel="nofollow noreferrer" target="_blank">{address}</a></li>
-	<li>{phone}</li>
-</ul>
+	<p>{description}</p>
+	<ul>
+		<li>{address}</li>
+		<li>{phone}</li>
+	</ul>
+</a>

@@ -97,7 +97,7 @@
 			<Card 
 				index={index + 1} 
 				title={place.name}
-				link={place.instagram}
+				link={`/comida/${place.slug}`}
 				subtitle={category.label}
 				image={place.image}
 				description={place.description}
