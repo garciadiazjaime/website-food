@@ -21,7 +21,6 @@
 		
 		const response = await this.fetch(`/restaurants/${slug}.json`)
         const restaurant = await response.json()
-		console.log(restaurant)
 
 		return { 
 			...restaurant
